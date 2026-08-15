@@ -19,6 +19,7 @@ class WifiSession extends Model
         'organization_id',
         'hotspot_id',
         'campaign_id',
+        'package_id',
         'sponsorship_id',
         'provider_session_id',
         'phone',
@@ -73,6 +74,11 @@ class WifiSession extends Model
     public function sponsorship(): BelongsTo
     {
         return $this->belongsTo(Sponsorship::class);
+    }
+
+    public function package(): BelongsTo
+    {
+        return $this->belongsTo(WifiPackage::class);
     }
 
     public function statusObject(): SessionStatus

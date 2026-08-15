@@ -27,9 +27,11 @@
                     </div>
                     <div class="d-flex align-items-center">
                         <span class="badge bg-primary-lt me-2">{{ number_format($role->users_count) }} user(s)</span>
+                        @can('update-role')
                         <a href="{{ route('admin.roles.edit', $role) }}" class="btn btn-sm btn-primary d-inline-flex align-items-center">
                             <i class="fa-solid fa-pen me-1"></i>Edit
                         </a>
+                        @endcan
                     </div>
                 </div>
             </div>

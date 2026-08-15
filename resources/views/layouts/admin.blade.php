@@ -104,9 +104,18 @@
                                 </a>
                             </li>
 
+                            @can('view-analytics')
+                                <li class="nav-item {{ request()->routeIs('admin.analytics') ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{ route('admin.analytics') }}">
+                                        <span class="nav-link-icon"><i class="ti ti-chart-pie"></i></span>
+                                        <span class="nav-link-title">Analytics</span>
+                                    </a>
+                                </li>
+                            @endcan
+
                             @php
-                                $showManagement = auth()->user()->can('view-any-organization') || auth()->user()->can('view-any-user') || auth()->user()->can('view-any-hotspot') || auth()->user()->can('view-any-campaign');
-                                $managementActive = request()->routeIs('admin.organizations.*', 'admin.users.*', 'admin.hotspots.*', 'admin.campaigns.*');
+                                $showManagement = auth()->user()->can('view-any-organization') || auth()->user()->can('view-any-user') || auth()->user()->can('view-any-hotspot') || auth()->user()->can('view-any-campaign') || auth()->user()->can('view-any-package');
+                                $managementActive = request()->routeIs('admin.organizations.*', 'admin.users.*', 'admin.hotspots.*', 'admin.campaigns.*', 'admin.packages.*');
                             @endphp
 
                             @if ($showManagement)
@@ -146,6 +155,14 @@
                                                 <li class="nav-item {{ request()->routeIs('admin.campaigns.*') ? 'active' : '' }}">
                                                     <a class="nav-link" href="{{ route('admin.campaigns.index') }}">
                                                         <span class="nav-link-title">Campaigns</span>
+                                                    </a>
+                                                </li>
+                                            @endcan
+
+                                            @can('view-any-package')
+                                                <li class="nav-item {{ request()->routeIs('admin.packages.*') ? 'active' : '' }}">
+                                                    <a class="nav-link" href="{{ route('admin.packages.index') }}">
+                                                        <span class="nav-link-title">Wi-Fi Packages</span>
                                                     </a>
                                                 </li>
                                             @endcan
@@ -385,7 +402,10 @@
                         <div class="row text-center align-items-center flex-row-reverse">
                             <div class="col-lg-auto ms-lg-auto">
                                 <ul class="list-inline list-inline-dots mb-0">
-                                    <li class="list-inline-item"><a href="{{ route('admin.settings') }}">Settings</a>
+                                    <li class="list-inline-item">
+                                        @canany(['view-settings', 'update-settings'])
+                                        <a href="{{ route('admin.settings') }}">Settings</a>
+                                        @endcanany
                                     </li>
                                     <li class="list-inline-item"><a href="{{ config('app.url') }}">Public Portal</a>
                                     </li>

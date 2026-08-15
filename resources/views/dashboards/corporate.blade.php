@@ -89,7 +89,9 @@
                         <i class="ti ti-chart-bar text-primary me-2"></i>Campaign Performance
                     </h2>
                     <div class="card-actions">
+                        @can('view-any-campaign')
                         <a href="{{ route('admin.campaigns.index') }}" class="btn btn-sm btn-outline-secondary">View all</a>
+                        @endcan
                     </div>
                 </div>
                 <div class="table-responsive">

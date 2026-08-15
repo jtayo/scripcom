@@ -195,7 +195,9 @@
                         <i class="ti ti-building-broadcast-tower text-primary me-2"></i>Location Performance
                     </h2>
                     <div class="card-actions">
+                        @can('view-any-hotspot')
                         <a href="{{ route('admin.hotspots.index') }}" class="btn btn-sm btn-outline-secondary">View all</a>
+                        @endcan
                     </div>
                 </div>
                 <div class="table-responsive">

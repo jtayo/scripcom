@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\SponsorshipController;
 use App\Http\Controllers\TolclinWebhookController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WifiPackageController;
 use App\Http\Controllers\WifiSessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -51,6 +53,11 @@ Route::prefix('admin')
     ->middleware(['auth'])
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+        Route::get('/analytics', [AnalyticsController::class, 'index'])
+            ->middleware('can:view-analytics')
+            ->name('analytics');
+
         Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::patch('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
@@ -79,6 +86,9 @@ Route::prefix('admin')
 
         Route::resource('sponsorships', SponsorshipController::class)
             ->middleware('can:view-any-sponsorship');
+
+        Route::resource('packages', WifiPackageController::class)
+            ->middleware('can:view-any-package');
 
         Route::resource('sessions', WifiSessionController::class)
             ->only(['index', 'show', 'destroy'])

@@ -171,7 +171,9 @@
                                 class="ti ti-wifi me-1"></i>{{ $hotspotMarkers ? collect($hotspotMarkers)->filter(fn($h) => $h['online'])->count() : 0 }}
                             online
                         </span>
+                        @can('view-any-hotspot')
                         <a href="{{ route('admin.hotspots.index') }}" class="btn btn-sm btn-outline-secondary">View all</a>
+                        @endcan
                     </div>
                 </div>
                 <div class="card-body p-0">
@@ -287,8 +289,10 @@
                         <i class="ti ti-speakerphone text-primary me-2"></i>Top Campaigns
                     </h2>
                     <div class="card-actions">
+                        @can('view-any-campaign')
                         <a href="{{ route('admin.campaigns.index') }}" class="btn btn-sm btn-outline-secondary">View
                             all</a>
+                        @endcan
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -352,8 +356,10 @@
                         <i class="ti ti-building-broadcast-tower text-primary me-2"></i>Top Hotspots
                     </h2>
                     <div class="card-actions">
+                        @can('view-any-hotspot')
                         <a href="{{ route('admin.hotspots.index') }}" class="btn btn-sm btn-outline-secondary">View
                             all</a>
+                        @endcan
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -419,8 +425,10 @@
                         <i class="ti ti-device-mobile text-primary me-2"></i>Recent Sessions
                     </h2>
                     <div class="card-actions">
+                        @can('view-any-session')
                         <a href="{{ route('admin.sessions.index') }}" class="btn btn-sm btn-outline-secondary">View
                             all</a>
+                        @endcan
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -463,7 +471,9 @@
                         <i class="ti ti-calendar-event text-primary me-2"></i>Recent Events
                     </h2>
                     <div class="card-actions">
+                        @can('view-any-event')
                         <a href="{{ route('admin.events.index') }}" class="btn btn-sm btn-outline-secondary">View all</a>
+                        @endcan
                     </div>
                 </div>
                 <div class="table-responsive">

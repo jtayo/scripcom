@@ -7,6 +7,8 @@ use App\Models\Event;
 use App\Models\Hotspot;
 use App\Models\Organization;
 use App\Models\WifiSession;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 
 class AnalyticsService
@@ -393,6 +395,325 @@ class AnalyticsService
     /**
      * Sessions and plays trend for tenant dashboards.
      */
+    /**
+     * Comprehensive KPI summary for the analytics module.
+     *
+     * @return array<string, mixed>
+     */
+    public function summaryStats(?Organization $organization, $from = null, $to = null): array
+    {
+        return Cache::remember(
+            $this->cacheKey('summary', $organization, "{$from}.{$to}"),
+            self::CACHE_TTL,
+            fn () => $this->computeSummaryStats($organization, $from, $to)
+        );
+    }
+
+    private function computeSummaryStats(?Organization $organization, $from = null, $to = null): array
+    {
+        $sessions = WifiSession::query();
+
+        if ($organization) {
+            $sessions->where('organization_id', $organization->id);
+        }
+
+        if ($from && $to) {
+            $sessions->whereBetween('session_started_at', [$from, $to]);
+        }
+
+        $totalSessions = (clone $sessions)->count();
+        $activeSessions = (clone $sessions)->where('status', 'active')->count();
+        $sponsoredSessions = (clone $sessions)->whereNotNull('campaign_id')->count();
+        $paidSessions = (clone $sessions)->where('auth_method', 'paid')->count();
+
+        $uniqueUsers = (clone $sessions)->whereNotNull('phone')->distinct()->count('phone');
+        $repeatUsers = (clone $sessions)
+            ->whereNotNull('phone')
+            ->selectRaw('phone')
+            ->groupBy('phone')
+            ->havingRaw('COUNT(*) > 1')
+            ->get()
+            ->count();
+
+        $totalSeconds = (clone $sessions)->sum('total_duration');
+        $totalHours = round($totalSeconds / 3600, 1);
+        $avgMinutes = $totalSessions > 0 ? round($totalSeconds / 60 / $totalSessions, 1) : 0.0;
+
+        $bandwidthMb = round((clone $sessions)->sum('bandwidth_used') / (1024 * 1024), 1);
+        $bandwidthUpMb = round((clone $sessions)->sum('bandwidth_up') / (1024 * 1024), 1);
+        $bandwidthDownMb = round((clone $sessions)->sum('bandwidth_down') / (1024 * 1024), 1);
+
+        $events = Event::query();
+
+        if ($organization) {
+            $events->where('organization_id', $organization->id);
+        }
+
+        if ($from && $to) {
+            $events->whereBetween('occurred_at', [$from, $to]);
+        }
+
+        $videoPlays = (clone $events)->where('event_type', 'video.started')->count();
+        $videoCompletions = (clone $events)->where('event_type', 'video.completed')->count();
+        $completionRate = $this->completionRate($videoPlays, $videoCompletions);
+
+        return [
+            'total_sessions' => $totalSessions,
+            'active_sessions' => $activeSessions,
+            'sponsored_sessions' => $sponsoredSessions,
+            'paid_sessions' => $paidSessions,
+            'unique_users' => $uniqueUsers,
+            'repeat_users' => $repeatUsers,
+            'total_hours' => $totalHours,
+            'avg_session_minutes' => $avgMinutes,
+            'bandwidth_mb' => $bandwidthMb,
+            'bandwidth_up_mb' => $bandwidthUpMb,
+            'bandwidth_down_mb' => $bandwidthDownMb,
+            'video_plays' => $videoPlays,
+            'video_completions' => $videoCompletions,
+            'completion_rate' => $completionRate,
+        ];
+    }
+
+    /**
+     * Daily sessions, video plays and bandwidth over a date range (inclusive).
+     *
+     * @return array{labels: array<int, string>, sessions: array<int, int>, plays: array<int, int>, bandwidth_mb: array<int, float>}
+     */
+    public function usageTrend(?Organization $organization, $from, $to): array
+    {
+        return Cache::remember(
+            $this->cacheKey('usage-trend', $organization, "{$from}.{$to}"),
+            self::CACHE_TTL,
+            fn () => $this->computeUsageTrend($organization, $from, $to)
+        );
+    }
+
+    private function computeUsageTrend(?Organization $organization, $from, $to): array
+    {
+        $fromDate = Carbon::parse($from)->toDateString();
+        $toDate = Carbon::parse($to)->toDateString();
+
+        $sessions = WifiSession::query()
+            ->selectRaw('DATE(session_started_at) as day, COUNT(*) as total, SUM(bandwidth_used) as bandwidth')
+            ->where('session_started_at', '>=', $fromDate.' 00:00:00')
+            ->where('session_started_at', '<=', $toDate.' 23:59:59')
+            ->groupBy('day')
+            ->orderBy('day');
+
+        $events = Event::query()
+            ->selectRaw('DATE(occurred_at) as day, COUNT(*) as total')
+            ->where('event_type', 'video.started')
+            ->where('occurred_at', '>=', $fromDate.' 00:00:00')
+            ->where('occurred_at', '<=', $toDate.' 23:59:59')
+            ->groupBy('day')
+            ->orderBy('day');
+
+        if ($organization) {
+            $sessions->where('organization_id', $organization->id);
+            $events->where('organization_id', $organization->id);
+        }
+
+        $sessionByDay = $sessions->pluck('total', 'day')->all();
+        $bandwidthByDay = $sessions->get()->keyBy('day')->map(fn ($row) => round($row->bandwidth / (1024 * 1024), 1))->all();
+        $playsByDay = $events->pluck('total', 'day')->all();
+
+        $labels = [];
+        $sessionValues = [];
+        $playValues = [];
+        $bandwidthValues = [];
+
+        $cursor = Carbon::parse($fromDate);
+        $end = Carbon::parse($toDate);
+
+        while ($cursor->lte($end)) {
+            $day = $cursor->toDateString();
+            $labels[] = $cursor->format('M d');
+            $sessionValues[] = (int) ($sessionByDay[$day] ?? 0);
+            $playValues[] = (int) ($playsByDay[$day] ?? 0);
+            $bandwidthValues[] = (float) ($bandwidthByDay[$day] ?? 0);
+            $cursor->addDay();
+        }
+
+        return [
+            'labels' => $labels,
+            'sessions' => $sessionValues,
+            'plays' => $playValues,
+            'bandwidth_mb' => $bandwidthValues,
+        ];
+    }
+
+    /**
+     * Per-location session, user, usage and bandwidth stats for a date range.
+     *
+     * @return Collection<int, array<string, mixed>>
+     */
+    public function geoBreakdown(?Organization $organization, $from, $to, int $limit = 10)
+    {
+        return Cache::remember(
+            $this->cacheKey('geo', $organization, "{$from}.{$to}.{$limit}"),
+            self::CACHE_TTL,
+            fn () => $this->computeGeoBreakdown($organization, $from, $to, $limit)
+        );
+    }
+
+    private function computeGeoBreakdown(?Organization $organization, $from, $to, int $limit)
+    {
+        $sessions = WifiSession::query()
+            ->where('session_started_at', '>=', Carbon::parse($from)->toDateString().' 00:00:00')
+            ->where('session_started_at', '<=', Carbon::parse($to)->toDateString().' 23:59:59')
+            ->selectRaw('hotspot_id, COUNT(*) as total, COUNT(DISTINCT phone) as unique_users, SUM(total_duration) as total_seconds, SUM(bandwidth_used) as total_bandwidth')
+            ->whereNotNull('hotspot_id')
+            ->groupBy('hotspot_id');
+
+        if ($organization) {
+            $sessions->where('organization_id', $organization->id);
+        }
+
+        $rows = $sessions->get()->keyBy('hotspot_id');
+
+        return Hotspot::query()
+            ->when($organization, fn ($q) => $q->where('organization_id', $organization->id))
+            ->whereIn('id', $rows->keys())
+            ->get(['id', 'name', 'sub_county', 'status'])
+            ->map(function (Hotspot $hotspot) use ($rows) {
+                $row = $rows->get($hotspot->id);
+
+                return [
+                    'hotspot' => $hotspot,
+                    'sessions' => (int) $row->total,
+                    'unique_users' => (int) $row->unique_users,
+                    'internet_hours' => round($row->total_seconds / 3600, 1),
+                    'bandwidth_mb' => round($row->total_bandwidth / (1024 * 1024), 1),
+                ];
+            })
+            ->sortByDesc('sessions')
+            ->values();
+    }
+
+    /**
+     * Sessions grouped by device type for a date range.
+     *
+     * @return array<int, array{device: string, sessions: int}>
+     */
+    public function deviceBreakdown(?Organization $organization, $from, $to): array
+    {
+        return Cache::remember(
+            $this->cacheKey('devices', $organization, "{$from}.{$to}"),
+            self::CACHE_TTL,
+            fn () => $this->computeDeviceBreakdown($organization, $from, $to)
+        );
+    }
+
+    private function computeDeviceBreakdown(?Organization $organization, $from, $to): array
+    {
+        $sessions = WifiSession::query()
+            ->where('session_started_at', '>=', Carbon::parse($from)->toDateString().' 00:00:00')
+            ->where('session_started_at', '<=', Carbon::parse($to)->toDateString().' 23:59:59')
+            ->selectRaw('COALESCE(device_type, "unknown") as device, COUNT(*) as total')
+            ->groupBy('device')
+            ->orderByDesc('total');
+
+        if ($organization) {
+            $sessions->where('organization_id', $organization->id);
+        }
+
+        return $sessions
+            ->get()
+            ->map(fn ($row) => ['device' => $row->device, 'sessions' => (int) $row->total])
+            ->all();
+    }
+
+    /**
+     * Per-campaign plays, completions and completion rate for a date range.
+     *
+     * @return array<string, mixed>
+     */
+    public function campaignAnalytics(?Organization $organization, $from, $to, int $limit = 10): array
+    {
+        return Cache::remember(
+            $this->cacheKey('campaign-analytics', $organization, "{$from}.{$to}.{$limit}"),
+            self::CACHE_TTL,
+            fn () => $this->computeCampaignAnalytics($organization, $from, $to, $limit)
+        );
+    }
+
+    private function computeCampaignAnalytics(?Organization $organization, $from, $to, int $limit): array
+    {
+        $campaigns = Campaign::query()
+            ->with('sponsor:id,name')
+            ->orderByDesc('current_plays');
+
+        if ($organization) {
+            $campaigns->where('organization_id', $organization->id);
+        }
+
+        $campaigns = $campaigns->limit($limit)->get();
+
+        $campaignIds = $campaigns->pluck('id')->all();
+        $playsByCampaign = [];
+        $completionsByCampaign = [];
+
+        if ($campaignIds) {
+            $events = Event::query()->whereIn('campaign_id', $campaignIds);
+
+            if ($organization) {
+                $events->where('organization_id', $organization->id);
+            }
+
+            if ($from && $to) {
+                $events->whereBetween('occurred_at', [$from, $to]);
+            }
+
+            $playsByCampaign = (clone $events)
+                ->where('event_type', 'video.started')
+                ->selectRaw('campaign_id, COUNT(*) as total')
+                ->groupBy('campaign_id')
+                ->pluck('total', 'campaign_id')
+                ->all();
+
+            $completionsByCampaign = (clone $events)
+                ->where('event_type', 'video.completed')
+                ->selectRaw('campaign_id, COUNT(*) as total')
+                ->groupBy('campaign_id')
+                ->pluck('total', 'campaign_id')
+                ->all();
+        }
+
+        $rows = $campaigns->map(function (Campaign $campaign) use ($playsByCampaign, $completionsByCampaign) {
+            $plays = (int) ($playsByCampaign[$campaign->id] ?? 0);
+            $completions = (int) ($completionsByCampaign[$campaign->id] ?? 0);
+
+            return [
+                'campaign' => $campaign,
+                'sponsor' => $campaign->sponsor?->name,
+                'plays' => $plays,
+                'completions' => $completions,
+                'completion_rate' => $this->completionRate($plays, $completions),
+                'status' => $campaign->status,
+            ];
+        })->sortByDesc('plays')->values();
+
+        $totalPlays = array_sum($playsByCampaign);
+        $totalCompletions = array_sum($completionsByCampaign);
+
+        return [
+            'rows' => $rows,
+            'total_plays' => $totalPlays,
+            'total_completions' => $totalCompletions,
+            'completion_rate' => $this->completionRate($totalPlays, $totalCompletions),
+        ];
+    }
+
+    private function completionRate(int $plays, int $completions): float
+    {
+        if ($plays <= 0) {
+            return 0.0;
+        }
+
+        return round(min(($completions / $plays) * 100, 100.0), 1);
+    }
+
     public function tenantTrends(?Organization $organization, int $days = 14): array
     {
         $sessions = WifiSession::query()
