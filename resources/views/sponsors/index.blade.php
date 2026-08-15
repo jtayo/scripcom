@@ -88,7 +88,7 @@
                                     </span>
                                 </td>
                                 <td class="text-end">
-                                    <div class="btn-group">
+                                    <div class="d-inline-flex gap-1">
                                         <a href="{{ route('admin.sponsors.show', $sponsor) }}" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center" title="View">
                                             <i class="ti ti-eye me-1"></i>View
                                         </a>

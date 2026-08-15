@@ -23,6 +23,8 @@ class RolePermissionSeeder extends Seeder
             'event',
             'voucher',
             'payment',
+            'role',
+            'permission',
         ];
 
         $actions = ['view-any', 'view', 'create', 'update', 'delete'];

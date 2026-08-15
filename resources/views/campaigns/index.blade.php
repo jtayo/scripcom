@@ -98,7 +98,7 @@
                                     <span class="badge bg-{{ $statusColor }}-lt">{{ ucfirst($campaign->status) }}</span>
                                 </td>
                                 <td class="text-end">
-                                    <div class="btn-group">
+                                    <div class="d-inline-flex gap-1">
                                         <a href="{{ route('admin.campaigns.show', $campaign) }}" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center" title="View">
                                             <i class="ti ti-eye me-1"></i>View
                                         </a>

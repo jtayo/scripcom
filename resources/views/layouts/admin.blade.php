@@ -199,14 +199,32 @@
                                 </li>
                             @endcan
 
-                            @canany(['view-settings', 'update-settings'])
+                            @canany(['view-settings', 'update-settings', 'view-any-role', 'view-any-permission'])
                                 <li class="nav-section-title">System</li>
+                                @canany(['view-settings', 'update-settings'])
                                 <li class="nav-item {{ request()->routeIs('admin.settings') ? 'active' : '' }}">
                                     <a class="nav-link" href="{{ route('admin.settings') }}">
                                         <span class="nav-link-icon"><i class="ti ti-settings"></i></span>
                                         <span class="nav-link-title">Settings</span>
                                     </a>
                                 </li>
+                                @endcanany
+                                @can('view-any-role')
+                                <li class="nav-item {{ request()->routeIs('admin.roles.*') ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{ route('admin.roles.index') }}">
+                                        <span class="nav-link-icon"><i class="ti ti-shield"></i></span>
+                                        <span class="nav-link-title">Roles</span>
+                                    </a>
+                                </li>
+                                @endcan
+                                @can('view-any-permission')
+                                <li class="nav-item {{ request()->routeIs('admin.permissions.*') ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{ route('admin.permissions.index') }}">
+                                        <span class="nav-link-icon"><i class="ti ti-lock"></i></span>
+                                        <span class="nav-link-title">Permissions</span>
+                                    </a>
+                                </li>
+                                @endcan
                             @endcanany
                         </ul>
                     </div>

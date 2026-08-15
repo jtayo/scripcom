@@ -43,6 +43,13 @@ Route::prefix('admin')
         Route::resource('users', App\Http\Controllers\UserController::class)
             ->middleware('can:view-any-user');
 
+        Route::resource('roles', App\Http\Controllers\RoleController::class)
+            ->middleware('can:view-any-role');
+
+        Route::resource('permissions', App\Http\Controllers\PermissionController::class)
+            ->only(['index', 'show'])
+            ->middleware('can:view-any-permission');
+
         Route::resource('hotspots', App\Http\Controllers\HotspotController::class)
             ->middleware('can:view-any-hotspot');
 
