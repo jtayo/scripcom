@@ -13,6 +13,7 @@ use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SponsorController;
@@ -104,4 +105,14 @@ Route::prefix('admin')
         Route::post('/settings', [SettingsController::class, 'update'])
             ->middleware('can:update-settings')
             ->name('settings.update');
+
+        Route::prefix('reports')
+            ->middleware('can:view-reports')
+            ->group(function () {
+                Route::get('/', [ReportController::class, 'index'])->name('reports.index');
+                Route::get('{type}', [ReportController::class, 'show'])->name('reports.show');
+                Route::get('{type}/export/{format}', [ReportController::class, 'export'])
+                    ->middleware('can:export-reports')
+                    ->name('reports.export');
+            });
     });

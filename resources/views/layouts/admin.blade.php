@@ -238,6 +238,15 @@
                                 </li>
                             @endif
 
+                            @can('view-reports')
+                                <li class="nav-item {{ request()->routeIs('admin.reports.*') ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{ route('admin.reports.index') }}">
+                                        <span class="nav-link-icon"><i class="ti ti-report"></i></span>
+                                        <span class="nav-link-title">Reports</span>
+                                    </a>
+                                </li>
+                            @endcan
+
                             @php
                                 $showSystem = auth()->user()->can('view-settings') || auth()->user()->can('update-settings') || auth()->user()->can('view-any-role') || auth()->user()->can('view-any-permission');
                                 $systemActive = request()->routeIs('admin.settings', 'admin.roles.*', 'admin.permissions.*');
