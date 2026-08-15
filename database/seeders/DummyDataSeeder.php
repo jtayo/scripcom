@@ -42,7 +42,7 @@ class DummyDataSeeder extends Seeder
                     'ssid' => 'Mombasa-Free-WiFi',
                     'device_model' => 'MikroTik hAP ac3',
                     'firmware_version' => '7.14.2',
-                    'ip_address' => '192.168.' . ($data['router_id'] % 254) . '.1',
+                    'ip_address' => '192.168.'.($data['router_id'] % 254).'.1',
                     'mac_address' => fake()->unique()->macAddress(),
                     'isp' => 'Safaricom',
                     'bandwidth_up' => 10,
@@ -171,11 +171,11 @@ class DummyDataSeeder extends Seeder
             $sponsorshipSponsor = $index % 2 === 0 ? $sponsor : $equity;
 
             Sponsorship::updateOrCreate(
-                ['reference' => 'SP-' . str_pad((string) ($index + 1), 6, '0', STR_PAD_LEFT)],
+                ['reference' => 'SP-'.str_pad((string) ($index + 1), 6, '0', STR_PAD_LEFT)],
                 array_merge($data, [
                     'organization_id' => $org->id,
                     'sponsor_id' => $sponsorshipSponsor->id,
-                    'reference' => 'SP-' . str_pad((string) ($index + 1), 6, '0', STR_PAD_LEFT),
+                    'reference' => 'SP-'.str_pad((string) ($index + 1), 6, '0', STR_PAD_LEFT),
                     'currency' => 'KES',
                     'starts_at' => now()->subDays(30),
                     'expires_at' => $data['status'] === 'expired' ? now()->subDay() : now()->addDays(30),
@@ -201,11 +201,11 @@ class DummyDataSeeder extends Seeder
             $campaign = rand(1, 2) === 1 ? $activeCampaign : $countyCampaign;
 
             $sessions[] = [
-                'session_id' => (string) str()->uuid(),
+                'session_id' => 'DEMO-'.str_pad((string) $i, 6, '0', STR_PAD_LEFT),
                 'organization_id' => $org->id,
                 'hotspot_id' => $hotspot->id,
                 'campaign_id' => $campaign->id,
-                'phone' => '07' . rand(10000000, 99999999),
+                'phone' => '07'.rand(10000000, 99999999),
                 'mac_address' => fake()->macAddress(),
                 'device_type' => ['android', 'ios', 'windows', 'linux'][rand(0, 3)],
                 'browser' => ['Chrome', 'Safari', 'Firefox', 'Edge'][rand(0, 3)],
@@ -227,10 +227,19 @@ class DummyDataSeeder extends Seeder
             ];
         }
 
-        WifiSession::insert($sessions);
+        $seededSessionIds = [];
+
+        foreach ($sessions as $data) {
+            $seededSessionIds[] = WifiSession::updateOrCreate(
+                ['session_id' => $data['session_id']],
+                $data
+            )->id;
+        }
+
+        Event::whereIn('session_id', $seededSessionIds)->delete();
 
         $events = [];
-        $allSessions = WifiSession::all();
+        $allSessions = WifiSession::whereIn('id', $seededSessionIds)->get();
 
         foreach ($allSessions as $session) {
             $count = rand(3, 6);
@@ -257,30 +266,34 @@ class DummyDataSeeder extends Seeder
         $activeSponsorship = Sponsorship::where('status', 'active')->first();
 
         foreach (range(1, 10) as $i) {
-            Payment::create([
-                'organization_id' => $org->id,
-                'sponsorship_id' => $activeSponsorship->id,
-                'phone' => '07' . rand(10000000, 99999999),
-                'amount' => [1000, 5000, 10000, 25000][rand(0, 3)],
-                'currency' => 'KES',
-                'status' => ['completed', 'completed', 'pending', 'failed'][rand(0, 3)],
-                'checkout_request_id' => 'WS_CO_' . now()->timestamp . $i,
-                'mpesa_receipt_number' => 'SGF' . rand(100000, 999999),
-                'transacted_at' => now()->subDays(rand(1, 30)),
-            ]);
+            Payment::updateOrCreate(
+                ['checkout_request_id' => 'WS_CO_DEMO_'.$i],
+                [
+                    'organization_id' => $org->id,
+                    'sponsorship_id' => $activeSponsorship->id,
+                    'phone' => '07'.rand(10000000, 99999999),
+                    'amount' => [1000, 5000, 10000, 25000][rand(0, 3)],
+                    'currency' => 'KES',
+                    'status' => ['completed', 'completed', 'pending', 'failed'][rand(0, 3)],
+                    'mpesa_receipt_number' => 'SGF'.rand(100000, 999999),
+                    'transacted_at' => now()->subDays(rand(1, 30)),
+                ]
+            );
         }
 
-        Voucher::create([
-            'sponsor_id' => $sponsor->id,
-            'sponsorship_id' => $activeSponsorship->id,
-            'code' => 'DEMO-VOUCHER-1',
-            'batch_id' => 'V-DEMO1',
-            'type' => 'sessions',
-            'value' => 1,
-            'status' => 'unused',
-            'created_by' => 1,
-            'expires_at' => now()->addDays(30),
-        ]);
+        Voucher::updateOrCreate(
+            ['code' => 'DEMO-VOUCHER-1'],
+            [
+                'sponsor_id' => $sponsor->id,
+                'sponsorship_id' => $activeSponsorship->id,
+                'batch_id' => 'V-DEMO1',
+                'type' => 'sessions',
+                'value' => 1,
+                'status' => 'unused',
+                'created_by' => 1,
+                'expires_at' => now()->addDays(30),
+            ]
+        );
 
         Setting::setValue('sponsorship.unit_price', 2, $org->id);
         Setting::setValue('portal.default_session_minutes', 120, $org->id);

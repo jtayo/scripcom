@@ -50,8 +50,8 @@
                                     <span class="input-icon-addon"><i class="fa-solid fa-tags"></i></span>
                                     <select id="type" name="type" class="form-select @error('type') is-invalid @enderror" style="padding-left: 2.5rem;">
                                         <option value="">Select type...</option>
-                                        @foreach(['county', 'institution', 'municipality', 'ngo', 'corporate', 'other'] as $type)
-                                            <option value="{{ $type }}" @selected(old('type', $organization->type) === $type)>{{ ucfirst($type) }}</option>
+                                        @foreach(\App\Models\Organization::types() as $value => $label)
+                                            <option value="{{ $value }}" @selected(old('type', $organization->type) === $value)>{{ $label }}</option>
                                         @endforeach
                                     </select>
                                     @error('type') <div class="invalid-feedback">{{ $message }}</div> @enderror

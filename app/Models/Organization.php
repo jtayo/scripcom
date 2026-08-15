@@ -12,6 +12,18 @@ class Organization extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public const TYPE_SCRIPCOM = 'scripcom';
+
+    public const TYPE_COUNTY = 'county';
+
+    public const TYPE_CORPORATE = 'corporate';
+
+    public const TYPE_NGO = 'ngo';
+
+    public const TYPE_INSTITUTION = 'institution';
+
+    public const TYPE_ADVERTISER = 'advertiser';
+
     protected $fillable = [
         'name',
         'slug',
@@ -42,6 +54,53 @@ class Organization extends Model
     public function scopeActive(Builder $query): Builder
     {
         return $query->where('is_active', true);
+    }
+
+    public static function types(): array
+    {
+        return [
+            self::TYPE_SCRIPCOM => 'SCRIPCOM',
+            self::TYPE_COUNTY => 'County',
+            self::TYPE_CORPORATE => 'Corporate',
+            self::TYPE_NGO => 'NGO',
+            self::TYPE_INSTITUTION => 'Institution',
+            self::TYPE_ADVERTISER => 'Advertiser',
+        ];
+    }
+
+    public function isScripcom(): bool
+    {
+        return $this->type === self::TYPE_SCRIPCOM;
+    }
+
+    public function isCounty(): bool
+    {
+        return $this->type === self::TYPE_COUNTY;
+    }
+
+    public function isCorporate(): bool
+    {
+        return $this->type === self::TYPE_CORPORATE;
+    }
+
+    public function isNgo(): bool
+    {
+        return $this->type === self::TYPE_NGO;
+    }
+
+    public function isInstitution(): bool
+    {
+        return $this->type === self::TYPE_INSTITUTION;
+    }
+
+    public function isAdvertiser(): bool
+    {
+        return $this->type === self::TYPE_ADVERTISER;
+    }
+
+    public function typeLabel(): string
+    {
+        return self::types()[$this->type] ?? ucfirst((string) $this->type);
     }
 
     public function users(): HasMany

@@ -13,6 +13,8 @@ class UserSeeder extends Seeder
         $mombasa = Organization::where('slug', 'mombasa-county')->first();
         $kilifi = Organization::where('slug', 'kilifi-county')->first();
         $uon = Organization::where('slug', 'university-of-nairobi')->first();
+        $safaricom = Organization::where('slug', 'safaricom')->first();
+        $equity = Organization::where('slug', 'equity-bank')->first();
 
         $users = [
             [
@@ -59,6 +61,24 @@ class UserSeeder extends Seeder
                 'phone' => '0711000004',
                 'status' => 'active',
                 'role' => 'Organization Admin',
+            ],
+            [
+                'organization_id' => $safaricom?->id,
+                'name' => 'Betty Njoroge',
+                'email' => 'betty@safaricom.co.ke',
+                'password' => 'password',
+                'phone' => '0711000005',
+                'status' => 'active',
+                'role' => 'Corporate Administrator',
+            ],
+            [
+                'organization_id' => $equity?->id,
+                'name' => 'David Otieno',
+                'email' => 'david@equitybank.co.ke',
+                'password' => 'password',
+                'phone' => '0711000006',
+                'status' => 'active',
+                'role' => 'Corporate Administrator',
             ],
         ];
 

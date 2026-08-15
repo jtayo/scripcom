@@ -2,20 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Traits\HasOrganizationScoping;
 use App\Models\Sponsor;
-use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
-use Spatie\Permission\Models\Role;
 
 class SponsorController extends Controller
 {
+    use HasOrganizationScoping;
+
     public function index(Request $request): View
     {
+        $organizationId = $this->organizationId();
+
         $sponsors = Sponsor::query()
             ->withCount(['sponsorships', 'campaigns'])
+            ->when($organizationId, fn ($q) => $q->whereHas('sponsorships', fn ($q) => $q->where('organization_id', $organizationId)))
             ->when($request->search, fn ($q, $search) => $q->where('name', 'like', "%{$search}%"))
             ->latest()
             ->paginate(15)
@@ -34,7 +38,7 @@ class SponsorController extends Controller
         $data = $this->validated($request);
 
         $sponsor = Sponsor::create(array_merge($data, [
-            'slug' => Str::slug($data['name']) . '-' . Str::lower(Str::random(4)),
+            'slug' => Str::slug($data['name']).'-'.Str::lower(Str::random(4)),
         ]));
 
         return redirect()
@@ -44,6 +48,8 @@ class SponsorController extends Controller
 
     public function show(Sponsor $sponsor): View
     {
+        $this->authorizeAccess($sponsor);
+
         $sponsor->loadCount(['sponsorships', 'campaigns']);
 
         $stats = [
@@ -57,11 +63,15 @@ class SponsorController extends Controller
 
     public function edit(Sponsor $sponsor): View
     {
+        $this->authorizeAccess($sponsor);
+
         return view('sponsors.edit', compact('sponsor'));
     }
 
     public function update(Request $request, Sponsor $sponsor): RedirectResponse
     {
+        $this->authorizeAccess($sponsor);
+
         $data = $this->validated($request);
 
         $sponsor->update($data);
@@ -73,6 +83,8 @@ class SponsorController extends Controller
 
     public function destroy(Sponsor $sponsor): RedirectResponse
     {
+        $this->authorizeAccess($sponsor);
+
         $name = $sponsor->name;
         $sponsor->delete();
 
@@ -96,5 +108,20 @@ class SponsorController extends Controller
         $data['is_active'] = $request->boolean('is_active');
 
         return $data;
+    }
+
+    private function authorizeAccess(Sponsor $sponsor): void
+    {
+        $organizationId = $this->organizationId();
+
+        if (! $organizationId) {
+            return;
+        }
+
+        $linked = $sponsor->sponsorships()->where('organization_id', $organizationId)->exists();
+
+        if (! $linked) {
+            abort(403, 'You do not have access to this sponsor.');
+        }
     }
 }

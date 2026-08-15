@@ -5,12 +5,13 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
 
 class RolePermissionSeeder extends Seeder
 {
     public function run(): void
     {
-        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         $entities = [
             'organization',
@@ -94,6 +95,33 @@ class RolePermissionSeeder extends Seeder
             'view-any-payment', 'view-payment',
             'buy-credits',
             'view-analytics',
+        ]);
+
+        $countyAdmin = Role::firstOrCreate(['name' => 'County Administrator', 'guard_name' => 'web']);
+        $countyAdmin->syncPermissions([
+            'view-any-user', 'view-user', 'create-user', 'update-user',
+            'view-any-hotspot', 'view-hotspot', 'create-hotspot', 'update-hotspot',
+            'view-any-campaign', 'view-campaign', 'create-campaign', 'update-campaign',
+            'view-any-sponsor', 'view-sponsor',
+            'view-any-sponsorship', 'view-sponsorship', 'create-sponsorship', 'update-sponsorship',
+            'view-any-session', 'view-session',
+            'view-any-event', 'view-event',
+            'view-any-payment', 'view-payment',
+            'view-analytics',
+            'view-reports',
+        ]);
+
+        $corporateAdmin = Role::firstOrCreate(['name' => 'Corporate Administrator', 'guard_name' => 'web']);
+        $corporateAdmin->syncPermissions([
+            'view-any-campaign', 'view-campaign', 'create-campaign', 'update-campaign',
+            'view-any-sponsor', 'view-sponsor', 'create-sponsor', 'update-sponsor',
+            'view-any-sponsorship', 'view-sponsorship', 'create-sponsorship', 'update-sponsorship',
+            'view-any-session', 'view-session',
+            'view-any-event', 'view-event',
+            'view-any-payment', 'view-payment',
+            'buy-credits',
+            'view-analytics',
+            'view-reports',
         ]);
     }
 }

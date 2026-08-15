@@ -19,7 +19,7 @@
                         <div>
                             <h1 class="h4 mb-1">{{ $organization->name }}</h1>
                             <div class="text-muted d-flex align-items-center flex-wrap">
-                                <span class="badge bg-secondary-lt me-2">{{ $organization->type ?? 'Organization' }}</span>
+                                <span class="badge bg-secondary-lt me-2">{{ $organization->type ? $organization->typeLabel() : 'Organization' }}</span>
                                 @if($organization->county)
                                 <span class="d-inline-flex align-items-center">
                                     <i class="fa-solid fa-map-pin me-1 text-secondary"></i>{{ $organization->county }}

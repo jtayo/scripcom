@@ -6,6 +6,7 @@ use App\Http\Controllers\Traits\HasOrganizationScoping;
 use App\Models\Campaign;
 use App\Models\Event;
 use App\Models\Hotspot;
+use App\Models\Organization;
 use App\Models\Sponsorship;
 use App\Services\AnalyticsService;
 use App\Services\EventService;
@@ -20,6 +21,15 @@ class DashboardController extends Controller
     public function index(AnalyticsService $analytics, EventService $eventService, TolclinApiService $tolclin): View
     {
         $organization = $this->organization();
+
+        if ($organization?->isCounty()) {
+            return $this->countyDashboard($analytics, $organization);
+        }
+
+        if ($organization?->isCorporate()) {
+            return $this->corporateDashboard($analytics, $organization);
+        }
+
         $stats = $analytics->dashboardStats($organization);
         $sessionsByHour = $analytics->sessionsByHour($organization);
         $sessionsPerDay = $analytics->sessionsPerDay($organization, 14);
@@ -138,5 +148,35 @@ class DashboardController extends Controller
         }
 
         return round((($current - $previous) / $previous) * 100, 1);
+    }
+
+    protected function countyDashboard(AnalyticsService $analytics, Organization $organization): View
+    {
+        $county = $analytics->countyDashboardStats($organization);
+        $trends = $analytics->tenantTrends($organization);
+        $peakHours = $analytics->sessionsByHour($organization);
+        $locations = $analytics->locationPerformance($organization, 10);
+
+        return view('dashboards.county', compact(
+            'organization',
+            'county',
+            'trends',
+            'peakHours',
+            'locations'
+        ));
+    }
+
+    protected function corporateDashboard(AnalyticsService $analytics, Organization $organization): View
+    {
+        $advertiser = $analytics->advertiserDashboardStats($organization);
+        $trends = $analytics->tenantTrends($organization);
+        $peakHours = $analytics->sessionsByHour($organization);
+
+        return view('dashboards.corporate', compact(
+            'organization',
+            'advertiser',
+            'trends',
+            'peakHours'
+        ));
     }
 }

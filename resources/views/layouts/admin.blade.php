@@ -299,7 +299,17 @@
                     <div class="container-xl">
                         <div class="row g-2 align-items-center">
                             <div class="col">
-                                <div class="page-pretitle">{{ config('app.name') }} Admin</div>
+                                <div class="page-pretitle">
+                                    @php
+                                        $layoutOrg = auth()->user()->organization;
+                                    @endphp
+                                    @if ($layoutOrg)
+                                        <span class="badge bg-primary-lt me-1">{{ $layoutOrg->typeLabel() }}</span>
+                                        {{ $layoutOrg->name }}
+                                    @else
+                                        {{ config('app.name') }} Admin
+                                    @endif
+                                </div>
                                 <h2 class="page-title">@yield('page-title', 'Dashboard')</h2>
                                 @if ($__env->yieldContent('page-subtitle'))
                                     <div class="text-secondary mt-1">@yield('page-subtitle')</div>

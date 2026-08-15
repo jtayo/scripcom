@@ -71,7 +71,7 @@
                                         {{ $organization->county ?? $organization->city ?? '—' }}
                                     </span>
                                 </td>
-                                <td>{{ $organization->type ?? '—' }}</td>
+                                <td>{{ $organization->type ? $organization->typeLabel() : '—' }}</td>
                                 <td class="text-center"><span class="badge bg-secondary-lt">{{ $organization->users_count }}</span></td>
                                 <td class="text-center"><span class="badge bg-secondary-lt">{{ $organization->hotspots_count }}</span></td>
                                 <td class="text-center"><span class="badge bg-secondary-lt">{{ $organization->campaigns_count }}</span></td>

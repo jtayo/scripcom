@@ -6,6 +6,7 @@ use App\Models\Organization;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class OrganizationController extends Controller
@@ -32,7 +33,7 @@ class OrganizationController extends Controller
         $data = $this->validated($request);
 
         $organization = Organization::create(array_merge($data, [
-            'slug' => Str::slug($data['name']) . '-' . Str::lower(Str::random(4)),
+            'slug' => Str::slug($data['name']).'-'.Str::lower(Str::random(4)),
         ]));
 
         return redirect()
@@ -76,7 +77,7 @@ class OrganizationController extends Controller
     private function validated(Request $request, ?Organization $organization = null): array
     {
         $uniqueSlug = $organization
-            ? 'unique:organizations,slug,' . $organization->id
+            ? 'unique:organizations,slug,'.$organization->id
             : 'unique:organizations,slug';
 
         $data = $request->validate([
@@ -92,7 +93,7 @@ class OrganizationController extends Controller
             'website' => ['nullable', 'url'],
             'primary_color' => ['nullable', 'string', 'max:20'],
             'secondary_color' => ['nullable', 'string', 'max:20'],
-            'type' => ['nullable', 'string', 'max:100'],
+            'type' => ['nullable', 'string', Rule::in(array_keys(Organization::types()))],
             'is_active' => ['nullable', 'boolean'],
         ]);
 

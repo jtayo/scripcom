@@ -12,8 +12,12 @@ trait HasOrganizationScoping
     {
         $user = Auth::user();
 
-        if ($user->isSuperAdmin()) {
+        if (! $user || $user->isSuperAdmin()) {
             return null;
+        }
+
+        if (! $user->organization_id) {
+            abort(403, 'Your account is not associated with an organization.');
         }
 
         return $user->organization_id;

@@ -42,6 +42,7 @@ class UserController extends Controller
         $data = $this->validated($request);
 
         $user = User::create(array_merge($data, [
+            'organization_id' => $this->organizationId() ?? ($data['organization_id'] ?? null),
             'password' => $data['password'] ?? 'password',
             'email_verified_at' => now(),
         ]));
@@ -80,6 +81,10 @@ class UserController extends Controller
         $this->authorizeAccess($user);
 
         $data = $this->validated($request, $user);
+
+        if ($this->organizationId()) {
+            $data['organization_id'] = $this->organizationId();
+        }
 
         if (! empty($data['password'])) {
             $user->update($data);
@@ -126,7 +131,7 @@ class UserController extends Controller
 
     private function validated(Request $request, ?User $user = null): array
     {
-        $unique = $user ? 'unique:users,email,' . $user->id : 'unique:users,email';
+        $unique = $user ? 'unique:users,email,'.$user->id : 'unique:users,email';
 
         $data = $request->validate([
             'organization_id' => ['nullable', 'exists:organizations,id'],
