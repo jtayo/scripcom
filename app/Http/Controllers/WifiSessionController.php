@@ -12,7 +12,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
 class WifiSessionController extends Controller
@@ -24,11 +23,7 @@ class WifiSessionController extends Controller
         $from = $request->date ?: now()->subDays(1)->toDateString();
         $to = $request->date ?: now()->toDateString();
 
-        $apiSessions = Cache::remember(
-            "tolclin.sessions.{$from}.{$to}",
-            now()->addMinutes(5),
-            fn () => app(TolclinApiService::class)->sessions($from, $to)
-        );
+        $apiSessions = app(TolclinApiService::class)->sessions($from, $to);
 
         $filtered = collect($apiSessions)
             ->when($request->search, fn ($c, $search) => $c->filter(

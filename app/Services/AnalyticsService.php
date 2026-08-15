@@ -7,10 +7,43 @@ use App\Models\Event;
 use App\Models\Hotspot;
 use App\Models\Organization;
 use App\Models\WifiSession;
+use Illuminate\Support\Facades\Cache;
 
 class AnalyticsService
 {
+    private const CACHE_TTL = 300;
+
+    /**
+     * Invalidate all cached analytics for an organization (all scopes when null).
+     */
+    public function forget(?Organization $organization): void
+    {
+        Cache::increment("analytics.version.{$this->scopeKey($organization)}");
+    }
+
+    private function scopeKey(?Organization $organization): string
+    {
+        return $organization ? "org.{$organization->id}" : 'global';
+    }
+
+    private function cacheKey(string $bucket, ?Organization $organization, string $suffix = ''): string
+    {
+        $version = (int) Cache::get("analytics.version.{$this->scopeKey($organization)}", 0);
+        $key = "analytics.{$bucket}.v{$version}.{$this->scopeKey($organization)}";
+
+        return $suffix !== '' ? "{$key}.{$suffix}" : $key;
+    }
+
     public function dashboardStats(?Organization $organization, $from = null, $to = null): array
+    {
+        return Cache::remember(
+            $this->cacheKey('stats', $organization, "{$from}.{$to}"),
+            self::CACHE_TTL,
+            fn () => $this->computeDashboardStats($organization, $from, $to)
+        );
+    }
+
+    private function computeDashboardStats(?Organization $organization, $from = null, $to = null): array
     {
         $sessions = WifiSession::query();
         $events = Event::query();
@@ -51,6 +84,15 @@ class AnalyticsService
 
     public function sessionsByHour(?Organization $organization, $from = null, $to = null): array
     {
+        return Cache::remember(
+            $this->cacheKey('hours', $organization, "{$from}.{$to}"),
+            self::CACHE_TTL,
+            fn () => $this->computeSessionsByHour($organization, $from, $to)
+        );
+    }
+
+    private function computeSessionsByHour(?Organization $organization, $from = null, $to = null): array
+    {
         $sessions = WifiSession::query()
             ->selectRaw('HOUR(session_started_at) as hour, COUNT(*) as total')
             ->groupBy('hour')
@@ -70,7 +112,7 @@ class AnalyticsService
         $values = [];
 
         for ($h = 0; $h < 24; $h++) {
-            $labels[] = str_pad((string) $h, 2, '0', STR_PAD_LEFT) . ':00';
+            $labels[] = str_pad((string) $h, 2, '0', STR_PAD_LEFT).':00';
             $values[] = $result[$h] ?? 0;
         }
 
@@ -78,6 +120,15 @@ class AnalyticsService
     }
 
     public function sessionsPerDay(?Organization $organization, int $days = 14): array
+    {
+        return Cache::remember(
+            $this->cacheKey('days', $organization, (string) $days),
+            self::CACHE_TTL,
+            fn () => $this->computeSessionsPerDay($organization, $days)
+        );
+    }
+
+    private function computeSessionsPerDay(?Organization $organization, int $days): array
     {
         $sessions = WifiSession::query()
             ->selectRaw('DATE(session_started_at) as day, COUNT(*) as total')
@@ -105,6 +156,15 @@ class AnalyticsService
 
     public function campaignsPerformance(?Organization $organization, int $limit = 5)
     {
+        return Cache::remember(
+            $this->cacheKey('campaigns', $organization, (string) $limit),
+            self::CACHE_TTL,
+            fn () => $this->computeCampaignsPerformance($organization, $limit)
+        );
+    }
+
+    private function computeCampaignsPerformance(?Organization $organization, int $limit)
+    {
         $query = Campaign::query()
             ->withCount('sessions')
             ->orderByDesc('current_plays')
@@ -118,6 +178,15 @@ class AnalyticsService
     }
 
     public function topHotspots(?Organization $organization, int $limit = 5)
+    {
+        return Cache::remember(
+            $this->cacheKey('hotspots', $organization, (string) $limit),
+            self::CACHE_TTL,
+            fn () => $this->computeTopHotspots($organization, $limit)
+        );
+    }
+
+    private function computeTopHotspots(?Organization $organization, int $limit)
     {
         $query = Hotspot::query()
             ->withCount('sessions')

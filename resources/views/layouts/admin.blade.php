@@ -52,6 +52,26 @@
             .navbar-vertical .nav-link-icon .ti {
                 font-size: 1.1rem;
             }
+
+            .navbar-vertical .nav-submenu {
+                display: block;
+                list-style: none;
+                margin: 0 0 .5rem;
+                padding: 0;
+            }
+
+            .navbar-vertical .nav-submenu .nav-link {
+                padding-top: .25rem;
+                padding-bottom: .25rem;
+                padding-left: calc(var(--tblr-page-padding) + 2rem);
+                color: var(--tblr-muted-color);
+                font-size: .8125rem;
+            }
+
+            .navbar-vertical .nav-submenu .nav-link:hover,
+            .navbar-vertical .nav-submenu .nav-item.active .nav-link {
+                color: var(--tblr-body-color);
+            }
         </style>
         @yield('head')
         @stack('styles')
@@ -84,148 +104,181 @@
                                 </a>
                             </li>
 
-                            @if (auth()->user()->can('view-any-organization') || auth()->user()->can('view-any-user'))
-                                <li class="nav-section-title">Management</li>
+                            @php
+                                $showManagement = auth()->user()->can('view-any-organization') || auth()->user()->can('view-any-user') || auth()->user()->can('view-any-hotspot') || auth()->user()->can('view-any-campaign');
+                                $managementActive = request()->routeIs('admin.organizations.*', 'admin.users.*', 'admin.hotspots.*', 'admin.campaigns.*');
+                            @endphp
+
+                            @if ($showManagement)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sidebar-management" data-bs-toggle="collapse" role="button" aria-expanded="{{ $managementActive ? 'true' : 'false' }}" aria-controls="sidebar-management">
+                                        <span class="nav-link-icon"><i class="ti ti-tools"></i></span>
+                                        <span class="nav-link-title">Management</span>
+                                        <span class="nav-link-toggle"></span>
+                                    </a>
+                                    <div class="collapse {{ $managementActive ? 'show' : '' }}" id="sidebar-management">
+                                        <ul class="nav nav-submenu mb-1">
+                                            @can('view-any-organization')
+                                                <li class="nav-item {{ request()->routeIs('admin.organizations.*') ? 'active' : '' }}">
+                                                    <a class="nav-link" href="{{ route('admin.organizations.index') }}">
+                                                        <span class="nav-link-title">Organizations</span>
+                                                    </a>
+                                                </li>
+                                            @endcan
+
+                                            @can('view-any-user')
+                                                <li class="nav-item {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+                                                    <a class="nav-link" href="{{ route('admin.users.index') }}">
+                                                        <span class="nav-link-title">Users</span>
+                                                    </a>
+                                                </li>
+                                            @endcan
+
+                                            @can('view-any-hotspot')
+                                                <li class="nav-item {{ request()->routeIs('admin.hotspots.*') ? 'active' : '' }}">
+                                                    <a class="nav-link" href="{{ route('admin.hotspots.index') }}">
+                                                        <span class="nav-link-title">Hotspots</span>
+                                                    </a>
+                                                </li>
+                                            @endcan
+
+                                            @can('view-any-campaign')
+                                                <li class="nav-item {{ request()->routeIs('admin.campaigns.*') ? 'active' : '' }}">
+                                                    <a class="nav-link" href="{{ route('admin.campaigns.index') }}">
+                                                        <span class="nav-link-title">Campaigns</span>
+                                                    </a>
+                                                </li>
+                                            @endcan
+                                        </ul>
+                                    </div>
+                                </li>
                             @endif
 
-                            @can('view-any-organization')
-                                <li class="nav-item {{ request()->routeIs('admin.organizations.*') ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{ route('admin.organizations.index') }}">
-                                        <span class="nav-link-icon"><i class="ti ti-building-community"></i></span>
-                                        <span class="nav-link-title">Organizations</span>
-                                    </a>
-                                </li>
-                            @endcan
+                            @php
+                                $showSponsorship = auth()->user()->can('view-any-sponsor') || auth()->user()->can('view-any-sponsorship') || auth()->user()->can('buy-credits');
+                                $sponsorshipActive = request()->routeIs('admin.sponsors.*', 'admin.sponsorships.*', 'admin.buy-credits');
+                            @endphp
 
-                            @can('view-any-user')
-                                <li class="nav-item {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{ route('admin.users.index') }}">
-                                        <span class="nav-link-icon"><i class="ti ti-users"></i></span>
-                                        <span class="nav-link-title">Users</span>
-                                    </a>
-                                </li>
-                            @endcan
-
-                            @can('view-any-hotspot')
-                                <li class="nav-item {{ request()->routeIs('admin.hotspots.*') ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{ route('admin.hotspots.index') }}">
-                                        <span class="nav-link-icon"><i class="ti ti-wifi"></i></span>
-                                        <span class="nav-link-title">Hotspots</span>
-                                    </a>
-                                </li>
-                            @endcan
-
-                            @can('view-any-campaign')
-                                <li class="nav-item {{ request()->routeIs('admin.campaigns.*') ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{ route('admin.campaigns.index') }}">
-                                        <span class="nav-link-icon"><i class="ti ti-speakerphone"></i></span>
-                                        <span class="nav-link-title">Campaigns</span>
-                                    </a>
-                                </li>
-                            @endcan
-
-                            @if (auth()->user()->can('view-any-sponsor') ||
-                                    auth()->user()->can('view-any-sponsorship') ||
-                                    auth()->user()->can('buy-credits'))
-                                <li class="nav-section-title">Sponsorship</li>
-                            @endif
-
-                            @can('view-any-sponsor')
-                                <li class="nav-item {{ request()->routeIs('admin.sponsors.*') ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{ route('admin.sponsors.index') }}">
+                            @if ($showSponsorship)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sidebar-sponsorship" data-bs-toggle="collapse" role="button" aria-expanded="{{ $sponsorshipActive ? 'true' : 'false' }}" aria-controls="sidebar-sponsorship">
                                         <span class="nav-link-icon"><i class="ti ti-heart-handshake"></i></span>
-                                        <span class="nav-link-title">Sponsors</span>
+                                        <span class="nav-link-title">Sponsorship</span>
+                                        <span class="nav-link-toggle"></span>
                                     </a>
-                                </li>
-                            @endcan
+                                    <div class="collapse {{ $sponsorshipActive ? 'show' : '' }}" id="sidebar-sponsorship">
+                                        <ul class="nav nav-submenu mb-1">
+                                            @can('view-any-sponsor')
+                                                <li class="nav-item {{ request()->routeIs('admin.sponsors.*') ? 'active' : '' }}">
+                                                    <a class="nav-link" href="{{ route('admin.sponsors.index') }}">
+                                                        <span class="nav-link-title">Sponsors</span>
+                                                    </a>
+                                                </li>
+                                            @endcan
 
-                            @can('view-any-sponsorship')
-                                <li class="nav-item {{ request()->routeIs('admin.sponsorships.*') ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{ route('admin.sponsorships.index') }}">
-                                        <span class="nav-link-icon"><i class="ti ti-credit-card"></i></span>
-                                        <span class="nav-link-title">Sponsorships</span>
-                                    </a>
-                                </li>
-                            @endcan
+                                            @can('view-any-sponsorship')
+                                                <li class="nav-item {{ request()->routeIs('admin.sponsorships.*') ? 'active' : '' }}">
+                                                    <a class="nav-link" href="{{ route('admin.sponsorships.index') }}">
+                                                        <span class="nav-link-title">Sponsorships</span>
+                                                    </a>
+                                                </li>
+                                            @endcan
 
-                            @can('buy-credits')
-                                <li class="nav-item {{ request()->routeIs('admin.buy-credits') ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{ route('admin.buy-credits') }}">
-                                        <span class="nav-link-icon"><i class="ti ti-wallet"></i></span>
-                                        <span class="nav-link-title">Buy Credits</span>
-                                    </a>
+                                            @can('buy-credits')
+                                                <li class="nav-item {{ request()->routeIs('admin.buy-credits') ? 'active' : '' }}">
+                                                    <a class="nav-link" href="{{ route('admin.buy-credits') }}">
+                                                        <span class="nav-link-title">Buy Credits</span>
+                                                    </a>
+                                                </li>
+                                            @endcan
+                                        </ul>
+                                    </div>
                                 </li>
-                            @endcan
-
-                            @if (auth()->user()->can('view-any-session') ||
-                                    auth()->user()->can('view-any-event') ||
-                                    auth()->user()->can('view-any-payment'))
-                                <li class="nav-section-title">Monitoring</li>
                             @endif
 
-                            @can('view-any-session')
-                                <li class="nav-item {{ request()->routeIs('admin.sessions.*') ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{ route('admin.sessions.index') }}">
-                                        <span class="nav-link-icon"><i class="ti ti-clock"></i></span>
-                                        <span class="nav-link-title">Sessions</span>
-                                    </a>
-                                </li>
-                            @endcan
+                            @php
+                                $showMonitoring = auth()->user()->can('view-any-session') || auth()->user()->can('view-any-event') || auth()->user()->can('view-any-payment');
+                                $monitoringActive = request()->routeIs('admin.sessions.*', 'admin.events.*', 'admin.payments.*');
+                            @endphp
 
-                            @can('view-any-event')
-                                <li class="nav-item {{ request()->routeIs('admin.events.*') ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{ route('admin.events.index') }}">
-                                        <span class="nav-link-icon"><i class="ti ti-calendar-event"></i></span>
-                                        <span class="nav-link-title">Events</span>
+                            @if ($showMonitoring)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sidebar-monitoring" data-bs-toggle="collapse" role="button" aria-expanded="{{ $monitoringActive ? 'true' : 'false' }}" aria-controls="sidebar-monitoring">
+                                        <span class="nav-link-icon"><i class="ti ti-activity"></i></span>
+                                        <span class="nav-link-title">Monitoring</span>
+                                        <span class="nav-link-toggle"></span>
                                     </a>
-                                </li>
-                            @endcan
+                                    <div class="collapse {{ $monitoringActive ? 'show' : '' }}" id="sidebar-monitoring">
+                                        <ul class="nav nav-submenu mb-1">
+                                            @can('view-any-session')
+                                                <li class="nav-item {{ request()->routeIs('admin.sessions.*') ? 'active' : '' }}">
+                                                    <a class="nav-link" href="{{ route('admin.sessions.index') }}">
+                                                        <span class="nav-link-title">Sessions</span>
+                                                    </a>
+                                                </li>
+                                            @endcan
 
-                            @can('view-any-payment')
-                                <li class="nav-item {{ request()->routeIs('admin.payments.*') ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{ route('admin.payments.index') }}">
-                                        <span class="nav-link-icon"><i class="ti ti-cash"></i></span>
-                                        <span class="nav-link-title">Payments</span>
-                                    </a>
-                                </li>
-                            @endcan
+                                            @can('view-any-event')
+                                                <li class="nav-item {{ request()->routeIs('admin.events.*') ? 'active' : '' }}">
+                                                    <a class="nav-link" href="{{ route('admin.events.index') }}">
+                                                        <span class="nav-link-title">Events</span>
+                                                    </a>
+                                                </li>
+                                            @endcan
 
-                            @can('view-any-voucher')
-                                <li class="nav-item {{ request()->routeIs('admin.vouchers.*') ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{ route('admin.vouchers.index') }}">
-                                        <span class="nav-link-icon"><i class="ti ti-ticket"></i></span>
-                                        <span class="nav-link-title">Vouchers</span>
-                                    </a>
+                                            @can('view-any-payment')
+                                                <li class="nav-item {{ request()->routeIs('admin.payments.*') ? 'active' : '' }}">
+                                                    <a class="nav-link" href="{{ route('admin.payments.index') }}">
+                                                        <span class="nav-link-title">Payments</span>
+                                                    </a>
+                                                </li>
+                                            @endcan
+                                        </ul>
+                                    </div>
                                 </li>
-                            @endcan
+                            @endif
 
-                            @canany(['view-settings', 'update-settings', 'view-any-role', 'view-any-permission'])
-                                <li class="nav-section-title">System</li>
-                                @canany(['view-settings', 'update-settings'])
-                                <li class="nav-item {{ request()->routeIs('admin.settings') ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{ route('admin.settings') }}">
+                            @php
+                                $showSystem = auth()->user()->can('view-settings') || auth()->user()->can('update-settings') || auth()->user()->can('view-any-role') || auth()->user()->can('view-any-permission');
+                                $systemActive = request()->routeIs('admin.settings', 'admin.roles.*', 'admin.permissions.*');
+                            @endphp
+
+                            @if ($showSystem)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sidebar-system" data-bs-toggle="collapse" role="button" aria-expanded="{{ $systemActive ? 'true' : 'false' }}" aria-controls="sidebar-system">
                                         <span class="nav-link-icon"><i class="ti ti-settings"></i></span>
-                                        <span class="nav-link-title">Settings</span>
+                                        <span class="nav-link-title">System</span>
+                                        <span class="nav-link-toggle"></span>
                                     </a>
+                                    <div class="collapse {{ $systemActive ? 'show' : '' }}" id="sidebar-system">
+                                        <ul class="nav nav-submenu mb-1">
+                                            @canany(['view-settings', 'update-settings'])
+                                                <li class="nav-item {{ request()->routeIs('admin.settings') ? 'active' : '' }}">
+                                                    <a class="nav-link" href="{{ route('admin.settings') }}">
+                                                        <span class="nav-link-title">Settings</span>
+                                                    </a>
+                                                </li>
+                                            @endcanany
+
+                                            @can('view-any-role')
+                                                <li class="nav-item {{ request()->routeIs('admin.roles.*') ? 'active' : '' }}">
+                                                    <a class="nav-link" href="{{ route('admin.roles.index') }}">
+                                                        <span class="nav-link-title">Roles</span>
+                                                    </a>
+                                                </li>
+                                            @endcan
+
+                                            @can('view-any-permission')
+                                                <li class="nav-item {{ request()->routeIs('admin.permissions.*') ? 'active' : '' }}">
+                                                    <a class="nav-link" href="{{ route('admin.permissions.index') }}">
+                                                        <span class="nav-link-title">Permissions</span>
+                                                    </a>
+                                                </li>
+                                            @endcan
+                                        </ul>
+                                    </div>
                                 </li>
-                                @endcanany
-                                @can('view-any-role')
-                                <li class="nav-item {{ request()->routeIs('admin.roles.*') ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{ route('admin.roles.index') }}">
-                                        <span class="nav-link-icon"><i class="ti ti-shield"></i></span>
-                                        <span class="nav-link-title">Roles</span>
-                                    </a>
-                                </li>
-                                @endcan
-                                @can('view-any-permission')
-                                <li class="nav-item {{ request()->routeIs('admin.permissions.*') ? 'active' : '' }}">
-                                    <a class="nav-link" href="{{ route('admin.permissions.index') }}">
-                                        <span class="nav-link-icon"><i class="ti ti-lock"></i></span>
-                                        <span class="nav-link-title">Permissions</span>
-                                    </a>
-                                </li>
-                                @endcan
-                            @endcanany
+                            @endif
                         </ul>
                     </div>
                 </div>

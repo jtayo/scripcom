@@ -4,6 +4,12 @@
 @section('page-title', $organization->name)
 
 @section('content')
+    <div class="mb-3">
+        <a href="{{ route('admin.organizations.index') }}" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center">
+            <i class="fa-solid fa-arrow-left me-1"></i>Back to Organizations
+        </a>
+    </div>
+
     <div class="row mb-4">
         <div class="col-12">
             <div class="card">

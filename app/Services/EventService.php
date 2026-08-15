@@ -15,7 +15,7 @@ class EventService
         ?int $campaignId = null,
         array $payload = []
     ): Event {
-        return Event::create([
+        $event = Event::create([
             'organization_id' => $organization?->id,
             'session_id' => $sessionId,
             'hotspot_id' => $hotspotId,
@@ -26,6 +26,10 @@ class EventService
             'user_agent' => request()->userAgent(),
             'occurred_at' => now(),
         ]);
+
+        app(AnalyticsService::class)->forget($organization);
+
+        return $event;
     }
 
     public function getEvents(?Organization $organization, int $limit = 50)

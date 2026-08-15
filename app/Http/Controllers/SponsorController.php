@@ -44,7 +44,7 @@ class SponsorController extends Controller
 
     public function show(Sponsor $sponsor): View
     {
-        $sponsor->loadCount(['sponsorships', 'campaigns', 'vouchers']);
+        $sponsor->loadCount(['sponsorships', 'campaigns']);
 
         $stats = [
             'total_sessions' => $sponsor->sponsorships()->sum('quantity_used'),

@@ -43,6 +43,7 @@ return [
         'organization_id' => env('TOLCLIN_ORGANIZATION_ID'),
         'ssid' => env('TOLCLIN_SSID'),
         'webhook_secret' => env('TOLCLIN_WEBHOOK_SECRET'),
+        'webhook_allowed_ips' => env('TOLCLIN_WEBHOOK_ALLOW_IPS'),
         'grant_access' => env('TOLCLIN_GRANT_ACCESS', true),
         'keep_alive' => env('TOLCLIN_KEEP_ALIVE', false),
     ],

@@ -2,14 +2,20 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class TolclinApiService
 {
+    private const CACHE_TTL = 300;
+
     private string $baseUrl;
+
     private ?string $username;
+
     private ?string $password;
+
     private bool $grantAccess;
 
     public function __construct()
@@ -28,7 +34,7 @@ class TolclinApiService
         ];
 
         if ($this->username && $this->password) {
-            $headers['Authorization'] = 'Basic ' . base64_encode($this->username . ':' . $this->password);
+            $headers['Authorization'] = 'Basic '.base64_encode($this->username.':'.$this->password);
         }
 
         return $headers;
@@ -53,10 +59,22 @@ class TolclinApiService
             return [];
         }
 
+        return Cache::remember(
+            'tolclin.routers.'.implode(',', $ids),
+            self::CACHE_TTL,
+            fn () => $this->fetchRoutersByIds($ids)
+        );
+    }
+
+    /**
+     * @return array<int, array<string, mixed>>
+     */
+    private function fetchRoutersByIds(array $ids): array
+    {
         try {
             $response = Http::withHeaders($this->headers())
                 ->timeout(20)
-                ->get($this->baseUrl . '/tolclin/captivity/admin/routers/by-ids?ids=' . implode(',', $ids));
+                ->get($this->baseUrl.'/tolclin/captivity/admin/routers/by-ids?ids='.implode(',', $ids));
 
             return $response->successful() ? $response->json() : [];
         } catch (\Throwable $e) {
@@ -150,12 +168,27 @@ class TolclinApiService
      */
     public function sessionsSummary(?string $from = null, ?string $to = null): array
     {
+        $from ??= now()->subDays(7)->toDateString();
+        $to ??= now()->toDateString();
+
+        return Cache::remember(
+            "tolclin.sessions-summary.{$from}.{$to}",
+            self::CACHE_TTL,
+            fn () => $this->fetchSessionsSummary($from, $to)
+        );
+    }
+
+    /**
+     * @return array{total: int, active: int, expired: int, failed: int, routers: array<int, array<string, mixed>>}
+     */
+    private function fetchSessionsSummary(string $from, string $to): array
+    {
         try {
             $response = Http::withHeaders($this->headers())
                 ->timeout(60)
-                ->post($this->baseUrl . '/tolclin/captivity/hotspot/sessions/by-router', [
-                    'from' => $from ?? now()->subDays(7)->toDateString(),
-                    'to' => $to ?? now()->toDateString(),
+                ->post($this->baseUrl.'/tolclin/captivity/hotspot/sessions/by-router', [
+                    'from' => $from,
+                    'to' => $to,
                 ]);
         } catch (\Throwable $e) {
             Log::warning('Tolclin sessions summary failed', ['error' => $e->getMessage()]);
@@ -216,12 +249,27 @@ class TolclinApiService
      */
     public function sessions(?string $from = null, ?string $to = null): array
     {
+        $from ??= now()->subDays(1)->toDateString();
+        $to ??= now()->toDateString();
+
+        return Cache::remember(
+            "tolclin.sessions.{$from}.{$to}",
+            self::CACHE_TTL,
+            fn () => $this->fetchSessions($from, $to)
+        );
+    }
+
+    /**
+     * @return array<int, array{mac_address: string, status: string, router_id: int, router_name: string}>
+     */
+    private function fetchSessions(string $from, string $to): array
+    {
         try {
             $response = Http::withHeaders($this->headers())
                 ->timeout(60)
-                ->post($this->baseUrl . '/tolclin/captivity/hotspot/sessions/by-router', [
-                    'from' => $from ?? now()->subDays(1)->toDateString(),
-                    'to' => $to ?? now()->toDateString(),
+                ->post($this->baseUrl.'/tolclin/captivity/hotspot/sessions/by-router', [
+                    'from' => $from,
+                    'to' => $to,
                 ]);
         } catch (\Throwable $e) {
             Log::warning('Tolclin sessions failed', ['error' => $e->getMessage()]);
@@ -283,7 +331,7 @@ class TolclinApiService
 
         $response = Http::withHeaders($this->headers())
             ->timeout(15)
-            ->post($this->baseUrl . '/access/grant', [
+            ->post($this->baseUrl.'/access/grant', [
                 'mac_address' => $macAddress,
                 'duration_minutes' => $durationMinutes,
                 'bandwidth_mbps' => $bandwidthMbps,
@@ -300,7 +348,7 @@ class TolclinApiService
 
         $response = Http::withHeaders($this->headers())
             ->timeout(15)
-            ->post($this->baseUrl . '/access/revoke', [
+            ->post($this->baseUrl.'/access/revoke', [
                 'mac_address' => $macAddress,
             ]);
 
@@ -312,7 +360,7 @@ class TolclinApiService
         try {
             $response = Http::withHeaders($this->headers())
                 ->timeout(20)
-                ->get($this->baseUrl . $path, $query);
+                ->get($this->baseUrl.$path, $query);
 
             return $response->successful() ? $response->json() : $response->json();
         } catch (\Throwable $e) {

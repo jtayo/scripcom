@@ -21,7 +21,6 @@ class RolePermissionSeeder extends Seeder
             'sponsorship',
             'session',
             'event',
-            'voucher',
             'payment',
             'role',
             'permission',
@@ -60,7 +59,6 @@ class RolePermissionSeeder extends Seeder
             'view-any-sponsorship', 'view-sponsorship', 'create-sponsorship', 'update-sponsorship',
             'view-any-session', 'view-session',
             'view-any-event', 'view-event',
-            'view-any-voucher', 'view-voucher', 'create-voucher', 'update-voucher',
             'view-any-payment', 'view-payment',
             'buy-credits',
             'view-analytics',
@@ -75,7 +73,6 @@ class RolePermissionSeeder extends Seeder
             'view-any-session', 'view-session',
             'view-any-event', 'view-event',
             'view-analytics',
-            'view-any-voucher', 'view-voucher',
         ]);
 
         $viewer = Role::firstOrCreate(['name' => 'Viewer', 'guard_name' => 'web']);
@@ -87,7 +84,6 @@ class RolePermissionSeeder extends Seeder
             'view-any-sponsor', 'view-sponsor',
             'view-any-sponsorship', 'view-sponsorship',
             'view-analytics',
-            'view-any-voucher', 'view-voucher',
             'view-any-payment', 'view-payment',
         ]);
 
@@ -95,8 +91,6 @@ class RolePermissionSeeder extends Seeder
         $sponsor->syncPermissions([
             'view-any-campaign', 'view-campaign', 'create-campaign', 'update-campaign',
             'view-any-sponsorship', 'view-sponsorship',
-            'view-any-voucher', 'view-voucher', 'create-voucher',
-            'view-any-session', 'view-session',
             'view-any-payment', 'view-payment',
             'buy-credits',
             'view-analytics',

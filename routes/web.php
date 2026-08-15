@@ -4,8 +4,22 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\BuyCreditsController;
+use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\HotspotController;
+use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\SponsorController;
+use App\Http\Controllers\SponsorshipController;
+use App\Http\Controllers\TolclinWebhookController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WifiSessionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,6 +42,9 @@ Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
 
+Route::post('webhooks/tolclin', TolclinWebhookController::class)
+    ->name('webhooks.tolclin');
+
 Route::prefix('admin')
     ->name('admin.')
     ->middleware(['auth'])
@@ -37,58 +54,54 @@ Route::prefix('admin')
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::patch('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
 
-        Route::resource('organizations', App\Http\Controllers\OrganizationController::class)
+        Route::resource('organizations', OrganizationController::class)
             ->middleware('can:view-any-organization');
 
-        Route::resource('users', App\Http\Controllers\UserController::class)
+        Route::resource('users', UserController::class)
             ->middleware('can:view-any-user');
 
-        Route::resource('roles', App\Http\Controllers\RoleController::class)
+        Route::resource('roles', RoleController::class)
             ->middleware('can:view-any-role');
 
-        Route::resource('permissions', App\Http\Controllers\PermissionController::class)
+        Route::resource('permissions', PermissionController::class)
             ->only(['index', 'show'])
             ->middleware('can:view-any-permission');
 
-        Route::resource('hotspots', App\Http\Controllers\HotspotController::class)
+        Route::resource('hotspots', HotspotController::class)
             ->middleware('can:view-any-hotspot');
 
-        Route::resource('campaigns', App\Http\Controllers\CampaignController::class)
+        Route::resource('campaigns', CampaignController::class)
             ->middleware('can:view-any-campaign');
 
-        Route::resource('sponsors', App\Http\Controllers\SponsorController::class)
+        Route::resource('sponsors', SponsorController::class)
             ->middleware('can:view-any-sponsor');
 
-        Route::resource('sponsorships', App\Http\Controllers\SponsorshipController::class)
+        Route::resource('sponsorships', SponsorshipController::class)
             ->middleware('can:view-any-sponsorship');
 
-        Route::resource('sessions', App\Http\Controllers\WifiSessionController::class)
+        Route::resource('sessions', WifiSessionController::class)
             ->only(['index', 'show', 'destroy'])
             ->middleware('can:view-any-session');
 
-        Route::resource('events', App\Http\Controllers\EventController::class)
+        Route::resource('events', EventController::class)
             ->only(['index', 'show'])
             ->middleware('can:view-any-event');
 
-        Route::resource('vouchers', App\Http\Controllers\VoucherController::class)
-            ->except(['edit', 'update'])
-            ->middleware('can:view-any-voucher');
-
-        Route::resource('payments', App\Http\Controllers\PaymentController::class)
+        Route::resource('payments', PaymentController::class)
             ->only(['index', 'show'])
             ->middleware('can:view-any-payment');
 
-        Route::get('/buy-credits', [App\Http\Controllers\BuyCreditsController::class, 'index'])
+        Route::get('/buy-credits', [BuyCreditsController::class, 'index'])
             ->middleware('can:buy-credits')
             ->name('buy-credits');
-        Route::post('/buy-credits', [App\Http\Controllers\BuyCreditsController::class, 'store'])
+        Route::post('/buy-credits', [BuyCreditsController::class, 'store'])
             ->middleware('can:buy-credits')
             ->name('buy-credits.store');
 
-        Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'index'])
+        Route::get('/settings', [SettingsController::class, 'index'])
             ->middleware('can:view-settings')
             ->name('settings');
-        Route::post('/settings', [App\Http\Controllers\SettingsController::class, 'update'])
+        Route::post('/settings', [SettingsController::class, 'update'])
             ->middleware('can:update-settings')
             ->name('settings.update');
     });
