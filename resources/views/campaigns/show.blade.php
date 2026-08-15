@@ -68,7 +68,7 @@
                     <h2 class="h5 mb-0">Plays (14 days)</h2>
                 </div>
                 <div class="card-body">
-                    <div class="ct-chart" id="chart-daily"></div>
+                    <div class="chart" id="chart-daily" style="height: 250px;"></div>
                 </div>
             </div>
         </div>
@@ -130,16 +130,51 @@
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    new Chartist.Line('#chart-daily', {
-        labels: @json($daily->keys()->map(fn ($d) => \Illuminate\Support\Carbon::parse($d)->format('d M'))),
-        series: [@json($daily->values())]
-    }, {
-        low: 0,
-        showArea: true,
-        showPoint: false,
-        height: '250px',
-        axisX: { showGrid: false },
-        axisY: { labelInterpolationFnc: function (value) { return Math.round(value); } }
+    const ctx = document.getElementById('chart-daily').getContext('2d');
+    const gradient = ctx.createLinearGradient(0, 0, 0, 250);
+    gradient.addColorStop(0, 'rgba(32, 107, 196, .3)');
+    gradient.addColorStop(1, 'rgba(32, 107, 196, 0)');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: @json($daily->keys()->map(fn ($d) => \Illuminate\Support\Carbon::parse($d)->format('d M'))),
+            datasets: [{
+                label: 'Plays',
+                data: @json($daily->values()),
+                borderColor: '#206bc4',
+                backgroundColor: gradient,
+                borderWidth: 2,
+                pointRadius: 0,
+                pointBackgroundColor: '#206bc4',
+                fill: true,
+                tension: .35,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: 'rgba(17, 24, 39, .9)',
+                    padding: 10,
+                    displayColors: false,
+                    callbacks: { title: items => items[0].label, label: item => ' ' + item.parsed.y + ' plays' }
+                }
+            },
+            scales: {
+                x: {
+                    grid: { display: false },
+                    ticks: { color: '#9aa7b0', maxTicksLimit: 7, font: { size: 11 } }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: { color: '#9aa7b0', precision: 0, font: { size: 11 } },
+                    grid: { color: 'rgba(17, 24, 39, .06)' }
+                }
+            }
+        }
     });
 });
 </script>

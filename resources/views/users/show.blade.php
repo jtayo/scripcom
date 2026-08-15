@@ -9,16 +9,19 @@
             <div class="card">
                 <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-md-center">
                     <div class="d-flex align-items-center mb-3 mb-md-0">
-                        <span class="avatar avatar-lg me-3" style="background-image: url('{{ $user->avatar ?? asset('img/team/profile-picture-3.jpg') }}')"></span>
+                        <span class="avatar avatar-lg me-3"
+                            style="background-image: url('{{ $user->avatar ?? asset('img/team/profile-picture-3.jpg') }}')"></span>
                         <div>
                             <h1 class="h4 mb-0">{{ $user->name }}</h1>
                             <span class="text-muted">{{ $user->email }}</span>
                         </div>
                     </div>
                     <div class="d-flex align-items-center">
-                        <span class="badge bg-{{ $user->status === 'active' ? 'success' : 'danger' }} me-2">{{ ucfirst($user->status ?? 'active') }}</span>
+                        <span
+                            class="badge text-white bg-{{ $user->status === 'active' ? 'success' : 'danger' }} me-2">{{ ucfirst($user->status ?? 'active') }}</span>
                         @can('update-user')
-                        <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-sm btn-primary d-inline-flex align-items-center">Edit</a>
+                            <a href="{{ route('admin.users.edit', $user) }}"
+                                class="btn btn-sm btn-primary d-inline-flex align-items-center">Edit</a>
                         @endcan
                     </div>
                 </div>
@@ -34,7 +37,7 @@
                 </div>
                 <div class="card-body">
                     @forelse($user->roles as $role)
-                        <span class="badge bg-secondary me-1">{{ $role->name }}</span>
+                        <span class="badge bg-secondary me-1 text-white">{{ $role->name }}</span>
                     @empty
                         <span class="text-muted">No roles assigned.</span>
                     @endforelse

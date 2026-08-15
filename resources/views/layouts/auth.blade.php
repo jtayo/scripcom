@@ -7,16 +7,16 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Authentication') — {{ config('app.name') }}</title>
 
-    <link rel="icon" href="{{ asset('img/favicon/favicon-32x32.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link type="text/css" href="{{ asset('vendor/tabler/css/tabler.min.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ asset('vendor/tabler/css/tabler-icons.min.css') }}" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', var(--tblr-font-sans-serif);
+            font-family: 'Plus Jakarta Sans', var(--tblr-font-sans-serif);
             background-color: var(--tblr-bg-secondary);
         }
         .auth-form .form-label {

@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Services\AnalyticsService;
 use App\Services\CaptivePortalService;
 use App\Services\EventService;
+use App\Services\KenyaWardLookup;
 use App\Services\MpesaService;
 use App\Services\OtpService;
 use App\Services\SessionManager;
@@ -25,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(VoucherService::class);
         $this->app->singleton(SessionManager::class);
         $this->app->singleton(CaptivePortalService::class);
+        $this->app->singleton(KenyaWardLookup::class);
     }
 
     public function boot(): void
