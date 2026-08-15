@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Campaign;
+use App\Models\Hotspot;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 return [
@@ -129,8 +132,17 @@ return [
     | storage. By default, no PHP classes will be unserialized from your
     | cache to prevent gadget chain attacks if your APP_KEY is leaked.
     |
+    | AnalyticsService caches Eloquent collections (Campaign/Hotspot) via the
+    | database store, so the collection classes and the models they contain
+    | must be allowed here. Keep this list as narrow as possible.
+    |
     */
 
-    'serializable_classes' => false,
+    'serializable_classes' => [
+        Collection::class,
+        Illuminate\Database\Eloquent\Collection::class,
+        Campaign::class,
+        Hotspot::class,
+    ],
 
 ];

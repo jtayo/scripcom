@@ -9,9 +9,15 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">
-                        {{ $definition['title'] }}
-                        <span class="badge bg-secondary-lt ms-2">{{ count($rows) }}</span>
+                    <div class="card-title d-flex align-items-center gap-2">
+                        <a href="{{ route('admin.reports.index') }}" class="btn btn-icon btn-outline-secondary"
+                            title="Back to reports" aria-label="Back to reports">
+                            <i class="ti ti-arrow-left"></i>
+                        </a>
+                        <div>
+                            {{ $definition['title'] }}
+                            <span class="badge bg-secondary-lt ms-2">{{ count($rows) }}</span>
+                        </div>
                     </div>
                     <div class="card-actions d-flex flex-wrap align-items-center gap-2">
                         <form method="GET" action="{{ route('admin.reports.show', $type) }}"

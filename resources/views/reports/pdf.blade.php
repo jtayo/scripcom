@@ -21,6 +21,30 @@
             margin-bottom: 14px;
         }
 
+        .header .head-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .header .head-table td {
+            border: none;
+            padding: 0;
+            vertical-align: middle;
+        }
+
+        .header .logo-cell {
+            width: 110px;
+        }
+
+        .header .logo-cell img {
+            max-height: 46px;
+            max-width: 130px;
+        }
+
+        .header .head-title {
+            padding-left: 14px;
+        }
+
         .header h1 {
             font-size: 18px;
             margin: 0 0 2px;
@@ -88,11 +112,22 @@
 
 <body>
     <div class="header">
-        <h1>{{ $definition['title'] }}</h1>
-        <div class="meta">
-            {{ config('app.name') }} &middot; Generated {{ now()->format('M d, Y H:i') }} &middot;
-            {{ count($rows) }} records
-        </div>
+        <table class="head-table">
+            <tr>
+                <td class="logo-cell">
+                    @if (! empty($logo))
+                        <img src="{{ $logo }}" alt="Scripcom logo">
+                    @endif
+                </td>
+                <td class="head-title">
+                    <h1>{{ $definition['title'] }}</h1>
+                    <div class="meta">
+                        {{ config('app.name') }} &middot; Generated {{ now()->format('M d, Y H:i') }} &middot;
+                        {{ count($rows) }} records
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 
     @php $activeFilters = array_filter($filters, fn ($v) => $v !== null && $v !== ''); @endphp

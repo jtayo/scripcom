@@ -61,18 +61,32 @@ class ReportController extends Controller
         $filename = Str::slug($definition['title']).'-'.now()->format('Y-m-d-His').'.'.$format;
 
         if ($format === 'pdf') {
-            $pdf = Pdf::loadView('reports.pdf', compact('definition', 'type', 'filters', 'rows'))
+            $pdf = Pdf::loadView('reports.pdf', array_merge(
+                compact('definition', 'type', 'filters', 'rows'),
+                ['logo' => $this->logoDataUri()]
+            ))
                 ->setPaper('a4', 'landscape');
 
-            return $pdf->download($filename);
+            return $pdf->download($filename)
+                ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+                ->header('Pragma', 'no-cache');
         }
 
         $headings = array_values($definition['columns']);
-        $export = new DataExport($headings, array_map(fn (array $row) => array_values($row), $rows));
+        $export = new DataExport(
+            $headings,
+            array_map(fn (array $row) => array_values($row), $rows),
+            $format === 'xlsx' ? $this->logoPath() : null
+        );
 
-        return $format === 'csv'
+        $response = $format === 'csv'
             ? $export->download($filename, ExcelFormat::CSV, ['Content-Type' => 'text/csv'])
             : $export->download($filename, ExcelFormat::XLSX);
+
+        $response->headers->set('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+        $response->headers->set('Pragma', 'no-cache');
+
+        return $response;
     }
 
     /**
@@ -88,5 +102,19 @@ class ReportController extends Controller
         }
 
         return $filters;
+    }
+
+    private function logoPath(): ?string
+    {
+        $path = public_path('scripcom_logo.png');
+
+        return is_file($path) ? $path : null;
+    }
+
+    private function logoDataUri(): ?string
+    {
+        $path = $this->logoPath();
+
+        return $path ? 'data:image/png;base64,'.base64_encode((string) file_get_contents($path)) : null;
     }
 }
