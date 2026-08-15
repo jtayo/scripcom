@@ -28,6 +28,7 @@ class BuyCreditsController extends Controller
             ->get();
 
         $balance = Sponsorship::query()
+            ->with('sponsor:id,name')
             ->tap(fn ($q) => $this->scopeOrganization($q))
             ->where('status', 'active')
             ->get();

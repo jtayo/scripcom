@@ -10,6 +10,7 @@ use App\Models\Organization;
 use App\Models\Sponsor;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 
@@ -46,11 +47,14 @@ class CampaignController extends Controller
     {
         $data = $this->validated($request);
 
-        $campaign = Campaign::create(array_merge($data, [
-            'slug' => Str::slug($data['title']) . '-' . Str::lower(Str::random(4)),
-            'created_by' => auth()->id(),
-            'organization_id' => $data['organization_id'] ?? $this->organizationId(),
-        ]));
+        $campaign = Campaign::create(array_merge(
+            Arr::except($data, ['hotspot_ids']),
+            [
+                'slug' => Str::slug($data['title']) . '-' . Str::lower(Str::random(4)),
+                'created_by' => auth()->id(),
+                'organization_id' => $data['organization_id'] ?? $this->organizationId(),
+            ]
+        ));
 
         if (! empty($data['hotspot_ids'])) {
             $campaign->hotspots()->sync($data['hotspot_ids']);
@@ -101,7 +105,7 @@ class CampaignController extends Controller
 
         $data = $this->validated($request, $campaign);
 
-        $campaign->update($data);
+        $campaign->update(Arr::except($data, ['hotspot_ids']));
 
         if (isset($data['hotspot_ids'])) {
             $campaign->hotspots()->sync($data['hotspot_ids']);

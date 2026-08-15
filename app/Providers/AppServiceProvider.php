@@ -12,6 +12,7 @@ use App\Services\SessionManager;
 use App\Services\TolclinApiService;
 use App\Services\VoucherService;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -36,5 +37,7 @@ class AppServiceProvider extends ServiceProvider
         if (! app()->isProduction()) {
             Model::shouldBeStrict();
         }
+
+        Paginator::useBootstrapFive();
     }
 }

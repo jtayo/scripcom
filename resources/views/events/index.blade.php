@@ -4,81 +4,110 @@
 @section('page-title', 'Events')
 
 @section('content')
-    <div class="row mb-4">
+    <div class="row row-cards">
         <div class="col-12">
             <div class="card">
-                <div class="card-body">
-                    <form method="GET" action="{{ route('admin.events.index') }}" class="row g-3 align-items-center">
-                        <div class="col-12 col-md-4 col-lg-3">
-                            <select name="event_type" class="form-select">
+                <div class="card-header">
+                    <div class="card-title">
+                        Events
+                        <span class="badge bg-secondary-lt ms-2">{{ $events->total() }}</span>
+                    </div>
+                    <div class="card-actions d-flex align-items-center gap-2">
+                        <form method="GET" action="{{ route('admin.events.index') }}" class="d-flex gap-1">
+                            <select name="event_type" class="form-select" style="width: auto;" aria-label="Filter by event type">
                                 <option value="">All event types</option>
                                 @foreach($eventTypes as $type)
                                     <option value="{{ $type }}" @selected(request('event_type') === $type)>{{ \App\Enums\EventType::tryFrom($type)?->label() ?? $type }}</option>
                                 @endforeach
                             </select>
-                        </div>
-                        <div class="col-12 col-md-3 col-lg-2">
-                            <input type="date" name="date" class="form-control" value="{{ request('date') }}">
-                        </div>
-                        <div class="col-12 col-md-3 col-lg-2">
-                            <button type="submit" class="btn btn-dark d-inline-flex align-items-center">Filter</button>
-                        </div>
-                        <div class="col-12 col-md-2 col-lg-2">
-                            @if(request()->hasAny(['event_type', 'date']))
-                            <a href="{{ route('admin.events.index') }}" class="btn btn-link btn-sm text-secondary">Clear</a>
+                            <input type="date" name="date" class="form-control" style="width: auto;"
+                                   value="{{ request('date') }}" aria-label="Filter by date">
+                            <button type="submit" class="btn btn-outline-secondary d-inline-flex align-items-center">
+                                <i class="ti ti-filter me-1"></i>Filter
+                            </button>
+                            @if(request('event_type') || request('date'))
+                            <a href="{{ route('admin.events.index') }}" class="btn btn-outline-secondary d-inline-flex align-items-center" title="Clear filters">
+                                <i class="ti ti-x"></i>
+                            </a>
                             @endif
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table table-vcenter table-nowrap mb-0">
-                            <thead class="">
-                                <tr>
-                                    <th class="border-0 rounded-start">Event</th>
-                                    <th class="border-0">Type</th>
-                                    <th class="border-0">Hotspot</th>
-                                    <th class="border-0">Campaign</th>
-                                    <th class="border-0">IP</th>
-                                    <th class="border-0">Occurred</th>
-                                    <th class="border-0 rounded-end text-end">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($events as $event)
-                                <tr>
-                                    <td>
-                                        <a href="{{ route('admin.events.show', $event) }}" class="text-body fw-bold">#{{ $event->id }}</a>
-                                        <div class="small text-muted">{{ $event->session_id ?? '' }}</div>
-                                    </td>
-                                    <td>
-                                        @php $evt = \App\Enums\EventType::tryFrom($event->event_type); @endphp
-                                        <span class="badge bg-{{ $evt && in_array($evt, [\App\Enums\EventType::ErrorOccurred, \App\Enums\EventType::SessionFailed]) ? 'danger' : 'secondary' }}">{{ $evt?->label() ?? $event->event_type }}</span>
-                                    </td>
-                                    <td>{{ $event->hotspot->name ?? '—' }}</td>
-                                    <td>{{ $event->campaign->title ?? '—' }}</td>
-                                    <td>{{ $event->ip_address ?? '—' }}</td>
-                                    <td>{{ $event->occurred_at?->format('M d, H:i:s') }}</td>
-                                    <td class="text-end">
-                                        <a href="{{ route('admin.events.show', $event) }}" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center">View</a>
-                                    </td>
-                                </tr>
-                                @empty
-                                <tr><td colspan="7" class="text-center text-muted py-5">No events found.</td></tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+                        </form>
                     </div>
                 </div>
+                <div class="table-responsive">
+                    <table class="table table-vcenter table-nowrap card-table mb-0">
+                        <thead>
+                            <tr>
+                                <th>Event</th>
+                                <th>Type</th>
+                                <th>Hotspot</th>
+                                <th>Campaign</th>
+                                <th>IP</th>
+                                <th>Occurred</th>
+                                <th class="text-end">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($events as $event)
+                            @php $evt = \App\Enums\EventType::tryFrom($event->event_type); @endphp
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <span class="avatar avatar-sm bg-primary-lt text-primary me-2">
+                                            <i class="ti ti-calendar-event"></i>
+                                        </span>
+                                        <div>
+                                            <a href="{{ route('admin.events.show', $event) }}" class="text-body fw-bold text-decoration-none">#{{ $event->id }}</a>
+                                            @if($event->session_id)
+                                            <div class="small text-muted">{{ $event->session_id }}</div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-{{ $evt && $evt === \App\Enums\EventType::ErrorOccurred ? 'danger' : 'secondary' }}-lt">{{ $evt?->label() ?? $event->event_type }}</span>
+                                </td>
+                                <td>
+                                    <span class="d-inline-flex align-items-center text-muted">
+                                        <i class="ti ti-map-pin me-1 text-secondary"></i>
+                                        {{ $event->hotspot->name ?? '—' }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="d-inline-flex align-items-center text-muted">
+                                        <i class="ti ti-speakerphone me-1 text-secondary"></i>
+                                        {{ $event->campaign->title ?? '—' }}
+                                    </span>
+                                </td>
+                                <td class="text-muted">{{ $event->ip_address ?? '—' }}</td>
+                                <td class="small text-muted">{{ $event->occurred_at?->format('M d, H:i:s') }}</td>
+                                <td class="text-end">
+                                    <div class="btn-group">
+                                        <a href="{{ route('admin.events.show', $event) }}" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center" title="View">
+                                            <i class="ti ti-eye me-1"></i>View
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="7" class="text-center text-muted py-5">
+                                    <div class="my-4">
+                                        <i class="ti ti-calendar-event text-secondary" style="font-size: 2.5rem;"></i>
+                                        <div class="mt-2">No events found.</div>
+                                        @if(request('event_type') || request('date'))
+                                        <div class="small text-secondary mt-1">
+                                            Try a different filter or <a href="{{ route('admin.events.index') }}" class="text-primary">clear filters</a>.
+                                        </div>
+                                        @endif
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
                 @if($events->hasPages())
-                <div class="card-footer border-0 py-2">
+                <div class="card-footer py-3 border-top-0">
                     {{ $events->links() }}
                 </div>
                 @endif

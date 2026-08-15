@@ -35,12 +35,20 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="stat-icon bg-primary-lt text-primary me-3">
-                            <i class="ti ti-signal-5"></i>
+                            <i class="ti ti-chart-dots-2"></i>
                         </div>
                         <div class="flex-grow-1">
                             <div class="stat-label text-muted mb-1">Total Sessions</div>
-                            <div class="stat-value fw-bolder text-body">{!! number_format($stats['total_sessions']) !!}</div>
-                            <div class="mt-1">{!! $trendBadge('total_sessions', 'vs prev. 7d') !!}</div>
+                            <div class="stat-value fw-bolder text-body">
+                                {{ number_format($liveSessions['total']) }}
+                                <span class="fs-6 fw-normal text-muted">in 7d</span>
+                            </div>
+                            <div class="mt-1">
+                                <span class="badge bg-secondary-lt">
+                                    <i class="ti ti-clock-off me-1"></i>{{ number_format($liveSessions['expired']) }} expired
+                                    · {{ number_format($liveSessions['failed']) }} failed
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -408,7 +416,7 @@
             <div class="card dashboard-card">
                 <div class="card-header">
                     <h2 class="card-title mb-0">
-                        <i class="ti ti-session text-primary me-2"></i>Recent Sessions
+                        <i class="ti ti-device-mobile text-primary me-2"></i>Recent Sessions
                     </h2>
                     <div class="card-actions">
                         <a href="{{ route('admin.sessions.index') }}" class="btn btn-sm btn-outline-secondary">View

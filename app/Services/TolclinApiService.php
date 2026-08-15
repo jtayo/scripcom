@@ -208,13 +208,13 @@ class TolclinApiService
     }
 
     /**
-     * Fetch the most recent sessions from the Tolclin API, flattened across all
-     * routers with their MAC address, status, and router name. Active sessions
-     * are sorted first so they appear at the top of a "recent" list.
+     * Fetch sessions from the Tolclin API for the given date range, flattened
+     * across all routers with their MAC address, status, and router name.
+     * Active sessions are sorted first so they appear at the top of a list.
      *
      * @return array<int, array{mac_address: string, status: string, router_id: int, router_name: string}>
      */
-    public function recentSessions(?string $from = null, ?string $to = null, int $limit = 10): array
+    public function sessions(?string $from = null, ?string $to = null): array
     {
         try {
             $response = Http::withHeaders($this->headers())
@@ -224,7 +224,7 @@ class TolclinApiService
                     'to' => $to ?? now()->toDateString(),
                 ]);
         } catch (\Throwable $e) {
-            Log::warning('Tolclin recent sessions failed', ['error' => $e->getMessage()]);
+            Log::warning('Tolclin sessions failed', ['error' => $e->getMessage()]);
 
             return [];
         }
@@ -253,7 +253,18 @@ class TolclinApiService
 
         usort($sessions, fn ($a, $b) => ($a['status'] === 'ACTIVE' ? 0 : 1) <=> ($b['status'] === 'ACTIVE' ? 0 : 1));
 
-        return array_slice($sessions, 0, $limit);
+        return $sessions;
+    }
+
+    /**
+     * Fetch the most recent sessions from the Tolclin API. Active sessions are
+     * sorted first so they appear at the top of a "recent" list.
+     *
+     * @return array<int, array{mac_address: string, status: string, router_id: int, router_name: string}>
+     */
+    public function recentSessions(?string $from = null, ?string $to = null, int $limit = 10): array
+    {
+        return array_slice($this->sessions($from, $to), 0, $limit);
     }
 
     public function exportSessions($from = null, $to = null)

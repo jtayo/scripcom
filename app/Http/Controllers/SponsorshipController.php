@@ -19,7 +19,7 @@ class SponsorshipController extends Controller
     public function index(Request $request): View
     {
         $sponsorships = Sponsorship::query()
-            ->with(['organization:id,name', 'sponsor:id,name'])
+            ->with(['organization:id,name', 'sponsor:id,name,email,contact_person'])
             ->tap(fn ($q) => $this->scopeOrganization($q))
             ->when($request->search, fn ($q, $search) => $q->where('reference', 'like', "%{$search}%"))
             ->when($request->status, fn ($q, $status) => $q->where('status', $status))
