@@ -39,6 +39,11 @@ class DashboardController extends Controller
             now()->toDateString()
         );
 
+        $activeSessionsToday = $tolclin->sessionsSummary(
+            now()->toDateString(),
+            now()->toDateString()
+        );
+
         $hotspotMarkers = $this->hotspotMarkers($tolclin, $liveSessions, $organization);
 
         return view('dashboard', compact(
@@ -55,6 +60,7 @@ class DashboardController extends Controller
             'eventCount',
             'hotspotMarkers',
             'liveSessions',
+            'activeSessionsToday',
             'organization'
         ));
     }

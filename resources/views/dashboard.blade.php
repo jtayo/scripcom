@@ -65,13 +65,13 @@
                         <div class="flex-grow-1">
                             <div class="stat-label text-muted mb-1">Active Sessions</div>
                             <div class="stat-value fw-bolder text-body">
-                                {{ number_format($liveSessions['active']) }}
-                                <span class="fs-6 fw-normal text-muted">live</span>
+                                {{ number_format($activeSessionsToday['active']) }}
+                                <span class="fs-6 fw-normal text-muted">today</span>
                             </div>
                             <div class="mt-1">
                                 <span class="badge bg-success-lt">
-                                    <i class="ti ti-refresh me-1"></i>{{ number_format($liveSessions['expired']) }} expired
-                                    · {{ $liveSessions['total'] }} in 7d
+                                    <i class="ti ti-refresh me-1"></i>{{ number_format($activeSessionsToday['expired']) }} expired
+                                    · {{ number_format($activeSessionsToday['total']) }} today
                                 </span>
                             </div>
                         </div>
