@@ -9,3 +9,7 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 Schedule::command('tolclin:sync-routers')->everyFiveMinutes()->withoutOverlapping();
+
+Schedule::command('routers:check')->everyFiveMinutes()->withoutOverlapping();
+
+Schedule::command('billing:mark-overdue')->dailyAt('00:15')->withoutOverlapping();

@@ -17,6 +17,7 @@ class RolePermissionSeeder extends Seeder
             'organization',
             'user',
             'hotspot',
+            'router',
             'campaign',
             'sponsor',
             'sponsorship',
@@ -24,6 +25,8 @@ class RolePermissionSeeder extends Seeder
             'session',
             'event',
             'payment',
+            'contract',
+            'invoice',
             'role',
             'permission',
         ];
@@ -37,6 +40,7 @@ class RolePermissionSeeder extends Seeder
             'export-reports',
             'view-settings',
             'update-settings',
+            'view-notifications',
         ];
 
         foreach ($entities as $entity) {
@@ -56,6 +60,7 @@ class RolePermissionSeeder extends Seeder
         $orgAdmin->syncPermissions([
             'view-any-user', 'view-user', 'create-user', 'update-user', 'delete-user',
             'view-any-hotspot', 'view-hotspot', 'create-hotspot', 'update-hotspot', 'delete-hotspot',
+            'view-any-router', 'view-router', 'create-router', 'update-router',
             'view-any-campaign', 'view-campaign', 'create-campaign', 'update-campaign', 'delete-campaign',
             'view-any-sponsor', 'view-sponsor', 'create-sponsor', 'update-sponsor', 'delete-sponsor',
             'view-any-sponsorship', 'view-sponsorship', 'create-sponsorship', 'update-sponsorship',
@@ -63,33 +68,44 @@ class RolePermissionSeeder extends Seeder
             'view-any-session', 'view-session',
             'view-any-event', 'view-event',
             'view-any-payment', 'view-payment',
+            'view-any-contract', 'view-contract', 'create-contract', 'update-contract',
+            'view-any-invoice', 'view-invoice', 'create-invoice', 'update-invoice',
             'buy-credits',
             'view-analytics',
             'view-reports',
             'view-settings', 'update-settings',
+            'view-notifications',
         ]);
 
         $departmentAdmin = Role::firstOrCreate(['name' => 'Department Admin', 'guard_name' => 'web']);
         $departmentAdmin->syncPermissions([
             'view-any-hotspot', 'view-hotspot', 'update-hotspot',
+            'view-any-router', 'view-router', 'update-router',
             'view-any-campaign', 'view-campaign', 'create-campaign', 'update-campaign',
             'view-any-package', 'view-package', 'update-package',
             'view-any-session', 'view-session',
             'view-any-event', 'view-event',
+            'view-any-contract', 'view-contract',
+            'view-any-invoice', 'view-invoice',
             'view-analytics',
+            'view-notifications',
         ]);
 
         $viewer = Role::firstOrCreate(['name' => 'Viewer', 'guard_name' => 'web']);
         $viewer->syncPermissions([
             'view-any-hotspot', 'view-hotspot',
+            'view-any-router', 'view-router',
             'view-any-campaign', 'view-campaign',
             'view-any-package', 'view-package',
             'view-any-session', 'view-session',
             'view-any-event', 'view-event',
             'view-any-sponsor', 'view-sponsor',
             'view-any-sponsorship', 'view-sponsorship',
+            'view-any-contract', 'view-contract',
+            'view-any-invoice', 'view-invoice',
             'view-analytics',
             'view-any-payment', 'view-payment',
+            'view-notifications',
         ]);
 
         $sponsor = Role::firstOrCreate(['name' => 'Sponsor', 'guard_name' => 'web']);
@@ -98,14 +114,18 @@ class RolePermissionSeeder extends Seeder
             'view-any-sponsorship', 'view-sponsorship',
             'view-any-package', 'view-package',
             'view-any-payment', 'view-payment',
+            'view-any-contract', 'view-contract',
+            'view-any-invoice', 'view-invoice',
             'buy-credits',
             'view-analytics',
+            'view-notifications',
         ]);
 
         $countyAdmin = Role::firstOrCreate(['name' => 'County Administrator', 'guard_name' => 'web']);
         $countyAdmin->syncPermissions([
             'view-any-user', 'view-user', 'create-user', 'update-user',
             'view-any-hotspot', 'view-hotspot', 'create-hotspot', 'update-hotspot',
+            'view-any-router', 'view-router', 'update-router',
             'view-any-campaign', 'view-campaign', 'create-campaign', 'update-campaign',
             'view-any-sponsor', 'view-sponsor',
             'view-any-sponsorship', 'view-sponsorship', 'create-sponsorship', 'update-sponsorship',
@@ -113,8 +133,11 @@ class RolePermissionSeeder extends Seeder
             'view-any-session', 'view-session',
             'view-any-event', 'view-event',
             'view-any-payment', 'view-payment',
+            'view-any-contract', 'view-contract', 'create-contract', 'update-contract',
+            'view-any-invoice', 'view-invoice', 'create-invoice', 'update-invoice',
             'view-analytics',
             'view-reports',
+            'view-notifications',
         ]);
 
         $corporateAdmin = Role::firstOrCreate(['name' => 'Corporate Administrator', 'guard_name' => 'web']);
@@ -126,9 +149,12 @@ class RolePermissionSeeder extends Seeder
             'view-any-session', 'view-session',
             'view-any-event', 'view-event',
             'view-any-payment', 'view-payment',
+            'view-any-contract', 'view-contract', 'create-contract', 'update-contract',
+            'view-any-invoice', 'view-invoice', 'create-invoice', 'update-invoice',
             'buy-credits',
             'view-analytics',
             'view-reports',
+            'view-notifications',
         ]);
     }
 }

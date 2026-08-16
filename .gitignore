@@ -25,3 +25,9 @@ _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# tFPDF runtime font caches (regenerated automatically)
+/resources/fonts/unifont/*.dat
+/resources/fonts/unifont/*.mtx.php
+/resources/fonts/unifont/*.cw127.php
+/resources/fonts/unifont/*.z

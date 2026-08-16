@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Exports\DataExport;
 use App\Http\Controllers\Traits\HasOrganizationScoping;
+use App\Services\ReportPdfService;
 use App\Services\ReportService;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Maatwebsite\Excel\Excel as ExcelFormat;
@@ -61,13 +62,12 @@ class ReportController extends Controller
         $filename = Str::slug($definition['title']).'-'.now()->format('Y-m-d-His').'.'.$format;
 
         if ($format === 'pdf') {
-            $pdf = Pdf::loadView('reports.pdf', array_merge(
-                compact('definition', 'type', 'filters', 'rows'),
-                ['logo' => $this->logoDataUri()]
-            ))
-                ->setPaper('a4', 'landscape');
+            $pdf = app(ReportPdfService::class)->render($type, $definition, $filters, $rows, $this->logoPath());
 
-            return $pdf->download($filename)
+            return response($pdf)
+                ->header('Content-Type', 'application/pdf')
+                ->header('Content-Disposition', 'attachment; filename="'.$filename.'"')
+                ->header('Content-Length', (string) strlen($pdf))
                 ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
                 ->header('Pragma', 'no-cache');
         }
@@ -108,13 +108,18 @@ class ReportController extends Controller
     {
         $path = public_path('scripcom_logo.png');
 
-        return is_file($path) ? $path : null;
-    }
+        if (! is_file($path) || ! is_readable($path)) {
+            return null;
+        }
 
-    private function logoDataUri(): ?string
-    {
-        $path = $this->logoPath();
+        $info = @getimagesize($path);
 
-        return $path ? 'data:image/png;base64,'.base64_encode((string) file_get_contents($path)) : null;
+        if ($info === false || ($info[2] ?? null) !== IMAGETYPE_PNG) {
+            Log::warning("Report logo is not a valid PNG image: {$path}");
+
+            return null;
+        }
+
+        return $path;
     }
 }

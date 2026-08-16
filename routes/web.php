@@ -5,17 +5,23 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BuyCreditsController;
 use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\ContractController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DeviceMonitoringController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HotspotController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\RouterController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\SponsorshipController;
@@ -57,6 +63,54 @@ Route::prefix('admin')
         Route::get('/analytics', [AnalyticsController::class, 'index'])
             ->middleware('can:view-analytics')
             ->name('analytics');
+
+        Route::prefix('notifications')
+            ->middleware('can:view-notifications')
+            ->group(function () {
+                Route::get('/', [NotificationController::class, 'index'])->name('notifications.index');
+                Route::post('/read-all', [NotificationController::class, 'readAll'])->name('notifications.read-all');
+                Route::get('{notification}', [NotificationController::class, 'show'])->name('notifications.show');
+                Route::post('{notification}/read', [NotificationController::class, 'read'])->name('notifications.read');
+                Route::delete('{notification}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
+            });
+
+        Route::get('/device-monitoring', [DeviceMonitoringController::class, 'index'])
+            ->middleware('can:view-any-router')
+            ->name('device-monitoring');
+
+        Route::post('/device-monitoring/{router}/check', [DeviceMonitoringController::class, 'check'])
+            ->middleware('can:update-router')
+            ->name('device-monitoring.check');
+
+        Route::resource('routers', RouterController::class)
+            ->middleware('can:view-any-router');
+
+        Route::get('/billing', [BillingController::class, 'index'])
+            ->middleware('can:view-any-invoice')
+            ->name('billing.index');
+
+        Route::resource('contracts', ContractController::class)
+            ->middleware('can:view-any-contract');
+
+        Route::get('/invoices', [InvoiceController::class, 'index'])
+            ->middleware('can:view-any-invoice')
+            ->name('invoices.index');
+
+        Route::get('/invoices/{invoice}', [InvoiceController::class, 'show'])
+            ->middleware('can:view-invoice')
+            ->name('invoices.show');
+
+        Route::post('/contracts/{contract}/invoices', [InvoiceController::class, 'generate'])
+            ->middleware('can:create-invoice')
+            ->name('invoices.generate');
+
+        Route::post('/invoices/{invoice}/mark-paid', [InvoiceController::class, 'markPaid'])
+            ->middleware('can:update-invoice')
+            ->name('invoices.mark-paid');
+
+        Route::post('/invoices/{invoice}/cancel', [InvoiceController::class, 'cancel'])
+            ->middleware('can:update-invoice')
+            ->name('invoices.cancel');
 
         Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -14,6 +14,9 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             WifiPackageSeeder::class,
             DummyDataSeeder::class,
+            RouterSeeder::class,
+            NotificationSeeder::class,
+            BillingSeeder::class,
         ]);
     }
 }

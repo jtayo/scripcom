@@ -113,9 +113,18 @@
                                 </li>
                             @endcan
 
+                            @can('view-any-router')
+                                <li class="nav-item {{ request()->routeIs('admin.device-monitoring') ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{ route('admin.device-monitoring') }}">
+                                        <span class="nav-link-icon"><i class="ti ti-device-desktop-analytics"></i></span>
+                                        <span class="nav-link-title">Device Monitoring</span>
+                                    </a>
+                                </li>
+                            @endcan
+
                             @php
-                                $showManagement = auth()->user()->can('view-any-organization') || auth()->user()->can('view-any-user') || auth()->user()->can('view-any-hotspot') || auth()->user()->can('view-any-campaign') || auth()->user()->can('view-any-package');
-                                $managementActive = request()->routeIs('admin.organizations.*', 'admin.users.*', 'admin.hotspots.*', 'admin.campaigns.*', 'admin.packages.*');
+                                $showManagement = auth()->user()->can('view-any-organization') || auth()->user()->can('view-any-user') || auth()->user()->can('view-any-hotspot') || auth()->user()->can('view-any-router') || auth()->user()->can('view-any-campaign') || auth()->user()->can('view-any-package');
+                                $managementActive = request()->routeIs('admin.organizations.*', 'admin.users.*', 'admin.hotspots.*', 'admin.routers.*', 'admin.campaigns.*', 'admin.packages.*');
                             @endphp
 
                             @if ($showManagement)
@@ -147,6 +156,14 @@
                                                 <li class="nav-item {{ request()->routeIs('admin.hotspots.*') ? 'active' : '' }}">
                                                     <a class="nav-link" href="{{ route('admin.hotspots.index') }}">
                                                         <span class="nav-link-title">Hotspots</span>
+                                                    </a>
+                                                </li>
+                                            @endcan
+
+                                            @can('view-any-router')
+                                                <li class="nav-item {{ request()->routeIs('admin.routers.*') ? 'active' : '' }}">
+                                                    <a class="nav-link" href="{{ route('admin.routers.index') }}">
+                                                        <span class="nav-link-title">Routers</span>
                                                     </a>
                                                 </li>
                                             @endcan
@@ -265,6 +282,48 @@
                             @endcan
 
                             @php
+                                $showBilling = auth()->user()->can('view-any-contract') || auth()->user()->can('view-any-invoice');
+                                $billingActive = request()->routeIs('admin.billing.index', 'admin.contracts.*', 'admin.invoices.*');
+                            @endphp
+
+                            @if ($showBilling)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sidebar-billing" data-bs-toggle="collapse" role="button" aria-expanded="{{ $billingActive ? 'true' : 'false' }}" aria-controls="sidebar-billing">
+                                        <span class="nav-link-icon"><i class="ti ti-receipt-2"></i></span>
+                                        <span class="nav-link-title">Billing</span>
+                                        <span class="nav-link-toggle"></span>
+                                    </a>
+                                    <div class="collapse {{ $billingActive ? 'show' : '' }}" id="sidebar-billing">
+                                        <ul class="nav nav-submenu mb-1">
+                                            @can('view-any-invoice')
+                                                <li class="nav-item {{ request()->routeIs('admin.billing.index') ? 'active' : '' }}">
+                                                    <a class="nav-link" href="{{ route('admin.billing.index') }}">
+                                                        <span class="nav-link-title">Billing Dashboard</span>
+                                                    </a>
+                                                </li>
+                                            @endcan
+
+                                            @can('view-any-contract')
+                                                <li class="nav-item {{ request()->routeIs('admin.contracts.*') ? 'active' : '' }}">
+                                                    <a class="nav-link" href="{{ route('admin.contracts.index') }}">
+                                                        <span class="nav-link-title">Contracts</span>
+                                                    </a>
+                                                </li>
+                                            @endcan
+
+                                            @can('view-any-invoice')
+                                                <li class="nav-item {{ request()->routeIs('admin.invoices.*') ? 'active' : '' }}">
+                                                    <a class="nav-link" href="{{ route('admin.invoices.index') }}">
+                                                        <span class="nav-link-title">Invoices</span>
+                                                    </a>
+                                                </li>
+                                            @endcan
+                                        </ul>
+                                    </div>
+                                </li>
+                            @endif
+
+                            @php
                                 $showSystem = auth()->user()->can('view-settings') || auth()->user()->can('update-settings') || auth()->user()->can('view-any-role') || auth()->user()->can('view-any-permission');
                                 $systemActive = request()->routeIs('admin.settings', 'admin.roles.*', 'admin.permissions.*');
                             @endphp
@@ -318,6 +377,7 @@
                             <div class="col">
                                 <div class="page-pretitle">
                                     @php
+                                        auth()->user()->loadMissing('organization');
                                         $layoutOrg = auth()->user()->organization;
                                     @endphp
                                     @if ($layoutOrg)
@@ -333,6 +393,74 @@
                                 @endif
                             </div>
                             <div class="col-auto ms-auto d-print-none">
+                                @can('view-notifications')
+                                    @php
+                                        $unreadCount = auth()->user()->unreadNotifications()->count();
+                                        $recentNotifications = auth()->user()->notifications()->latest()->limit(5)->get();
+                                    @endphp
+                                    <div class="dropdown me-3">
+                                        <a href="#" class="nav-link d-flex lh-1 text-reset p-0"
+                                            data-bs-toggle="dropdown" aria-label="Open notifications"
+                                            data-bs-auto-close="outside">
+                                            <span class="position-relative">
+                                                <i class="ti ti-bell text-secondary"></i>
+                                                @if ($unreadCount > 0)
+                                                    <span
+                                                        class="position-absolute top-0 start-100 translate-middle badge bg-red rounded-pill">
+                                                        {{ $unreadCount > 9 ? '9+' : $unreadCount }}
+                                                    </span>
+                                                @endif
+                                            </span>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"
+                                            style="width: 22rem;">
+                                            <div class="d-flex align-items-center px-3 py-2">
+                                                <div class="fw-semibold">Notifications</div>
+                                                @if ($unreadCount > 0)
+                                                    <form method="POST"
+                                                        action="{{ route('admin.notifications.read-all') }}"
+                                                        class="ms-auto">
+                                                        @csrf
+                                                        <button type="submit"
+                                                            class="btn btn-sm btn-link text-secondary p-0">
+                                                            Mark all as read
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                            </div>
+                                            <div class="dropdown-divider"></div>
+                                            @forelse ($recentNotifications as $notification)
+                                                @php
+                                                    $data = $notification->data;
+                                                    $levelColors = [
+                                                        'danger' => 'text-danger',
+                                                        'warning' => 'text-warning',
+                                                        'success' => 'text-success',
+                                                        'info' => 'text-primary',
+                                                    ];
+                                                @endphp
+                                                <a href="{{ route('admin.notifications.show', $notification) }}"
+                                                    class="dropdown-item d-flex text-wrap {{ $notification->read_at ? '' : 'bg-azure-lt' }}">
+                                                    <span class="me-2 {{ $levelColors[$data['level'] ?? 'info'] ?? 'text-primary' }}">
+                                                        <i class="ti ti-{{ $data['icon'] ?? 'bell' }}"></i>
+                                                    </span>
+                                                    <span class="d-flex flex-column">
+                                                        <span class="fw-semibold">{{ $data['title'] ?? 'Notification' }}</span>
+                                                        <span class="small text-secondary">{{ $data['message'] ?? '' }}</span>
+                                                        <span class="small text-secondary mt-1">{{ $notification->created_at->diffForHumans() }}</span>
+                                                    </span>
+                                                </a>
+                                            @empty
+                                                <div class="dropdown-item text-secondary">You have no notifications.</div>
+                                            @endforelse
+                                            <div class="dropdown-divider"></div>
+                                            <a href="{{ route('admin.notifications.index') }}"
+                                                class="dropdown-item text-center fw-semibold">
+                                                View all notifications
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endcan
                                 <div class="dropdown">
                                     <a href="#" class="nav-link d-flex lh-1 text-reset p-0"
                                         data-bs-toggle="dropdown" aria-label="Open user menu">

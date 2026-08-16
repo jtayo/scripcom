@@ -314,7 +314,7 @@ class ReportService
                 'hotspot' => $e->hotspot?->name,
                 'campaign' => $e->campaign?->title,
                 'ip_address' => $e->ip_address,
-                'user_agent' => $e->user_agent,
+                'user_agent' => mb_strimwidth((string) $e->user_agent, 0, 100, '...'),
             ])
             ->all();
     }
