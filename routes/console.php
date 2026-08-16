@@ -13,3 +13,5 @@ Schedule::command('tolclin:sync-routers')->everyFiveMinutes()->withoutOverlappin
 Schedule::command('routers:check')->everyFiveMinutes()->withoutOverlapping();
 
 Schedule::command('billing:mark-overdue')->dailyAt('00:15')->withoutOverlapping();
+
+Schedule::command('audit-logs:prune')->dailyAt('01:15')->withoutOverlapping();

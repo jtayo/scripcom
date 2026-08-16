@@ -2,6 +2,27 @@
 
 namespace App\Providers;
 
+use App\Models\Campaign;
+use App\Models\Contract;
+use App\Models\ContractCampaign;
+use App\Models\Event;
+use App\Models\Hotspot;
+use App\Models\Invoice;
+use App\Models\InvoiceItem;
+use App\Models\Organization;
+use App\Models\Payment;
+use App\Models\RevenueRecord;
+use App\Models\Router;
+use App\Models\RouterHealthLog;
+use App\Models\Setting;
+use App\Models\Sponsor;
+use App\Models\Sponsorship;
+use App\Models\TolclinEvent;
+use App\Models\User;
+use App\Models\Voucher;
+use App\Models\WifiPackage;
+use App\Models\WifiSession;
+use App\Observers\AuditObserver;
 use App\Services\AnalyticsService;
 use App\Services\CaptivePortalService;
 use App\Services\EventService;
@@ -39,5 +60,32 @@ class AppServiceProvider extends ServiceProvider
         }
 
         Paginator::useBootstrapFive();
+
+        $auditObserver = new AuditObserver;
+
+        foreach ([
+            Organization::class,
+            User::class,
+            Hotspot::class,
+            Router::class,
+            RouterHealthLog::class,
+            Campaign::class,
+            Sponsor::class,
+            Sponsorship::class,
+            WifiPackage::class,
+            WifiSession::class,
+            Event::class,
+            TolclinEvent::class,
+            Contract::class,
+            ContractCampaign::class,
+            Invoice::class,
+            InvoiceItem::class,
+            Payment::class,
+            Voucher::class,
+            Setting::class,
+            RevenueRecord::class,
+        ] as $model) {
+            $model::observe($auditObserver);
+        }
     }
 }

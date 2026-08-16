@@ -9,8 +9,6 @@ class ReportPdfService extends tFPDF
 {
     private const MARGIN_X = 12;
 
-    private const CONTENT_WIDTH = 273;
-
     private const BOTTOM_MARGIN = 14;
 
     private const HEADER_ROW_HEIGHT = 6.5;
@@ -28,6 +26,17 @@ class ReportPdfService extends tFPDF
     private const ZEBRA = [246, 247, 249];
 
     private const FOOTER_GRAY = [156, 163, 175];
+
+    /**
+     * Reports whose columns are too wide for a portrait page are rendered
+     * landscape. Anything not listed here defaults to portrait.
+     */
+    private const ORIENTATIONS = [
+        'sessions' => 'L',
+        'events' => 'L',
+        'hotspots' => 'L',
+        'sponsorships' => 'L',
+    ];
 
     /**
      * Preferred column widths (mm) per report type, in column order. Values
@@ -66,6 +75,10 @@ class ReportPdfService extends tFPDF
 
     private string $appName = '';
 
+    private string $orientation = 'P';
+
+    private float $contentWidth = 186;
+
     /**
      * @param  array<string, mixed>  $definition
      * @param  array<string, mixed>  $filters
@@ -77,10 +90,13 @@ class ReportPdfService extends tFPDF
         $this->filters = $filters;
         $this->rowCount = count($rows);
         $this->generatedAt = now();
+        $this->orientation = self::ORIENTATIONS[$type] ?? 'P';
+        $this->contentWidth = $this->orientation === 'L' ? 273.0 : 186.0;
         $this->widths = $this->normalizeWidths($type, count($definition['columns']));
         $this->logoPath = $this->opaqueLogoPath($sourceLogo);
         $this->appName = (string) config('app.name');
 
+        $this->DefOrientation = $this->orientation;
         $this->SetMargins(self::MARGIN_X, 14, self::MARGIN_X);
         $this->SetAutoPageBreak(true, self::BOTTOM_MARGIN);
         $this->AliasNbPages('{nb}');
@@ -121,13 +137,13 @@ class ReportPdfService extends tFPDF
         $this->SetY(-self::BOTTOM_MARGIN);
         $this->SetDrawColor(...self::LIGHT_GRAY);
         $this->SetLineWidth(0.2);
-        $this->Line(self::MARGIN_X, $this->GetY(), self::MARGIN_X + self::CONTENT_WIDTH, $this->GetY());
+        $this->Line(self::MARGIN_X, $this->GetY(), self::MARGIN_X + $this->contentWidth, $this->GetY());
 
         $this->SetY(-(self::BOTTOM_MARGIN - 3));
         $this->SetFont('dejavu', '', 8);
         $this->SetTextColor(...self::FOOTER_GRAY);
-        $this->Cell(self::CONTENT_WIDTH / 2, 5, 'Powered by '.$this->appName, 0, 0, 'L');
-        $this->Cell(self::CONTENT_WIDTH / 2, 5, 'Page '.$this->PageNo().' of {nb}', 0, 0, 'R');
+        $this->Cell($this->contentWidth / 2, 5, 'Powered by '.$this->appName, 0, 0, 'L');
+        $this->Cell($this->contentWidth / 2, 5, 'Page '.$this->PageNo().' of {nb}', 0, 0, 'R');
     }
 
     /**
@@ -154,7 +170,7 @@ class ReportPdfService extends tFPDF
 
             if ($i % 2 === 1) {
                 $this->SetFillColor(...self::ZEBRA);
-                $this->Rect(self::MARGIN_X, $y, self::CONTENT_WIDTH, $rowHeight, 'F');
+                $this->Rect(self::MARGIN_X, $y, $this->contentWidth, $rowHeight, 'F');
             }
 
             $this->SetFont('dejavu', '', 8);
@@ -169,7 +185,7 @@ class ReportPdfService extends tFPDF
 
             $this->SetDrawColor(...self::LIGHT_GRAY);
             $this->SetLineWidth(0.15);
-            $this->Line(self::MARGIN_X, $y + $rowHeight, self::MARGIN_X + self::CONTENT_WIDTH, $y + $rowHeight);
+            $this->Line(self::MARGIN_X, $y + $rowHeight, self::MARGIN_X + $this->contentWidth, $y + $rowHeight);
 
             $this->SetXY(self::MARGIN_X, $y + $rowHeight);
             $i++;
@@ -231,7 +247,7 @@ class ReportPdfService extends tFPDF
 
         $this->SetDrawColor(...self::NAVY);
         $this->SetLineWidth(0.6);
-        $this->Line(self::MARGIN_X, $y + 16, self::MARGIN_X + self::CONTENT_WIDTH, $y + 16);
+        $this->Line(self::MARGIN_X, $y + 16, self::MARGIN_X + $this->contentWidth, $y + 16);
 
         if ($this->page === 1) {
             $this->drawFilters($y + 18);
@@ -331,7 +347,7 @@ class ReportPdfService extends tFPDF
             $total = $columnCount;
         }
 
-        return array_map(fn (float $w): float => round($w * self::CONTENT_WIDTH / $total, 2), $widths);
+        return array_map(fn (float $w): float => round($w * $this->contentWidth / $total, 2), $widths);
     }
 
     /**

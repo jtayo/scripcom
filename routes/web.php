@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnalyticsController;
+use App\Http\Controllers\AuditLogController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\RevenueController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RouterController;
 use App\Http\Controllers\SettingsController;
@@ -88,6 +90,23 @@ Route::prefix('admin')
         Route::get('/billing', [BillingController::class, 'index'])
             ->middleware('can:view-any-invoice')
             ->name('billing.index');
+
+        Route::get('/revenue', [RevenueController::class, 'index'])
+            ->middleware('can:view-any-revenue')
+            ->name('revenue');
+        Route::post('/revenue', [RevenueController::class, 'store'])
+            ->middleware('can:create-revenue')
+            ->name('revenue.store');
+        Route::post('/revenue/rebuild', [RevenueController::class, 'rebuild'])
+            ->middleware('can:create-revenue')
+            ->name('revenue.rebuild');
+        Route::delete('/revenue/{revenueRecord}', [RevenueController::class, 'destroy'])
+            ->middleware('can:delete-revenue')
+            ->name('revenue.destroy');
+
+        Route::resource('audit-logs', AuditLogController::class)
+            ->only(['index', 'show'])
+            ->middleware('can:view-any-audit-log');
 
         Route::resource('contracts', ContractController::class)
             ->middleware('can:view-any-contract');

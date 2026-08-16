@@ -282,8 +282,8 @@
                             @endcan
 
                             @php
-                                $showBilling = auth()->user()->can('view-any-contract') || auth()->user()->can('view-any-invoice');
-                                $billingActive = request()->routeIs('admin.billing.index', 'admin.contracts.*', 'admin.invoices.*');
+                                $showBilling = auth()->user()->can('view-any-contract') || auth()->user()->can('view-any-invoice') || auth()->user()->can('view-any-revenue');
+                                $billingActive = request()->routeIs('admin.billing.index', 'admin.contracts.*', 'admin.invoices.*', 'admin.revenue');
                             @endphp
 
                             @if ($showBilling)
@@ -318,14 +318,22 @@
                                                     </a>
                                                 </li>
                                             @endcan
+
+                                            @can('view-any-revenue')
+                                                <li class="nav-item {{ request()->routeIs('admin.revenue') ? 'active' : '' }}">
+                                                    <a class="nav-link" href="{{ route('admin.revenue') }}">
+                                                        <span class="nav-link-title">Revenue</span>
+                                                    </a>
+                                                </li>
+                                            @endcan
                                         </ul>
                                     </div>
                                 </li>
                             @endif
 
                             @php
-                                $showSystem = auth()->user()->can('view-settings') || auth()->user()->can('update-settings') || auth()->user()->can('view-any-role') || auth()->user()->can('view-any-permission');
-                                $systemActive = request()->routeIs('admin.settings', 'admin.roles.*', 'admin.permissions.*');
+                                $showSystem = auth()->user()->can('view-settings') || auth()->user()->can('update-settings') || auth()->user()->can('view-any-role') || auth()->user()->can('view-any-permission') || auth()->user()->can('view-any-audit-log');
+                                $systemActive = request()->routeIs('admin.settings', 'admin.roles.*', 'admin.permissions.*', 'admin.audit-logs.*');
                             @endphp
 
                             @if ($showSystem)
@@ -357,6 +365,14 @@
                                                 <li class="nav-item {{ request()->routeIs('admin.permissions.*') ? 'active' : '' }}">
                                                     <a class="nav-link" href="{{ route('admin.permissions.index') }}">
                                                         <span class="nav-link-title">Permissions</span>
+                                                    </a>
+                                                </li>
+                                            @endcan
+
+                                            @can('view-any-audit-log')
+                                                <li class="nav-item {{ request()->routeIs('admin.audit-logs.*') ? 'active' : '' }}">
+                                                    <a class="nav-link" href="{{ route('admin.audit-logs.index') }}">
+                                                        <span class="nav-link-title">Audit Logs</span>
                                                     </a>
                                                 </li>
                                             @endcan
