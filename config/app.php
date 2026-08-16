@@ -17,22 +17,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | SCRIPCOM Brand
-    |--------------------------------------------------------------------------
-    |
-    | Platform-level branding used by the captive portal welcome and success
-    | screens. Overrides tenant organization branding on those pages.
-    |
-    */
-
-    'brand' => [
-        'name' => env('BRAND_NAME', 'SCRIPCOM'),
-        'primary_color' => env('BRAND_PRIMARY_COLOR', '#262B40'),
-        'logo' => env('BRAND_LOGO', 'scripcom_logo.png'),
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------
     |
