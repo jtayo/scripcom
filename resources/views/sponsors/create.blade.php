@@ -84,6 +84,22 @@
                             </div>
 
                             <div class="col-12">
+                                <div class="text-uppercase small fw-bold text-secondary mb-1">Portal Branding</div>
+                                <hr class="mt-1 mb-3">
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="brand_color">Portal Brand Color</label>
+                                <div class="input-icon">
+                                    <span class="input-icon-addon" id="brand_color_swatch" style="background: #262B40; border-radius: .5rem; width: 1.75rem; height: 1.75rem; margin: .35rem; flex-shrink: 0;"></span>
+                                    <input type="color" id="brand_color_picker" value="#262B40" class="form-control form-control-color" style="max-width: 3rem; padding: .25rem;">
+                                    <input type="text" id="brand_color" name="brand_color" class="form-control @error('brand_color') is-invalid @enderror" value="{{ old('brand_color', '#262B40') }}" placeholder="#262B40">
+                                    @error('brand_color') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                </div>
+                                <div class="form-hint">Used to theme the ad/watch screen on the public captive portal (falls back to the organization colour otherwise).</div>
+                            </div>
+
+                            <div class="col-12">
                                 <div class="text-uppercase small fw-bold text-secondary mb-1">Status</div>
                                 <hr class="mt-1 mb-3">
                             </div>
@@ -109,4 +125,25 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+<script>
+(function () {
+    const swatch = document.getElementById('brand_color_swatch');
+    const picker = document.getElementById('brand_color_picker');
+    const text = document.getElementById('brand_color');
+
+    const sync = () => {
+        let value = text.value.trim();
+        if (!/^#[0-9a-fA-F]{6}$/.test(value)) value = '#262B40';
+        swatch.style.background = value;
+        picker.value = value;
+    };
+
+    picker.addEventListener('input', () => { text.value = picker.value.toUpperCase(); sync(); });
+    text.addEventListener('input', sync);
+    sync();
+})();
+</script>
 @endsection

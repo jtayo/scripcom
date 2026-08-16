@@ -123,8 +123,8 @@
                             @endcan
 
                             @php
-                                $showManagement = auth()->user()->can('view-any-organization') || auth()->user()->can('view-any-user') || auth()->user()->can('view-any-hotspot') || auth()->user()->can('view-any-router') || auth()->user()->can('view-any-campaign') || auth()->user()->can('view-any-package');
-                                $managementActive = request()->routeIs('admin.organizations.*', 'admin.users.*', 'admin.hotspots.*', 'admin.routers.*', 'admin.campaigns.*', 'admin.packages.*');
+                                $showManagement = auth()->user()->can('view-any-organization') || auth()->user()->can('view-any-user') || auth()->user()->can('view-any-hotspot') || auth()->user()->can('view-any-router') || auth()->user()->can('view-any-campaign') || auth()->user()->can('view-any-package') || auth()->user()->can('view-any-voucher');
+                                $managementActive = request()->routeIs('admin.organizations.*', 'admin.users.*', 'admin.hotspots.*', 'admin.routers.*', 'admin.campaigns.*', 'admin.packages.*', 'admin.vouchers.*');
                             @endphp
 
                             @if ($showManagement)
@@ -180,6 +180,14 @@
                                                 <li class="nav-item {{ request()->routeIs('admin.packages.*') ? 'active' : '' }}">
                                                     <a class="nav-link" href="{{ route('admin.packages.index') }}">
                                                         <span class="nav-link-title">Wi-Fi Packages</span>
+                                                    </a>
+                                                </li>
+                                            @endcan
+
+                                            @can('view-any-voucher')
+                                                <li class="nav-item {{ request()->routeIs('admin.vouchers.*') ? 'active' : '' }}">
+                                                    <a class="nav-link" href="{{ route('admin.vouchers.index') }}">
+                                                        <span class="nav-link-title">Vouchers</span>
                                                     </a>
                                                 </li>
                                             @endcan
@@ -551,7 +559,7 @@
                                         <a href="{{ route('admin.settings') }}">Settings</a>
                                         @endcanany
                                     </li>
-                                    <li class="list-inline-item"><a href="{{ config('app.url') }}">Public Portal</a>
+                                    <li class="list-inline-item"><a href="{{ route('portal.welcome') }}">Public Portal</a>
                                     </li>
                                 </ul>
                             </div>

@@ -19,6 +19,7 @@ class Sponsor extends Model
         'phone',
         'address',
         'logo',
+        'brand_color',
         'website',
         'contact_person',
         'is_active',
@@ -34,6 +35,11 @@ class Sponsor extends Model
     public function scopeActive(Builder $query): Builder
     {
         return $query->where('is_active', true);
+    }
+
+    public function brandColor(): string
+    {
+        return $this->brand_color ?? '#262B40';
     }
 
     public function sponsorships(): HasMany

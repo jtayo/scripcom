@@ -19,6 +19,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PortalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RevenueController;
@@ -29,6 +30,7 @@ use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\SponsorshipController;
 use App\Http\Controllers\TolclinWebhookController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\WifiPackageController;
 use App\Http\Controllers\WifiSessionController;
 use Illuminate\Support\Facades\Route;
@@ -55,6 +57,21 @@ Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
 
 Route::post('webhooks/tolclin', TolclinWebhookController::class)
     ->name('webhooks.tolclin');
+
+Route::prefix('portal')
+    ->name('portal.')
+    ->group(function () {
+        Route::get('/', [PortalController::class, 'welcome'])->name('welcome');
+        Route::get('/packages', [PortalController::class, 'packages'])->name('packages');
+        Route::get('/watch/{hotspot}', [PortalController::class, 'watch'])->name('watch');
+        Route::post('/video/start', [PortalController::class, 'videoStart'])->name('video.start');
+        Route::post('/video/progress', [PortalController::class, 'videoProgress'])->name('video.progress');
+        Route::post('/video/complete', [PortalController::class, 'videoComplete'])->name('video.complete');
+        Route::post('/payment', [PortalController::class, 'initiatePayment'])->name('payment');
+        Route::get('/payment/{payment}', [PortalController::class, 'paymentStatus'])->name('payment.status');
+        Route::post('/voucher', [PortalController::class, 'redeemVoucher'])->name('voucher');
+        Route::get('/success/{session}', [PortalController::class, 'success'])->name('success');
+    });
 
 Route::prefix('admin')
     ->name('admin.')
@@ -159,6 +176,10 @@ Route::prefix('admin')
 
         Route::resource('sponsorships', SponsorshipController::class)
             ->middleware('can:view-any-sponsorship');
+
+        Route::resource('vouchers', VoucherController::class)
+            ->only(['index', 'create', 'store', 'show', 'destroy'])
+            ->middleware('can:view-any-voucher');
 
         Route::resource('packages', WifiPackageController::class)
             ->middleware('can:view-any-package');

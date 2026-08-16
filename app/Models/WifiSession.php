@@ -35,6 +35,7 @@ class WifiSession extends Model
         'bandwidth_up',
         'bandwidth_down',
         'session_started_at',
+        'expires_at',
         'ended_at',
         'last_heartbeat_at',
         'status',
@@ -45,6 +46,7 @@ class WifiSession extends Model
     {
         return [
             'session_started_at' => 'datetime',
+            'expires_at' => 'datetime',
             'ended_at' => 'datetime',
             'last_heartbeat_at' => 'datetime',
             'video_completed' => 'boolean',
@@ -54,6 +56,30 @@ class WifiSession extends Model
     public function scopeActive(Builder $query): Builder
     {
         return $query->where('status', SessionStatus::Active->value);
+    }
+
+    public function scopeExpired(Builder $query): Builder
+    {
+        return $query
+            ->where('status', SessionStatus::Active->value)
+            ->whereNotNull('expires_at')
+            ->where('expires_at', '<', now());
+    }
+
+    public function isExpired(): bool
+    {
+        return $this->status === SessionStatus::Active->value
+            && $this->expires_at !== null
+            && $this->expires_at->isPast();
+    }
+
+    public function remainingSeconds(): int
+    {
+        if ($this->expires_at === null) {
+            return 0;
+        }
+
+        return max(0, (int) round(now()->diffInSeconds($this->expires_at)));
     }
 
     public function organization(): BelongsTo

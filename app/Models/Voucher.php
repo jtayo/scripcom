@@ -15,11 +15,14 @@ class Voucher extends Model
         'sponsor_id',
         'sponsorship_id',
         'hotspot_id',
+        'package_id',
         'session_id',
         'code',
         'batch_id',
         'type',
         'value',
+        'max_uses',
+        'used_count',
         'status',
         'created_by',
         'expires_at',
@@ -32,6 +35,8 @@ class Voucher extends Model
         return [
             'expires_at' => 'datetime',
             'redeemed_at' => 'datetime',
+            'max_uses' => 'integer',
+            'used_count' => 'integer',
         ];
     }
 
@@ -43,6 +48,19 @@ class Voucher extends Model
     public function isExpired(): bool
     {
         return $this->expires_at !== null && $this->expires_at->isPast();
+    }
+
+    public function isRedeemable(): bool
+    {
+        if ($this->status === 'revoked' || $this->status === 'used') {
+            return false;
+        }
+
+        if ($this->status === 'unused' && $this->max_uses !== null && $this->used_count >= $this->max_uses) {
+            return false;
+        }
+
+        return ! $this->isExpired();
     }
 
     public function sponsor(): BelongsTo
@@ -60,8 +78,18 @@ class Voucher extends Model
         return $this->belongsTo(Hotspot::class);
     }
 
+    public function package(): BelongsTo
+    {
+        return $this->belongsTo(WifiPackage::class);
+    }
+
     public function session(): BelongsTo
     {
         return $this->belongsTo(WifiSession::class);
+    }
+
+    public function creator(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
     }
 }

@@ -102,8 +102,11 @@ class SponsorController extends Controller
             'address' => ['nullable', 'string'],
             'website' => ['nullable', 'url'],
             'contact_person' => ['nullable', 'string', 'max:255'],
+            'brand_color' => ['nullable', 'regex:/^#[0-9A-Fa-f]{6}$/'],
             'is_active' => ['nullable', 'boolean'],
         ]);
+
+        $data['brand_color'] = $request->filled('brand_color') ? strtoupper($request->input('brand_color')) : null;
 
         $data['is_active'] = $request->boolean('is_active');
 

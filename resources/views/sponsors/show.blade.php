@@ -97,6 +97,17 @@
                         @endif
                         <div class="contact-item">
                             <dt class="contact-label">
+                                <span class="stat-icon-sm bg-primary-lt text-primary me-2"><i class="fa-solid fa-palette"></i></span>Portal Brand
+                            </dt>
+                            <dd class="fw-bold mb-0">
+                                <span class="d-inline-flex align-items-center">
+                                    <span class="d-inline-block rounded me-2" style="width: 1rem; height: 1rem; background: {{ $sponsor->brandColor() }};"></span>
+                                    <code class="font-monospace">{{ strtoupper($sponsor->brandColor()) }}</code>
+                                </span>
+                            </dd>
+                        </div>
+                        <div class="contact-item">
+                            <dt class="contact-label">
                                 <span class="stat-icon-sm bg-primary-lt text-primary me-2"><i class="fa-solid fa-calendar-days"></i></span>Joined
                             </dt>
                             <dd class="fw-bold mb-0">{{ $sponsor->created_at?->format('M d, Y') }}</dd>

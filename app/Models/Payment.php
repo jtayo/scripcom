@@ -13,6 +13,9 @@ class Payment extends Model
     protected $fillable = [
         'organization_id',
         'sponsorship_id',
+        'package_id',
+        'hotspot_id',
+        'wifi_session_id',
         'phone',
         'amount',
         'currency',
@@ -42,5 +45,20 @@ class Payment extends Model
     public function sponsorship(): BelongsTo
     {
         return $this->belongsTo(Sponsorship::class);
+    }
+
+    public function package(): BelongsTo
+    {
+        return $this->belongsTo(WifiPackage::class);
+    }
+
+    public function hotspot(): BelongsTo
+    {
+        return $this->belongsTo(Hotspot::class);
+    }
+
+    public function session(): BelongsTo
+    {
+        return $this->belongsTo(WifiSession::class, 'wifi_session_id');
     }
 }
