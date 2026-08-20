@@ -1,18 +1,18 @@
 {
     "schema_version": 1,
-    "id": "f1e07aea-f323-420b-bfe8-238c48647e6b",
-    "recorded_at": "2026-08-20T12:09:23+00:00",
+    "id": "aae5d9b0-1eba-497e-8493-ef2d4b26b282",
+    "recorded_at": "2026-08-20T12:49:36+00:00",
     "profile_type": "http",
     "environment": "local",
     "metrics": {
-        "duration_ms": 2656.62,
+        "duration_ms": 4534.4,
         "peak_memory_mb": 8
     },
     "sections": {
         "overview": {
             "label": "Overview",
             "summary": {
-                "duration_ms": 2656.62,
+                "duration_ms": 4534.4,
                 "peak_memory_mb": 8
             },
             "payload": {
@@ -69,23 +69,20 @@
                     "connection": [
                         "keep-alive"
                     ],
-                    "cache-control": [
-                        "max-age=0"
-                    ],
                     "sec-ch-ua": [
                         "\"Not=A?Brand\";v=\"99\", \"Brave\";v=\"151\", \"Chromium\";v=\"151\""
                     ],
                     "sec-ch-ua-mobile": [
-                        "?1"
+                        "?0"
                     ],
                     "sec-ch-ua-platform": [
-                        "\"iOS\""
+                        "\"Windows\""
                     ],
                     "upgrade-insecure-requests": [
                         "1"
                     ],
                     "user-agent": [
-                        "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36"
                     ],
                     "accept": [
                         "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8"
@@ -135,7 +132,7 @@
                 "request_type": "full_page",
                 "content_type": "text/html; charset=utf-8",
                 "request_size_bytes": 0,
-                "response_size_bytes": 39447,
+                "response_size_bytes": 40552,
                 "session_present": false,
                 "authenticated": true,
                 "authentication": {
@@ -163,7 +160,7 @@
                         "no-cache, private"
                     ],
                     "date": [
-                        "Thu, 20 Aug 2026 12:09:22 GMT"
+                        "Thu, 20 Aug 2026 12:49:32 GMT"
                     ],
                     "set-cookie": "[redacted]"
                 }
@@ -176,7 +173,7 @@
                 "retained_count": 9,
                 "dropped_count": 0,
                 "truncated": false,
-                "duration_ms": 1449.38,
+                "duration_ms": 956.26,
                 "transaction_count": 0,
                 "transaction_retained_count": 0,
                 "transaction_dropped_count": 0,
@@ -190,12 +187,12 @@
                             "sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH"
                         ],
                         "runnable_sql": "select * from `sessions` where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH' limit 1",
-                        "duration_ms": 605.98,
+                        "duration_ms": 132.37,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 820.28,
+                        "at_ms": 210.901,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -207,12 +204,12 @@
                             1
                         ],
                         "runnable_sql": "select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1",
-                        "duration_ms": 67.55,
+                        "duration_ms": 12.97,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 946.773,
+                        "at_ms": 233.137,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -224,12 +221,12 @@
                             "1"
                         ],
                         "runnable_sql": "select * from `sponsors` where `id` = '1' and `sponsors`.`deleted_at` is null limit 1",
-                        "duration_ms": 172.05,
+                        "duration_ms": 34.32,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 1199.034,
+                        "at_ms": 399.452,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -241,12 +238,12 @@
                             "scripcom-cache-spatie.permission.cache"
                         ],
                         "runnable_sql": "select * from `cache` where `key` in ('scripcom-cache-spatie.permission.cache')",
-                        "duration_ms": 2.37,
+                        "duration_ms": 184.21,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 1308.371,
+                        "at_ms": 666.737,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -258,12 +255,12 @@
                             "App\\Models\\User"
                         ],
                         "runnable_sql": "select `permissions`.*, `model_has_permissions`.`model_id` as `pivot_model_id`, `model_has_permissions`.`permission_id` as `pivot_permission_id`, `model_has_permissions`.`model_type` as `pivot_model_type` from `permissions` inner join `model_has_permissions` on `permissions`.`id` = `model_has_permissions`.`permission_id` where `model_has_permissions`.`model_id` in (1) and `model_has_permissions`.`model_type` = 'App\\\\Models\\\\User'",
-                        "duration_ms": 3.32,
+                        "duration_ms": 2.47,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 1394.67,
+                        "at_ms": 690.832,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -275,12 +272,12 @@
                             "App\\Models\\User"
                         ],
                         "runnable_sql": "select `roles`.*, `model_has_roles`.`model_id` as `pivot_model_id`, `model_has_roles`.`role_id` as `pivot_role_id`, `model_has_roles`.`model_type` as `pivot_model_type` from `roles` inner join `model_has_roles` on `roles`.`id` = `model_has_roles`.`role_id` where `model_has_roles`.`model_id` in (1) and `model_has_roles`.`model_type` = 'App\\\\Models\\\\User'",
-                        "duration_ms": 2.53,
+                        "duration_ms": 83.53,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 1400.505,
+                        "at_ms": 840.538,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -293,7 +290,7 @@
                             1
                         ],
                         "runnable_sql": "select count(*) as `aggregate` from `notifications` where `notifications`.`notifiable_type` = 'App\\\\Models\\\\User' and `notifications`.`notifiable_id` = 1 and `notifications`.`notifiable_id` is not null and `read_at` is null",
-                        "duration_ms": 21.67,
+                        "duration_ms": 43.31,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
@@ -307,7 +304,7 @@
                                 "function": "Blade authorization directive"
                             }
                         ],
-                        "at_ms": 1867.216,
+                        "at_ms": 4007.586,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -320,7 +317,7 @@
                             1
                         ],
                         "runnable_sql": "select * from `notifications` where `notifications`.`notifiable_type` = 'App\\\\Models\\\\User' and `notifications`.`notifiable_id` = 1 and `notifications`.`notifiable_id` is not null order by `created_at` desc, `created_at` desc limit 5",
-                        "duration_ms": 35.6,
+                        "duration_ms": 1.46,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
@@ -334,7 +331,7 @@
                                 "function": "Blade authorization directive"
                             }
                         ],
-                        "at_ms": 1908.116,
+                        "at_ms": 4012.641,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -344,19 +341,19 @@
                         "sql": "update `sessions` set `payload` = ?, `last_activity` = ?, `user_id` = ?, `ip_address` = ?, `user_agent` = ? where `id` = ?",
                         "bindings": [
                             "eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvc3BvbnNvcnNcLzFcL2VkaXQiLCJyb3V0ZSI6ImFkbWluLnNwb25zb3JzLmVkaXQifX0=",
-                            1787227762,
+                            1787230175,
                             1,
                             "127.0.0.1",
-                            "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1",
+                            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
                             "sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH"
                         ],
-                        "runnable_sql": "update `sessions` set `payload` = 'eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvc3BvbnNvcnNcLzFcL2VkaXQiLCJyb3V0ZSI6ImFkbWluLnNwb25zb3JzLmVkaXQifX0=', `last_activity` = 1787227762, `user_id` = 1, `ip_address` = '127.0.0.1', `user_agent` = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1' where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH'",
-                        "duration_ms": 538.31,
+                        "runnable_sql": "update `sessions` set `payload` = 'eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvc3BvbnNvcnNcLzFcL2VkaXQiLCJyb3V0ZSI6ImFkbWluLnNwb25zb3JzLmVkaXQifX0=', `last_activity` = 1787230175, `user_id` = 1, `ip_address` = '127.0.0.1', `user_agent` = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36' where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH'",
+                        "duration_ms": 461.62,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 2654.919,
+                        "at_ms": 4530.849,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -455,7 +452,7 @@
                         "connection": "mysql",
                         "table": "users",
                         "key": 1,
-                        "at_ms": 969.097
+                        "at_ms": 233.6
                     },
                     {
                         "event": "retrieved",
@@ -463,7 +460,7 @@
                         "connection": "mysql",
                         "table": "sponsors",
                         "key": 1,
-                        "at_ms": 1199.426
+                        "at_ms": 399.911
                     },
                     {
                         "event": "retrieved",
@@ -471,7 +468,7 @@
                         "connection": "mysql",
                         "table": "roles",
                         "key": 1,
-                        "at_ms": 1401.17
+                        "at_ms": 841.186
                     },
                     {
                         "event": "retrieved",
@@ -479,7 +476,7 @@
                         "connection": "mysql",
                         "table": "notifications",
                         "key": "f1d65c50-f1f5-45af-aff6-1b5270bc084a",
-                        "at_ms": 1908.673
+                        "at_ms": 4013.085
                     },
                     {
                         "event": "retrieved",
@@ -487,7 +484,7 @@
                         "connection": "mysql",
                         "table": "notifications",
                         "key": "9d3528cc-2174-4bd9-a872-315daaff9140",
-                        "at_ms": 1908.845
+                        "at_ms": 4013.198
                     },
                     {
                         "event": "retrieved",
@@ -495,7 +492,7 @@
                         "connection": "mysql",
                         "table": "notifications",
                         "key": "e53f5f50-0c0a-47ee-8e7f-1b3c793f9b38",
-                        "at_ms": 1909.002
+                        "at_ms": 4013.309
                     }
                 ]
             }
@@ -525,7 +522,7 @@
                         "tag_hashes": [],
                         "tags": [],
                         "seconds": null,
-                        "at_ms": 1365.517
+                        "at_ms": 668.216
                     }
                 ]
             }
@@ -556,16 +553,17 @@
                                 "phone": "0722000001",
                                 "address": null,
                                 "logo": null,
+                                "brand_color": "#059E17",
                                 "website": "https://www.safaricom.co.ke",
                                 "contact_person": "Betty Njoroge",
                                 "is_active": true,
                                 "created_at": "2026-08-20T06:56:44.000000Z",
-                                "updated_at": "2026-08-20T06:56:44.000000Z",
+                                "updated_at": "2026-08-20T12:15:04.000000Z",
                                 "deleted_at": null
                             }
                         },
                         "timing": "composition_marker",
-                        "at_ms": 1593.98
+                        "at_ms": 908.164
                     },
                     {
                         "name": "layouts.admin",
@@ -586,16 +584,17 @@
                                 "phone": "0722000001",
                                 "address": null,
                                 "logo": null,
+                                "brand_color": "#059E17",
                                 "website": "https://www.safaricom.co.ke",
                                 "contact_person": "Betty Njoroge",
                                 "is_active": true,
                                 "created_at": "2026-08-20T06:56:44.000000Z",
-                                "updated_at": "2026-08-20T06:56:44.000000Z",
+                                "updated_at": "2026-08-20T12:15:04.000000Z",
                                 "deleted_at": null
                             }
                         },
                         "timing": "composition_marker",
-                        "at_ms": 1601.117
+                        "at_ms": 3706.252
                     }
                 ]
             }
@@ -617,7 +616,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\ConnectionEstablished"
                         ],
-                        "at_ms": 201.719
+                        "at_ms": 71.29
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -626,7 +625,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 798.751
+                        "at_ms": 196.056
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -635,7 +634,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 902.397
+                        "at_ms": 230.004
                     },
                     {
                         "name": "Illuminate\\Auth\\Events\\Authenticated",
@@ -644,7 +643,7 @@
                         "payload_types": [
                             "Illuminate\\Auth\\Events\\Authenticated"
                         ],
-                        "at_ms": 1008.388
+                        "at_ms": 355.957
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -653,7 +652,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 1116.573
+                        "at_ms": 397.26
                     },
                     {
                         "name": "Illuminate\\Cache\\Events\\RetrievingKey",
@@ -662,7 +661,7 @@
                         "payload_types": [
                             "Illuminate\\Cache\\Events\\RetrievingKey"
                         ],
-                        "at_ms": 1301.777
+                        "at_ms": 479.274
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -671,7 +670,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 1303.319
+                        "at_ms": 662.534
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -680,7 +679,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 1391.906
+                        "at_ms": 686.116
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -689,7 +688,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 1397.701
+                        "at_ms": 775.248
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -698,7 +697,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 1840.637
+                        "at_ms": 4000.538
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -707,7 +706,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 1870.48
+                        "at_ms": 4009.128
                     }
                 ]
             }
@@ -729,7 +728,7 @@
                         "user_type": "App\\Models\\User",
                         "argument_types": [],
                         "callsite": null,
-                        "at_ms": 1405.838
+                        "at_ms": 845.71
                     },
                     {
                         "ability": "view-analytics",
@@ -741,7 +740,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 107
                         },
-                        "at_ms": 1662.28
+                        "at_ms": 3808.645
                     },
                     {
                         "ability": "view-any-router",
@@ -753,7 +752,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 116
                         },
-                        "at_ms": 1669.114
+                        "at_ms": 3812.007
                     },
                     {
                         "ability": "view-any-organization",
@@ -765,7 +764,7 @@
                             "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
                             "line": 126
                         },
-                        "at_ms": 1674.292
+                        "at_ms": 3815.538
                     },
                     {
                         "ability": "view-any-organization",
@@ -777,7 +776,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 139
                         },
-                        "at_ms": 1678.739
+                        "at_ms": 3818.418
                     },
                     {
                         "ability": "view-any-user",
@@ -789,7 +788,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 147
                         },
-                        "at_ms": 1685.102
+                        "at_ms": 3825.064
                     },
                     {
                         "ability": "view-any-hotspot",
@@ -801,7 +800,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 155
                         },
-                        "at_ms": 1690.445
+                        "at_ms": 3828.768
                     },
                     {
                         "ability": "view-any-router",
@@ -813,7 +812,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 163
                         },
-                        "at_ms": 1694.121
+                        "at_ms": 3832.162
                     },
                     {
                         "ability": "view-any-campaign",
@@ -825,7 +824,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 171
                         },
-                        "at_ms": 1698.12
+                        "at_ms": 3835.451
                     },
                     {
                         "ability": "view-any-package",
@@ -837,7 +836,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 179
                         },
-                        "at_ms": 1702.155
+                        "at_ms": 3842.497
                     },
                     {
                         "ability": "view-any-voucher",
@@ -849,7 +848,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 187
                         },
-                        "at_ms": 1705.598
+                        "at_ms": 3845.66
                     },
                     {
                         "ability": "view-any-sponsor",
@@ -861,7 +860,7 @@
                             "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
                             "line": 200
                         },
-                        "at_ms": 1708.896
+                        "at_ms": 3848.641
                     },
                     {
                         "ability": "view-any-sponsor",
@@ -873,7 +872,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 213
                         },
-                        "at_ms": 1712.496
+                        "at_ms": 3851.587
                     },
                     {
                         "ability": "view-any-sponsorship",
@@ -885,7 +884,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 221
                         },
-                        "at_ms": 1716.466
+                        "at_ms": 3855.335
                     },
                     {
                         "ability": "buy-credits",
@@ -897,7 +896,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 229
                         },
-                        "at_ms": 1719.448
+                        "at_ms": 3859.676
                     },
                     {
                         "ability": "view-any-session",
@@ -909,7 +908,7 @@
                             "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
                             "line": 242
                         },
-                        "at_ms": 1722.934
+                        "at_ms": 3864.366
                     },
                     {
                         "ability": "view-any-session",
@@ -921,7 +920,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 255
                         },
-                        "at_ms": 1726.093
+                        "at_ms": 3868.159
                     },
                     {
                         "ability": "view-any-event",
@@ -933,7 +932,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 263
                         },
-                        "at_ms": 1730.262
+                        "at_ms": 3874.373
                     },
                     {
                         "ability": "view-any-payment",
@@ -945,7 +944,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 271
                         },
-                        "at_ms": 1734.523
+                        "at_ms": 3878.137
                     },
                     {
                         "ability": "view-reports",
@@ -957,7 +956,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 283
                         },
-                        "at_ms": 1737.358
+                        "at_ms": 3894.267
                     },
                     {
                         "ability": "view-any-contract",
@@ -969,7 +968,7 @@
                             "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
                             "line": 293
                         },
-                        "at_ms": 1741.069
+                        "at_ms": 3899.21
                     },
                     {
                         "ability": "view-any-invoice",
@@ -981,7 +980,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 306
                         },
-                        "at_ms": 1744.858
+                        "at_ms": 3903.512
                     },
                     {
                         "ability": "view-any-contract",
@@ -993,7 +992,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 314
                         },
-                        "at_ms": 1749.753
+                        "at_ms": 3911.59
                     },
                     {
                         "ability": "view-any-invoice",
@@ -1005,7 +1004,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 322
                         },
-                        "at_ms": 1753.514
+                        "at_ms": 3916.532
                     },
                     {
                         "ability": "view-any-revenue",
@@ -1017,7 +1016,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 330
                         },
-                        "at_ms": 1756.98
+                        "at_ms": 3922.205
                     },
                     {
                         "ability": "view-settings",
@@ -1029,7 +1028,7 @@
                             "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
                             "line": 343
                         },
-                        "at_ms": 1760.04
+                        "at_ms": 3927.585
                     },
                     {
                         "ability": "view-settings",
@@ -1041,7 +1040,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 356
                         },
-                        "at_ms": 1763.673
+                        "at_ms": 3931.567
                     },
                     {
                         "ability": "view-any-role",
@@ -1053,7 +1052,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 364
                         },
-                        "at_ms": 1768.021
+                        "at_ms": 3936.132
                     },
                     {
                         "ability": "view-any-permission",
@@ -1065,7 +1064,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 372
                         },
-                        "at_ms": 1771.759
+                        "at_ms": 3942.486
                     },
                     {
                         "ability": "view-any-audit-log",
@@ -1077,7 +1076,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 380
                         },
-                        "at_ms": 1775.444
+                        "at_ms": 3946.873
                     },
                     {
                         "ability": "view-notifications",
@@ -1089,7 +1088,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 420
                         },
-                        "at_ms": 1781.529
+                        "at_ms": 3952.544
                     },
                     {
                         "ability": "view-settings",
@@ -1101,7 +1100,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 558
                         },
-                        "at_ms": 2038.632
+                        "at_ms": 4062.8
                     }
                 ]
             }

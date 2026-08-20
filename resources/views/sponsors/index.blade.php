@@ -59,9 +59,13 @@
                             <tr>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <span class="avatar avatar-sm me-2 bg-primary-lt text-primary">
-                                            <i class="ti ti-building"></i>
-                                        </span>
+                                        @if($sponsor->logo)
+                                            <img src="{{ asset('storage/' . $sponsor->logo) }}" alt="{{ $sponsor->name }}" class="avatar avatar-sm me-2" style="object-fit: contain; background: var(--tblr-bg-surface); border: 1px solid var(--tblr-border-color);">
+                                        @else
+                                            <span class="avatar avatar-sm me-2 bg-primary-lt text-primary">
+                                                <i class="ti ti-building"></i>
+                                            </span>
+                                        @endif
                                         <div>
                                             <a href="{{ route('admin.sponsors.show', $sponsor) }}" class="text-body fw-bold text-decoration-none">{{ $sponsor->name }}</a>
                                             @if($sponsor->contact_person)

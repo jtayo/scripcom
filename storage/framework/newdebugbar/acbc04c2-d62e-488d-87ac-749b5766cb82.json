@@ -1,0 +1,1637 @@
+{
+    "schema_version": 1,
+    "id": "acbc04c2-d62e-488d-87ac-749b5766cb82",
+    "recorded_at": "2026-08-20T12:53:34+00:00",
+    "profile_type": "http",
+    "environment": "local",
+    "metrics": {
+        "duration_ms": 573.92,
+        "peak_memory_mb": 8
+    },
+    "sections": {
+        "overview": {
+            "label": "Overview",
+            "summary": {
+                "duration_ms": 573.92,
+                "peak_memory_mb": 8
+            },
+            "payload": {
+                "runtime": {
+                    "environment": "local",
+                    "php": "8.4.24",
+                    "php_sapi": "cli-server",
+                    "runtime_type": "cli-server",
+                    "laravel": "13.25.0",
+                    "debug": false,
+                    "locale": "en",
+                    "timezone": "UTC"
+                },
+                "cache_state": {
+                    "configuration": false,
+                    "routes": false,
+                    "events": false
+                },
+                "drivers": {
+                    "database": "mysql",
+                    "cache": "database",
+                    "queue": "database",
+                    "session": "database",
+                    "mail": "log",
+                    "broadcasting": "log"
+                },
+                "ecosystem": [
+                    {
+                        "key": "sanctum",
+                        "label": "Sanctum",
+                        "version": "v4.3.3"
+                    }
+                ],
+                "package": "dev-main"
+            }
+        },
+        "request": {
+            "label": "Request",
+            "summary": {
+                "method": "GET",
+                "status": 200,
+                "exit_code": null
+            },
+            "payload": {
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/admin/sponsors",
+                "path": "/admin/sponsors",
+                "query": [],
+                "input": [],
+                "headers": {
+                    "host": [
+                        "127.0.0.1:8000"
+                    ],
+                    "connection": [
+                        "keep-alive"
+                    ],
+                    "sec-ch-ua": [
+                        "\"Not=A?Brand\";v=\"99\", \"Brave\";v=\"151\", \"Chromium\";v=\"151\""
+                    ],
+                    "sec-ch-ua-mobile": [
+                        "?0"
+                    ],
+                    "sec-ch-ua-platform": [
+                        "\"Windows\""
+                    ],
+                    "upgrade-insecure-requests": [
+                        "1"
+                    ],
+                    "user-agent": [
+                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36"
+                    ],
+                    "accept": [
+                        "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8"
+                    ],
+                    "sec-gpc": [
+                        "1"
+                    ],
+                    "sec-fetch-site": [
+                        "same-origin"
+                    ],
+                    "sec-fetch-mode": [
+                        "navigate"
+                    ],
+                    "sec-fetch-user": [
+                        "?1"
+                    ],
+                    "sec-fetch-dest": [
+                        "document"
+                    ],
+                    "referer": [
+                        "http://127.0.0.1:8000/admin/sponsors/1/edit"
+                    ],
+                    "accept-encoding": [
+                        "gzip, deflate, br, zstd"
+                    ],
+                    "accept-language": [
+                        "en-US,en;q=0.8"
+                    ],
+                    "cookie": "[redacted]"
+                },
+                "route": "admin.sponsors.index",
+                "action": "App\\Http\\Controllers\\SponsorController@index",
+                "parameters": [],
+                "middleware": [
+                    "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                    "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                    "Illuminate\\Session\\Middleware\\StartSession",
+                    "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                    "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestForgery",
+                    "Illuminate\\Auth\\Middleware\\Authenticate",
+                    "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                    "Illuminate\\Auth\\Middleware\\Authorize:view-any-sponsor"
+                ],
+                "status": 200,
+                "request_type": "full_page",
+                "content_type": "text/html; charset=utf-8",
+                "request_size_bytes": 0,
+                "response_size_bytes": 49544,
+                "session_present": false,
+                "authenticated": true,
+                "authentication": {
+                    "guard": "web",
+                    "authenticated": true,
+                    "model": "App\\Models\\User",
+                    "identifier": "hmac:744afb656c7b89a1",
+                    "identifier_policy": "keyed_hash"
+                },
+                "session": {
+                    "present": false,
+                    "driver": "database",
+                    "key_count": 0,
+                    "keys": [],
+                    "keys_dropped": 0,
+                    "flash_keys": [],
+                    "error_bag_present": false,
+                    "error_bags": []
+                },
+                "response_headers": {
+                    "content-type": [
+                        "text/html; charset=utf-8"
+                    ],
+                    "cache-control": [
+                        "no-cache, private"
+                    ],
+                    "date": [
+                        "Thu, 20 Aug 2026 12:53:34 GMT"
+                    ],
+                    "set-cookie": "[redacted]"
+                }
+            }
+        },
+        "queries": {
+            "label": "Queries",
+            "summary": {
+                "count": 10,
+                "retained_count": 10,
+                "dropped_count": 0,
+                "truncated": false,
+                "duration_ms": 271.08,
+                "transaction_count": 0,
+                "transaction_retained_count": 0,
+                "transaction_dropped_count": 0,
+                "rollback_count": 0
+            },
+            "payload": {
+                "items": [
+                    {
+                        "sql": "select * from `sessions` where `id` = ? limit 1",
+                        "bindings": [
+                            "sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH"
+                        ],
+                        "runnable_sql": "select * from `sessions` where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH' limit 1",
+                        "duration_ms": 24.11,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 58.639,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select * from `users` where `id` = ? and `users`.`deleted_at` is null limit 1",
+                        "bindings": [
+                            1
+                        ],
+                        "runnable_sql": "select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1",
+                        "duration_ms": 1.59,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 70.833,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select * from `cache` where `key` in (?)",
+                        "bindings": [
+                            "scripcom-cache-spatie.permission.cache"
+                        ],
+                        "runnable_sql": "select * from `cache` where `key` in ('scripcom-cache-spatie.permission.cache')",
+                        "duration_ms": 1.6,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 88.317,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select `permissions`.*, `model_has_permissions`.`model_id` as `pivot_model_id`, `model_has_permissions`.`permission_id` as `pivot_permission_id`, `model_has_permissions`.`model_type` as `pivot_model_type` from `permissions` inner join `model_has_permissions` on `permissions`.`id` = `model_has_permissions`.`permission_id` where `model_has_permissions`.`model_id` in (1) and `model_has_permissions`.`model_type` = ?",
+                        "bindings": [
+                            "App\\Models\\User"
+                        ],
+                        "runnable_sql": "select `permissions`.*, `model_has_permissions`.`model_id` as `pivot_model_id`, `model_has_permissions`.`permission_id` as `pivot_permission_id`, `model_has_permissions`.`model_type` as `pivot_model_type` from `permissions` inner join `model_has_permissions` on `permissions`.`id` = `model_has_permissions`.`permission_id` where `model_has_permissions`.`model_id` in (1) and `model_has_permissions`.`model_type` = 'App\\\\Models\\\\User'",
+                        "duration_ms": 10.14,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 112.892,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select `roles`.*, `model_has_roles`.`model_id` as `pivot_model_id`, `model_has_roles`.`role_id` as `pivot_role_id`, `model_has_roles`.`model_type` as `pivot_model_type` from `roles` inner join `model_has_roles` on `roles`.`id` = `model_has_roles`.`role_id` where `model_has_roles`.`model_id` in (1) and `model_has_roles`.`model_type` = ?",
+                        "bindings": [
+                            "App\\Models\\User"
+                        ],
+                        "runnable_sql": "select `roles`.*, `model_has_roles`.`model_id` as `pivot_model_id`, `model_has_roles`.`role_id` as `pivot_role_id`, `model_has_roles`.`model_type` as `pivot_model_type` from `roles` inner join `model_has_roles` on `roles`.`id` = `model_has_roles`.`role_id` where `model_has_roles`.`model_id` in (1) and `model_has_roles`.`model_type` = 'App\\\\Models\\\\User'",
+                        "duration_ms": 6.83,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 122.564,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select count(*) as `aggregate` from `sponsors` where `sponsors`.`deleted_at` is null",
+                        "bindings": [],
+                        "runnable_sql": "select count(*) as `aggregate` from `sponsors` where `sponsors`.`deleted_at` is null",
+                        "duration_ms": 1.61,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "app/Http/Controllers/SponsorController.php",
+                            "line": 26
+                        },
+                        "stack": [
+                            {
+                                "file": "app/Http/Controllers/SponsorController.php",
+                                "line": 26,
+                                "function": "Illuminate\\Database\\Eloquent\\Builder->paginate"
+                            }
+                        ],
+                        "at_ms": 136.553,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select `sponsors`.*, (select count(*) from `sponsorships` where `sponsors`.`id` = `sponsorships`.`sponsor_id`) as `sponsorships_count`, (select count(*) from `campaigns` where `sponsors`.`id` = `campaigns`.`sponsor_id` and `campaigns`.`deleted_at` is null) as `campaigns_count` from `sponsors` where `sponsors`.`deleted_at` is null order by `created_at` desc limit 15 offset 0",
+                        "bindings": [],
+                        "runnable_sql": "select `sponsors`.*, (select count(*) from `sponsorships` where `sponsors`.`id` = `sponsorships`.`sponsor_id`) as `sponsorships_count`, (select count(*) from `campaigns` where `sponsors`.`id` = `campaigns`.`sponsor_id` and `campaigns`.`deleted_at` is null) as `campaigns_count` from `sponsors` where `sponsors`.`deleted_at` is null order by `created_at` desc limit 15 offset 0",
+                        "duration_ms": 2.68,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "app/Http/Controllers/SponsorController.php",
+                            "line": 26
+                        },
+                        "stack": [
+                            {
+                                "file": "app/Http/Controllers/SponsorController.php",
+                                "line": 26,
+                                "function": "Illuminate\\Database\\Eloquent\\Builder->paginate"
+                            }
+                        ],
+                        "at_ms": 140.475,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select count(*) as `aggregate` from `notifications` where `notifications`.`notifiable_type` = ? and `notifications`.`notifiable_id` = ? and `notifications`.`notifiable_id` is not null and `read_at` is null",
+                        "bindings": [
+                            "App\\Models\\User",
+                            1
+                        ],
+                        "runnable_sql": "select count(*) as `aggregate` from `notifications` where `notifications`.`notifiable_type` = 'App\\\\Models\\\\User' and `notifications`.`notifiable_id` = 1 and `notifications`.`notifiable_id` is not null and `read_at` is null",
+                        "duration_ms": 2.1,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 420
+                        },
+                        "stack": [
+                            {
+                                "file": "resources/views/layouts/admin.blade.php",
+                                "line": 420,
+                                "function": "Blade authorization directive"
+                            }
+                        ],
+                        "at_ms": 332.336,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select * from `notifications` where `notifications`.`notifiable_type` = ? and `notifications`.`notifiable_id` = ? and `notifications`.`notifiable_id` is not null order by `created_at` desc, `created_at` desc limit 5",
+                        "bindings": [
+                            "App\\Models\\User",
+                            1
+                        ],
+                        "runnable_sql": "select * from `notifications` where `notifications`.`notifiable_type` = 'App\\\\Models\\\\User' and `notifications`.`notifiable_id` = 1 and `notifications`.`notifiable_id` is not null order by `created_at` desc, `created_at` desc limit 5",
+                        "duration_ms": 1.68,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
+                            "line": 424
+                        },
+                        "stack": [
+                            {
+                                "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
+                                "line": 424,
+                                "function": "Blade authorization directive"
+                            }
+                        ],
+                        "at_ms": 337.024,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "update `sessions` set `payload` = ?, `last_activity` = ?, `user_id` = ?, `ip_address` = ?, `user_agent` = ? where `id` = ?",
+                        "bindings": [
+                            "eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvc3BvbnNvcnMiLCJyb3V0ZSI6ImFkbWluLnNwb25zb3JzLmluZGV4In19",
+                            1787230414,
+                            1,
+                            "127.0.0.1",
+                            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+                            "sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH"
+                        ],
+                        "runnable_sql": "update `sessions` set `payload` = 'eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvc3BvbnNvcnMiLCJyb3V0ZSI6ImFkbWluLnNwb25zb3JzLmluZGV4In19', `last_activity` = 1787230414, `user_id` = 1, `ip_address` = '127.0.0.1', `user_agent` = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36' where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH'",
+                        "duration_ms": 218.74,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 570.984,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    }
+                ],
+                "transactions": []
+            }
+        },
+        "http_client": {
+            "label": "HTTP Client",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "duration_ms": 0,
+                "failed_count": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "queue": {
+            "label": "Queue",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "queued_count": 0,
+                "executed_count": 0,
+                "failed_count": 0,
+                "duration_ms": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "mail": {
+            "label": "Mail",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "recipient_count": 0,
+                "attachment_count": 0,
+                "duration_ms": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "notifications": {
+            "label": "Notifications",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "sent_count": 0,
+                "failed_count": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "redis": {
+            "label": "Redis",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "duration_ms": 0,
+                "failed_count": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "models": {
+            "label": "Models",
+            "summary": {
+                "count": 9,
+                "retained_count": 9,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": [
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\User",
+                        "connection": "mysql",
+                        "table": "users",
+                        "key": 1,
+                        "at_ms": 71.257
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "Spatie\\Permission\\Models\\Role",
+                        "connection": "mysql",
+                        "table": "roles",
+                        "key": 1,
+                        "at_ms": 123.182
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\Sponsor",
+                        "connection": "mysql",
+                        "table": "sponsors",
+                        "key": 4,
+                        "at_ms": 141.262
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\Sponsor",
+                        "connection": "mysql",
+                        "table": "sponsors",
+                        "key": 1,
+                        "at_ms": 141.421
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\Sponsor",
+                        "connection": "mysql",
+                        "table": "sponsors",
+                        "key": 2,
+                        "at_ms": 141.552
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\Sponsor",
+                        "connection": "mysql",
+                        "table": "sponsors",
+                        "key": 3,
+                        "at_ms": 141.702
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "Illuminate\\Notifications\\DatabaseNotification",
+                        "connection": "mysql",
+                        "table": "notifications",
+                        "key": "f1d65c50-f1f5-45af-aff6-1b5270bc084a",
+                        "at_ms": 337.405
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "Illuminate\\Notifications\\DatabaseNotification",
+                        "connection": "mysql",
+                        "table": "notifications",
+                        "key": "9d3528cc-2174-4bd9-a872-315daaff9140",
+                        "at_ms": 337.509
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "Illuminate\\Notifications\\DatabaseNotification",
+                        "connection": "mysql",
+                        "table": "notifications",
+                        "key": "e53f5f50-0c0a-47ee-8e7f-1b3c793f9b38",
+                        "at_ms": 337.606
+                    }
+                ]
+            }
+        },
+        "cache": {
+            "label": "Cache",
+            "summary": {
+                "count": 1,
+                "retained_count": 1,
+                "dropped_count": 0,
+                "truncated": false,
+                "hits": 1,
+                "misses": 0,
+                "writes": 0
+            },
+            "payload": {
+                "items": [
+                    {
+                        "operation": "hit",
+                        "key_hash": "f03a41ce9b734730",
+                        "key": "spatie.permission.cache",
+                        "key_policy": "full",
+                        "store": "database",
+                        "tag_count": 0,
+                        "tag_retained": 0,
+                        "tag_dropped": 0,
+                        "tag_hashes": [],
+                        "tags": [],
+                        "seconds": null,
+                        "at_ms": 89.754
+                    }
+                ]
+            }
+        },
+        "views": {
+            "label": "Views",
+            "summary": {
+                "count": 2,
+                "retained_count": 2,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": [
+                    {
+                        "name": "sponsors.index",
+                        "source": {
+                            "file": "resources/views/sponsors/index.blade.php",
+                            "line": 1
+                        },
+                        "composers": [],
+                        "data": {
+                            "sponsors": {
+                                "current_page": 1,
+                                "data": [
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "brand_color": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "brand_color": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "brand_color": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "brand_color": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    }
+                                ],
+                                "first_page_url": "http://127.0.0.1:8000/admin/sponsors?page=1",
+                                "from": 1,
+                                "last_page": 1,
+                                "last_page_url": "http://127.0.0.1:8000/admin/sponsors?page=1",
+                                "links": [
+                                    {
+                                        "url": "[maximum depth reached]",
+                                        "label": "[maximum depth reached]",
+                                        "page": "[maximum depth reached]",
+                                        "active": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "url": "[maximum depth reached]",
+                                        "label": "[maximum depth reached]",
+                                        "page": "[maximum depth reached]",
+                                        "active": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "url": "[maximum depth reached]",
+                                        "label": "[maximum depth reached]",
+                                        "page": "[maximum depth reached]",
+                                        "active": "[maximum depth reached]"
+                                    }
+                                ],
+                                "next_page_url": null,
+                                "path": "http://127.0.0.1:8000/admin/sponsors",
+                                "per_page": 15,
+                                "prev_page_url": null,
+                                "to": 4,
+                                "total": 4
+                            }
+                        },
+                        "timing": "composition_marker",
+                        "at_ms": 154.731
+                    },
+                    {
+                        "name": "layouts.admin",
+                        "source": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 1
+                        },
+                        "composers": [],
+                        "data": {
+                            "__env": "[Illuminate\\View\\Factory]",
+                            "app": "[Illuminate\\Foundation\\Application]",
+                            "errors": "[]",
+                            "sponsors": {
+                                "current_page": 1,
+                                "data": [
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "brand_color": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "brand_color": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "brand_color": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "brand_color": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    }
+                                ],
+                                "first_page_url": "http://127.0.0.1:8000/admin/sponsors?page=1",
+                                "from": 1,
+                                "last_page": 1,
+                                "last_page_url": "http://127.0.0.1:8000/admin/sponsors?page=1",
+                                "links": [
+                                    {
+                                        "url": "[maximum depth reached]",
+                                        "label": "[maximum depth reached]",
+                                        "page": "[maximum depth reached]",
+                                        "active": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "url": "[maximum depth reached]",
+                                        "label": "[maximum depth reached]",
+                                        "page": "[maximum depth reached]",
+                                        "active": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "url": "[maximum depth reached]",
+                                        "label": "[maximum depth reached]",
+                                        "page": "[maximum depth reached]",
+                                        "active": "[maximum depth reached]"
+                                    }
+                                ],
+                                "next_page_url": null,
+                                "path": "http://127.0.0.1:8000/admin/sponsors",
+                                "per_page": 15,
+                                "prev_page_url": null,
+                                "to": 4,
+                                "total": 4
+                            },
+                            "__empty_1": false,
+                            "__currentLoopData": {
+                                "current_page": 1,
+                                "data": [
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "brand_color": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "brand_color": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "brand_color": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "brand_color": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    }
+                                ],
+                                "first_page_url": "http://127.0.0.1:8000/admin/sponsors?page=1",
+                                "from": 1,
+                                "last_page": 1,
+                                "last_page_url": "http://127.0.0.1:8000/admin/sponsors?page=1",
+                                "links": [
+                                    {
+                                        "url": "[maximum depth reached]",
+                                        "label": "[maximum depth reached]",
+                                        "page": "[maximum depth reached]",
+                                        "active": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "url": "[maximum depth reached]",
+                                        "label": "[maximum depth reached]",
+                                        "page": "[maximum depth reached]",
+                                        "active": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "url": "[maximum depth reached]",
+                                        "label": "[maximum depth reached]",
+                                        "page": "[maximum depth reached]",
+                                        "active": "[maximum depth reached]"
+                                    }
+                                ],
+                                "next_page_url": null,
+                                "path": "http://127.0.0.1:8000/admin/sponsors",
+                                "per_page": 15,
+                                "prev_page_url": null,
+                                "to": 4,
+                                "total": 4
+                            },
+                            "sponsor": {
+                                "id": 3,
+                                "name": "Equity Bank",
+                                "slug": "equity-bank",
+                                "email": "corporate@equitybank.co.ke",
+                                "phone": "0722000003",
+                                "address": null,
+                                "logo": null,
+                                "brand_color": null,
+                                "website": "https://www.equitybank.co.ke",
+                                "contact_person": "Mary Wambui",
+                                "is_active": true,
+                                "created_at": "2026-08-20T06:56:44.000000Z",
+                                "updated_at": "2026-08-20T06:56:44.000000Z",
+                                "deleted_at": null,
+                                "sponsorships_count": 2,
+                                "campaigns_count": 1
+                            },
+                            "loop": null
+                        },
+                        "timing": "composition_marker",
+                        "at_ms": 204.554
+                    }
+                ]
+            }
+        },
+        "events": {
+            "label": "Events",
+            "summary": {
+                "count": 12,
+                "retained_count": 12,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": [
+                    {
+                        "name": "Illuminate\\Database\\Events\\ConnectionEstablished",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\ConnectionEstablished"
+                        ],
+                        "at_ms": 26.497
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 52.501
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 68.05
+                    },
+                    {
+                        "name": "Illuminate\\Auth\\Events\\Authenticated",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Auth\\Events\\Authenticated"
+                        ],
+                        "at_ms": 73.871
+                    },
+                    {
+                        "name": "Illuminate\\Cache\\Events\\RetrievingKey",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Cache\\Events\\RetrievingKey"
+                        ],
+                        "at_ms": 84.222
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 85.236
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 110.147
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 119.959
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 134.185
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 138.471
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 328.714
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 333.566
+                    }
+                ]
+            }
+        },
+        "authorization": {
+            "label": "Authorization",
+            "summary": {
+                "count": 41,
+                "retained_count": 41,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": [
+                    {
+                        "ability": "view-any-sponsor",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": null,
+                        "at_ms": 128.272
+                    },
+                    {
+                        "ability": "create-sponsor",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/sponsors/index.blade.php",
+                            "line": 38
+                        },
+                        "at_ms": 163.978
+                    },
+                    {
+                        "ability": "update-sponsor",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/sponsors/index.blade.php",
+                            "line": 99
+                        },
+                        "at_ms": 168.081
+                    },
+                    {
+                        "ability": "delete-sponsor",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/sponsors/index.blade.php",
+                            "line": 104
+                        },
+                        "at_ms": 171.064
+                    },
+                    {
+                        "ability": "update-sponsor",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/sponsors/index.blade.php",
+                            "line": 99
+                        },
+                        "at_ms": 176.932
+                    },
+                    {
+                        "ability": "delete-sponsor",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/sponsors/index.blade.php",
+                            "line": 104
+                        },
+                        "at_ms": 182.668
+                    },
+                    {
+                        "ability": "update-sponsor",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/sponsors/index.blade.php",
+                            "line": 99
+                        },
+                        "at_ms": 186.061
+                    },
+                    {
+                        "ability": "delete-sponsor",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/sponsors/index.blade.php",
+                            "line": 104
+                        },
+                        "at_ms": 188.783
+                    },
+                    {
+                        "ability": "update-sponsor",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/sponsors/index.blade.php",
+                            "line": 99
+                        },
+                        "at_ms": 193.304
+                    },
+                    {
+                        "ability": "delete-sponsor",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/sponsors/index.blade.php",
+                            "line": 104
+                        },
+                        "at_ms": 197.163
+                    },
+                    {
+                        "ability": "view-analytics",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 107
+                        },
+                        "at_ms": 213.698
+                    },
+                    {
+                        "ability": "view-any-router",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 116
+                        },
+                        "at_ms": 217.083
+                    },
+                    {
+                        "ability": "view-any-organization",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
+                            "line": 126
+                        },
+                        "at_ms": 220.681
+                    },
+                    {
+                        "ability": "view-any-organization",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 139
+                        },
+                        "at_ms": 223.851
+                    },
+                    {
+                        "ability": "view-any-user",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 147
+                        },
+                        "at_ms": 228.197
+                    },
+                    {
+                        "ability": "view-any-hotspot",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 155
+                        },
+                        "at_ms": 231.408
+                    },
+                    {
+                        "ability": "view-any-router",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 163
+                        },
+                        "at_ms": 234.643
+                    },
+                    {
+                        "ability": "view-any-campaign",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 171
+                        },
+                        "at_ms": 238.076
+                    },
+                    {
+                        "ability": "view-any-package",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 179
+                        },
+                        "at_ms": 242.262
+                    },
+                    {
+                        "ability": "view-any-voucher",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 187
+                        },
+                        "at_ms": 246.139
+                    },
+                    {
+                        "ability": "view-any-sponsor",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
+                            "line": 200
+                        },
+                        "at_ms": 249.566
+                    },
+                    {
+                        "ability": "view-any-sponsor",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 213
+                        },
+                        "at_ms": 252.866
+                    },
+                    {
+                        "ability": "view-any-sponsorship",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 221
+                        },
+                        "at_ms": 256.755
+                    },
+                    {
+                        "ability": "buy-credits",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 229
+                        },
+                        "at_ms": 260.046
+                    },
+                    {
+                        "ability": "view-any-session",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
+                            "line": 242
+                        },
+                        "at_ms": 264.112
+                    },
+                    {
+                        "ability": "view-any-session",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 255
+                        },
+                        "at_ms": 267.668
+                    },
+                    {
+                        "ability": "view-any-event",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 263
+                        },
+                        "at_ms": 271.276
+                    },
+                    {
+                        "ability": "view-any-payment",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 271
+                        },
+                        "at_ms": 275.573
+                    },
+                    {
+                        "ability": "view-reports",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 283
+                        },
+                        "at_ms": 280.359
+                    },
+                    {
+                        "ability": "view-any-contract",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
+                            "line": 293
+                        },
+                        "at_ms": 284.27
+                    },
+                    {
+                        "ability": "view-any-invoice",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 306
+                        },
+                        "at_ms": 287.607
+                    },
+                    {
+                        "ability": "view-any-contract",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 314
+                        },
+                        "at_ms": 291.482
+                    },
+                    {
+                        "ability": "view-any-invoice",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 322
+                        },
+                        "at_ms": 296.218
+                    },
+                    {
+                        "ability": "view-any-revenue",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 330
+                        },
+                        "at_ms": 300.099
+                    },
+                    {
+                        "ability": "view-settings",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
+                            "line": 343
+                        },
+                        "at_ms": 303.031
+                    },
+                    {
+                        "ability": "view-settings",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 356
+                        },
+                        "at_ms": 306.09
+                    },
+                    {
+                        "ability": "view-any-role",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 364
+                        },
+                        "at_ms": 310.974
+                    },
+                    {
+                        "ability": "view-any-permission",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 372
+                        },
+                        "at_ms": 314.897
+                    },
+                    {
+                        "ability": "view-any-audit-log",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 380
+                        },
+                        "at_ms": 318.787
+                    },
+                    {
+                        "ability": "view-notifications",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 420
+                        },
+                        "at_ms": 324.007
+                    },
+                    {
+                        "ability": "view-settings",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 558
+                        },
+                        "at_ms": 347.99
+                    }
+                ]
+            }
+        },
+        "validation": {
+            "label": "Validation",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "messages": {
+            "label": "Messages",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "logs": {
+            "label": "Logs",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "errors": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "exceptions": {
+            "label": "Exceptions",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": []
+            }
+        }
+    }
+}

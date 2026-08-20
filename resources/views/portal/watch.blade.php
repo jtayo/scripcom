@@ -8,90 +8,273 @@
     $portalWelcome = $data['welcome_message'] ?? 'Welcome to free public Wi-Fi.';
     $portalCurrency = $data['currency'] ?? 'KES';
     $alreadyWatched = $alreadyWatched ?? false;
+
+    $orgLogo = $data['organization']->logo ?? null;
+    $orgName = $data['organization']->name ?? null;
+    $sponsorLogo = $campaign->sponsor?->logo;
+    $sponsorName = $campaign->sponsor?->name;
+    $videoCaption = $campaign->video_caption ?? null;
+    $hasBothLogos = $orgLogo && $sponsorLogo;
 @endphp
 
 @section('title', $campaign->title)
 
 @section('content')
     <style>
-        .portal-video-container {
+        .pw-step-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            margin-bottom: 1.5rem;
+        }
+        .pw-step-dot {
+            width: .5rem;
+            height: .5rem;
+            border-radius: 50%;
+            background: color-mix(in srgb, var(--portal-primary) 18%, transparent);
+            transition: all .3s ease;
+        }
+        .pw-step-dot.active {
+            width: 1.75rem;
+            border-radius: 999px;
+            background: var(--portal-primary);
+        }
+        .pw-step-dot.done {
+            background: #22c55e;
+        }
+
+        .pw-field {
+            border-radius: .75rem;
+            padding: .75rem 1rem;
+            border: 1.5px solid var(--tblr-border-color);
+            font-size: 1rem;
+            transition: border-color .2s, box-shadow .2s;
+            background: var(--tblr-bg-surface);
+        }
+        .pw-field:focus {
+            border-color: var(--portal-primary);
+            box-shadow: 0 0 0 .2rem color-mix(in srgb, var(--portal-primary) 15%, transparent);
+            outline: none;
+        }
+        .pw-phone {
+            max-width: 280px;
+            text-align: center;
+            letter-spacing: .5rem;
+            font-variant-numeric: tabular-nums;
+        }
+        .pw-otp {
+            max-width: 200px;
+            text-align: center;
+            letter-spacing: .75rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+        }
+        .pw-input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .75rem;
+        }
+
+        .pw-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: color-mix(in srgb, #22c55e 12%, white);
+            color: #15803d;
+            font-weight: 600;
+            font-size: .875rem;
+            padding: .75rem 1.25rem;
+            border-radius: .75rem;
+            border: 1px solid color-mix(in srgb, #22c55e 20%, white);
+        }
+        .pw-badge-amber {
+            background: color-mix(in srgb, #f59e0b 12%, white);
+            color: #b45309;
+            border-color: color-mix(in srgb, #f59e0b 20%, white);
+        }
+
+        .pw-notice {
+            font-size: .8125rem;
+            color: var(--tblr-secondary-color);
+            background: color-mix(in srgb, var(--portal-primary) 5%, white);
+            padding: .5rem .75rem;
+            border-radius: .5rem;
+            border-left: 3px solid var(--portal-primary);
+        }
+
+        .pw-caption {
+            font-size: .875rem;
+            color: var(--tblr-secondary-color);
+            font-style: italic;
+            margin-top: .5rem;
+        }
+
+        .pw-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .pw-logos img {
+            max-height: 40px;
+            max-width: 140px;
+            object-fit: contain;
+        }
+        .pw-logos-divider {
+            width: 1px;
+            height: 32px;
+            background: var(--tblr-border-color);
+        }
+        .pw-logos-label {
+            font-size: .75rem;
+            color: var(--tblr-secondary-color);
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            font-weight: 600;
+        }
+
+        .pw-video-container {
             position: relative;
             user-select: none;
             -webkit-user-select: none;
             -webkit-touch-callout: none;
         }
-        .portal-video-container video {
+        .pw-video-container video {
             pointer-events: none;
         }
-        .portal-ad-overlay {
+        .pw-play-overlay {
             position: absolute;
             inset: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 5;
+            background: rgba(0, 0, 0, .35);
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 1rem;
+            transition: background .2s;
         }
-        .portal-phone-input {
-            border-radius: .75rem;
-            padding: .75rem 1rem;
-            border: 1px solid var(--tblr-border-color);
-            font-size: 1rem;
-            width: 100%;
-            max-width: 280px;
-            text-align: center;
-            letter-spacing: .5rem;
+        .pw-play-overlay:hover {
+            background: rgba(0, 0, 0, .45);
         }
-        .portal-phone-input:focus {
-            border-color: var(--portal-primary);
-            box-shadow: 0 0 0 .25rem color-mix(in srgb, var(--portal-primary) 20%, transparent);
-            outline: none;
+        .pw-play-overlay i {
+            font-size: 3.5rem;
+            color: #fff;
+            filter: drop-shadow(0 2px 12px rgba(0, 0, 0, .4));
+            transition: transform .2s;
         }
-        .portal-otp-input {
-            border-radius: .75rem;
-            padding: .75rem 1rem;
-            border: 1px solid var(--tblr-border-color);
-            font-size: 1.25rem;
-            font-weight: 700;
-            width: 100%;
-            max-width: 200px;
-            text-align: center;
-            letter-spacing: .75rem;
+        .pw-play-overlay:hover i {
+            transform: scale(1.12);
         }
-        .portal-otp-input:focus {
-            border-color: var(--portal-primary);
-            box-shadow: 0 0 0 .25rem color-mix(in srgb, var(--portal-primary) 20%, transparent);
-            outline: none;
-        }
-        .portal-watched-badge {
+
+        .pw-btn-primary {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: .5rem;
-            background: color-mix(in srgb, #f59e0b 15%, white);
-            color: #b45309;
-            font-weight: 600;
-            font-size: .875rem;
-            padding: .75rem 1.25rem;
+            padding: .625rem 1.5rem;
             border-radius: .75rem;
-            border: 1px solid color-mix(in srgb, #f59e0b 25%, white);
+            font-weight: 600;
+            font-size: .9375rem;
+            border: none;
+            cursor: pointer;
+            transition: background .2s, transform .1s;
+            background: var(--portal-primary);
+            color: #fff;
         }
-        .portal-restrict-notice {
-            font-size: .8125rem;
-            color: var(--tblr-secondary-color);
-            background: color-mix(in srgb, var(--portal-primary) 6%, white);
-            padding: .5rem .75rem;
-            border-radius: .5rem;
-            border-left: 3px solid var(--portal-primary);
+        .pw-btn-primary:hover {
+            background: color-mix(in srgb, var(--portal-primary) 88%, black);
         }
-        .portal-otp-sent {
-            font-size: .8125rem;
-            color: var(--tblr-secondary-color);
+        .pw-btn-primary:active {
+            transform: scale(.98);
         }
-        .portal-otp-sent strong {
-            color: var(--portal-primary);
+        .pw-btn-primary:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+            transform: none;
         }
-        .portal-resend-btn {
-            font-size: .8125rem;
+        .pw-btn-link {
+            background: none;
+            border: none;
             padding: .25rem .5rem;
+            font-size: .8125rem;
+            color: var(--portal-primary);
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        .pw-btn-link:hover {
+            color: color-mix(in srgb, var(--portal-primary) 75%, black);
+        }
+
+        .pw-timer-ring {
+            width: 11rem;
+            height: 11rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: conic-gradient(var(--portal-primary) 0%, color-mix(in srgb, var(--portal-primary) 12%, white) 0%);
+            position: relative;
+        }
+        .pw-timer-ring::after {
+            content: "";
+            position: absolute;
+            inset: .65rem;
+            border-radius: 50%;
+            background: var(--tblr-bg-surface);
+        }
+        .pw-timer-ring .timer-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        .pw-timer-num {
+            font-variant-numeric: tabular-nums;
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--portal-primary);
+            line-height: 1;
+        }
+        .pw-timer-label {
+            font-size: .75rem;
+            color: var(--tblr-secondary-color);
+            margin-top: .25rem;
+        }
+
+        .pw-progress {
+            height: .625rem;
+            background: color-mix(in srgb, var(--portal-primary) 12%, white);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+        .pw-progress-fill {
+            height: 100%;
+            background: var(--portal-primary);
+            border-radius: 999px;
+            transition: width .4s ease;
+        }
+
+        .pw-otp-sent {
+            font-size: .8125rem;
+            color: var(--tblr-secondary-color);
+        }
+        .pw-otp-sent strong {
+            color: var(--portal-primary);
+            font-weight: 600;
+        }
+
+        .pw-fade-in {
+            animation: pwFadeIn .35s ease;
+        }
+        @keyframes pwFadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 
@@ -99,14 +282,46 @@
         <div class="col-md-10 col-lg-8 col-xl-7">
             <div class="card portal-card">
                 <div class="card-body p-4 p-md-5 text-center">
-                    <span class="portal-badge mb-3"><i class="fa-solid fa-location-dot me-1"></i>{{ $portalLocation }}</span>
+
+                    {{-- Logos: both org + sponsor side by side --}}
+                    @if($hasBothLogos)
+                        <div class="mb-3">
+                            <div class="pw-logos">
+                                <div class="text-center">
+                                    <img src="{{ asset('storage/' . $orgLogo) }}" alt="{{ $orgName }}">
+                                </div>
+                                <div class="pw-logos-divider"></div>
+                                <div class="text-center">
+                                    <img src="{{ asset('storage/' . $sponsorLogo) }}" alt="{{ $sponsorName }}">
+                                </div>
+                            </div>
+                        </div>
+                    @elseif($sponsorLogo || $orgLogo)
+                        <div class="mb-3">
+                            <div class="pw-logos">
+                                <img src="{{ asset('storage/' . ($sponsorLogo ?? $orgLogo)) }}" alt="{{ $sponsorName ?? $orgName }}">
+                            </div>
+                        </div>
+                    @endif
+
+                    @if($portalLocation)
+                        <span class="portal-badge mb-3"><i class="fa-solid fa-location-dot me-1"></i>{{ $portalLocation }}</span>
+                    @endif
+
                     <h1 class="h3 mb-1">Watch to Get Free Wi-Fi</h1>
                     <p class="text-secondary small mb-4">Watch the full {{ $campaign->duration_seconds }}s advertisement to connect. This powers free internet for everyone.</p>
+
+                    {{-- Step indicator --}}
+                    <div class="pw-step-indicator" id="step-indicator">
+                        <div class="pw-step-dot active" id="step-dot-phone"></div>
+                        <div class="pw-step-dot" id="step-dot-otp"></div>
+                        <div class="pw-step-dot" id="step-dot-video"></div>
+                    </div>
 
                     @if ($alreadyWatched)
                         <div class="portal-ad mb-4">
                             <div class="text-center p-4">
-                                <div class="portal-watched-badge mb-3">
+                                <div class="pw-badge mb-3">
                                     <i class="fa-solid fa-circle-check"></i>
                                     Already Watched Today
                                 </div>
@@ -116,18 +331,18 @@
                         </div>
                     @else
                         {{-- Step 1: Phone entry --}}
-                        <div id="phone-gate">
+                        <div id="phone-gate" class="pw-fade-in">
                             <div class="portal-ad mb-4">
                                 <div class="text-center p-4">
                                     <span class="portal-icon mb-3"><i class="fa-solid fa-mobile-screen-button"></i></span>
                                     <div class="fw-bold fs-5 text-body">Enter your phone number</div>
                                     <div class="text-secondary small mt-1 mb-3">We'll send you a verification code to confirm your number.</div>
-                                    <form id="phone-form" class="d-flex flex-column align-items-center gap-3">
-                                        <input type="tel" class="portal-phone-input" id="phone-input"
+                                    <form id="phone-form" class="pw-input-group">
+                                        <input type="tel" class="pw-field pw-phone" id="phone-input"
                                                placeholder="0712345678" maxlength="10" required
                                                autocomplete="tel" inputmode="numeric" pattern="[0-9]{10}">
-                                        <button type="submit" class="btn portal-btn-primary px-4" id="phone-submit">
-                                            <i class="fa-solid fa-paper-plane me-1"></i>Send Code
+                                        <button type="submit" class="pw-btn-primary" id="phone-submit">
+                                            <i class="fa-solid fa-paper-plane"></i>Send Code
                                         </button>
                                     </form>
                                     <div id="phone-error" class="text-danger small mt-2 d-none"></div>
@@ -137,30 +352,26 @@
 
                         {{-- Step 2: OTP verification --}}
                         <div id="otp-gate" class="d-none">
-                            <div class="portal-ad mb-4">
+                            <div class="portal-ad mb-4 pw-fade-in">
                                 <div class="text-center p-4">
                                     <span class="portal-icon mb-3"><i class="fa-solid fa-shield-halved"></i></span>
                                     <div class="fw-bold fs-5 text-body">Verify your number</div>
-                                    <div class="portal-otp-sent mt-1 mb-3">
+                                    <div class="pw-otp-sent mt-1 mb-3">
                                         Code sent to <strong id="otp-phone-display"></strong>
                                     </div>
-                                    <form id="otp-form" class="d-flex flex-column align-items-center gap-3">
-                                        <input type="text" class="portal-otp-input" id="otp-input"
+                                    <form id="otp-form" class="pw-input-group">
+                                        <input type="text" class="pw-field pw-otp" id="otp-input"
                                                placeholder="------" maxlength="6" required
                                                inputmode="numeric" pattern="[0-9]{6}" autocomplete="one-time-code">
-                                        <button type="submit" class="btn portal-btn-primary px-4" id="otp-submit">
-                                            <i class="fa-solid fa-check me-1"></i>Verify &amp; Start
+                                        <button type="submit" class="pw-btn-primary" id="otp-submit">
+                                            <i class="fa-solid fa-check"></i>Verify &amp; Start
                                         </button>
                                     </form>
                                     <div id="otp-error" class="text-danger small mt-2 d-none"></div>
-                                    <div class="mt-3">
-                                        <button type="button" class="btn btn-link btn-sm portal-resend-btn" id="resend-btn">
-                                            Resend code
-                                        </button>
+                                    <div class="mt-3 d-flex flex-column align-items-center gap-1">
+                                        <button type="button" class="pw-btn-link d-none" id="resend-btn">Resend code</button>
                                         <span id="resend-cooldown" class="text-secondary small d-none"></span>
-                                    </div>
-                                    <div class="mt-2">
-                                        <button type="button" class="btn btn-link btn-sm text-secondary" id="change-phone-btn">
+                                        <button type="button" class="pw-btn-link text-secondary" id="change-phone-btn">
                                             <i class="fa-solid fa-arrow-left me-1"></i>Change number
                                         </button>
                                     </div>
@@ -170,53 +381,38 @@
 
                         {{-- Step 3: Video player --}}
                         <div id="video-stage" class="d-none">
-                            <div class="portal-ad mb-4 portal-video-container" id="ad-slot">
+                            <div class="portal-ad mb-4 pw-video-container" id="ad-slot">
                                 <div class="text-center p-4">
                                     <span class="portal-icon mb-3"><i class="fa-solid fa-circle-play"></i></span>
                                     <div class="fw-bold fs-5 text-body">{{ $campaign->title }}</div>
+                                    @if($videoCaption)
+                                        <div class="pw-caption">{{ $videoCaption }}</div>
+                                    @endif
                                     <div class="text-secondary small mt-1">Advertisement loading...</div>
                                 </div>
-                                <button type="button" class="portal-play-overlay" id="play-overlay" style="display:none">
+                                <button type="button" class="pw-play-overlay d-none" id="play-overlay">
                                     <i class="fa-solid fa-circle-play"></i>
                                 </button>
                             </div>
 
-                            <div class="portal-timer-ring mb-4 mx-auto" id="timer-ring">
+                            <div class="pw-timer-ring mb-4 mx-auto" id="timer-ring">
                                 <div class="timer-content">
-                                    <div class="portal-timer" id="timer-count">{{ (int) $campaign->duration_seconds }}</div>
-                                    <div class="text-secondary small">seconds</div>
+                                    <div class="pw-timer" id="timer-count">{{ (int) $campaign->duration_seconds }}</div>
+                                    <div class="pw-timer-label">seconds</div>
                                 </div>
                             </div>
 
-                            <div class="portal-progress mb-3">
-                                <div class="portal-progress-bar" id="progress-bar" style="width:0%"></div>
+                            <div class="pw-progress mb-3">
+                                <div class="pw-progress-fill" id="progress-bar" style="width:0%"></div>
                             </div>
                             <div class="d-flex justify-content-between text-secondary small">
                                 <span id="progress-label">0%</span>
                                 <span>{{ (int) $campaign->duration_seconds }}s</span>
                             </div>
 
-                            <div class="portal-restrict-notice mt-3">
+                            <div class="pw-notice mt-3">
                                 <i class="fa-solid fa-lock me-1"></i>
                                 Forwarding and skipping are disabled to ensure fair sponsorship access.
-                            </div>
-                        </div>
-                    @endif
-
-                    @php
-                        $sponsorLogo = $campaign->sponsor?->logo;
-                        $orgLogo = $data['organization']->logo ?? null;
-                        $sponsorName = $campaign->sponsor?->name ?? ($data['organization']->name ?? null);
-                    @endphp
-                    @if($sponsorLogo || $orgLogo)
-                        <div class="mt-4 pt-3 border-top">
-                            <div class="text-secondary small mb-2">{{ $sponsorLogo ? 'Sponsored by' : 'Brought to you by' }}</div>
-                            <div class="d-flex align-items-center justify-content-center gap-3">
-                                @if($sponsorLogo)
-                                    <img src="{{ asset('storage/' . $sponsorLogo) }}" alt="{{ $sponsorName }}" style="max-height: 48px; max-width: 160px; object-fit: contain;">
-                                @elseif($orgLogo)
-                                    <img src="{{ asset('storage/' . $orgLogo) }}" alt="{{ $sponsorName }}" style="max-height: 48px; max-width: 160px; object-fit: contain;">
-                                @endif
                             </div>
                         </div>
                     @endif
@@ -253,6 +449,16 @@
             var progressBar = document.getElementById('progress-bar');
             var progressLabel = document.getElementById('progress-label');
             var adSlot = document.getElementById('ad-slot');
+            var stepDotPhone = document.getElementById('step-dot-phone');
+            var stepDotOtp = document.getElementById('step-dot-otp');
+            var stepDotVideo = document.getElementById('step-dot-video');
+
+            function setStep(step) {
+                stepDotPhone.className = 'pw-step-dot' + (step === 1 ? ' active' : step > 1 ? ' done' : '');
+                stepDotOtp.className = 'pw-step-dot' + (step === 2 ? ' active' : step > 2 ? ' done' : '');
+                stepDotVideo.className = 'pw-step-dot' + (step === 3 ? ' active' : '');
+            }
+            setStep(1);
 
             function render() {
                 var pct = Math.min(100, Math.round((elapsed / totalSeconds) * 100));
@@ -324,7 +530,10 @@
                 adSlot.appendChild(video);
 
                 var playOverlay = document.getElementById('play-overlay');
-                if (playOverlay) adSlot.appendChild(playOverlay);
+                if (playOverlay) {
+                    playOverlay.classList.remove('d-none');
+                    adSlot.appendChild(playOverlay);
+                }
 
                 enforceAntiSkip(video);
 
@@ -334,7 +543,7 @@
                     if (elapsed >= totalSeconds) complete();
                 });
                 video.addEventListener('loadeddata', function () {
-                    if (playOverlay) playOverlay.style.display = 'none';
+                    if (playOverlay) playOverlay.classList.add('d-none');
                 });
                 video.addEventListener('ended', function () {
                     if (elapsed >= totalSeconds) complete();
@@ -343,12 +552,12 @@
                 var playPromise = video.play();
                 if (playPromise !== undefined) {
                     playPromise.then(function () {
-                        if (playOverlay) playOverlay.style.display = 'none';
+                        if (playOverlay) playOverlay.classList.add('d-none');
                     }).catch(function () {
                         if (playOverlay) {
-                            playOverlay.style.display = 'flex';
+                            playOverlay.classList.remove('d-none');
                             playOverlay.onclick = function () {
-                                video.play().then(function () { playOverlay.style.display = 'none'; }).catch(function () {});
+                                video.play().then(function () { playOverlay.classList.add('d-none'); }).catch(function () {});
                             };
                         }
                     });
@@ -373,8 +582,10 @@
                 document.getElementById('phone-gate').classList.add('d-none');
                 document.getElementById('otp-gate').classList.add('d-none');
                 document.getElementById('video-stage').classList.remove('d-none');
+                document.getElementById('step-indicator').classList.add('d-none');
                 mountAd();
                 render();
+                setStep(3);
             }
 
             function postVideoStart() {
@@ -386,10 +597,11 @@
                     if (!data.success) {
                         if (data.already_watched) {
                             document.getElementById('video-stage').innerHTML =
-                                '<div class="text-center p-4"><div class="portal-watched-badge mb-3"><i class="fa-solid fa-circle-check"></i> Already Watched Today</div>' +
+                                '<div class="text-center p-4 pw-fade-in"><div class="pw-badge mb-3"><i class="fa-solid fa-circle-check"></i> Already Watched Today</div>' +
                                 '<div class="fw-bold text-body mt-2">' + (data.message || 'You have already watched this advertisement today.') + '</div>' +
                                 '<div class="text-secondary small mt-1">Please come back tomorrow for another free session.</div></div>';
                             document.getElementById('video-stage').classList.remove('d-none');
+                            document.getElementById('step-indicator').classList.add('d-none');
                         }
                         return;
                     }
@@ -415,7 +627,7 @@
                     }
                     phoneError.classList.add('d-none');
                     phoneSubmit.disabled = true;
-                    phoneSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-1"></i>Sending...';
+                    phoneSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>Sending...';
 
                     fetch('{{ route("portal.otp.send") }}', {
                         method: 'POST',
@@ -426,7 +638,7 @@
                             phoneError.textContent = data.message || 'Could not send code. Please try again.';
                             phoneError.classList.remove('d-none');
                             phoneSubmit.disabled = false;
-                            phoneSubmit.innerHTML = '<i class="fa-solid fa-paper-plane me-1"></i>Send Code';
+                            phoneSubmit.innerHTML = '<i class="fa-solid fa-paper-plane"></i>Send Code';
                             return;
                         }
 
@@ -435,6 +647,7 @@
                         document.getElementById('phone-gate').classList.add('d-none');
                         document.getElementById('otp-gate').classList.remove('d-none');
                         document.getElementById('otp-input').focus();
+                        setStep(2);
                         startResendCooldown(60);
 
                         if (data.debug_otp) {
@@ -444,7 +657,7 @@
                         phoneError.textContent = 'Network error. Please try again.';
                         phoneError.classList.remove('d-none');
                         phoneSubmit.disabled = false;
-                        phoneSubmit.innerHTML = '<i class="fa-solid fa-paper-plane me-1"></i>Send Code';
+                        phoneSubmit.innerHTML = '<i class="fa-solid fa-paper-plane"></i>Send Code';
                     });
                 });
             }
@@ -466,7 +679,7 @@
                     }
                     otpError.classList.add('d-none');
                     otpSubmit.disabled = true;
-                    otpSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-1"></i>Verifying...';
+                    otpSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>Verifying...';
 
                     fetch('{{ route("portal.otp.verify") }}', {
                         method: 'POST',
@@ -477,18 +690,17 @@
                             otpError.textContent = data.message || 'Invalid code. Please try again.';
                             otpError.classList.remove('d-none');
                             otpSubmit.disabled = false;
-                            otpSubmit.innerHTML = '<i class="fa-solid fa-check me-1"></i>Verify &amp; Start';
+                            otpSubmit.innerHTML = '<i class="fa-solid fa-check"></i>Verify &amp; Start';
                             return;
                         }
 
                         document.getElementById('otp-gate').classList.add('d-none');
-                        document.getElementById('video-stage').classList.remove('d-none');
                         postVideoStart();
                     }).catch(function () {
                         otpError.textContent = 'Network error. Please try again.';
                         otpError.classList.remove('d-none');
                         otpSubmit.disabled = false;
-                        otpSubmit.innerHTML = '<i class="fa-solid fa-check me-1"></i>Verify &amp; Start';
+                        otpSubmit.innerHTML = '<i class="fa-solid fa-check"></i>Verify &amp; Start';
                     });
                 });
 
@@ -520,7 +732,8 @@
                     document.getElementById('phone-input').value = '';
                     document.getElementById('otp-input').value = '';
                     document.getElementById('phone-submit').disabled = false;
-                    document.getElementById('phone-submit').innerHTML = '<i class="fa-solid fa-paper-plane me-1"></i>Send Code';
+                    document.getElementById('phone-submit').innerHTML = '<i class="fa-solid fa-paper-plane"></i>Send Code';
+                    setStep(1);
                 });
             }
 

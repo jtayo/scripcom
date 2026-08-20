@@ -6,6 +6,7 @@ use App\Http\Controllers\Traits\HasOrganizationScoping;
 use App\Models\Sponsor;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 
@@ -36,6 +37,12 @@ class SponsorController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $data = $this->validated($request);
+
+        if ($request->hasFile('logo')) {
+            $data['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
+        unset($data['logo_file']);
 
         $sponsor = Sponsor::create(array_merge($data, [
             'slug' => Str::slug($data['name']).'-'.Str::lower(Str::random(4)),
@@ -74,6 +81,16 @@ class SponsorController extends Controller
 
         $data = $this->validated($request);
 
+        if ($request->hasFile('logo')) {
+            if ($sponsor->logo) {
+                Storage::disk('public')->delete($sponsor->logo);
+            }
+
+            $data['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
+        unset($data['logo_file']);
+
         $sponsor->update($data);
 
         return redirect()
@@ -103,6 +120,7 @@ class SponsorController extends Controller
             'website' => ['nullable', 'url'],
             'contact_person' => ['nullable', 'string', 'max:255'],
             'brand_color' => ['nullable', 'regex:/^#[0-9A-Fa-f]{6}$/'],
+            'logo' => ['nullable', 'image', 'max:2048'],
             'is_active' => ['nullable', 'boolean'],
         ]);
 

@@ -1,19 +1,19 @@
 {
     "schema_version": 1,
-    "id": "9687dfbc-a2d8-4af9-af53-bfac07433a8f",
-    "recorded_at": "2026-08-20T12:15:05+00:00",
+    "id": "c8721600-fac5-430c-82d0-8b1fa3fbcfc6",
+    "recorded_at": "2026-08-20T12:50:30+00:00",
     "profile_type": "http",
     "environment": "local",
     "metrics": {
-        "duration_ms": 1043.95,
-        "peak_memory_mb": 6
+        "duration_ms": 4687.8,
+        "peak_memory_mb": 14
     },
     "sections": {
         "overview": {
             "label": "Overview",
             "summary": {
-                "duration_ms": 1043.95,
-                "peak_memory_mb": 6
+                "duration_ms": 4687.8,
+                "peak_memory_mb": 14
             },
             "payload": {
                 "runtime": {
@@ -70,7 +70,7 @@
                     "phone": "0722000001",
                     "address": null,
                     "website": "https://www.safaricom.co.ke",
-                    "brand_color": "#059e17",
+                    "brand_color": "#059E17",
                     "is_active": "1"
                 },
                 "headers": {
@@ -81,7 +81,7 @@
                         "keep-alive"
                     ],
                     "content-length": [
-                        "242"
+                        "57649"
                     ],
                     "cache-control": [
                         "max-age=0"
@@ -99,7 +99,7 @@
                         "1"
                     ],
                     "content-type": [
-                        "application/x-www-form-urlencoded"
+                        "multipart/form-data; boundary=----WebKitFormBoundaryc5FrZgD5uuG26QKD"
                     ],
                     "user-agent": [
                         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36"
@@ -154,7 +154,7 @@
                 "status": 302,
                 "request_type": "redirect",
                 "content_type": "text/html; charset=utf-8",
-                "request_size_bytes": 242,
+                "request_size_bytes": 57649,
                 "response_size_bytes": 390,
                 "session_present": false,
                 "authenticated": true,
@@ -180,7 +180,7 @@
                         "no-cache, private"
                     ],
                     "date": [
-                        "Thu, 20 Aug 2026 12:15:04 GMT"
+                        "Thu, 20 Aug 2026 12:50:30 GMT"
                     ],
                     "location": [
                         "http://127.0.0.1:8000/admin/sponsors"
@@ -199,7 +199,7 @@
                 "retained_count": 9,
                 "dropped_count": 0,
                 "truncated": false,
-                "duration_ms": 554.25,
+                "duration_ms": 2629.89,
                 "transaction_count": 0,
                 "transaction_retained_count": 0,
                 "transaction_dropped_count": 0,
@@ -213,12 +213,12 @@
                             "sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH"
                         ],
                         "runnable_sql": "select * from `sessions` where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH' limit 1",
-                        "duration_ms": 5.84,
+                        "duration_ms": 377.82,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 29.383,
+                        "at_ms": 434.291,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -230,12 +230,12 @@
                             1
                         ],
                         "runnable_sql": "select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1",
-                        "duration_ms": 2.01,
+                        "duration_ms": 27.11,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 40.547,
+                        "at_ms": 474.904,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -247,12 +247,12 @@
                             "1"
                         ],
                         "runnable_sql": "select * from `sponsors` where `id` = '1' and `sponsors`.`deleted_at` is null limit 1",
-                        "duration_ms": 1.85,
+                        "duration_ms": 24.99,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 49.583,
+                        "at_ms": 509.628,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -264,12 +264,12 @@
                             "scripcom-cache-spatie.permission.cache"
                         ],
                         "runnable_sql": "select * from `cache` where `key` in ('scripcom-cache-spatie.permission.cache')",
-                        "duration_ms": 1.24,
+                        "duration_ms": 76.59,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 61.799,
+                        "at_ms": 604.746,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -281,12 +281,12 @@
                             "App\\Models\\User"
                         ],
                         "runnable_sql": "select `permissions`.*, `model_has_permissions`.`model_id` as `pivot_model_id`, `model_has_permissions`.`permission_id` as `pivot_permission_id`, `model_has_permissions`.`model_type` as `pivot_model_type` from `permissions` inner join `model_has_permissions` on `permissions`.`id` = `model_has_permissions`.`permission_id` where `model_has_permissions`.`model_id` in (1) and `model_has_permissions`.`model_type` = 'App\\\\Models\\\\User'",
-                        "duration_ms": 1.95,
+                        "duration_ms": 2.95,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 81.332,
+                        "at_ms": 628.355,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -298,40 +298,40 @@
                             "App\\Models\\User"
                         ],
                         "runnable_sql": "select `roles`.*, `model_has_roles`.`model_id` as `pivot_model_id`, `model_has_roles`.`role_id` as `pivot_role_id`, `model_has_roles`.`model_type` as `pivot_model_type` from `roles` inner join `model_has_roles` on `roles`.`id` = `model_has_roles`.`role_id` where `model_has_roles`.`model_id` in (1) and `model_has_roles`.`model_type` = 'App\\\\Models\\\\User'",
-                        "duration_ms": 1.71,
+                        "duration_ms": 2.16,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 86.767,
+                        "at_ms": 634.241,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
                         "runnable_available": true
                     },
                     {
-                        "sql": "update `sponsors` set `brand_color` = ?, `sponsors`.`updated_at` = ? where `id` = ?",
+                        "sql": "update `sponsors` set `logo` = ?, `sponsors`.`updated_at` = ? where `id` = ?",
                         "bindings": [
-                            "#059E17",
-                            "2026-08-20 12:15:04",
+                            "logos/lIIZKeBZGG9h6SkHFs4T69s1v6TZT0BbaCuWitCW.png",
+                            "2026-08-20 12:50:28",
                             1
                         ],
-                        "runnable_sql": "update `sponsors` set `brand_color` = '#059E17', `sponsors`.`updated_at` = '2026-08-20 12:15:04' where `id` = 1",
-                        "duration_ms": 237.17,
+                        "runnable_sql": "update `sponsors` set `logo` = 'logos/lIIZKeBZGG9h6SkHFs4T69s1v6TZT0BbaCuWitCW.png', `sponsors`.`updated_at` = '2026-08-20 12:50:28' where `id` = 1",
+                        "duration_ms": 378.51,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
                             "file": "app/Http/Controllers/SponsorController.php",
-                            "line": 77
+                            "line": 94
                         },
                         "stack": [
                             {
                                 "file": "app/Http/Controllers/SponsorController.php",
-                                "line": 77,
+                                "line": 94,
                                 "function": "Illuminate\\Database\\Eloquent\\Model->update"
                             }
                         ],
-                        "at_ms": 386.964,
+                        "at_ms": 2853.588,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -345,14 +345,14 @@
                             "App\\Models\\Sponsor",
                             1,
                             "Safaricom PLC",
-                            "{\"id\":1,\"name\":\"Safaricom PLC\",\"slug\":\"safaricom\",\"email\":\"partners@safaricom.co.ke\",\"phone\":\"0722000001\",\"address\":null,\"logo\":null,\"brand_color\":null,\"website\":\"https:\\/\\/www.safaricom.co.ke\",\"contact_person\":\"Betty Njoroge\",\"is_active\":true,\"created_at\":\"2026-08-20T06:56:44.000000Z\",\"updated_at\":\"2026-08-20T06:56:44.000000Z\",\"deleted_at\":null}",
-                            "{\"brand_color\":\"#059E17\",\"updated_at\":\"2026-08-20 12:15:04\"}",
+                            "{\"id\":1,\"name\":\"Safaricom PLC\",\"slug\":\"safaricom\",\"email\":\"partners@safaricom.co.ke\",\"phone\":\"0722000001\",\"address\":null,\"logo\":null,\"brand_color\":\"#059E17\",\"website\":\"https:\\/\\/www.safaricom.co.ke\",\"contact_person\":\"Betty Njoroge\",\"is_active\":true,\"created_at\":\"2026-08-20T06:56:44.000000Z\",\"updated_at\":\"2026-08-20T12:15:04.000000Z\",\"deleted_at\":null}",
+                            "{\"logo\":\"logos\\/lIIZKeBZGG9h6SkHFs4T69s1v6TZT0BbaCuWitCW.png\",\"updated_at\":\"2026-08-20 12:50:28\"}",
                             "127.0.0.1",
                             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
-                            "2026-08-20 12:15:04"
+                            "2026-08-20 12:50:28"
                         ],
-                        "runnable_sql": "insert into `audit_logs` (`user_id`, `action`, `entity_type`, `entity_id`, `entity_label`, `old_values`, `new_values`, `ip_address`, `user_agent`, `created_at`) values (1, 'updated', 'App\\\\Models\\\\Sponsor', 1, 'Safaricom PLC', '{\\\"id\\\":1,\\\"name\\\":\\\"Safaricom PLC\\\",\\\"slug\\\":\\\"safaricom\\\",\\\"email\\\":\\\"partners@safaricom.co.ke\\\",\\\"phone\\\":\\\"0722000001\\\",\\\"address\\\":null,\\\"logo\\\":null,\\\"brand_color\\\":null,\\\"website\\\":\\\"https:\\\\/\\\\/www.safaricom.co.ke\\\",\\\"contact_person\\\":\\\"Betty Njoroge\\\",\\\"is_active\\\":true,\\\"created_at\\\":\\\"2026-08-20T06:56:44.000000Z\\\",\\\"updated_at\\\":\\\"2026-08-20T06:56:44.000000Z\\\",\\\"deleted_at\\\":null}', '{\\\"brand_color\\\":\\\"#059E17\\\",\\\"updated_at\\\":\\\"2026-08-20 12:15:04\\\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36', '2026-08-20 12:15:04')",
-                        "duration_ms": 154.07,
+                        "runnable_sql": "insert into `audit_logs` (`user_id`, `action`, `entity_type`, `entity_id`, `entity_label`, `old_values`, `new_values`, `ip_address`, `user_agent`, `created_at`) values (1, 'updated', 'App\\\\Models\\\\Sponsor', 1, 'Safaricom PLC', '{\\\"id\\\":1,\\\"name\\\":\\\"Safaricom PLC\\\",\\\"slug\\\":\\\"safaricom\\\",\\\"email\\\":\\\"partners@safaricom.co.ke\\\",\\\"phone\\\":\\\"0722000001\\\",\\\"address\\\":null,\\\"logo\\\":null,\\\"brand_color\\\":\\\"#059E17\\\",\\\"website\\\":\\\"https:\\\\/\\\\/www.safaricom.co.ke\\\",\\\"contact_person\\\":\\\"Betty Njoroge\\\",\\\"is_active\\\":true,\\\"created_at\\\":\\\"2026-08-20T06:56:44.000000Z\\\",\\\"updated_at\\\":\\\"2026-08-20T12:15:04.000000Z\\\",\\\"deleted_at\\\":null}', '{\\\"logo\\\":\\\"logos\\\\/lIIZKeBZGG9h6SkHFs4T69s1v6TZT0BbaCuWitCW.png\\\",\\\"updated_at\\\":\\\"2026-08-20 12:50:28\\\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36', '2026-08-20 12:50:28')",
+                        "duration_ms": 1471.28,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
@@ -377,11 +377,11 @@
                             },
                             {
                                 "file": "app/Http/Controllers/SponsorController.php",
-                                "line": 77,
+                                "line": 94,
                                 "function": "Illuminate\\Database\\Eloquent\\Model->update"
                             }
                         ],
-                        "at_ms": 850.617,
+                        "at_ms": 4337.892,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -391,19 +391,19 @@
                         "sql": "update `sessions` set `payload` = ?, `last_activity` = ?, `user_id` = ?, `ip_address` = ?, `user_agent` = ? where `id` = ?",
                         "bindings": [
                             "eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOlsic3VjY2VzcyJdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvc3BvbnNvcnNcLzFcL2VkaXQiLCJyb3V0ZSI6ImFkbWluLnNwb25zb3JzLmVkaXQifSwic3VjY2VzcyI6IlNwb25zb3IgU2FmYXJpY29tIFBMQyB1cGRhdGVkLiJ9",
-                            1787228104,
+                            1787230230,
                             1,
                             "127.0.0.1",
                             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
                             "sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH"
                         ],
-                        "runnable_sql": "update `sessions` set `payload` = 'eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOlsic3VjY2VzcyJdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvc3BvbnNvcnNcLzFcL2VkaXQiLCJyb3V0ZSI6ImFkbWluLnNwb25zb3JzLmVkaXQifSwic3VjY2VzcyI6IlNwb25zb3IgU2FmYXJpY29tIFBMQyB1cGRhdGVkLiJ9', `last_activity` = 1787228104, `user_id` = 1, `ip_address` = '127.0.0.1', `user_agent` = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36' where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH'",
-                        "duration_ms": 148.41,
+                        "runnable_sql": "update `sessions` set `payload` = 'eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOlsic3VjY2VzcyJdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvc3BvbnNvcnNcLzFcL2VkaXQiLCJyb3V0ZSI6ImFkbWluLnNwb25zb3JzLmVkaXQifSwic3VjY2VzcyI6IlNwb25zb3IgU2FmYXJpY29tIFBMQyB1cGRhdGVkLiJ9', `last_activity` = 1787230230, `user_id` = 1, `ip_address` = '127.0.0.1', `user_agent` = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36' where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH'",
+                        "duration_ms": 268.48,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 1038.775,
+                        "at_ms": 4683.166,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -502,7 +502,7 @@
                         "connection": "mysql",
                         "table": "users",
                         "key": 1,
-                        "at_ms": 41.587
+                        "at_ms": 475.609
                     },
                     {
                         "event": "retrieved",
@@ -510,7 +510,7 @@
                         "connection": "mysql",
                         "table": "sponsors",
                         "key": 1,
-                        "at_ms": 50.054
+                        "at_ms": 510.262
                     },
                     {
                         "event": "retrieved",
@@ -518,7 +518,7 @@
                         "connection": "mysql",
                         "table": "roles",
                         "key": 1,
-                        "at_ms": 87.659
+                        "at_ms": 635.077
                     },
                     {
                         "event": "saving",
@@ -526,7 +526,7 @@
                         "connection": "mysql",
                         "table": "sponsors",
                         "key": 1,
-                        "at_ms": 146.609
+                        "at_ms": 2470.831
                     },
                     {
                         "event": "updating",
@@ -534,7 +534,7 @@
                         "connection": "mysql",
                         "table": "sponsors",
                         "key": 1,
-                        "at_ms": 146.774
+                        "at_ms": 2471.222
                     },
                     {
                         "event": "saving",
@@ -542,7 +542,7 @@
                         "connection": "mysql",
                         "table": "audit_logs",
                         "key": null,
-                        "at_ms": 648.381
+                        "at_ms": 2863.424
                     },
                     {
                         "event": "creating",
@@ -550,23 +550,23 @@
                         "connection": "mysql",
                         "table": "audit_logs",
                         "key": null,
-                        "at_ms": 648.549
+                        "at_ms": 2863.551
                     },
                     {
                         "event": "created",
                         "model": "App\\Models\\AuditLog",
                         "connection": "mysql",
                         "table": "audit_logs",
-                        "key": 141,
-                        "at_ms": 851.082
+                        "key": 142,
+                        "at_ms": 4338.353
                     },
                     {
                         "event": "saved",
                         "model": "App\\Models\\AuditLog",
                         "connection": "mysql",
                         "table": "audit_logs",
-                        "key": 141,
-                        "at_ms": 851.195
+                        "key": 142,
+                        "at_ms": 4338.491
                     },
                     {
                         "event": "updated",
@@ -574,7 +574,7 @@
                         "connection": "mysql",
                         "table": "sponsors",
                         "key": 1,
-                        "at_ms": 852.764
+                        "at_ms": 4340.512
                     },
                     {
                         "event": "saved",
@@ -582,7 +582,7 @@
                         "connection": "mysql",
                         "table": "sponsors",
                         "key": 1,
-                        "at_ms": 852.888
+                        "at_ms": 4340.604
                     }
                 ]
             }
@@ -612,7 +612,7 @@
                         "tag_hashes": [],
                         "tags": [],
                         "seconds": null,
-                        "at_ms": 62.754
+                        "at_ms": 606.942
                     }
                 ]
             }
@@ -646,7 +646,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\ConnectionEstablished"
                         ],
-                        "at_ms": 16.958
+                        "at_ms": 47.807
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -655,7 +655,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 23.303
+                        "at_ms": 412.537
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -664,7 +664,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 37.336
+                        "at_ms": 469.302
                     },
                     {
                         "name": "Illuminate\\Auth\\Events\\Authenticated",
@@ -673,7 +673,7 @@
                         "payload_types": [
                             "Illuminate\\Auth\\Events\\Authenticated"
                         ],
-                        "at_ms": 44.208
+                        "at_ms": 479.406
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -682,7 +682,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 47.23
+                        "at_ms": 506.414
                     },
                     {
                         "name": "Illuminate\\Cache\\Events\\RetrievingKey",
@@ -691,7 +691,7 @@
                         "payload_types": [
                             "Illuminate\\Cache\\Events\\RetrievingKey"
                         ],
-                        "at_ms": 58.528
+                        "at_ms": 523.713
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -700,7 +700,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 59.422
+                        "at_ms": 599.766
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -709,7 +709,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 78.317
+                        "at_ms": 624.984
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -718,7 +718,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 84.653
+                        "at_ms": 631.793
                     }
                 ]
             }
@@ -740,7 +740,7 @@
                         "user_type": "App\\Models\\User",
                         "argument_types": [],
                         "callsite": null,
-                        "at_ms": 94.29
+                        "at_ms": 643.339
                     }
                 ]
             }

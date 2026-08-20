@@ -138,6 +138,7 @@ class CampaignController extends Controller
             'type' => ['required', 'in:' . implode(',', array_column(CampaignType::cases(), 'value'))],
             'content_type' => ['required', 'in:image,video,html'],
             'content_url' => ['nullable', 'url'],
+            'video_caption' => ['nullable', 'string', 'max:255'],
             'thumbnail' => ['nullable', 'string', 'max:255'],
             'redirect_url' => ['nullable', 'url'],
             'duration_seconds' => ['required', 'integer', 'min:1', 'max:600'],

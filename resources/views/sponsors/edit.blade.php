@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin.sponsors.update', $sponsor) }}">
+                    <form method="POST" action="{{ route('admin.sponsors.update', $sponsor) }}" enctype="multipart/form-data">
                         @csrf @method('PUT')
 
                         <div class="row g-3">
@@ -89,6 +89,26 @@
                             </div>
 
                             <div class="col-12 col-md-6">
+                                <label class="form-label" for="logo">Sponsor Logo</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa-solid fa-image"></i></span>
+                                    <input type="file" id="logo" name="logo" class="form-control @error('logo') is-invalid @enderror" accept="image/*">
+                                    @error('logo') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                </div>
+                                <div class="form-hint">Recommended: PNG or SVG with transparent background. Max 2 MB.</div>
+                                <div id="logo-preview" class="mt-2 @if(!$sponsor->logo) d-none @endif">
+                                    @if($sponsor->logo)
+                                        <div class="d-flex align-items-center gap-2">
+                                            <img src="{{ asset('storage/' . $sponsor->logo) }}" alt="Current logo" style="max-height: 64px; max-width: 200px; object-fit: contain; border-radius: .5rem; border: 1px solid var(--tblr-border-color); padding: .25rem;">
+                                            <span class="text-secondary small">Current logo</span>
+                                        </div>
+                                    @else
+                                        <img src="" alt="Logo preview" style="max-height: 64px; max-width: 200px; object-fit: contain; border-radius: .5rem; border: 1px solid var(--tblr-border-color); padding: .25rem;">
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
                                 <label class="form-label" for="brand_color">Portal Brand Color</label>
                                 <div class="input-icon">
                                     <span class="input-icon-addon" id="brand_color_swatch" style="background: {{ old('brand_color', $sponsor->brand_color ?? '#262B40') }}; border-radius: .5rem; width: 1.75rem; height: 1.75rem; margin: .35rem; flex-shrink: 0;"></span>
@@ -144,6 +164,25 @@
     picker.addEventListener('input', () => { text.value = picker.value.toUpperCase(); sync(); });
     text.addEventListener('input', sync);
     sync();
+
+    const logoInput = document.getElementById('logo');
+    const logoPreview = document.getElementById('logo-preview');
+    if (logoInput && logoPreview) {
+        logoInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = logoPreview.querySelector('img');
+                    img.src = e.target.result;
+                    logoPreview.classList.remove('d-none');
+                    const hint = logoPreview.querySelector('span');
+                    if (hint) hint.textContent = 'New logo';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
 })();
 </script>
 @endsection

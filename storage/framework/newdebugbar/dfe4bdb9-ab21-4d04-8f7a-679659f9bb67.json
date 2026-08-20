@@ -1,18 +1,18 @@
 {
     "schema_version": 1,
-    "id": "72110d00-f882-48fb-8239-1bf62f8b908d",
-    "recorded_at": "2026-08-20T12:17:55+00:00",
+    "id": "dfe4bdb9-ab21-4d04-8f7a-679659f9bb67",
+    "recorded_at": "2026-08-20T12:37:05+00:00",
     "profile_type": "http",
     "environment": "local",
     "metrics": {
-        "duration_ms": 45.81,
+        "duration_ms": 15.37,
         "peak_memory_mb": 6
     },
     "sections": {
         "overview": {
             "label": "Overview",
             "summary": {
-                "duration_ms": 45.81,
+                "duration_ms": 15.37,
                 "peak_memory_mb": 6
             },
             "payload": {
@@ -122,7 +122,7 @@
                         "no-cache, private"
                     ],
                     "date": [
-                        "Thu, 20 Aug 2026 12:17:55 GMT"
+                        "Thu, 20 Aug 2026 12:37:05 GMT"
                     ],
                     "content-type": [
                         "text/html; charset=utf-8"
@@ -270,7 +270,7 @@
                             "exception": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException: The route .well-known/appspecific/com.chrome.devtools.json could not be found. in C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\AbstractRouteCollection.php:44\nStack trace:\n#0 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteCollection.php(207): Illuminate\\Routing\\AbstractRouteCollection->handleMatchedRoute(Object(Illuminate\\Http\\Request), NULL)\n#1 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(777): Illuminate\\Routing\\RouteCollection->match(Object(Illuminate\\Http\\Request))\n#2 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(764): Illuminate\\Routing\\Router->findRoute(Object(Illuminate\\Http\\Request))\n#3 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(753): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))\n#4 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))\n#5 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Kernel->{closure:Illuminate\\Foundation\\Http\\Kernel::dispatchToRouter():197}(Object(Illuminate\\Http\\Request))\n#6 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\newdebugbar\\newdebugbar\\src\\Http\\Middleware\\ProfileRequest.php(36): Illuminate\\Pipeline\\Pipeline->{closure:Illuminate\\Pipeline\\Pipeline::prepareDestination():178}(Object(Illuminate\\Http\\Request))\n#7 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(219): NewDebugBar\\Http\\Middleware\\ProfileRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#8 C:\\Users\\Mwangoji\\Documents\\Git\u2026"
                         },
                         "timing": "composition_marker",
-                        "at_ms": 28.067
+                        "at_ms": 9.544
                     },
                     {
                         "name": "errors::minimal",
@@ -286,7 +286,7 @@
                             "exception": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException: The route .well-known/appspecific/com.chrome.devtools.json could not be found. in C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\AbstractRouteCollection.php:44\nStack trace:\n#0 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteCollection.php(207): Illuminate\\Routing\\AbstractRouteCollection->handleMatchedRoute(Object(Illuminate\\Http\\Request), NULL)\n#1 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(777): Illuminate\\Routing\\RouteCollection->match(Object(Illuminate\\Http\\Request))\n#2 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(764): Illuminate\\Routing\\Router->findRoute(Object(Illuminate\\Http\\Request))\n#3 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(753): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))\n#4 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))\n#5 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Kernel->{closure:Illuminate\\Foundation\\Http\\Kernel::dispatchToRouter():197}(Object(Illuminate\\Http\\Request))\n#6 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\newdebugbar\\newdebugbar\\src\\Http\\Middleware\\ProfileRequest.php(36): Illuminate\\Pipeline\\Pipeline->{closure:Illuminate\\Pipeline\\Pipeline::prepareDestination():178}(Object(Illuminate\\Http\\Request))\n#7 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(219): NewDebugBar\\Http\\Middleware\\ProfileRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#8 C:\\Users\\Mwangoji\\Documents\\Git\u2026"
                         },
                         "timing": "composition_marker",
-                        "at_ms": 33.217
+                        "at_ms": 13.248
                     }
                 ]
             }
@@ -308,7 +308,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\ConnectionEstablished"
                         ],
-                        "at_ms": 21.578
+                        "at_ms": 8.129
                     }
                 ]
             }

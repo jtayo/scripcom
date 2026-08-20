@@ -103,6 +103,14 @@
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
+                                <label class="form-label" for="video_caption">Video Caption</label>
+                                <div class="input-icon">
+                                    <span class="input-icon-addon"><i class="fa-solid fa-closed-captioning"></i></span>
+                                    <input type="text" id="video_caption" name="video_caption" class="form-control @error('video_caption') is-invalid @enderror" value="{{ old('video_caption') }}" placeholder="e.g. Powered by Safaricom">
+                                    @error('video_caption') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
                                 <label class="form-label" for="thumbnail">Thumbnail</label>
                                 <div class="input-icon">
                                     <span class="input-icon-addon"><i class="fa-solid fa-image"></i></span>

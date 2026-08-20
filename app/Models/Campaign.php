@@ -24,6 +24,7 @@ class Campaign extends Model
         'type',
         'content_type',
         'content_url',
+        'video_caption',
         'thumbnail',
         'redirect_url',
         'duration_seconds',

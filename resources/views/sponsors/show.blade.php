@@ -15,9 +15,13 @@
             <div class="card">
                 <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-md-center">
                     <div class="d-flex align-items-center mb-3 mb-md-0">
-                        <span class="avatar avatar-lg bg-primary-lt text-primary me-3">
-                            <i class="fa-solid fa-building"></i>
-                        </span>
+                        @if($sponsor->logo)
+                            <img src="{{ asset('storage/' . $sponsor->logo) }}" alt="{{ $sponsor->name }}" class="me-3" style="width: 3.5rem; height: 3.5rem; object-fit: contain; border-radius: .75rem; border: 1px solid var(--tblr-border-color); padding: .25rem;">
+                        @else
+                            <span class="avatar avatar-lg bg-primary-lt text-primary me-3">
+                                <i class="fa-solid fa-building"></i>
+                            </span>
+                        @endif
                         <div>
                             <h1 class="h4 mb-1">{{ $sponsor->name }}</h1>
                             <div class="text-muted d-flex align-items-center flex-wrap">
