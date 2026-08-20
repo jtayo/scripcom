@@ -1,0 +1,1835 @@
+{
+    "schema_version": 1,
+    "id": "b37e1dfb-4b2d-4725-bb00-bae462554dd1",
+    "recorded_at": "2026-08-20T07:22:58+00:00",
+    "profile_type": "http",
+    "environment": "local",
+    "metrics": {
+        "duration_ms": 1812.29,
+        "peak_memory_mb": 8
+    },
+    "sections": {
+        "overview": {
+            "label": "Overview",
+            "summary": {
+                "duration_ms": 1812.29,
+                "peak_memory_mb": 8
+            },
+            "payload": {
+                "runtime": {
+                    "environment": "local",
+                    "php": "8.4.24",
+                    "php_sapi": "cli-server",
+                    "runtime_type": "cli-server",
+                    "laravel": "13.25.0",
+                    "debug": true,
+                    "locale": "en",
+                    "timezone": "UTC"
+                },
+                "cache_state": {
+                    "configuration": false,
+                    "routes": false,
+                    "events": false
+                },
+                "drivers": {
+                    "database": "mysql",
+                    "cache": "database",
+                    "queue": "database",
+                    "session": "database",
+                    "mail": "log",
+                    "broadcasting": "log"
+                },
+                "ecosystem": [
+                    {
+                        "key": "sanctum",
+                        "label": "Sanctum",
+                        "version": "v4.3.3"
+                    }
+                ],
+                "package": "dev-main"
+            }
+        },
+        "request": {
+            "label": "Request",
+            "summary": {
+                "method": "GET",
+                "status": 200,
+                "exit_code": null
+            },
+            "payload": {
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/admin/organizations",
+                "path": "/admin/organizations",
+                "query": [],
+                "input": [],
+                "headers": {
+                    "host": [
+                        "127.0.0.1:8000"
+                    ],
+                    "connection": [
+                        "keep-alive"
+                    ],
+                    "sec-ch-ua": [
+                        "\"Not=A?Brand\";v=\"99\", \"Brave\";v=\"151\", \"Chromium\";v=\"151\""
+                    ],
+                    "sec-ch-ua-mobile": [
+                        "?0"
+                    ],
+                    "sec-ch-ua-platform": [
+                        "\"Windows\""
+                    ],
+                    "upgrade-insecure-requests": [
+                        "1"
+                    ],
+                    "user-agent": [
+                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36"
+                    ],
+                    "accept": [
+                        "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8"
+                    ],
+                    "sec-gpc": [
+                        "1"
+                    ],
+                    "sec-fetch-site": [
+                        "same-origin"
+                    ],
+                    "sec-fetch-mode": [
+                        "navigate"
+                    ],
+                    "sec-fetch-user": [
+                        "?1"
+                    ],
+                    "sec-fetch-dest": [
+                        "document"
+                    ],
+                    "referer": [
+                        "http://127.0.0.1:8000/admin/sponsorships/1"
+                    ],
+                    "accept-encoding": [
+                        "gzip, deflate, br, zstd"
+                    ],
+                    "accept-language": [
+                        "en-US,en;q=0.8"
+                    ],
+                    "cookie": "[redacted]"
+                },
+                "route": "admin.organizations.index",
+                "action": "App\\Http\\Controllers\\OrganizationController@index",
+                "parameters": [],
+                "middleware": [
+                    "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                    "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                    "Illuminate\\Session\\Middleware\\StartSession",
+                    "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                    "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestForgery",
+                    "Illuminate\\Auth\\Middleware\\Authenticate",
+                    "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                    "Illuminate\\Auth\\Middleware\\Authorize:view-any-organization"
+                ],
+                "status": 200,
+                "request_type": "full_page",
+                "content_type": "text/html; charset=utf-8",
+                "request_size_bytes": 0,
+                "response_size_bytes": 52388,
+                "session_present": false,
+                "authenticated": true,
+                "authentication": {
+                    "guard": "web",
+                    "authenticated": true,
+                    "model": "App\\Models\\User",
+                    "identifier": "hmac:744afb656c7b89a1",
+                    "identifier_policy": "keyed_hash"
+                },
+                "session": {
+                    "present": false,
+                    "driver": "database",
+                    "key_count": 0,
+                    "keys": [],
+                    "keys_dropped": 0,
+                    "flash_keys": [],
+                    "error_bag_present": false,
+                    "error_bags": []
+                },
+                "response_headers": {
+                    "content-type": [
+                        "text/html; charset=utf-8"
+                    ],
+                    "cache-control": [
+                        "no-cache, private"
+                    ],
+                    "date": [
+                        "Thu, 20 Aug 2026 07:22:56 GMT"
+                    ],
+                    "set-cookie": "[redacted]"
+                }
+            }
+        },
+        "queries": {
+            "label": "Queries",
+            "summary": {
+                "count": 10,
+                "retained_count": 10,
+                "dropped_count": 0,
+                "truncated": false,
+                "duration_ms": 312.14,
+                "transaction_count": 0,
+                "transaction_retained_count": 0,
+                "transaction_dropped_count": 0,
+                "rollback_count": 0
+            },
+            "payload": {
+                "items": [
+                    {
+                        "sql": "select * from `sessions` where `id` = ? limit 1",
+                        "bindings": [
+                            "4QY9rhw9mBGy5Se1qxyYfQ3Xolty5a5jSWUGntUa"
+                        ],
+                        "runnable_sql": "select * from `sessions` where `id` = '4QY9rhw9mBGy5Se1qxyYfQ3Xolty5a5jSWUGntUa' limit 1",
+                        "duration_ms": 24.32,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 229.952,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select * from `users` where `id` = ? and `users`.`deleted_at` is null limit 1",
+                        "bindings": [
+                            1
+                        ],
+                        "runnable_sql": "select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1",
+                        "duration_ms": 2.07,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 239.928,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select * from `cache` where `key` in (?)",
+                        "bindings": [
+                            "scripcom-cache-spatie.permission.cache"
+                        ],
+                        "runnable_sql": "select * from `cache` where `key` in ('scripcom-cache-spatie.permission.cache')",
+                        "duration_ms": 1.16,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 251.705,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select `permissions`.*, `model_has_permissions`.`model_id` as `pivot_model_id`, `model_has_permissions`.`permission_id` as `pivot_permission_id`, `model_has_permissions`.`model_type` as `pivot_model_type` from `permissions` inner join `model_has_permissions` on `permissions`.`id` = `model_has_permissions`.`permission_id` where `model_has_permissions`.`model_id` in (1) and `model_has_permissions`.`model_type` = ?",
+                        "bindings": [
+                            "App\\Models\\User"
+                        ],
+                        "runnable_sql": "select `permissions`.*, `model_has_permissions`.`model_id` as `pivot_model_id`, `model_has_permissions`.`permission_id` as `pivot_permission_id`, `model_has_permissions`.`model_type` as `pivot_model_type` from `permissions` inner join `model_has_permissions` on `permissions`.`id` = `model_has_permissions`.`permission_id` where `model_has_permissions`.`model_id` in (1) and `model_has_permissions`.`model_type` = 'App\\\\Models\\\\User'",
+                        "duration_ms": 1.75,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 264.398,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select `roles`.*, `model_has_roles`.`model_id` as `pivot_model_id`, `model_has_roles`.`role_id` as `pivot_role_id`, `model_has_roles`.`model_type` as `pivot_model_type` from `roles` inner join `model_has_roles` on `roles`.`id` = `model_has_roles`.`role_id` where `model_has_roles`.`model_id` in (1) and `model_has_roles`.`model_type` = ?",
+                        "bindings": [
+                            "App\\Models\\User"
+                        ],
+                        "runnable_sql": "select `roles`.*, `model_has_roles`.`model_id` as `pivot_model_id`, `model_has_roles`.`role_id` as `pivot_role_id`, `model_has_roles`.`model_type` as `pivot_model_type` from `roles` inner join `model_has_roles` on `roles`.`id` = `model_has_roles`.`role_id` where `model_has_roles`.`model_id` in (1) and `model_has_roles`.`model_type` = 'App\\\\Models\\\\User'",
+                        "duration_ms": 1.43,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 268.226,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select count(*) as `aggregate` from `organizations` where `organizations`.`deleted_at` is null",
+                        "bindings": [],
+                        "runnable_sql": "select count(*) as `aggregate` from `organizations` where `organizations`.`deleted_at` is null",
+                        "duration_ms": 1.33,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "app/Http/Controllers/OrganizationController.php",
+                            "line": 20
+                        },
+                        "stack": [
+                            {
+                                "file": "app/Http/Controllers/OrganizationController.php",
+                                "line": 20,
+                                "function": "Illuminate\\Database\\Eloquent\\Builder->paginate"
+                            }
+                        ],
+                        "at_ms": 279.935,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select `organizations`.*, (select count(*) from `users` where `organizations`.`id` = `users`.`organization_id` and `users`.`deleted_at` is null) as `users_count`, (select count(*) from `hotspots` where `organizations`.`id` = `hotspots`.`organization_id` and `hotspots`.`deleted_at` is null) as `hotspots_count`, (select count(*) from `campaigns` where `organizations`.`id` = `campaigns`.`organization_id` and `campaigns`.`deleted_at` is null) as `campaigns_count` from `organizations` where `organizations`.`deleted_at` is null order by `created_at` desc limit 15 offset 0",
+                        "bindings": [],
+                        "runnable_sql": "select `organizations`.*, (select count(*) from `users` where `organizations`.`id` = `users`.`organization_id` and `users`.`deleted_at` is null) as `users_count`, (select count(*) from `hotspots` where `organizations`.`id` = `hotspots`.`organization_id` and `hotspots`.`deleted_at` is null) as `hotspots_count`, (select count(*) from `campaigns` where `organizations`.`id` = `campaigns`.`organization_id` and `campaigns`.`deleted_at` is null) as `campaigns_count` from `organizations` where `organizations`.`deleted_at` is null order by `created_at` desc limit 15 offset 0",
+                        "duration_ms": 12.94,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "app/Http/Controllers/OrganizationController.php",
+                            "line": 20
+                        },
+                        "stack": [
+                            {
+                                "file": "app/Http/Controllers/OrganizationController.php",
+                                "line": 20,
+                                "function": "Illuminate\\Database\\Eloquent\\Builder->paginate"
+                            }
+                        ],
+                        "at_ms": 293.967,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select count(*) as `aggregate` from `notifications` where `notifications`.`notifiable_type` = ? and `notifications`.`notifiable_id` = ? and `notifications`.`notifiable_id` is not null and `read_at` is null",
+                        "bindings": [
+                            "App\\Models\\User",
+                            1
+                        ],
+                        "runnable_sql": "select count(*) as `aggregate` from `notifications` where `notifications`.`notifiable_type` = 'App\\\\Models\\\\User' and `notifications`.`notifiable_id` = 1 and `notifications`.`notifiable_id` is not null and `read_at` is null",
+                        "duration_ms": 1.85,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 420
+                        },
+                        "stack": [
+                            {
+                                "file": "resources/views/layouts/admin.blade.php",
+                                "line": 420,
+                                "function": "Blade authorization directive"
+                            }
+                        ],
+                        "at_ms": 1514.988,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select * from `notifications` where `notifications`.`notifiable_type` = ? and `notifications`.`notifiable_id` = ? and `notifications`.`notifiable_id` is not null order by `created_at` desc, `created_at` desc limit 5",
+                        "bindings": [
+                            "App\\Models\\User",
+                            1
+                        ],
+                        "runnable_sql": "select * from `notifications` where `notifications`.`notifiable_type` = 'App\\\\Models\\\\User' and `notifications`.`notifiable_id` = 1 and `notifications`.`notifiable_id` is not null order by `created_at` desc, `created_at` desc limit 5",
+                        "duration_ms": 1.21,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
+                            "line": 424
+                        },
+                        "stack": [
+                            {
+                                "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
+                                "line": 424,
+                                "function": "Blade authorization directive"
+                            }
+                        ],
+                        "at_ms": 1519.233,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "update `sessions` set `payload` = ?, `last_activity` = ?, `user_id` = ?, `ip_address` = ?, `user_agent` = ? where `id` = ?",
+                        "bindings": [
+                            "eyJfdG9rZW4iOiJlYVFrU21LbDgwdFBFS2Y0T0hnVzlLejJYdFdWeTZTSVFxSzFDb3JDIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvb3JnYW5pemF0aW9ucyIsInJvdXRlIjoiYWRtaW4ub3JnYW5pemF0aW9ucy5pbmRleCJ9LCJfZmxhc2giOnsib2xkIjpbXSwibmV3IjpbXX0sImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjoxfQ==",
+                            1787210577,
+                            1,
+                            "127.0.0.1",
+                            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+                            "4QY9rhw9mBGy5Se1qxyYfQ3Xolty5a5jSWUGntUa"
+                        ],
+                        "runnable_sql": "update `sessions` set `payload` = 'eyJfdG9rZW4iOiJlYVFrU21LbDgwdFBFS2Y0T0hnVzlLejJYdFdWeTZTSVFxSzFDb3JDIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvb3JnYW5pemF0aW9ucyIsInJvdXRlIjoiYWRtaW4ub3JnYW5pemF0aW9ucy5pbmRleCJ9LCJfZmxhc2giOnsib2xkIjpbXSwibmV3IjpbXX0sImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjoxfQ==', `last_activity` = 1787210577, `user_id` = 1, `ip_address` = '127.0.0.1', `user_agent` = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36' where `id` = '4QY9rhw9mBGy5Se1qxyYfQ3Xolty5a5jSWUGntUa'",
+                        "duration_ms": 264.08,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 1803.979,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    }
+                ],
+                "transactions": []
+            }
+        },
+        "http_client": {
+            "label": "HTTP Client",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "duration_ms": 0,
+                "failed_count": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "queue": {
+            "label": "Queue",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "queued_count": 0,
+                "executed_count": 0,
+                "failed_count": 0,
+                "duration_ms": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "mail": {
+            "label": "Mail",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "recipient_count": 0,
+                "attachment_count": 0,
+                "duration_ms": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "notifications": {
+            "label": "Notifications",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "sent_count": 0,
+                "failed_count": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "redis": {
+            "label": "Redis",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "duration_ms": 0,
+                "failed_count": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "models": {
+            "label": "Models",
+            "summary": {
+                "count": 10,
+                "retained_count": 10,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": [
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\User",
+                        "connection": "mysql",
+                        "table": "users",
+                        "key": 1,
+                        "at_ms": 240.338
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "Spatie\\Permission\\Models\\Role",
+                        "connection": "mysql",
+                        "table": "roles",
+                        "key": 1,
+                        "at_ms": 269.006
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\Organization",
+                        "connection": "mysql",
+                        "table": "organizations",
+                        "key": 5,
+                        "at_ms": 294.384
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\Organization",
+                        "connection": "mysql",
+                        "table": "organizations",
+                        "key": 2,
+                        "at_ms": 294.475
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\Organization",
+                        "connection": "mysql",
+                        "table": "organizations",
+                        "key": 3,
+                        "at_ms": 294.557
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\Organization",
+                        "connection": "mysql",
+                        "table": "organizations",
+                        "key": 4,
+                        "at_ms": 294.638
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\Organization",
+                        "connection": "mysql",
+                        "table": "organizations",
+                        "key": 1,
+                        "at_ms": 294.717
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "Illuminate\\Notifications\\DatabaseNotification",
+                        "connection": "mysql",
+                        "table": "notifications",
+                        "key": "f1d65c50-f1f5-45af-aff6-1b5270bc084a",
+                        "at_ms": 1519.744
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "Illuminate\\Notifications\\DatabaseNotification",
+                        "connection": "mysql",
+                        "table": "notifications",
+                        "key": "9d3528cc-2174-4bd9-a872-315daaff9140",
+                        "at_ms": 1520.506
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "Illuminate\\Notifications\\DatabaseNotification",
+                        "connection": "mysql",
+                        "table": "notifications",
+                        "key": "e53f5f50-0c0a-47ee-8e7f-1b3c793f9b38",
+                        "at_ms": 1520.653
+                    }
+                ]
+            }
+        },
+        "cache": {
+            "label": "Cache",
+            "summary": {
+                "count": 1,
+                "retained_count": 1,
+                "dropped_count": 0,
+                "truncated": false,
+                "hits": 1,
+                "misses": 0,
+                "writes": 0
+            },
+            "payload": {
+                "items": [
+                    {
+                        "operation": "hit",
+                        "key_hash": "f03a41ce9b734730",
+                        "key": "spatie.permission.cache",
+                        "key_policy": "full",
+                        "store": "database",
+                        "tag_count": 0,
+                        "tag_retained": 0,
+                        "tag_dropped": 0,
+                        "tag_hashes": [],
+                        "tags": [],
+                        "seconds": null,
+                        "at_ms": 253.259
+                    }
+                ]
+            }
+        },
+        "views": {
+            "label": "Views",
+            "summary": {
+                "count": 2,
+                "retained_count": 2,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": [
+                    {
+                        "name": "organizations.index",
+                        "source": {
+                            "file": "resources/views/organizations/index.blade.php",
+                            "line": 1
+                        },
+                        "composers": [],
+                        "data": {
+                            "organizations": {
+                                "current_page": 1,
+                                "data": [
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "city": "[maximum depth reached]",
+                                        "county": "[maximum depth reached]",
+                                        "country": "[maximum depth reached]",
+                                        "postal_code": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "primary_color": "[maximum depth reached]",
+                                        "secondary_color": "[maximum depth reached]",
+                                        "type": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "settings": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "users_count": "[maximum depth reached]",
+                                        "hotspots_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "city": "[maximum depth reached]",
+                                        "county": "[maximum depth reached]",
+                                        "country": "[maximum depth reached]",
+                                        "postal_code": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "primary_color": "[maximum depth reached]",
+                                        "secondary_color": "[maximum depth reached]",
+                                        "type": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "settings": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "users_count": "[maximum depth reached]",
+                                        "hotspots_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "city": "[maximum depth reached]",
+                                        "county": "[maximum depth reached]",
+                                        "country": "[maximum depth reached]",
+                                        "postal_code": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "primary_color": "[maximum depth reached]",
+                                        "secondary_color": "[maximum depth reached]",
+                                        "type": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "settings": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "users_count": "[maximum depth reached]",
+                                        "hotspots_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "city": "[maximum depth reached]",
+                                        "county": "[maximum depth reached]",
+                                        "country": "[maximum depth reached]",
+                                        "postal_code": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "primary_color": "[maximum depth reached]",
+                                        "secondary_color": "[maximum depth reached]",
+                                        "type": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "settings": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "users_count": "[maximum depth reached]",
+                                        "hotspots_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "city": "[maximum depth reached]",
+                                        "county": "[maximum depth reached]",
+                                        "country": "[maximum depth reached]",
+                                        "postal_code": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "primary_color": "[maximum depth reached]",
+                                        "secondary_color": "[maximum depth reached]",
+                                        "type": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "settings": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "users_count": "[maximum depth reached]",
+                                        "hotspots_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    }
+                                ],
+                                "first_page_url": "http://127.0.0.1:8000/admin/organizations?page=1",
+                                "from": 1,
+                                "last_page": 1,
+                                "last_page_url": "http://127.0.0.1:8000/admin/organizations?page=1",
+                                "links": [
+                                    {
+                                        "url": "[maximum depth reached]",
+                                        "label": "[maximum depth reached]",
+                                        "page": "[maximum depth reached]",
+                                        "active": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "url": "[maximum depth reached]",
+                                        "label": "[maximum depth reached]",
+                                        "page": "[maximum depth reached]",
+                                        "active": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "url": "[maximum depth reached]",
+                                        "label": "[maximum depth reached]",
+                                        "page": "[maximum depth reached]",
+                                        "active": "[maximum depth reached]"
+                                    }
+                                ],
+                                "next_page_url": null,
+                                "path": "http://127.0.0.1:8000/admin/organizations",
+                                "per_page": 15,
+                                "prev_page_url": null,
+                                "to": 5,
+                                "total": 5
+                            }
+                        },
+                        "timing": "composition_marker",
+                        "at_ms": 308.182
+                    },
+                    {
+                        "name": "layouts.admin",
+                        "source": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 1
+                        },
+                        "composers": [],
+                        "data": {
+                            "__env": "[Illuminate\\View\\Factory]",
+                            "app": "[Illuminate\\Foundation\\Application]",
+                            "errors": "[]",
+                            "organizations": {
+                                "current_page": 1,
+                                "data": [
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "city": "[maximum depth reached]",
+                                        "county": "[maximum depth reached]",
+                                        "country": "[maximum depth reached]",
+                                        "postal_code": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "primary_color": "[maximum depth reached]",
+                                        "secondary_color": "[maximum depth reached]",
+                                        "type": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "settings": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "users_count": "[maximum depth reached]",
+                                        "hotspots_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "city": "[maximum depth reached]",
+                                        "county": "[maximum depth reached]",
+                                        "country": "[maximum depth reached]",
+                                        "postal_code": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "primary_color": "[maximum depth reached]",
+                                        "secondary_color": "[maximum depth reached]",
+                                        "type": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "settings": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "users_count": "[maximum depth reached]",
+                                        "hotspots_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "city": "[maximum depth reached]",
+                                        "county": "[maximum depth reached]",
+                                        "country": "[maximum depth reached]",
+                                        "postal_code": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "primary_color": "[maximum depth reached]",
+                                        "secondary_color": "[maximum depth reached]",
+                                        "type": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "settings": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "users_count": "[maximum depth reached]",
+                                        "hotspots_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "city": "[maximum depth reached]",
+                                        "county": "[maximum depth reached]",
+                                        "country": "[maximum depth reached]",
+                                        "postal_code": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "primary_color": "[maximum depth reached]",
+                                        "secondary_color": "[maximum depth reached]",
+                                        "type": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "settings": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "users_count": "[maximum depth reached]",
+                                        "hotspots_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "city": "[maximum depth reached]",
+                                        "county": "[maximum depth reached]",
+                                        "country": "[maximum depth reached]",
+                                        "postal_code": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "primary_color": "[maximum depth reached]",
+                                        "secondary_color": "[maximum depth reached]",
+                                        "type": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "settings": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "users_count": "[maximum depth reached]",
+                                        "hotspots_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    }
+                                ],
+                                "first_page_url": "http://127.0.0.1:8000/admin/organizations?page=1",
+                                "from": 1,
+                                "last_page": 1,
+                                "last_page_url": "http://127.0.0.1:8000/admin/organizations?page=1",
+                                "links": [
+                                    {
+                                        "url": "[maximum depth reached]",
+                                        "label": "[maximum depth reached]",
+                                        "page": "[maximum depth reached]",
+                                        "active": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "url": "[maximum depth reached]",
+                                        "label": "[maximum depth reached]",
+                                        "page": "[maximum depth reached]",
+                                        "active": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "url": "[maximum depth reached]",
+                                        "label": "[maximum depth reached]",
+                                        "page": "[maximum depth reached]",
+                                        "active": "[maximum depth reached]"
+                                    }
+                                ],
+                                "next_page_url": null,
+                                "path": "http://127.0.0.1:8000/admin/organizations",
+                                "per_page": 15,
+                                "prev_page_url": null,
+                                "to": 5,
+                                "total": 5
+                            },
+                            "__empty_1": false,
+                            "__currentLoopData": {
+                                "current_page": 1,
+                                "data": [
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "city": "[maximum depth reached]",
+                                        "county": "[maximum depth reached]",
+                                        "country": "[maximum depth reached]",
+                                        "postal_code": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "primary_color": "[maximum depth reached]",
+                                        "secondary_color": "[maximum depth reached]",
+                                        "type": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "settings": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "users_count": "[maximum depth reached]",
+                                        "hotspots_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "city": "[maximum depth reached]",
+                                        "county": "[maximum depth reached]",
+                                        "country": "[maximum depth reached]",
+                                        "postal_code": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "primary_color": "[maximum depth reached]",
+                                        "secondary_color": "[maximum depth reached]",
+                                        "type": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "settings": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "users_count": "[maximum depth reached]",
+                                        "hotspots_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "city": "[maximum depth reached]",
+                                        "county": "[maximum depth reached]",
+                                        "country": "[maximum depth reached]",
+                                        "postal_code": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "primary_color": "[maximum depth reached]",
+                                        "secondary_color": "[maximum depth reached]",
+                                        "type": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "settings": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "users_count": "[maximum depth reached]",
+                                        "hotspots_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "city": "[maximum depth reached]",
+                                        "county": "[maximum depth reached]",
+                                        "country": "[maximum depth reached]",
+                                        "postal_code": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "primary_color": "[maximum depth reached]",
+                                        "secondary_color": "[maximum depth reached]",
+                                        "type": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "settings": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "users_count": "[maximum depth reached]",
+                                        "hotspots_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "city": "[maximum depth reached]",
+                                        "county": "[maximum depth reached]",
+                                        "country": "[maximum depth reached]",
+                                        "postal_code": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "primary_color": "[maximum depth reached]",
+                                        "secondary_color": "[maximum depth reached]",
+                                        "type": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "settings": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]",
+                                        "users_count": "[maximum depth reached]",
+                                        "hotspots_count": "[maximum depth reached]",
+                                        "campaigns_count": "[maximum depth reached]"
+                                    }
+                                ],
+                                "first_page_url": "http://127.0.0.1:8000/admin/organizations?page=1",
+                                "from": 1,
+                                "last_page": 1,
+                                "last_page_url": "http://127.0.0.1:8000/admin/organizations?page=1",
+                                "links": [
+                                    {
+                                        "url": "[maximum depth reached]",
+                                        "label": "[maximum depth reached]",
+                                        "page": "[maximum depth reached]",
+                                        "active": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "url": "[maximum depth reached]",
+                                        "label": "[maximum depth reached]",
+                                        "page": "[maximum depth reached]",
+                                        "active": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "url": "[maximum depth reached]",
+                                        "label": "[maximum depth reached]",
+                                        "page": "[maximum depth reached]",
+                                        "active": "[maximum depth reached]"
+                                    }
+                                ],
+                                "next_page_url": null,
+                                "path": "http://127.0.0.1:8000/admin/organizations",
+                                "per_page": 15,
+                                "prev_page_url": null,
+                                "to": 5,
+                                "total": 5
+                            },
+                            "organization": {
+                                "id": 1,
+                                "name": "Mombasa County Government",
+                                "slug": "mombasa-county",
+                                "email": "ict@mombasa.go.ke",
+                                "phone": "+254411231000",
+                                "address": "P.O. Box 90438-80100",
+                                "city": "Mombasa",
+                                "county": "Mombasa",
+                                "country": "Kenya",
+                                "postal_code": "80100",
+                                "logo": null,
+                                "website": "https://www.mombasa.go.ke",
+                                "primary_color": "#DB1F2A",
+                                "secondary_color": "#262B40",
+                                "type": "county",
+                                "is_active": true,
+                                "settings": null,
+                                "created_at": "2026-08-20T06:56:23.000000Z",
+                                "updated_at": "2026-08-20T06:56:23.000000Z",
+                                "deleted_at": null,
+                                "users_count": 2,
+                                "hotspots_count": 6,
+                                "campaigns_count": 5
+                            },
+                            "loop": null
+                        },
+                        "timing": "composition_marker",
+                        "at_ms": 1371.563
+                    }
+                ]
+            }
+        },
+        "events": {
+            "label": "Events",
+            "summary": {
+                "count": 12,
+                "retained_count": 12,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": [
+                    {
+                        "name": "Illuminate\\Database\\Events\\ConnectionEstablished",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\ConnectionEstablished"
+                        ],
+                        "at_ms": 200.195
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 225.27
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 236.319
+                    },
+                    {
+                        "name": "Illuminate\\Auth\\Events\\Authenticated",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Auth\\Events\\Authenticated"
+                        ],
+                        "at_ms": 241.824
+                    },
+                    {
+                        "name": "Illuminate\\Cache\\Events\\RetrievingKey",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Cache\\Events\\RetrievingKey"
+                        ],
+                        "at_ms": 248.162
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 249.05
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 262.586
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 266.593
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 278.565
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 281.312
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 1510.319
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 1515.99
+                    }
+                ]
+            }
+        },
+        "authorization": {
+            "label": "Authorization",
+            "summary": {
+                "count": 43,
+                "retained_count": 43,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": [
+                    {
+                        "ability": "view-any-organization",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": null,
+                        "at_ms": 273.64
+                    },
+                    {
+                        "ability": "create-organization",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/organizations/index.blade.php",
+                            "line": 33
+                        },
+                        "at_ms": 1327.805
+                    },
+                    {
+                        "ability": "update-organization",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/organizations/index.blade.php",
+                            "line": 88
+                        },
+                        "at_ms": 1331.024
+                    },
+                    {
+                        "ability": "delete-organization",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/organizations/index.blade.php",
+                            "line": 93
+                        },
+                        "at_ms": 1333.578
+                    },
+                    {
+                        "ability": "update-organization",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/organizations/index.blade.php",
+                            "line": 88
+                        },
+                        "at_ms": 1340.844
+                    },
+                    {
+                        "ability": "delete-organization",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/organizations/index.blade.php",
+                            "line": 93
+                        },
+                        "at_ms": 1344.098
+                    },
+                    {
+                        "ability": "update-organization",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/organizations/index.blade.php",
+                            "line": 88
+                        },
+                        "at_ms": 1347.393
+                    },
+                    {
+                        "ability": "delete-organization",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/organizations/index.blade.php",
+                            "line": 93
+                        },
+                        "at_ms": 1349.803
+                    },
+                    {
+                        "ability": "update-organization",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/organizations/index.blade.php",
+                            "line": 88
+                        },
+                        "at_ms": 1355.533
+                    },
+                    {
+                        "ability": "delete-organization",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/organizations/index.blade.php",
+                            "line": 93
+                        },
+                        "at_ms": 1358.811
+                    },
+                    {
+                        "ability": "update-organization",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/organizations/index.blade.php",
+                            "line": 88
+                        },
+                        "at_ms": 1362.163
+                    },
+                    {
+                        "ability": "delete-organization",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/organizations/index.blade.php",
+                            "line": 93
+                        },
+                        "at_ms": 1364.7
+                    },
+                    {
+                        "ability": "view-analytics",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 107
+                        },
+                        "at_ms": 1379.639
+                    },
+                    {
+                        "ability": "view-any-router",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 116
+                        },
+                        "at_ms": 1382.919
+                    },
+                    {
+                        "ability": "view-any-organization",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
+                            "line": 126
+                        },
+                        "at_ms": 1386.651
+                    },
+                    {
+                        "ability": "view-any-organization",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 139
+                        },
+                        "at_ms": 1391.634
+                    },
+                    {
+                        "ability": "view-any-user",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 147
+                        },
+                        "at_ms": 1395.811
+                    },
+                    {
+                        "ability": "view-any-hotspot",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 155
+                        },
+                        "at_ms": 1399.002
+                    },
+                    {
+                        "ability": "view-any-router",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 163
+                        },
+                        "at_ms": 1403.53
+                    },
+                    {
+                        "ability": "view-any-campaign",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 171
+                        },
+                        "at_ms": 1408.458
+                    },
+                    {
+                        "ability": "view-any-package",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 179
+                        },
+                        "at_ms": 1412.168
+                    },
+                    {
+                        "ability": "view-any-voucher",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 187
+                        },
+                        "at_ms": 1415.755
+                    },
+                    {
+                        "ability": "view-any-sponsor",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
+                            "line": 200
+                        },
+                        "at_ms": 1419.694
+                    },
+                    {
+                        "ability": "view-any-sponsor",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 213
+                        },
+                        "at_ms": 1425.307
+                    },
+                    {
+                        "ability": "view-any-sponsorship",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 221
+                        },
+                        "at_ms": 1428.659
+                    },
+                    {
+                        "ability": "buy-credits",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 229
+                        },
+                        "at_ms": 1431.531
+                    },
+                    {
+                        "ability": "view-any-session",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
+                            "line": 242
+                        },
+                        "at_ms": 1435.836
+                    },
+                    {
+                        "ability": "view-any-session",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 255
+                        },
+                        "at_ms": 1442.089
+                    },
+                    {
+                        "ability": "view-any-event",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 263
+                        },
+                        "at_ms": 1445.945
+                    },
+                    {
+                        "ability": "view-any-payment",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 271
+                        },
+                        "at_ms": 1449.877
+                    },
+                    {
+                        "ability": "view-reports",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 283
+                        },
+                        "at_ms": 1453.287
+                    },
+                    {
+                        "ability": "view-any-contract",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
+                            "line": 293
+                        },
+                        "at_ms": 1458.853
+                    },
+                    {
+                        "ability": "view-any-invoice",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 306
+                        },
+                        "at_ms": 1462.688
+                    },
+                    {
+                        "ability": "view-any-contract",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 314
+                        },
+                        "at_ms": 1466.814
+                    },
+                    {
+                        "ability": "view-any-invoice",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 322
+                        },
+                        "at_ms": 1471.52
+                    },
+                    {
+                        "ability": "view-any-revenue",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 330
+                        },
+                        "at_ms": 1477.633
+                    },
+                    {
+                        "ability": "view-settings",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
+                            "line": 343
+                        },
+                        "at_ms": 1481.094
+                    },
+                    {
+                        "ability": "view-settings",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 356
+                        },
+                        "at_ms": 1484.174
+                    },
+                    {
+                        "ability": "view-any-role",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 364
+                        },
+                        "at_ms": 1490.428
+                    },
+                    {
+                        "ability": "view-any-permission",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 372
+                        },
+                        "at_ms": 1494.445
+                    },
+                    {
+                        "ability": "view-any-audit-log",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 380
+                        },
+                        "at_ms": 1498.861
+                    },
+                    {
+                        "ability": "view-notifications",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 420
+                        },
+                        "at_ms": 1504.591
+                    },
+                    {
+                        "ability": "view-settings",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": {
+                            "file": "resources/views/layouts/admin.blade.php",
+                            "line": 558
+                        },
+                        "at_ms": 1530.642
+                    }
+                ]
+            }
+        },
+        "validation": {
+            "label": "Validation",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "messages": {
+            "label": "Messages",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "logs": {
+            "label": "Logs",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "errors": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "exceptions": {
+            "label": "Exceptions",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": []
+            }
+        }
+    }
+}

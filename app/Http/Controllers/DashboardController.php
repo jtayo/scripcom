@@ -36,7 +36,7 @@ class DashboardController extends Controller
         $campaigns = $analytics->campaignsPerformance($organization, 5);
         $topHotspots = $analytics->topHotspots($organization, 5);
         $recentEvents = $eventService->getEvents($organization, 8);
-        $recentSessions = $tolclin->recentSessions(null, null, 10);
+        $recentSessions = rescue(fn () => $tolclin->recentSessions(null, null, 10), []);
 
         $trends = $this->trends($analytics, $organization);
 
@@ -44,15 +44,15 @@ class DashboardController extends Controller
         $activeSponsorships = Sponsorship::query()->tap(fn ($q) => $this->scopeOrganization($q))->where('status', 'active')->count();
         $eventCount = Event::query()->tap(fn ($q) => $this->scopeOrganization($q))->count();
 
-        $liveSessions = $tolclin->sessionsSummary(
+        $liveSessions = rescue(fn () => $tolclin->sessionsSummary(
             now()->subDays(7)->toDateString(),
             now()->toDateString()
-        );
+        ), ['total' => 0, 'active' => 0, 'expired' => 0, 'failed' => 0, 'routers' => []]);
 
-        $activeSessionsToday = $tolclin->sessionsSummary(
+        $activeSessionsToday = rescue(fn () => $tolclin->sessionsSummary(
             now()->toDateString(),
             now()->toDateString()
-        );
+        ), ['total' => 0, 'active' => 0, 'expired' => 0, 'failed' => 0, 'routers' => []]);
 
         $hotspotMarkers = $this->hotspotMarkers($tolclin, $liveSessions, $organization);
 
@@ -90,7 +90,7 @@ class DashboardController extends Controller
             ->whereNotNull('longitude')
             ->get(['id', 'slug', 'name', 'router_id', 'latitude', 'longitude', 'ward', 'sub_county', 'status', 'ssid', 'last_seen_at', 'is_active']);
 
-        $routerStatus = collect($tolclin->normalizedRouters())
+        $routerStatus = collect(rescue(fn () => $tolclin->normalizedRouters(), []))
             ->keyBy('router_id');
 
         $activeByRouter = collect($liveSessions['routers'] ?? [])

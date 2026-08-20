@@ -1,0 +1,845 @@
+{
+    "schema_version": 1,
+    "id": "7e8bb5b4-a1df-4c67-a90c-0c10ae3887a9",
+    "recorded_at": "2026-08-20T07:24:11+00:00",
+    "profile_type": "http",
+    "environment": "local",
+    "metrics": {
+        "duration_ms": 2228.17,
+        "peak_memory_mb": 6
+    },
+    "sections": {
+        "overview": {
+            "label": "Overview",
+            "summary": {
+                "duration_ms": 2228.17,
+                "peak_memory_mb": 6
+            },
+            "payload": {
+                "runtime": {
+                    "environment": "local",
+                    "php": "8.4.24",
+                    "php_sapi": "cli-server",
+                    "runtime_type": "cli-server",
+                    "laravel": "13.25.0",
+                    "debug": true,
+                    "locale": "en",
+                    "timezone": "UTC"
+                },
+                "cache_state": {
+                    "configuration": false,
+                    "routes": false,
+                    "events": false
+                },
+                "drivers": {
+                    "database": "mysql",
+                    "cache": "database",
+                    "queue": "database",
+                    "session": "database",
+                    "mail": "log",
+                    "broadcasting": "log"
+                },
+                "ecosystem": [
+                    {
+                        "key": "sanctum",
+                        "label": "Sanctum",
+                        "version": "v4.3.3"
+                    }
+                ],
+                "package": "dev-main"
+            }
+        },
+        "request": {
+            "label": "Request",
+            "summary": {
+                "method": "PUT",
+                "status": 302,
+                "exit_code": null
+            },
+            "payload": {
+                "method": "PUT",
+                "url": "http://127.0.0.1:8000/admin/organizations/1",
+                "path": "/admin/organizations/1",
+                "query": [],
+                "input": {
+                    "_token": "[redacted]",
+                    "_method": "PUT",
+                    "name": "Mombasa County Government",
+                    "slug": "mombasa-county",
+                    "type": "county",
+                    "website": "https://www.mombasa.go.ke",
+                    "email": "ict@mombasa.go.ke",
+                    "phone": "+254411231000",
+                    "address": "P.O. Box 90438-80100",
+                    "city": "Mombasa",
+                    "county": "Mombasa",
+                    "country": "Kenya",
+                    "postal_code": "80100",
+                    "primary_color": "#0410b8",
+                    "secondary_color": "#262B40",
+                    "is_active": "1"
+                },
+                "headers": {
+                    "host": [
+                        "127.0.0.1:8000"
+                    ],
+                    "connection": [
+                        "keep-alive"
+                    ],
+                    "content-length": [
+                        "361"
+                    ],
+                    "cache-control": [
+                        "max-age=0"
+                    ],
+                    "sec-ch-ua": [
+                        "\"Not=A?Brand\";v=\"99\", \"Brave\";v=\"151\", \"Chromium\";v=\"151\""
+                    ],
+                    "sec-ch-ua-mobile": [
+                        "?0"
+                    ],
+                    "sec-ch-ua-platform": [
+                        "\"Windows\""
+                    ],
+                    "upgrade-insecure-requests": [
+                        "1"
+                    ],
+                    "content-type": [
+                        "application/x-www-form-urlencoded"
+                    ],
+                    "user-agent": [
+                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36"
+                    ],
+                    "origin": [
+                        "http://127.0.0.1:8000"
+                    ],
+                    "accept": [
+                        "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8"
+                    ],
+                    "sec-gpc": [
+                        "1"
+                    ],
+                    "sec-fetch-site": [
+                        "same-origin"
+                    ],
+                    "sec-fetch-mode": [
+                        "navigate"
+                    ],
+                    "sec-fetch-user": [
+                        "?1"
+                    ],
+                    "sec-fetch-dest": [
+                        "document"
+                    ],
+                    "referer": [
+                        "http://127.0.0.1:8000/admin/organizations/1/edit"
+                    ],
+                    "accept-encoding": [
+                        "gzip, deflate, br, zstd"
+                    ],
+                    "accept-language": [
+                        "en-US,en;q=0.8"
+                    ],
+                    "cookie": "[redacted]"
+                },
+                "route": "admin.organizations.update",
+                "action": "App\\Http\\Controllers\\OrganizationController@update",
+                "parameters": {
+                    "organization": 1
+                },
+                "middleware": [
+                    "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                    "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                    "Illuminate\\Session\\Middleware\\StartSession",
+                    "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                    "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestForgery",
+                    "Illuminate\\Auth\\Middleware\\Authenticate",
+                    "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                    "Illuminate\\Auth\\Middleware\\Authorize:view-any-organization"
+                ],
+                "status": 302,
+                "request_type": "redirect",
+                "content_type": "text/html; charset=utf-8",
+                "request_size_bytes": 361,
+                "response_size_bytes": 410,
+                "session_present": false,
+                "authenticated": true,
+                "authentication": {
+                    "guard": "web",
+                    "authenticated": true,
+                    "model": "App\\Models\\User",
+                    "identifier": "hmac:744afb656c7b89a1",
+                    "identifier_policy": "keyed_hash"
+                },
+                "session": {
+                    "present": false,
+                    "driver": "database",
+                    "key_count": 0,
+                    "keys": [],
+                    "keys_dropped": 0,
+                    "flash_keys": [],
+                    "error_bag_present": false,
+                    "error_bags": []
+                },
+                "response_headers": {
+                    "cache-control": [
+                        "no-cache, private"
+                    ],
+                    "date": [
+                        "Thu, 20 Aug 2026 07:24:11 GMT"
+                    ],
+                    "location": [
+                        "http://127.0.0.1:8000/admin/organizations"
+                    ],
+                    "content-type": [
+                        "text/html; charset=utf-8"
+                    ],
+                    "set-cookie": "[redacted]"
+                }
+            }
+        },
+        "queries": {
+            "label": "Queries",
+            "summary": {
+                "count": 10,
+                "retained_count": 10,
+                "dropped_count": 0,
+                "truncated": false,
+                "duration_ms": 767.87,
+                "transaction_count": 0,
+                "transaction_retained_count": 0,
+                "transaction_dropped_count": 0,
+                "rollback_count": 0
+            },
+            "payload": {
+                "items": [
+                    {
+                        "sql": "select * from `sessions` where `id` = ? limit 1",
+                        "bindings": [
+                            "4QY9rhw9mBGy5Se1qxyYfQ3Xolty5a5jSWUGntUa"
+                        ],
+                        "runnable_sql": "select * from `sessions` where `id` = '4QY9rhw9mBGy5Se1qxyYfQ3Xolty5a5jSWUGntUa' limit 1",
+                        "duration_ms": 79.22,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 105.373,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select * from `users` where `id` = ? and `users`.`deleted_at` is null limit 1",
+                        "bindings": [
+                            1
+                        ],
+                        "runnable_sql": "select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1",
+                        "duration_ms": 2.51,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 124.201,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select * from `organizations` where `id` = ? and `organizations`.`deleted_at` is null limit 1",
+                        "bindings": [
+                            "1"
+                        ],
+                        "runnable_sql": "select * from `organizations` where `id` = '1' and `organizations`.`deleted_at` is null limit 1",
+                        "duration_ms": 1.99,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 132.238,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select * from `cache` where `key` in (?)",
+                        "bindings": [
+                            "scripcom-cache-spatie.permission.cache"
+                        ],
+                        "runnable_sql": "select * from `cache` where `key` in ('scripcom-cache-spatie.permission.cache')",
+                        "duration_ms": 16.04,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 158.967,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select `permissions`.*, `model_has_permissions`.`model_id` as `pivot_model_id`, `model_has_permissions`.`permission_id` as `pivot_permission_id`, `model_has_permissions`.`model_type` as `pivot_model_type` from `permissions` inner join `model_has_permissions` on `permissions`.`id` = `model_has_permissions`.`permission_id` where `model_has_permissions`.`model_id` in (1) and `model_has_permissions`.`model_type` = ?",
+                        "bindings": [
+                            "App\\Models\\User"
+                        ],
+                        "runnable_sql": "select `permissions`.*, `model_has_permissions`.`model_id` as `pivot_model_id`, `model_has_permissions`.`permission_id` as `pivot_permission_id`, `model_has_permissions`.`model_type` as `pivot_model_type` from `permissions` inner join `model_has_permissions` on `permissions`.`id` = `model_has_permissions`.`permission_id` where `model_has_permissions`.`model_id` in (1) and `model_has_permissions`.`model_type` = 'App\\\\Models\\\\User'",
+                        "duration_ms": 2.3,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 176.611,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select `roles`.*, `model_has_roles`.`model_id` as `pivot_model_id`, `model_has_roles`.`role_id` as `pivot_role_id`, `model_has_roles`.`model_type` as `pivot_model_type` from `roles` inner join `model_has_roles` on `roles`.`id` = `model_has_roles`.`role_id` where `model_has_roles`.`model_id` in (1) and `model_has_roles`.`model_type` = ?",
+                        "bindings": [
+                            "App\\Models\\User"
+                        ],
+                        "runnable_sql": "select `roles`.*, `model_has_roles`.`model_id` as `pivot_model_id`, `model_has_roles`.`role_id` as `pivot_role_id`, `model_has_roles`.`model_type` as `pivot_model_type` from `roles` inner join `model_has_roles` on `roles`.`id` = `model_has_roles`.`role_id` where `model_has_roles`.`model_id` in (1) and `model_has_roles`.`model_type` = 'App\\\\Models\\\\User'",
+                        "duration_ms": 5.99,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 188.043,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select count(*) as `aggregate` from `organizations` where `slug` = ? and `id` <> ?",
+                        "bindings": [
+                            "mombasa-county",
+                            "1"
+                        ],
+                        "runnable_sql": "select count(*) as `aggregate` from `organizations` where `slug` = 'mombasa-county' and `id` <> '1'",
+                        "duration_ms": 1.7,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "app/Http/Controllers/OrganizationController.php",
+                            "line": 83
+                        },
+                        "stack": [
+                            {
+                                "file": "app/Http/Controllers/OrganizationController.php",
+                                "line": 83,
+                                "function": "Illuminate\\Http\\Request->__call"
+                            },
+                            {
+                                "file": "app/Http/Controllers/OrganizationController.php",
+                                "line": 58,
+                                "function": "App\\Http\\Controllers\\OrganizationController->validated"
+                            }
+                        ],
+                        "at_ms": 1418.387,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "update `organizations` set `primary_color` = ?, `organizations`.`updated_at` = ? where `id` = ?",
+                        "bindings": [
+                            "#0410b8",
+                            "2026-08-20 07:24:10",
+                            1
+                        ],
+                        "runnable_sql": "update `organizations` set `primary_color` = '#0410b8', `organizations`.`updated_at` = '2026-08-20 07:24:10' where `id` = 1",
+                        "duration_ms": 174.77,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "app/Http/Controllers/OrganizationController.php",
+                            "line": 60
+                        },
+                        "stack": [
+                            {
+                                "file": "app/Http/Controllers/OrganizationController.php",
+                                "line": 60,
+                                "function": "Illuminate\\Database\\Eloquent\\Model->update"
+                            }
+                        ],
+                        "at_ms": 1637.889,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "insert into `audit_logs` (`user_id`, `action`, `entity_type`, `entity_id`, `entity_label`, `old_values`, `new_values`, `ip_address`, `user_agent`, `created_at`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                        "bindings": [
+                            1,
+                            "updated",
+                            "App\\Models\\Organization",
+                            1,
+                            "Mombasa County Government",
+                            "{\"id\":1,\"name\":\"Mombasa County Government\",\"slug\":\"mombasa-county\",\"email\":\"ict@mombasa.go.ke\",\"phone\":\"+254411231000\",\"address\":\"P.O. Box 90438-80100\",\"city\":\"Mombasa\",\"county\":\"Mombasa\",\"country\":\"Kenya\",\"postal_code\":\"80100\",\"logo\":null,\"website\":\"https:\\/\\/www.mombasa.go.ke\",\"primary_color\":\"#DB1F2A\",\"secondary_color\":\"#262B40\",\"type\":\"county\",\"is_active\":true,\"settings\":null,\"created_at\":\"2026-08-20T06:56:23.000000Z\",\"updated_at\":\"2026-08-20T06:56:23.000000Z\",\"deleted_at\":null}",
+                            "{\"primary_color\":\"#0410b8\",\"updated_at\":\"2026-08-20 07:24:10\"}",
+                            "127.0.0.1",
+                            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+                            "2026-08-20 07:24:10"
+                        ],
+                        "runnable_sql": "insert into `audit_logs` (`user_id`, `action`, `entity_type`, `entity_id`, `entity_label`, `old_values`, `new_values`, `ip_address`, `user_agent`, `created_at`) values (1, 'updated', 'App\\\\Models\\\\Organization', 1, 'Mombasa County Government', '{\\\"id\\\":1,\\\"name\\\":\\\"Mombasa County Government\\\",\\\"slug\\\":\\\"mombasa-county\\\",\\\"email\\\":\\\"ict@mombasa.go.ke\\\",\\\"phone\\\":\\\"+254411231000\\\",\\\"address\\\":\\\"P.O. Box 90438-80100\\\",\\\"city\\\":\\\"Mombasa\\\",\\\"county\\\":\\\"Mombasa\\\",\\\"country\\\":\\\"Kenya\\\",\\\"postal_code\\\":\\\"80100\\\",\\\"logo\\\":null,\\\"website\\\":\\\"https:\\\\/\\\\/www.mombasa.go.ke\\\",\\\"primary_color\\\":\\\"#DB1F2A\\\",\\\"secondary_color\\\":\\\"#262B40\\\",\\\"type\\\":\\\"county\\\",\\\"is_active\\\":true,\\\"settings\\\":null,\\\"created_at\\\":\\\"2026-08-20T06:56:23.000000Z\\\",\\\"updated_at\\\":\\\"2026-08-20T06:56:23.000000Z\\\",\\\"deleted_at\\\":null}', '{\\\"primary_color\\\":\\\"#0410b8\\\",\\\"updated_at\\\":\\\"2026-08-20 07:24:10\\\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36', '2026-08-20 07:24:10')",
+                        "duration_ms": 111.42,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "app/Services/AuditLogger.php",
+                            "line": 29
+                        },
+                        "stack": [
+                            {
+                                "file": "app/Services/AuditLogger.php",
+                                "line": 29,
+                                "function": "Illuminate\\Database\\Eloquent\\Model::__callStatic"
+                            },
+                            {
+                                "file": "app/Services/AuditLogger.php",
+                                "line": 44,
+                                "function": "App\\Services\\AuditLogger::record"
+                            },
+                            {
+                                "file": "app/Observers/AuditObserver.php",
+                                "line": 20,
+                                "function": "App\\Services\\AuditLogger::model"
+                            },
+                            {
+                                "file": "app/Http/Controllers/OrganizationController.php",
+                                "line": 60,
+                                "function": "Illuminate\\Database\\Eloquent\\Model->update"
+                            }
+                        ],
+                        "at_ms": 1839.076,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "update `sessions` set `payload` = ?, `last_activity` = ?, `user_id` = ?, `ip_address` = ?, `user_agent` = ? where `id` = ?",
+                        "bindings": [
+                            "eyJfdG9rZW4iOiJlYVFrU21LbDgwdFBFS2Y0T0hnVzlLejJYdFdWeTZTSVFxSzFDb3JDIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvb3JnYW5pemF0aW9uc1wvMVwvZWRpdCIsInJvdXRlIjoiYWRtaW4ub3JnYW5pemF0aW9ucy5lZGl0In0sIl9mbGFzaCI6eyJvbGQiOlsic3VjY2VzcyJdLCJuZXciOltdfSwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsInN1Y2Nlc3MiOiJPcmdhbml6YXRpb24gTW9tYmFzYSBDb3VudHkgR292ZXJubWVudCB1cGRhdGVkLiJ9",
+                            1787210651,
+                            1,
+                            "127.0.0.1",
+                            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+                            "4QY9rhw9mBGy5Se1qxyYfQ3Xolty5a5jSWUGntUa"
+                        ],
+                        "runnable_sql": "update `sessions` set `payload` = 'eyJfdG9rZW4iOiJlYVFrU21LbDgwdFBFS2Y0T0hnVzlLejJYdFdWeTZTSVFxSzFDb3JDIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvb3JnYW5pemF0aW9uc1wvMVwvZWRpdCIsInJvdXRlIjoiYWRtaW4ub3JnYW5pemF0aW9ucy5lZGl0In0sIl9mbGFzaCI6eyJvbGQiOlsic3VjY2VzcyJdLCJuZXciOltdfSwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsInN1Y2Nlc3MiOiJPcmdhbml6YXRpb24gTW9tYmFzYSBDb3VudHkgR292ZXJubWVudCB1cGRhdGVkLiJ9', `last_activity` = 1787210651, `user_id` = 1, `ip_address` = '127.0.0.1', `user_agent` = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36' where `id` = '4QY9rhw9mBGy5Se1qxyYfQ3Xolty5a5jSWUGntUa'",
+                        "duration_ms": 371.93,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 2223.637,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    }
+                ],
+                "transactions": []
+            }
+        },
+        "http_client": {
+            "label": "HTTP Client",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "duration_ms": 0,
+                "failed_count": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "queue": {
+            "label": "Queue",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "queued_count": 0,
+                "executed_count": 0,
+                "failed_count": 0,
+                "duration_ms": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "mail": {
+            "label": "Mail",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "recipient_count": 0,
+                "attachment_count": 0,
+                "duration_ms": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "notifications": {
+            "label": "Notifications",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "sent_count": 0,
+                "failed_count": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "redis": {
+            "label": "Redis",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "duration_ms": 0,
+                "failed_count": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "models": {
+            "label": "Models",
+            "summary": {
+                "count": 11,
+                "retained_count": 11,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": [
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\User",
+                        "connection": "mysql",
+                        "table": "users",
+                        "key": 1,
+                        "at_ms": 124.686
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\Organization",
+                        "connection": "mysql",
+                        "table": "organizations",
+                        "key": 1,
+                        "at_ms": 132.725
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "Spatie\\Permission\\Models\\Role",
+                        "connection": "mysql",
+                        "table": "roles",
+                        "key": 1,
+                        "at_ms": 188.802
+                    },
+                    {
+                        "event": "saving",
+                        "model": "App\\Models\\Organization",
+                        "connection": "mysql",
+                        "table": "organizations",
+                        "key": 1,
+                        "at_ms": 1432.209
+                    },
+                    {
+                        "event": "updating",
+                        "model": "App\\Models\\Organization",
+                        "connection": "mysql",
+                        "table": "organizations",
+                        "key": 1,
+                        "at_ms": 1443.339
+                    },
+                    {
+                        "event": "saving",
+                        "model": "App\\Models\\AuditLog",
+                        "connection": "mysql",
+                        "table": "audit_logs",
+                        "key": null,
+                        "at_ms": 1723.369
+                    },
+                    {
+                        "event": "creating",
+                        "model": "App\\Models\\AuditLog",
+                        "connection": "mysql",
+                        "table": "audit_logs",
+                        "key": null,
+                        "at_ms": 1723.492
+                    },
+                    {
+                        "event": "created",
+                        "model": "App\\Models\\AuditLog",
+                        "connection": "mysql",
+                        "table": "audit_logs",
+                        "key": 139,
+                        "at_ms": 1839.548
+                    },
+                    {
+                        "event": "saved",
+                        "model": "App\\Models\\AuditLog",
+                        "connection": "mysql",
+                        "table": "audit_logs",
+                        "key": 139,
+                        "at_ms": 1839.658
+                    },
+                    {
+                        "event": "updated",
+                        "model": "App\\Models\\Organization",
+                        "connection": "mysql",
+                        "table": "organizations",
+                        "key": 1,
+                        "at_ms": 1840.773
+                    },
+                    {
+                        "event": "saved",
+                        "model": "App\\Models\\Organization",
+                        "connection": "mysql",
+                        "table": "organizations",
+                        "key": 1,
+                        "at_ms": 1840.893
+                    }
+                ]
+            }
+        },
+        "cache": {
+            "label": "Cache",
+            "summary": {
+                "count": 1,
+                "retained_count": 1,
+                "dropped_count": 0,
+                "truncated": false,
+                "hits": 1,
+                "misses": 0,
+                "writes": 0
+            },
+            "payload": {
+                "items": [
+                    {
+                        "operation": "hit",
+                        "key_hash": "f03a41ce9b734730",
+                        "key": "spatie.permission.cache",
+                        "key_policy": "full",
+                        "store": "database",
+                        "tag_count": 0,
+                        "tag_retained": 0,
+                        "tag_dropped": 0,
+                        "tag_hashes": [],
+                        "tags": [],
+                        "seconds": null,
+                        "at_ms": 160.012
+                    }
+                ]
+            }
+        },
+        "views": {
+            "label": "Views",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "events": {
+            "label": "Events",
+            "summary": {
+                "count": 10,
+                "retained_count": 10,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": [
+                    {
+                        "name": "Illuminate\\Database\\Events\\ConnectionEstablished",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\ConnectionEstablished"
+                        ],
+                        "at_ms": 18.741
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 97.566
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 119.728
+                    },
+                    {
+                        "name": "Illuminate\\Auth\\Events\\Authenticated",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Auth\\Events\\Authenticated"
+                        ],
+                        "at_ms": 126.508
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 129.489
+                    },
+                    {
+                        "name": "Illuminate\\Cache\\Events\\RetrievingKey",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Cache\\Events\\RetrievingKey"
+                        ],
+                        "at_ms": 140.51
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 156.032
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 173.313
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 184.597
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 1414.531
+                    }
+                ]
+            }
+        },
+        "authorization": {
+            "label": "Authorization",
+            "summary": {
+                "count": 1,
+                "retained_count": 1,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": [
+                    {
+                        "ability": "view-any-organization",
+                        "result": "allowed",
+                        "handler": "callback",
+                        "user_type": "App\\Models\\User",
+                        "argument_types": [],
+                        "callsite": null,
+                        "at_ms": 194.909
+                    }
+                ]
+            }
+        },
+        "validation": {
+            "label": "Validation",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "messages": {
+            "label": "Messages",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "logs": {
+            "label": "Logs",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "errors": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "exceptions": {
+            "label": "Exceptions",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": []
+            }
+        }
+    }
+}

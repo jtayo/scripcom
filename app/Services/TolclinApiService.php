@@ -73,7 +73,7 @@ class TolclinApiService
     {
         try {
             $response = Http::withHeaders($this->headers())
-                ->timeout(20)
+                ->timeout(8)
                 ->get($this->baseUrl.'/tolclin/captivity/admin/routers/by-ids?ids='.implode(',', $ids));
 
             return $response->successful() ? $response->json() : [];
@@ -185,7 +185,7 @@ class TolclinApiService
     {
         try {
             $response = Http::withHeaders($this->headers())
-                ->timeout(60)
+                ->timeout(8)
                 ->post($this->baseUrl.'/tolclin/captivity/hotspot/sessions/by-router', [
                     'from' => $from,
                     'to' => $to,
@@ -266,7 +266,7 @@ class TolclinApiService
     {
         try {
             $response = Http::withHeaders($this->headers())
-                ->timeout(60)
+                ->timeout(8)
                 ->post($this->baseUrl.'/tolclin/captivity/hotspot/sessions/by-router', [
                     'from' => $from,
                     'to' => $to,

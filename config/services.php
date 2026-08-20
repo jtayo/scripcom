@@ -56,4 +56,15 @@ return [
         'environment' => env('MPESA_ENV', 'sandbox'),
     ],
 
+    'sms' => [
+        'provider' => env('SMS_PROVIDER', 'tolclin'),
+        'tolclin' => [
+            'url' => env('TOLCLIN_SMS_URL', 'https://tolclin.com/tolclin/sms/BulkSms'),
+            'token' => env('TOLCLIN_SMS_TOKEN'),
+            'client_id' => env('TOLCLIN_SMS_CLIENT_ID'),
+            'sender_id' => env('TOLCLIN_SMS_SENDER_ID', 'COUNTY-MSA'),
+            'callback_url' => env('TOLCLIN_SMS_CALLBACK_URL', ''),
+        ],
+    ],
+
 ];

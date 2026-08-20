@@ -67,6 +67,10 @@ class Router extends Model
 
     public function latestHealth(): ?RouterHealthLog
     {
+        if ($this->relationLoaded('healthLogs')) {
+            return $this->healthLogs->first();
+        }
+
         return $this->healthLogs()->first();
     }
 

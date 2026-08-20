@@ -13,6 +13,7 @@ use App\Models\WifiPackage;
 use App\Models\WifiSession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -108,11 +109,24 @@ class CaptivePortalService
 
     public function startWatch(Hotspot $hotspot, Campaign $campaign, Request $request): array
     {
+        $phone = $this->normalizePhone($request->input('phone'));
+        $deviceToken = $this->ensureDeviceToken($request);
+        $fingerprintHash = $this->computeFingerprint($request);
+
+        if ($this->hasWatchedToday($campaign, $phone, $deviceToken, $fingerprintHash)) {
+            return [
+                'success' => false,
+                'already_watched' => true,
+                'message' => 'You have already watched this advertisement today. Please try again tomorrow.',
+            ];
+        }
+
         $session = WifiSession::create([
             'organization_id' => $hotspot->organization_id,
             'hotspot_id' => $hotspot->id,
             'campaign_id' => $campaign->id,
             'session_id' => (string) Str::uuid(),
+            'phone' => $phone,
             'mac_address' => $this->macAddress($request),
             'device_type' => $this->deviceType($request),
             'browser' => substr((string) $request->userAgent(), 0, 255),
@@ -127,11 +141,15 @@ class CaptivePortalService
             'video_id' => $campaign->id,
             'duration_seconds' => $campaign->duration_seconds,
             'device_hash' => $request->input('device_hash'),
+            'phone' => $phone ? Str::mask($phone, '*', 0, 6) : null,
+            'fingerprint_hash' => $fingerprintHash,
         ]);
 
         return [
+            'success' => true,
             'session' => $session,
             'campaign' => $campaign,
+            'device_token' => $deviceToken,
         ];
     }
 
@@ -151,7 +169,7 @@ class CaptivePortalService
             return ['success' => true, 'session' => $session];
         }
 
-        $required = (int) ceil($campaign->duration_seconds * ($campaign->skip_allowed ? 0.3 : 0.9));
+        $required = (int) ceil($campaign->duration_seconds * ($campaign->skip_allowed ? 0.3 : 1.0));
 
         if ($watchedSeconds < max(1, $required)) {
             $this->logEvent('video.failed', $session, $campaign, $request, [
@@ -180,6 +198,14 @@ class CaptivePortalService
 
         $campaign->increment('current_plays');
 
+        $this->recordDailyView(
+            $campaign,
+            $session,
+            $session->phone,
+            $request->input('device_token'),
+            $this->computeFingerprint($request)
+        );
+
         $this->logEvent('video.completed', $session, $campaign, $request, [
             'watched_seconds' => $watchedSeconds,
             'device_hash' => $request->input('device_hash'),
@@ -196,7 +222,7 @@ class CaptivePortalService
         }
 
         if (! $this->verifyPhone($phone)) {
-            return ['success' => false, 'message' => 'Enter a valid Safaricom number (e.g. 0712345678).'];
+            return ['success' => false, 'message' => 'Enter a valid Kenyan phone number (e.g. 0712345678).'];
         }
 
         $this->logEvent('package.selected', null, null, $request, [
@@ -436,5 +462,96 @@ class CaptivePortalService
             str_contains($agent, 'linux') => 'linux',
             default => 'unknown',
         };
+    }
+
+    public function hasWatchedToday(Campaign $campaign, ?string $phone, ?string $deviceToken, ?string $fingerprintHash): bool
+    {
+        $today = now()->toDateString();
+
+        if ($phone) {
+            $exists = DB::table('campaign_daily_views')
+                ->where('campaign_id', $campaign->id)
+                ->where('phone', $phone)
+                ->where('viewed_date', $today)
+                ->exists();
+
+            if ($exists) return true;
+        }
+
+        if ($deviceToken) {
+            $exists = DB::table('campaign_daily_views')
+                ->where('campaign_id', $campaign->id)
+                ->where('device_token', $deviceToken)
+                ->where('viewed_date', $today)
+                ->exists();
+
+            if ($exists) return true;
+        }
+
+        if ($fingerprintHash && ! $phone && ! $deviceToken) {
+            $exists = DB::table('campaign_daily_views')
+                ->where('campaign_id', $campaign->id)
+                ->where('fingerprint_hash', $fingerprintHash)
+                ->where('viewed_date', $today)
+                ->exists();
+
+            if ($exists) return true;
+        }
+
+        return false;
+    }
+
+    public function recordDailyView(Campaign $campaign, WifiSession $session, ?string $phone, ?string $deviceToken, ?string $fingerprintHash): void
+    {
+        DB::table('campaign_daily_views')->insertOrIgnore([
+            'campaign_id' => $campaign->id,
+            'phone' => $phone,
+            'device_token' => $deviceToken,
+            'fingerprint_hash' => $fingerprintHash,
+            'wifi_session_id' => $session->id,
+            'viewed_date' => now()->toDateString(),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+    }
+
+    public function computeFingerprint(Request $request): string
+    {
+        $raw = implode('|', [
+            $request->ip(),
+            $request->userAgent() ?? '',
+            $request->header('Accept-Language', ''),
+        ]);
+
+        return hash('sha256', $raw);
+    }
+
+    public function normalizePhone(?string $phone): ?string
+    {
+        if (! $phone) return null;
+
+        $phone = trim($phone);
+
+        if (! $this->verifyPhone($phone)) return null;
+
+        if (str_starts_with($phone, '+254')) {
+            return '0' . substr($phone, 4);
+        }
+        if (str_starts_with($phone, '254')) {
+            return '0' . substr($phone, 3);
+        }
+
+        return $phone;
+    }
+
+    public function ensureDeviceToken(Request $request): string
+    {
+        $token = $request->cookie('sv_device_token');
+
+        if (! $token || ! is_string($token)) {
+            $token = hash('sha256', Str::random(40));
+        }
+
+        return $token;
     }
 }

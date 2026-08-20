@@ -70,6 +70,8 @@ Route::prefix('portal')
         Route::post('/payment', [PortalController::class, 'initiatePayment'])->name('payment');
         Route::get('/payment/{payment}', [PortalController::class, 'paymentStatus'])->name('payment.status');
         Route::post('/voucher', [PortalController::class, 'redeemVoucher'])->name('voucher');
+        Route::post('/otp/send', [PortalController::class, 'sendOtp'])->name('otp.send');
+        Route::post('/otp/verify', [PortalController::class, 'verifyOtp'])->name('otp.verify');
         Route::get('/success/{session}', [PortalController::class, 'success'])->name('success');
     });
 

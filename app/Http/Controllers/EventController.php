@@ -35,7 +35,7 @@ class EventController extends Controller
     public function show(Event $event): View
     {
         $this->authorizeAccess($event);
-        $event->load(['hotspot:id,name,router_id', 'campaign:id,title', 'session:id,session_id,phone']);
+        $event->load(['hotspot:id,name,router_id', 'campaign:id,title', 'session:id,session_id,phone', 'organization:id,name']);
 
         return view('events.show', compact('event'));
     }

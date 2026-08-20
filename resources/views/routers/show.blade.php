@@ -50,13 +50,14 @@
             </div>
         </div>
 
+        @php $health = $router->latestHealth(); @endphp
         <div class="col-12 col-md-6 col-xl-3">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
                             <div class="text-muted small">CPU Usage</div>
-                            <div class="h3 mb-0">{{ optional($router->latestHealth())->cpu_usage !== null ? optional($router->latestHealth())->cpu_usage . '%' : '—' }}</div>
+                            <div class="h3 mb-0">{{ optional($health)->cpu_usage !== null ? optional($health)->cpu_usage . '%' : '—' }}</div>
                         </div>
                         <i class="fa-solid fa-microchip ms-auto text-secondary"></i>
                     </div>
@@ -69,7 +70,7 @@
                     <div class="d-flex align-items-center">
                         <div>
                             <div class="text-muted small">Memory Usage</div>
-                            <div class="h3 mb-0">{{ optional($router->latestHealth())->memory_usage !== null ? optional($router->latestHealth())->memory_usage . '%' : '—' }}</div>
+                            <div class="h3 mb-0">{{ optional($health)->memory_usage !== null ? optional($health)->memory_usage . '%' : '—' }}</div>
                         </div>
                         <i class="fa-solid fa-memory ms-auto text-secondary"></i>
                     </div>
@@ -82,7 +83,7 @@
                     <div class="d-flex align-items-center">
                         <div>
                             <div class="text-muted small">Active Users</div>
-                            <div class="h3 mb-0">{{ optional($router->latestHealth())->active_users ?? '—' }}</div>
+                            <div class="h3 mb-0">{{ optional($health)->active_users ?? '—' }}</div>
                         </div>
                         <i class="fa-solid fa-users ms-auto text-secondary"></i>
                     </div>

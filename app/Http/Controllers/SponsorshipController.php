@@ -57,7 +57,7 @@ class SponsorshipController extends Controller
     public function show(Sponsorship $sponsorship): View
     {
         $this->authorizeAccess($sponsorship);
-        $sponsorship->load(['organization:id,name', 'sponsor:id,name', 'sessions' => fn ($q) => $q->latest('session_started_at')->limit(10), 'payments']);
+        $sponsorship->load(['organization:id,name', 'sponsor:id,name', 'sessions' => fn ($q) => $q->with('hotspot:id,name')->latest('session_started_at')->limit(10), 'payments']);
 
         return view('sponsorships.show', compact('sponsorship'));
     }
