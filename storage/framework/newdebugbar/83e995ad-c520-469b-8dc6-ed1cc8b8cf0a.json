@@ -1,19 +1,19 @@
 {
     "schema_version": 1,
-    "id": "122e0078-3fda-4c91-b1a2-6346c451f5f0",
-    "recorded_at": "2026-08-20T11:09:17+00:00",
+    "id": "83e995ad-c520-469b-8dc6-ed1cc8b8cf0a",
+    "recorded_at": "2026-08-20T12:15:15+00:00",
     "profile_type": "http",
     "environment": "local",
     "metrics": {
-        "duration_ms": 2804.29,
-        "peak_memory_mb": 8
+        "duration_ms": 424.09,
+        "peak_memory_mb": 6
     },
     "sections": {
         "overview": {
             "label": "Overview",
             "summary": {
-                "duration_ms": 2804.29,
-                "peak_memory_mb": 8
+                "duration_ms": 424.09,
+                "peak_memory_mb": 6
             },
             "payload": {
                 "runtime": {
@@ -58,8 +58,8 @@
             },
             "payload": {
                 "method": "GET",
-                "url": "http://127.0.0.1:8000/admin/sponsors",
-                "path": "/admin/sponsors",
+                "url": "http://127.0.0.1:8000/admin/sponsors/1/edit",
+                "path": "/admin/sponsors/1/edit",
                 "query": [],
                 "input": [],
                 "headers": {
@@ -103,7 +103,7 @@
                         "document"
                     ],
                     "referer": [
-                        "http://127.0.0.1:8000/admin/organizations"
+                        "http://127.0.0.1:8000/admin/sponsors"
                     ],
                     "accept-encoding": [
                         "gzip, deflate, br, zstd"
@@ -113,9 +113,11 @@
                     ],
                     "cookie": "[redacted]"
                 },
-                "route": "admin.sponsors.index",
-                "action": "App\\Http\\Controllers\\SponsorController@index",
-                "parameters": [],
+                "route": "admin.sponsors.edit",
+                "action": "App\\Http\\Controllers\\SponsorController@edit",
+                "parameters": {
+                    "sponsor": 1
+                },
                 "middleware": [
                     "Illuminate\\Cookie\\Middleware\\EncryptCookies",
                     "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
@@ -130,7 +132,7 @@
                 "request_type": "full_page",
                 "content_type": "text/html; charset=utf-8",
                 "request_size_bytes": 0,
-                "response_size_bytes": 49119,
+                "response_size_bytes": 39447,
                 "session_present": false,
                 "authenticated": true,
                 "authentication": {
@@ -158,7 +160,7 @@
                         "no-cache, private"
                     ],
                     "date": [
-                        "Thu, 20 Aug 2026 11:09:15 GMT"
+                        "Thu, 20 Aug 2026 12:15:14 GMT"
                     ],
                     "set-cookie": "[redacted]"
                 }
@@ -167,11 +169,11 @@
         "queries": {
             "label": "Queries",
             "summary": {
-                "count": 10,
-                "retained_count": 10,
+                "count": 9,
+                "retained_count": 9,
                 "dropped_count": 0,
                 "truncated": false,
-                "duration_ms": 485.04,
+                "duration_ms": 160.5,
                 "transaction_count": 0,
                 "transaction_retained_count": 0,
                 "transaction_dropped_count": 0,
@@ -185,12 +187,12 @@
                             "sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH"
                         ],
                         "runnable_sql": "select * from `sessions` where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH' limit 1",
-                        "duration_ms": 13.16,
+                        "duration_ms": 20.62,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 415.617,
+                        "at_ms": 52.475,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -202,12 +204,29 @@
                             1
                         ],
                         "runnable_sql": "select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1",
-                        "duration_ms": 1.99,
+                        "duration_ms": 2.63,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 430.172,
+                        "at_ms": 66.457,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select * from `sponsors` where `id` = ? and `sponsors`.`deleted_at` is null limit 1",
+                        "bindings": [
+                            "1"
+                        ],
+                        "runnable_sql": "select * from `sponsors` where `id` = '1' and `sponsors`.`deleted_at` is null limit 1",
+                        "duration_ms": 1.98,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 75.904,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -219,12 +238,12 @@
                             "scripcom-cache-spatie.permission.cache"
                         ],
                         "runnable_sql": "select * from `cache` where `key` in ('scripcom-cache-spatie.permission.cache')",
-                        "duration_ms": 1.1,
+                        "duration_ms": 2.11,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 446.436,
+                        "at_ms": 89.507,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -236,12 +255,12 @@
                             "App\\Models\\User"
                         ],
                         "runnable_sql": "select `permissions`.*, `model_has_permissions`.`model_id` as `pivot_model_id`, `model_has_permissions`.`permission_id` as `pivot_permission_id`, `model_has_permissions`.`model_type` as `pivot_model_type` from `permissions` inner join `model_has_permissions` on `permissions`.`id` = `model_has_permissions`.`permission_id` where `model_has_permissions`.`model_id` in (1) and `model_has_permissions`.`model_type` = 'App\\\\Models\\\\User'",
-                        "duration_ms": 3.12,
+                        "duration_ms": 2.5,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 468.935,
+                        "at_ms": 106.479,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -253,60 +272,12 @@
                             "App\\Models\\User"
                         ],
                         "runnable_sql": "select `roles`.*, `model_has_roles`.`model_id` as `pivot_model_id`, `model_has_roles`.`role_id` as `pivot_role_id`, `model_has_roles`.`model_type` as `pivot_model_type` from `roles` inner join `model_has_roles` on `roles`.`id` = `model_has_roles`.`role_id` where `model_has_roles`.`model_id` in (1) and `model_has_roles`.`model_type` = 'App\\\\Models\\\\User'",
-                        "duration_ms": 1.52,
+                        "duration_ms": 2.61,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 475.559,
-                        "source_preserved": true,
-                        "binding_policy": "full",
-                        "bindings_complete": true,
-                        "runnable_available": true
-                    },
-                    {
-                        "sql": "select count(*) as `aggregate` from `sponsors` where `sponsors`.`deleted_at` is null",
-                        "bindings": [],
-                        "runnable_sql": "select count(*) as `aggregate` from `sponsors` where `sponsors`.`deleted_at` is null",
-                        "duration_ms": 2.39,
-                        "connection": "mysql",
-                        "type": "write",
-                        "callsite": {
-                            "file": "app/Http/Controllers/SponsorController.php",
-                            "line": 25
-                        },
-                        "stack": [
-                            {
-                                "file": "app/Http/Controllers/SponsorController.php",
-                                "line": 25,
-                                "function": "Illuminate\\Database\\Eloquent\\Builder->paginate"
-                            }
-                        ],
-                        "at_ms": 491.032,
-                        "source_preserved": true,
-                        "binding_policy": "full",
-                        "bindings_complete": true,
-                        "runnable_available": true
-                    },
-                    {
-                        "sql": "select `sponsors`.*, (select count(*) from `sponsorships` where `sponsors`.`id` = `sponsorships`.`sponsor_id`) as `sponsorships_count`, (select count(*) from `campaigns` where `sponsors`.`id` = `campaigns`.`sponsor_id` and `campaigns`.`deleted_at` is null) as `campaigns_count` from `sponsors` where `sponsors`.`deleted_at` is null order by `created_at` desc limit 15 offset 0",
-                        "bindings": [],
-                        "runnable_sql": "select `sponsors`.*, (select count(*) from `sponsorships` where `sponsors`.`id` = `sponsorships`.`sponsor_id`) as `sponsorships_count`, (select count(*) from `campaigns` where `sponsors`.`id` = `campaigns`.`sponsor_id` and `campaigns`.`deleted_at` is null) as `campaigns_count` from `sponsors` where `sponsors`.`deleted_at` is null order by `created_at` desc limit 15 offset 0",
-                        "duration_ms": 115.52,
-                        "connection": "mysql",
-                        "type": "write",
-                        "callsite": {
-                            "file": "app/Http/Controllers/SponsorController.php",
-                            "line": 25
-                        },
-                        "stack": [
-                            {
-                                "file": "app/Http/Controllers/SponsorController.php",
-                                "line": 25,
-                                "function": "Illuminate\\Database\\Eloquent\\Builder->paginate"
-                            }
-                        ],
-                        "at_ms": 608.076,
+                        "at_ms": 113.898,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -319,7 +290,7 @@
                             1
                         ],
                         "runnable_sql": "select count(*) as `aggregate` from `notifications` where `notifications`.`notifiable_type` = 'App\\\\Models\\\\User' and `notifications`.`notifiable_id` = 1 and `notifications`.`notifiable_id` is not null and `read_at` is null",
-                        "duration_ms": 2.17,
+                        "duration_ms": 1.96,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
@@ -333,7 +304,7 @@
                                 "function": "Blade authorization directive"
                             }
                         ],
-                        "at_ms": 2438.389,
+                        "at_ms": 276.66,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -346,7 +317,7 @@
                             1
                         ],
                         "runnable_sql": "select * from `notifications` where `notifications`.`notifiable_type` = 'App\\\\Models\\\\User' and `notifications`.`notifiable_id` = 1 and `notifications`.`notifiable_id` is not null order by `created_at` desc, `created_at` desc limit 5",
-                        "duration_ms": 1.87,
+                        "duration_ms": 1.8,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
@@ -360,7 +331,7 @@
                                 "function": "Blade authorization directive"
                             }
                         ],
-                        "at_ms": 2443.299,
+                        "at_ms": 281.77,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -369,20 +340,20 @@
                     {
                         "sql": "update `sessions` set `payload` = ?, `last_activity` = ?, `user_id` = ?, `ip_address` = ?, `user_agent` = ? where `id` = ?",
                         "bindings": [
-                            "eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvc3BvbnNvcnMiLCJyb3V0ZSI6ImFkbWluLnNwb25zb3JzLmluZGV4In19",
-                            1787224157,
+                            "eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvc3BvbnNvcnNcLzFcL2VkaXQiLCJyb3V0ZSI6ImFkbWluLnNwb25zb3JzLmVkaXQifX0=",
+                            1787228115,
                             1,
                             "127.0.0.1",
                             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
                             "sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH"
                         ],
-                        "runnable_sql": "update `sessions` set `payload` = 'eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvc3BvbnNvcnMiLCJyb3V0ZSI6ImFkbWluLnNwb25zb3JzLmluZGV4In19', `last_activity` = 1787224157, `user_id` = 1, `ip_address` = '127.0.0.1', `user_agent` = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36' where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH'",
-                        "duration_ms": 342.2,
+                        "runnable_sql": "update `sessions` set `payload` = 'eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvc3BvbnNvcnNcLzFcL2VkaXQiLCJyb3V0ZSI6ImFkbWluLnNwb25zb3JzLmVkaXQifX0=', `last_activity` = 1787228115, `user_id` = 1, `ip_address` = '127.0.0.1', `user_agent` = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36' where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH'",
+                        "duration_ms": 124.29,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 2800.28,
+                        "at_ms": 421.215,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -468,8 +439,8 @@
         "models": {
             "label": "Models",
             "summary": {
-                "count": 9,
-                "retained_count": 9,
+                "count": 6,
+                "retained_count": 6,
                 "dropped_count": 0,
                 "truncated": false
             },
@@ -481,7 +452,15 @@
                         "connection": "mysql",
                         "table": "users",
                         "key": 1,
-                        "at_ms": 430.739
+                        "at_ms": 66.936
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\Sponsor",
+                        "connection": "mysql",
+                        "table": "sponsors",
+                        "key": 1,
+                        "at_ms": 76.362
                     },
                     {
                         "event": "retrieved",
@@ -489,39 +468,7 @@
                         "connection": "mysql",
                         "table": "roles",
                         "key": 1,
-                        "at_ms": 476.132
-                    },
-                    {
-                        "event": "retrieved",
-                        "model": "App\\Models\\Sponsor",
-                        "connection": "mysql",
-                        "table": "sponsors",
-                        "key": 4,
-                        "at_ms": 608.561
-                    },
-                    {
-                        "event": "retrieved",
-                        "model": "App\\Models\\Sponsor",
-                        "connection": "mysql",
-                        "table": "sponsors",
-                        "key": 1,
-                        "at_ms": 608.671
-                    },
-                    {
-                        "event": "retrieved",
-                        "model": "App\\Models\\Sponsor",
-                        "connection": "mysql",
-                        "table": "sponsors",
-                        "key": 2,
-                        "at_ms": 608.772
-                    },
-                    {
-                        "event": "retrieved",
-                        "model": "App\\Models\\Sponsor",
-                        "connection": "mysql",
-                        "table": "sponsors",
-                        "key": 3,
-                        "at_ms": 608.869
+                        "at_ms": 114.653
                     },
                     {
                         "event": "retrieved",
@@ -529,7 +476,7 @@
                         "connection": "mysql",
                         "table": "notifications",
                         "key": "f1d65c50-f1f5-45af-aff6-1b5270bc084a",
-                        "at_ms": 2443.666
+                        "at_ms": 282.154
                     },
                     {
                         "event": "retrieved",
@@ -537,7 +484,7 @@
                         "connection": "mysql",
                         "table": "notifications",
                         "key": "9d3528cc-2174-4bd9-a872-315daaff9140",
-                        "at_ms": 2443.771
+                        "at_ms": 282.26
                     },
                     {
                         "event": "retrieved",
@@ -545,7 +492,7 @@
                         "connection": "mysql",
                         "table": "notifications",
                         "key": "e53f5f50-0c0a-47ee-8e7f-1b3c793f9b38",
-                        "at_ms": 2443.866
+                        "at_ms": 282.356
                     }
                 ]
             }
@@ -575,7 +522,7 @@
                         "tag_hashes": [],
                         "tags": [],
                         "seconds": null,
-                        "at_ms": 447.337
+                        "at_ms": 92.697
                     }
                 ]
             }
@@ -591,119 +538,32 @@
             "payload": {
                 "items": [
                     {
-                        "name": "sponsors.index",
+                        "name": "sponsors.edit",
                         "source": {
-                            "file": "resources/views/sponsors/index.blade.php",
+                            "file": "resources/views/sponsors/edit.blade.php",
                             "line": 1
                         },
                         "composers": [],
                         "data": {
-                            "sponsors": {
-                                "current_page": 1,
-                                "data": [
-                                    {
-                                        "id": "[maximum depth reached]",
-                                        "name": "[maximum depth reached]",
-                                        "slug": "[maximum depth reached]",
-                                        "email": "[maximum depth reached]",
-                                        "phone": "[maximum depth reached]",
-                                        "address": "[maximum depth reached]",
-                                        "logo": "[maximum depth reached]",
-                                        "website": "[maximum depth reached]",
-                                        "contact_person": "[maximum depth reached]",
-                                        "is_active": "[maximum depth reached]",
-                                        "created_at": "[maximum depth reached]",
-                                        "updated_at": "[maximum depth reached]",
-                                        "deleted_at": "[maximum depth reached]",
-                                        "sponsorships_count": "[maximum depth reached]",
-                                        "campaigns_count": "[maximum depth reached]"
-                                    },
-                                    {
-                                        "id": "[maximum depth reached]",
-                                        "name": "[maximum depth reached]",
-                                        "slug": "[maximum depth reached]",
-                                        "email": "[maximum depth reached]",
-                                        "phone": "[maximum depth reached]",
-                                        "address": "[maximum depth reached]",
-                                        "logo": "[maximum depth reached]",
-                                        "website": "[maximum depth reached]",
-                                        "contact_person": "[maximum depth reached]",
-                                        "is_active": "[maximum depth reached]",
-                                        "created_at": "[maximum depth reached]",
-                                        "updated_at": "[maximum depth reached]",
-                                        "deleted_at": "[maximum depth reached]",
-                                        "sponsorships_count": "[maximum depth reached]",
-                                        "campaigns_count": "[maximum depth reached]"
-                                    },
-                                    {
-                                        "id": "[maximum depth reached]",
-                                        "name": "[maximum depth reached]",
-                                        "slug": "[maximum depth reached]",
-                                        "email": "[maximum depth reached]",
-                                        "phone": "[maximum depth reached]",
-                                        "address": "[maximum depth reached]",
-                                        "logo": "[maximum depth reached]",
-                                        "website": "[maximum depth reached]",
-                                        "contact_person": "[maximum depth reached]",
-                                        "is_active": "[maximum depth reached]",
-                                        "created_at": "[maximum depth reached]",
-                                        "updated_at": "[maximum depth reached]",
-                                        "deleted_at": "[maximum depth reached]",
-                                        "sponsorships_count": "[maximum depth reached]",
-                                        "campaigns_count": "[maximum depth reached]"
-                                    },
-                                    {
-                                        "id": "[maximum depth reached]",
-                                        "name": "[maximum depth reached]",
-                                        "slug": "[maximum depth reached]",
-                                        "email": "[maximum depth reached]",
-                                        "phone": "[maximum depth reached]",
-                                        "address": "[maximum depth reached]",
-                                        "logo": "[maximum depth reached]",
-                                        "website": "[maximum depth reached]",
-                                        "contact_person": "[maximum depth reached]",
-                                        "is_active": "[maximum depth reached]",
-                                        "created_at": "[maximum depth reached]",
-                                        "updated_at": "[maximum depth reached]",
-                                        "deleted_at": "[maximum depth reached]",
-                                        "sponsorships_count": "[maximum depth reached]",
-                                        "campaigns_count": "[maximum depth reached]"
-                                    }
-                                ],
-                                "first_page_url": "http://127.0.0.1:8000/admin/sponsors?page=1",
-                                "from": 1,
-                                "last_page": 1,
-                                "last_page_url": "http://127.0.0.1:8000/admin/sponsors?page=1",
-                                "links": [
-                                    {
-                                        "url": "[maximum depth reached]",
-                                        "label": "[maximum depth reached]",
-                                        "page": "[maximum depth reached]",
-                                        "active": "[maximum depth reached]"
-                                    },
-                                    {
-                                        "url": "[maximum depth reached]",
-                                        "label": "[maximum depth reached]",
-                                        "page": "[maximum depth reached]",
-                                        "active": "[maximum depth reached]"
-                                    },
-                                    {
-                                        "url": "[maximum depth reached]",
-                                        "label": "[maximum depth reached]",
-                                        "page": "[maximum depth reached]",
-                                        "active": "[maximum depth reached]"
-                                    }
-                                ],
-                                "next_page_url": null,
-                                "path": "http://127.0.0.1:8000/admin/sponsors",
-                                "per_page": 15,
-                                "prev_page_url": null,
-                                "to": 4,
-                                "total": 4
+                            "sponsor": {
+                                "id": 1,
+                                "name": "Safaricom PLC",
+                                "slug": "safaricom",
+                                "email": "partners@safaricom.co.ke",
+                                "phone": "0722000001",
+                                "address": null,
+                                "logo": null,
+                                "brand_color": "#059E17",
+                                "website": "https://www.safaricom.co.ke",
+                                "contact_person": "Betty Njoroge",
+                                "is_active": true,
+                                "created_at": "2026-08-20T06:56:44.000000Z",
+                                "updated_at": "2026-08-20T12:15:04.000000Z",
+                                "deleted_at": null
                             }
                         },
                         "timing": "composition_marker",
-                        "at_ms": 621.215
+                        "at_ms": 131.307
                     },
                     {
                         "name": "layouts.admin",
@@ -716,234 +576,25 @@
                             "__env": "[Illuminate\\View\\Factory]",
                             "app": "[Illuminate\\Foundation\\Application]",
                             "errors": "[]",
-                            "sponsors": {
-                                "current_page": 1,
-                                "data": [
-                                    {
-                                        "id": "[maximum depth reached]",
-                                        "name": "[maximum depth reached]",
-                                        "slug": "[maximum depth reached]",
-                                        "email": "[maximum depth reached]",
-                                        "phone": "[maximum depth reached]",
-                                        "address": "[maximum depth reached]",
-                                        "logo": "[maximum depth reached]",
-                                        "website": "[maximum depth reached]",
-                                        "contact_person": "[maximum depth reached]",
-                                        "is_active": "[maximum depth reached]",
-                                        "created_at": "[maximum depth reached]",
-                                        "updated_at": "[maximum depth reached]",
-                                        "deleted_at": "[maximum depth reached]",
-                                        "sponsorships_count": "[maximum depth reached]",
-                                        "campaigns_count": "[maximum depth reached]"
-                                    },
-                                    {
-                                        "id": "[maximum depth reached]",
-                                        "name": "[maximum depth reached]",
-                                        "slug": "[maximum depth reached]",
-                                        "email": "[maximum depth reached]",
-                                        "phone": "[maximum depth reached]",
-                                        "address": "[maximum depth reached]",
-                                        "logo": "[maximum depth reached]",
-                                        "website": "[maximum depth reached]",
-                                        "contact_person": "[maximum depth reached]",
-                                        "is_active": "[maximum depth reached]",
-                                        "created_at": "[maximum depth reached]",
-                                        "updated_at": "[maximum depth reached]",
-                                        "deleted_at": "[maximum depth reached]",
-                                        "sponsorships_count": "[maximum depth reached]",
-                                        "campaigns_count": "[maximum depth reached]"
-                                    },
-                                    {
-                                        "id": "[maximum depth reached]",
-                                        "name": "[maximum depth reached]",
-                                        "slug": "[maximum depth reached]",
-                                        "email": "[maximum depth reached]",
-                                        "phone": "[maximum depth reached]",
-                                        "address": "[maximum depth reached]",
-                                        "logo": "[maximum depth reached]",
-                                        "website": "[maximum depth reached]",
-                                        "contact_person": "[maximum depth reached]",
-                                        "is_active": "[maximum depth reached]",
-                                        "created_at": "[maximum depth reached]",
-                                        "updated_at": "[maximum depth reached]",
-                                        "deleted_at": "[maximum depth reached]",
-                                        "sponsorships_count": "[maximum depth reached]",
-                                        "campaigns_count": "[maximum depth reached]"
-                                    },
-                                    {
-                                        "id": "[maximum depth reached]",
-                                        "name": "[maximum depth reached]",
-                                        "slug": "[maximum depth reached]",
-                                        "email": "[maximum depth reached]",
-                                        "phone": "[maximum depth reached]",
-                                        "address": "[maximum depth reached]",
-                                        "logo": "[maximum depth reached]",
-                                        "website": "[maximum depth reached]",
-                                        "contact_person": "[maximum depth reached]",
-                                        "is_active": "[maximum depth reached]",
-                                        "created_at": "[maximum depth reached]",
-                                        "updated_at": "[maximum depth reached]",
-                                        "deleted_at": "[maximum depth reached]",
-                                        "sponsorships_count": "[maximum depth reached]",
-                                        "campaigns_count": "[maximum depth reached]"
-                                    }
-                                ],
-                                "first_page_url": "http://127.0.0.1:8000/admin/sponsors?page=1",
-                                "from": 1,
-                                "last_page": 1,
-                                "last_page_url": "http://127.0.0.1:8000/admin/sponsors?page=1",
-                                "links": [
-                                    {
-                                        "url": "[maximum depth reached]",
-                                        "label": "[maximum depth reached]",
-                                        "page": "[maximum depth reached]",
-                                        "active": "[maximum depth reached]"
-                                    },
-                                    {
-                                        "url": "[maximum depth reached]",
-                                        "label": "[maximum depth reached]",
-                                        "page": "[maximum depth reached]",
-                                        "active": "[maximum depth reached]"
-                                    },
-                                    {
-                                        "url": "[maximum depth reached]",
-                                        "label": "[maximum depth reached]",
-                                        "page": "[maximum depth reached]",
-                                        "active": "[maximum depth reached]"
-                                    }
-                                ],
-                                "next_page_url": null,
-                                "path": "http://127.0.0.1:8000/admin/sponsors",
-                                "per_page": 15,
-                                "prev_page_url": null,
-                                "to": 4,
-                                "total": 4
-                            },
-                            "__empty_1": false,
-                            "__currentLoopData": {
-                                "current_page": 1,
-                                "data": [
-                                    {
-                                        "id": "[maximum depth reached]",
-                                        "name": "[maximum depth reached]",
-                                        "slug": "[maximum depth reached]",
-                                        "email": "[maximum depth reached]",
-                                        "phone": "[maximum depth reached]",
-                                        "address": "[maximum depth reached]",
-                                        "logo": "[maximum depth reached]",
-                                        "website": "[maximum depth reached]",
-                                        "contact_person": "[maximum depth reached]",
-                                        "is_active": "[maximum depth reached]",
-                                        "created_at": "[maximum depth reached]",
-                                        "updated_at": "[maximum depth reached]",
-                                        "deleted_at": "[maximum depth reached]",
-                                        "sponsorships_count": "[maximum depth reached]",
-                                        "campaigns_count": "[maximum depth reached]"
-                                    },
-                                    {
-                                        "id": "[maximum depth reached]",
-                                        "name": "[maximum depth reached]",
-                                        "slug": "[maximum depth reached]",
-                                        "email": "[maximum depth reached]",
-                                        "phone": "[maximum depth reached]",
-                                        "address": "[maximum depth reached]",
-                                        "logo": "[maximum depth reached]",
-                                        "website": "[maximum depth reached]",
-                                        "contact_person": "[maximum depth reached]",
-                                        "is_active": "[maximum depth reached]",
-                                        "created_at": "[maximum depth reached]",
-                                        "updated_at": "[maximum depth reached]",
-                                        "deleted_at": "[maximum depth reached]",
-                                        "sponsorships_count": "[maximum depth reached]",
-                                        "campaigns_count": "[maximum depth reached]"
-                                    },
-                                    {
-                                        "id": "[maximum depth reached]",
-                                        "name": "[maximum depth reached]",
-                                        "slug": "[maximum depth reached]",
-                                        "email": "[maximum depth reached]",
-                                        "phone": "[maximum depth reached]",
-                                        "address": "[maximum depth reached]",
-                                        "logo": "[maximum depth reached]",
-                                        "website": "[maximum depth reached]",
-                                        "contact_person": "[maximum depth reached]",
-                                        "is_active": "[maximum depth reached]",
-                                        "created_at": "[maximum depth reached]",
-                                        "updated_at": "[maximum depth reached]",
-                                        "deleted_at": "[maximum depth reached]",
-                                        "sponsorships_count": "[maximum depth reached]",
-                                        "campaigns_count": "[maximum depth reached]"
-                                    },
-                                    {
-                                        "id": "[maximum depth reached]",
-                                        "name": "[maximum depth reached]",
-                                        "slug": "[maximum depth reached]",
-                                        "email": "[maximum depth reached]",
-                                        "phone": "[maximum depth reached]",
-                                        "address": "[maximum depth reached]",
-                                        "logo": "[maximum depth reached]",
-                                        "website": "[maximum depth reached]",
-                                        "contact_person": "[maximum depth reached]",
-                                        "is_active": "[maximum depth reached]",
-                                        "created_at": "[maximum depth reached]",
-                                        "updated_at": "[maximum depth reached]",
-                                        "deleted_at": "[maximum depth reached]",
-                                        "sponsorships_count": "[maximum depth reached]",
-                                        "campaigns_count": "[maximum depth reached]"
-                                    }
-                                ],
-                                "first_page_url": "http://127.0.0.1:8000/admin/sponsors?page=1",
-                                "from": 1,
-                                "last_page": 1,
-                                "last_page_url": "http://127.0.0.1:8000/admin/sponsors?page=1",
-                                "links": [
-                                    {
-                                        "url": "[maximum depth reached]",
-                                        "label": "[maximum depth reached]",
-                                        "page": "[maximum depth reached]",
-                                        "active": "[maximum depth reached]"
-                                    },
-                                    {
-                                        "url": "[maximum depth reached]",
-                                        "label": "[maximum depth reached]",
-                                        "page": "[maximum depth reached]",
-                                        "active": "[maximum depth reached]"
-                                    },
-                                    {
-                                        "url": "[maximum depth reached]",
-                                        "label": "[maximum depth reached]",
-                                        "page": "[maximum depth reached]",
-                                        "active": "[maximum depth reached]"
-                                    }
-                                ],
-                                "next_page_url": null,
-                                "path": "http://127.0.0.1:8000/admin/sponsors",
-                                "per_page": 15,
-                                "prev_page_url": null,
-                                "to": 4,
-                                "total": 4
-                            },
                             "sponsor": {
-                                "id": 3,
-                                "name": "Equity Bank",
-                                "slug": "equity-bank",
-                                "email": "corporate@equitybank.co.ke",
-                                "phone": "0722000003",
+                                "id": 1,
+                                "name": "Safaricom PLC",
+                                "slug": "safaricom",
+                                "email": "partners@safaricom.co.ke",
+                                "phone": "0722000001",
                                 "address": null,
                                 "logo": null,
-                                "website": "https://www.equitybank.co.ke",
-                                "contact_person": "Mary Wambui",
+                                "brand_color": "#059E17",
+                                "website": "https://www.safaricom.co.ke",
+                                "contact_person": "Betty Njoroge",
                                 "is_active": true,
                                 "created_at": "2026-08-20T06:56:44.000000Z",
-                                "updated_at": "2026-08-20T06:56:44.000000Z",
-                                "deleted_at": null,
-                                "sponsorships_count": 2,
-                                "campaigns_count": 1
-                            },
-                            "loop": null
+                                "updated_at": "2026-08-20T12:15:04.000000Z",
+                                "deleted_at": null
+                            }
                         },
                         "timing": "composition_marker",
-                        "at_ms": 2257.182
+                        "at_ms": 136.422
                     }
                 ]
             }
@@ -951,8 +602,8 @@
         "events": {
             "label": "Events",
             "summary": {
-                "count": 12,
-                "retained_count": 12,
+                "count": 11,
+                "retained_count": 11,
                 "dropped_count": 0,
                 "truncated": false
             },
@@ -965,7 +616,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\ConnectionEstablished"
                         ],
-                        "at_ms": 395.143
+                        "at_ms": 23.067
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -974,7 +625,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 408.928
+                        "at_ms": 45.597
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -983,7 +634,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 426.433
+                        "at_ms": 61.838
                     },
                     {
                         "name": "Illuminate\\Auth\\Events\\Authenticated",
@@ -992,7 +643,16 @@
                         "payload_types": [
                             "Illuminate\\Auth\\Events\\Authenticated"
                         ],
-                        "at_ms": 432.629
+                        "at_ms": 69.619
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 73.342
                     },
                     {
                         "name": "Illuminate\\Cache\\Events\\RetrievingKey",
@@ -1001,7 +661,7 @@
                         "payload_types": [
                             "Illuminate\\Cache\\Events\\RetrievingKey"
                         ],
-                        "at_ms": 442.575
+                        "at_ms": 85.212
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1010,7 +670,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 443.344
+                        "at_ms": 86.39
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1019,7 +679,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 461.09
+                        "at_ms": 103.752
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1028,7 +688,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 473.769
+                        "at_ms": 111.372
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1037,7 +697,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 488.688
+                        "at_ms": 271.312
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1046,25 +706,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 567.881
-                    },
-                    {
-                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
-                        "listeners": [],
-                        "broadcast": false,
-                        "payload_types": [
-                            "Illuminate\\Database\\Events\\StatementPrepared"
-                        ],
-                        "at_ms": 2432.824
-                    },
-                    {
-                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
-                        "listeners": [],
-                        "broadcast": false,
-                        "payload_types": [
-                            "Illuminate\\Database\\Events\\StatementPrepared"
-                        ],
-                        "at_ms": 2439.615
+                        "at_ms": 278.196
                     }
                 ]
             }
@@ -1072,8 +714,8 @@
         "authorization": {
             "label": "Authorization",
             "summary": {
-                "count": 41,
-                "retained_count": 41,
+                "count": 32,
+                "retained_count": 32,
                 "dropped_count": 0,
                 "truncated": false
             },
@@ -1086,115 +728,7 @@
                         "user_type": "App\\Models\\User",
                         "argument_types": [],
                         "callsite": null,
-                        "at_ms": 479.898
-                    },
-                    {
-                        "ability": "create-sponsor",
-                        "result": "allowed",
-                        "handler": "callback",
-                        "user_type": "App\\Models\\User",
-                        "argument_types": [],
-                        "callsite": {
-                            "file": "resources/views/sponsors/index.blade.php",
-                            "line": 38
-                        },
-                        "at_ms": 2225.347
-                    },
-                    {
-                        "ability": "update-sponsor",
-                        "result": "allowed",
-                        "handler": "callback",
-                        "user_type": "App\\Models\\User",
-                        "argument_types": [],
-                        "callsite": {
-                            "file": "resources/views/sponsors/index.blade.php",
-                            "line": 95
-                        },
-                        "at_ms": 2228.503
-                    },
-                    {
-                        "ability": "delete-sponsor",
-                        "result": "allowed",
-                        "handler": "callback",
-                        "user_type": "App\\Models\\User",
-                        "argument_types": [],
-                        "callsite": {
-                            "file": "resources/views/sponsors/index.blade.php",
-                            "line": 100
-                        },
-                        "at_ms": 2231.228
-                    },
-                    {
-                        "ability": "update-sponsor",
-                        "result": "allowed",
-                        "handler": "callback",
-                        "user_type": "App\\Models\\User",
-                        "argument_types": [],
-                        "callsite": {
-                            "file": "resources/views/sponsors/index.blade.php",
-                            "line": 95
-                        },
-                        "at_ms": 2235.952
-                    },
-                    {
-                        "ability": "delete-sponsor",
-                        "result": "allowed",
-                        "handler": "callback",
-                        "user_type": "App\\Models\\User",
-                        "argument_types": [],
-                        "callsite": {
-                            "file": "resources/views/sponsors/index.blade.php",
-                            "line": 100
-                        },
-                        "at_ms": 2239.661
-                    },
-                    {
-                        "ability": "update-sponsor",
-                        "result": "allowed",
-                        "handler": "callback",
-                        "user_type": "App\\Models\\User",
-                        "argument_types": [],
-                        "callsite": {
-                            "file": "resources/views/sponsors/index.blade.php",
-                            "line": 95
-                        },
-                        "at_ms": 2243.146
-                    },
-                    {
-                        "ability": "delete-sponsor",
-                        "result": "allowed",
-                        "handler": "callback",
-                        "user_type": "App\\Models\\User",
-                        "argument_types": [],
-                        "callsite": {
-                            "file": "resources/views/sponsors/index.blade.php",
-                            "line": 100
-                        },
-                        "at_ms": 2245.714
-                    },
-                    {
-                        "ability": "update-sponsor",
-                        "result": "allowed",
-                        "handler": "callback",
-                        "user_type": "App\\Models\\User",
-                        "argument_types": [],
-                        "callsite": {
-                            "file": "resources/views/sponsors/index.blade.php",
-                            "line": 95
-                        },
-                        "at_ms": 2248.727
-                    },
-                    {
-                        "ability": "delete-sponsor",
-                        "result": "allowed",
-                        "handler": "callback",
-                        "user_type": "App\\Models\\User",
-                        "argument_types": [],
-                        "callsite": {
-                            "file": "resources/views/sponsors/index.blade.php",
-                            "line": 100
-                        },
-                        "at_ms": 2251.908
+                        "at_ms": 120.44
                     },
                     {
                         "ability": "view-analytics",
@@ -1206,7 +740,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 107
                         },
-                        "at_ms": 2310.788
+                        "at_ms": 145.449
                     },
                     {
                         "ability": "view-any-router",
@@ -1218,7 +752,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 116
                         },
-                        "at_ms": 2314.675
+                        "at_ms": 149.458
                     },
                     {
                         "ability": "view-any-organization",
@@ -1230,7 +764,7 @@
                             "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
                             "line": 126
                         },
-                        "at_ms": 2320.281
+                        "at_ms": 152.923
                     },
                     {
                         "ability": "view-any-organization",
@@ -1242,7 +776,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 139
                         },
-                        "at_ms": 2324.421
+                        "at_ms": 155.783
                     },
                     {
                         "ability": "view-any-user",
@@ -1254,7 +788,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 147
                         },
-                        "at_ms": 2328.613
+                        "at_ms": 161.941
                     },
                     {
                         "ability": "view-any-hotspot",
@@ -1266,7 +800,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 155
                         },
-                        "at_ms": 2331.908
+                        "at_ms": 166.61
                     },
                     {
                         "ability": "view-any-router",
@@ -1278,7 +812,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 163
                         },
-                        "at_ms": 2337.112
+                        "at_ms": 170.162
                     },
                     {
                         "ability": "view-any-campaign",
@@ -1290,7 +824,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 171
                         },
-                        "at_ms": 2340.528
+                        "at_ms": 173.847
                     },
                     {
                         "ability": "view-any-package",
@@ -1302,7 +836,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 179
                         },
-                        "at_ms": 2343.727
+                        "at_ms": 179.588
                     },
                     {
                         "ability": "view-any-voucher",
@@ -1314,7 +848,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 187
                         },
-                        "at_ms": 2346.739
+                        "at_ms": 183.198
                     },
                     {
                         "ability": "view-any-sponsor",
@@ -1326,7 +860,7 @@
                             "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
                             "line": 200
                         },
-                        "at_ms": 2350.081
+                        "at_ms": 186.591
                     },
                     {
                         "ability": "view-any-sponsor",
@@ -1338,7 +872,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 213
                         },
-                        "at_ms": 2355.529
+                        "at_ms": 189.677
                     },
                     {
                         "ability": "view-any-sponsorship",
@@ -1350,7 +884,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 221
                         },
-                        "at_ms": 2359.087
+                        "at_ms": 195.353
                     },
                     {
                         "ability": "buy-credits",
@@ -1362,7 +896,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 229
                         },
-                        "at_ms": 2361.858
+                        "at_ms": 198.422
                     },
                     {
                         "ability": "view-any-session",
@@ -1374,7 +908,7 @@
                             "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
                             "line": 242
                         },
-                        "at_ms": 2365.298
+                        "at_ms": 202.105
                     },
                     {
                         "ability": "view-any-session",
@@ -1386,7 +920,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 255
                         },
-                        "at_ms": 2371.037
+                        "at_ms": 206.015
                     },
                     {
                         "ability": "view-any-event",
@@ -1398,7 +932,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 263
                         },
-                        "at_ms": 2374.861
+                        "at_ms": 210.059
                     },
                     {
                         "ability": "view-any-payment",
@@ -1410,7 +944,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 271
                         },
-                        "at_ms": 2378.469
+                        "at_ms": 215.006
                     },
                     {
                         "ability": "view-reports",
@@ -1422,7 +956,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 283
                         },
-                        "at_ms": 2381.446
+                        "at_ms": 218.052
                     },
                     {
                         "ability": "view-any-contract",
@@ -1434,7 +968,7 @@
                             "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
                             "line": 293
                         },
-                        "at_ms": 2386.408
+                        "at_ms": 221.9
                     },
                     {
                         "ability": "view-any-invoice",
@@ -1446,7 +980,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 306
                         },
-                        "at_ms": 2390.311
+                        "at_ms": 226.666
                     },
                     {
                         "ability": "view-any-contract",
@@ -1458,7 +992,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 314
                         },
-                        "at_ms": 2394.355
+                        "at_ms": 230.977
                     },
                     {
                         "ability": "view-any-invoice",
@@ -1470,7 +1004,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 322
                         },
-                        "at_ms": 2398.375
+                        "at_ms": 234.888
                     },
                     {
                         "ability": "view-any-revenue",
@@ -1482,7 +1016,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 330
                         },
-                        "at_ms": 2403.685
+                        "at_ms": 238.754
                     },
                     {
                         "ability": "view-settings",
@@ -1494,7 +1028,7 @@
                             "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
                             "line": 343
                         },
-                        "at_ms": 2407.002
+                        "at_ms": 242.536
                     },
                     {
                         "ability": "view-settings",
@@ -1506,7 +1040,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 356
                         },
-                        "at_ms": 2410.139
+                        "at_ms": 247.174
                     },
                     {
                         "ability": "view-any-role",
@@ -1518,7 +1052,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 364
                         },
-                        "at_ms": 2414.196
+                        "at_ms": 251.085
                     },
                     {
                         "ability": "view-any-permission",
@@ -1530,7 +1064,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 372
                         },
-                        "at_ms": 2419.257
+                        "at_ms": 254.895
                     },
                     {
                         "ability": "view-any-audit-log",
@@ -1542,7 +1076,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 380
                         },
-                        "at_ms": 2423.99
+                        "at_ms": 259.411
                     },
                     {
                         "ability": "view-notifications",
@@ -1554,7 +1088,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 420
                         },
-                        "at_ms": 2429.152
+                        "at_ms": 266.462
                     },
                     {
                         "ability": "view-settings",
@@ -1566,7 +1100,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 558
                         },
-                        "at_ms": 2451.705
+                        "at_ms": 290.188
                     }
                 ]
             }

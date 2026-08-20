@@ -1,0 +1,462 @@
+{
+    "schema_version": 1,
+    "id": "23265db5-3cc1-4478-ae21-58ac575506a6",
+    "recorded_at": "2026-08-20T12:13:10+00:00",
+    "profile_type": "artisan",
+    "environment": "local",
+    "metrics": {
+        "duration_ms": 4336.23,
+        "peak_memory_mb": 40
+    },
+    "sections": {
+        "overview": {
+            "label": "Overview",
+            "summary": {
+                "duration_ms": 4336.23,
+                "peak_memory_mb": 40
+            },
+            "payload": {
+                "runtime": {
+                    "environment": "local",
+                    "php": "8.4.24",
+                    "php_sapi": "cli",
+                    "runtime_type": "CLI",
+                    "laravel": "13.25.0",
+                    "debug": false,
+                    "locale": "en",
+                    "timezone": "UTC"
+                },
+                "cache_state": {
+                    "configuration": false,
+                    "routes": false,
+                    "events": false
+                },
+                "drivers": {
+                    "database": "mysql",
+                    "cache": "database",
+                    "queue": "database",
+                    "session": "database",
+                    "mail": "log",
+                    "broadcasting": "log"
+                },
+                "ecosystem": [
+                    {
+                        "key": "sanctum",
+                        "label": "Sanctum",
+                        "version": "v4.3.3"
+                    }
+                ],
+                "package": "dev-main"
+            }
+        },
+        "request": {
+            "label": "Runtime",
+            "summary": {
+                "method": "CLI",
+                "status": 0,
+                "exit_code": 0
+            },
+            "payload": {
+                "method": "CLI",
+                "url": null,
+                "path": "artisan:migrate",
+                "query": [],
+                "input": [],
+                "headers": [],
+                "runtime_type": "artisan",
+                "name": "migrate",
+                "context": {
+                    "argument_names": [
+                        "command"
+                    ],
+                    "option_names": [
+                        "database",
+                        "force",
+                        "path",
+                        "realpath",
+                        "schema-path",
+                        "pretend",
+                        "seed",
+                        "seeder",
+                        "step",
+                        "graceful",
+                        "isolated",
+                        "help",
+                        "silent",
+                        "quiet",
+                        "verbose",
+                        "version",
+                        "ansi",
+                        "no-interaction",
+                        "env"
+                    ]
+                },
+                "route": null,
+                "action": null,
+                "parameters": [],
+                "middleware": [],
+                "status": 0,
+                "exit_code": 0,
+                "content_type": null,
+                "request_size_bytes": 0,
+                "response_size_bytes": 0,
+                "session_present": false,
+                "authenticated": false,
+                "response_headers": []
+            }
+        },
+        "queries": {
+            "label": "Queries",
+            "summary": {
+                "count": 4,
+                "retained_count": 4,
+                "dropped_count": 0,
+                "truncated": false,
+                "duration_ms": 1001.53,
+                "transaction_count": 0,
+                "transaction_retained_count": 0,
+                "transaction_dropped_count": 0,
+                "rollback_count": 0
+            },
+            "payload": {
+                "items": [
+                    {
+                        "sql": "select exists (select 1 from information_schema.tables where table_schema = schema() and table_name = '[string]' and table_type in ('[string]', '[string]')) as `exists`",
+                        "bindings": [],
+                        "duration_ms": 887.03,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "artisan",
+                            "line": 16
+                        },
+                        "stack": [
+                            {
+                                "file": "artisan",
+                                "line": 16,
+                                "function": "Illuminate\\Foundation\\Application->handleCommand"
+                            }
+                        ],
+                        "at_ms": 2929.365,
+                        "source_preserved": false,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": false
+                    },
+                    {
+                        "sql": "select exists (select 1 from information_schema.tables where table_schema = schema() and table_name = '[string]' and table_type in ('[string]', '[string]')) as `exists`",
+                        "bindings": [],
+                        "duration_ms": 3.96,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "artisan",
+                            "line": 16
+                        },
+                        "stack": [
+                            {
+                                "file": "artisan",
+                                "line": 16,
+                                "function": "Illuminate\\Foundation\\Application->handleCommand"
+                            }
+                        ],
+                        "at_ms": 2934.68,
+                        "source_preserved": false,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": false
+                    },
+                    {
+                        "sql": "select `migration` from `migrations` order by `batch` asc, `migration` asc",
+                        "bindings": [],
+                        "runnable_sql": "select `migration` from `migrations` order by `batch` asc, `migration` asc",
+                        "duration_ms": 108.55,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "artisan",
+                            "line": 16
+                        },
+                        "stack": [
+                            {
+                                "file": "artisan",
+                                "line": 16,
+                                "function": "Illuminate\\Foundation\\Application->handleCommand"
+                            }
+                        ],
+                        "at_ms": 3044.219,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select `migration` from `migrations` order by `batch` asc, `migration` asc",
+                        "bindings": [],
+                        "runnable_sql": "select `migration` from `migrations` order by `batch` asc, `migration` asc",
+                        "duration_ms": 1.99,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "artisan",
+                            "line": 16
+                        },
+                        "stack": [
+                            {
+                                "file": "artisan",
+                                "line": 16,
+                                "function": "Illuminate\\Foundation\\Application->handleCommand"
+                            }
+                        ],
+                        "at_ms": 3047.465,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    }
+                ],
+                "transactions": []
+            }
+        },
+        "http_client": {
+            "label": "HTTP Client",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "duration_ms": 0,
+                "failed_count": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "queue": {
+            "label": "Queue",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "queued_count": 0,
+                "executed_count": 0,
+                "failed_count": 0,
+                "duration_ms": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "mail": {
+            "label": "Mail",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "recipient_count": 0,
+                "attachment_count": 0,
+                "duration_ms": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "notifications": {
+            "label": "Notifications",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "sent_count": 0,
+                "failed_count": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "redis": {
+            "label": "Redis",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "duration_ms": 0,
+                "failed_count": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "models": {
+            "label": "Models",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "cache": {
+            "label": "Cache",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "hits": 0,
+                "misses": 0,
+                "writes": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "views": {
+            "label": "Views",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "events": {
+            "label": "Events",
+            "summary": {
+                "count": 6,
+                "retained_count": 6,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": [
+                    {
+                        "name": "Illuminate\\Database\\Events\\ConnectionEstablished",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\ConnectionEstablished"
+                        ],
+                        "at_ms": 829.73
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 2706.943
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 2932.189
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 3014.483
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 3045.619
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\NoPendingMigrations",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\NoPendingMigrations"
+                        ],
+                        "at_ms": 3328.872
+                    }
+                ]
+            }
+        },
+        "authorization": {
+            "label": "Authorization",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "validation": {
+            "label": "Validation",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "messages": {
+            "label": "Messages",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "logs": {
+            "label": "Logs",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "errors": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "exceptions": {
+            "label": "Exceptions",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": []
+            }
+        }
+    }
+}

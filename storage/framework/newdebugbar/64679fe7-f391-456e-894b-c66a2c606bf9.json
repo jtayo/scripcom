@@ -1,18 +1,18 @@
 {
     "schema_version": 1,
-    "id": "d4875dd0-d792-402c-ab47-10b3963fd3fd",
-    "recorded_at": "2026-08-20T11:03:40+00:00",
+    "id": "64679fe7-f391-456e-894b-c66a2c606bf9",
+    "recorded_at": "2026-08-20T12:16:38+00:00",
     "profile_type": "http",
     "environment": "local",
     "metrics": {
-        "duration_ms": 299.45,
+        "duration_ms": 1279.97,
         "peak_memory_mb": 6
     },
     "sections": {
         "overview": {
             "label": "Overview",
             "summary": {
-                "duration_ms": 299.45,
+                "duration_ms": 1279.97,
                 "peak_memory_mb": 6
             },
             "payload": {
@@ -76,16 +76,16 @@
                         "\"Not=A?Brand\";v=\"99\", \"Brave\";v=\"151\", \"Chromium\";v=\"151\""
                     ],
                     "sec-ch-ua-mobile": [
-                        "?0"
+                        "?1"
                     ],
                     "sec-ch-ua-platform": [
-                        "\"Windows\""
+                        "\"iOS\""
                     ],
                     "upgrade-insecure-requests": [
                         "1"
                     ],
                     "user-agent": [
-                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36"
+                        "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
                     ],
                     "accept": [
                         "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8"
@@ -133,7 +133,7 @@
                 "request_type": "full_page",
                 "content_type": "text/html; charset=utf-8",
                 "request_size_bytes": 0,
-                "response_size_bytes": 35118,
+                "response_size_bytes": 35761,
                 "session_present": false,
                 "authenticated": true,
                 "authentication": {
@@ -161,7 +161,7 @@
                         "no-cache, private"
                     ],
                     "date": [
-                        "Thu, 20 Aug 2026 11:03:40 GMT"
+                        "Thu, 20 Aug 2026 12:16:37 GMT"
                     ],
                     "set-cookie": "[redacted]"
                 }
@@ -174,7 +174,7 @@
                 "retained_count": 14,
                 "dropped_count": 0,
                 "truncated": false,
-                "duration_ms": 206.86,
+                "duration_ms": 1137.03,
                 "transaction_count": 0,
                 "transaction_retained_count": 0,
                 "transaction_dropped_count": 0,
@@ -188,12 +188,12 @@
                             "sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH"
                         ],
                         "runnable_sql": "select * from `sessions` where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH' limit 1",
-                        "duration_ms": 27.68,
+                        "duration_ms": 6.89,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 48.794,
+                        "at_ms": 48.429,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -205,12 +205,12 @@
                             "1"
                         ],
                         "runnable_sql": "select * from `hotspots` where `id` = '1' and `hotspots`.`deleted_at` is null limit 1",
-                        "duration_ms": 69.67,
+                        "duration_ms": 77.61,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 124.35,
+                        "at_ms": 136.108,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -224,7 +224,7 @@
                             1
                         ],
                         "runnable_sql": "select * from `campaigns` where `is_active` = 1 and `status` = 'active' and exists (select * from `hotspots` inner join `campaign_hotspot` on `hotspots`.`id` = `campaign_hotspot`.`hotspot_id` where `campaigns`.`id` = `campaign_hotspot`.`campaign_id` and `hotspots`.`id` = 1 and `hotspots`.`deleted_at` is null) and `campaigns`.`deleted_at` is null order by `priority` desc, `current_plays` asc limit 1",
-                        "duration_ms": 2.68,
+                        "duration_ms": 249.33,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
@@ -243,7 +243,7 @@
                                 "function": "App\\Services\\CaptivePortalService->getActiveCampaign"
                             }
                         ],
-                        "at_ms": 134.996,
+                        "at_ms": 398.294,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -253,11 +253,11 @@
                         "sql": "select exists(select * from `campaign_daily_views` where `campaign_id` = ? and `fingerprint_hash` = ? and `viewed_date` = ?) as `exists`",
                         "bindings": [
                             4,
-                            "8df64cb0a9afeadeb2f3075bf9e4d92e551b8f835623950da7b0ac3a5c065755",
+                            "e565361fd208a91756bfda1ea783537e4bea6f6c49a39eb790095cb15dc56af3",
                             "2026-08-20"
                         ],
-                        "runnable_sql": "select exists(select * from `campaign_daily_views` where `campaign_id` = 4 and `fingerprint_hash` = '8df64cb0a9afeadeb2f3075bf9e4d92e551b8f835623950da7b0ac3a5c065755' and `viewed_date` = '2026-08-20') as `exists`",
-                        "duration_ms": 2.29,
+                        "runnable_sql": "select exists(select * from `campaign_daily_views` where `campaign_id` = 4 and `fingerprint_hash` = 'e565361fd208a91756bfda1ea783537e4bea6f6c49a39eb790095cb15dc56af3' and `viewed_date` = '2026-08-20') as `exists`",
+                        "duration_ms": 24.04,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
@@ -276,7 +276,7 @@
                                 "function": "App\\Services\\CaptivePortalService->hasWatchedToday"
                             }
                         ],
-                        "at_ms": 140.223,
+                        "at_ms": 427.312,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -288,7 +288,7 @@
                             1
                         ],
                         "runnable_sql": "select * from `organizations` where `organizations`.`id` = 1 and `organizations`.`deleted_at` is null limit 1",
-                        "duration_ms": 1.81,
+                        "duration_ms": 88.35,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
@@ -307,7 +307,7 @@
                                 "function": "App\\Services\\CaptivePortalService->getPortalData"
                             }
                         ],
-                        "at_ms": 144.767,
+                        "at_ms": 518.556,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -319,7 +319,7 @@
                             true,
                             1
                         ],
-                        "duration_ms": 1.53,
+                        "duration_ms": 157.63,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
@@ -343,7 +343,7 @@
                                 "function": "App\\Services\\CaptivePortalService->getPortalData"
                             }
                         ],
-                        "at_ms": 148.784,
+                        "at_ms": 678.668,
                         "source_preserved": false,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -356,7 +356,7 @@
                             1
                         ],
                         "runnable_sql": "select * from `settings` where `key` = 'general.currency' and `organization_id` = 1 limit 1",
-                        "duration_ms": 0.84,
+                        "duration_ms": 38.41,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
@@ -380,7 +380,7 @@
                                 "function": "App\\Services\\CaptivePortalService->getPortalData"
                             }
                         ],
-                        "at_ms": 152.619,
+                        "at_ms": 720.187,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -393,7 +393,7 @@
                             1
                         ],
                         "runnable_sql": "select * from `settings` where `key` = 'portal.default_session_minutes' and `organization_id` = 1 limit 1",
-                        "duration_ms": 0.75,
+                        "duration_ms": 19.91,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
@@ -417,7 +417,7 @@
                                 "function": "App\\Services\\CaptivePortalService->getPortalData"
                             }
                         ],
-                        "at_ms": 154.862,
+                        "at_ms": 741.671,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -430,7 +430,7 @@
                             1
                         ],
                         "runnable_sql": "select * from `settings` where `key` = 'portal.default_bandwidth_mbps' and `organization_id` = 1 limit 1",
-                        "duration_ms": 0.87,
+                        "duration_ms": 2.34,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
@@ -454,7 +454,7 @@
                                 "function": "App\\Services\\CaptivePortalService->getPortalData"
                             }
                         ],
-                        "at_ms": 157.455,
+                        "at_ms": 745.991,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -467,7 +467,7 @@
                             1
                         ],
                         "runnable_sql": "select * from `settings` where `key` = 'portal.enable_vouchers' and `organization_id` = 1 limit 1",
-                        "duration_ms": 0.9,
+                        "duration_ms": 1.31,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
@@ -491,7 +491,7 @@
                                 "function": "App\\Services\\CaptivePortalService->getPortalData"
                             }
                         ],
-                        "at_ms": 160.047,
+                        "at_ms": 748.971,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -504,7 +504,7 @@
                             1
                         ],
                         "runnable_sql": "select * from `settings` where `key` = 'portal.welcome_message' and `organization_id` = 1 limit 1",
-                        "duration_ms": 1.28,
+                        "duration_ms": 1.12,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
@@ -528,7 +528,7 @@
                                 "function": "App\\Services\\CaptivePortalService->getPortalData"
                             }
                         ],
-                        "at_ms": 162.592,
+                        "at_ms": 751.562,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -542,7 +542,7 @@
                             1
                         ],
                         "runnable_sql": "select * from `campaigns` where `is_active` = 1 and `status` = 'active' and exists (select * from `hotspots` inner join `campaign_hotspot` on `hotspots`.`id` = `campaign_hotspot`.`hotspot_id` where `campaigns`.`id` = `campaign_hotspot`.`campaign_id` and `hotspots`.`id` = 1 and `hotspots`.`deleted_at` is null) and `campaigns`.`deleted_at` is null order by `priority` desc, `current_plays` asc limit 1",
-                        "duration_ms": 2.22,
+                        "duration_ms": 2.65,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
@@ -566,7 +566,7 @@
                                 "function": "App\\Services\\CaptivePortalService->getPortalData"
                             }
                         ],
-                        "at_ms": 169.141,
+                        "at_ms": 762.884,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -578,12 +578,12 @@
                             1
                         ],
                         "runnable_sql": "select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1",
-                        "duration_ms": 1.26,
+                        "duration_ms": 2.12,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 199.257,
+                        "at_ms": 805.727,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -593,19 +593,19 @@
                         "sql": "update `sessions` set `payload` = ?, `last_activity` = ?, `user_id` = ?, `ip_address` = ?, `user_agent` = ? where `id` = ?",
                         "bindings": [
                             "eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9wb3J0YWxcL3dhdGNoXC8xIiwicm91dGUiOiJwb3J0YWwud2F0Y2gifX0=",
-                            1787223820,
+                            1787228197,
                             1,
                             "127.0.0.1",
-                            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+                            "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1",
                             "sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH"
                         ],
-                        "runnable_sql": "update `sessions` set `payload` = 'eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9wb3J0YWxcL3dhdGNoXC8xIiwicm91dGUiOiJwb3J0YWwud2F0Y2gifX0=', `last_activity` = 1787223820, `user_id` = 1, `ip_address` = '127.0.0.1', `user_agent` = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36' where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH'",
-                        "duration_ms": 93.08,
+                        "runnable_sql": "update `sessions` set `payload` = 'eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9wb3J0YWxcL3dhdGNoXC8xIiwicm91dGUiOiJwb3J0YWwud2F0Y2gifX0=', `last_activity` = 1787228197, `user_id` = 1, `ip_address` = '127.0.0.1', `user_agent` = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1' where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH'",
+                        "duration_ms": 465.32,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 296.787,
+                        "at_ms": 1275.873,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -704,7 +704,7 @@
                         "connection": "mysql",
                         "table": "hotspots",
                         "key": 1,
-                        "at_ms": 124.861
+                        "at_ms": 136.708
                     },
                     {
                         "event": "retrieved",
@@ -712,7 +712,7 @@
                         "connection": "mysql",
                         "table": "campaigns",
                         "key": 4,
-                        "at_ms": 135.429
+                        "at_ms": 398.82
                     },
                     {
                         "event": "retrieved",
@@ -720,7 +720,7 @@
                         "connection": "mysql",
                         "table": "organizations",
                         "key": 1,
-                        "at_ms": 145.392
+                        "at_ms": 519.155
                     },
                     {
                         "event": "retrieved",
@@ -728,7 +728,7 @@
                         "connection": "mysql",
                         "table": "wifi_packages",
                         "key": 1,
-                        "at_ms": 149.32
+                        "at_ms": 679.152
                     },
                     {
                         "event": "retrieved",
@@ -736,7 +736,7 @@
                         "connection": "mysql",
                         "table": "wifi_packages",
                         "key": 2,
-                        "at_ms": 149.472
+                        "at_ms": 679.263
                     },
                     {
                         "event": "retrieved",
@@ -744,7 +744,7 @@
                         "connection": "mysql",
                         "table": "wifi_packages",
                         "key": 3,
-                        "at_ms": 149.622
+                        "at_ms": 679.364
                     },
                     {
                         "event": "retrieved",
@@ -752,7 +752,7 @@
                         "connection": "mysql",
                         "table": "wifi_packages",
                         "key": 4,
-                        "at_ms": 149.767
+                        "at_ms": 679.461
                     },
                     {
                         "event": "retrieved",
@@ -760,7 +760,7 @@
                         "connection": "mysql",
                         "table": "settings",
                         "key": 2,
-                        "at_ms": 155.36
+                        "at_ms": 742.207
                     },
                     {
                         "event": "retrieved",
@@ -768,7 +768,7 @@
                         "connection": "mysql",
                         "table": "settings",
                         "key": 3,
-                        "at_ms": 157.922
+                        "at_ms": 746.507
                     },
                     {
                         "event": "retrieved",
@@ -776,7 +776,7 @@
                         "connection": "mysql",
                         "table": "campaigns",
                         "key": 4,
-                        "at_ms": 169.564
+                        "at_ms": 763.506
                     },
                     {
                         "event": "retrieved",
@@ -784,7 +784,7 @@
                         "connection": "mysql",
                         "table": "users",
                         "key": 1,
-                        "at_ms": 199.608
+                        "at_ms": 806.174
                     }
                 ]
             }
@@ -1026,7 +1026,7 @@
                             "alreadyWatched": false
                         },
                         "timing": "composition_marker",
-                        "at_ms": 180.493
+                        "at_ms": 778.973
                     },
                     {
                         "name": "layouts.portal",
@@ -1246,10 +1246,13 @@
                             "portalOrg": "Mombasa County Government",
                             "portalLocation": "Mji wa Kale, Mvita, Fort Jesus Garden",
                             "portalWelcome": "Welcome to free public Wi-Fi.",
-                            "portalCurrency": "KES"
+                            "portalCurrency": "KES",
+                            "sponsorLogo": null,
+                            "orgLogo": "logos/qV3ZBMkM1uhT3sFittrLtJBGrMlylOzyUDaKCLfh.png",
+                            "sponsorName": "Mombasa County Government"
                         },
                         "timing": "composition_marker",
-                        "at_ms": 189.502
+                        "at_ms": 790.099
                     }
                 ]
             }
@@ -1271,7 +1274,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\ConnectionEstablished"
                         ],
-                        "at_ms": 15.101
+                        "at_ms": 32.126
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1280,7 +1283,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 43.565
+                        "at_ms": 40.36
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1289,7 +1292,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 91.39
+                        "at_ms": 78.007
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1298,7 +1301,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 131.729
+                        "at_ms": 363.557
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1307,7 +1310,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 138.253
+                        "at_ms": 423.04
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1316,7 +1319,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 142.159
+                        "at_ms": 443.371
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1325,7 +1328,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 146.864
+                        "at_ms": 619.467
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1334,7 +1337,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 150.897
+                        "at_ms": 681.495
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1343,7 +1346,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 153.619
+                        "at_ms": 721.573
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1352,7 +1355,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 156.05
+                        "at_ms": 743.972
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1361,7 +1364,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 158.757
+                        "at_ms": 747.702
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1370,7 +1373,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 161.299
+                        "at_ms": 750.303
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1379,7 +1382,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 166.98
+                        "at_ms": 760.286
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1388,7 +1391,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 197.562
+                        "at_ms": 803.86
                     },
                     {
                         "name": "Illuminate\\Auth\\Events\\Authenticated",
@@ -1397,7 +1400,7 @@
                         "payload_types": [
                             "Illuminate\\Auth\\Events\\Authenticated"
                         ],
-                        "at_ms": 200.339
+                        "at_ms": 807.685
                     }
                 ]
             }
