@@ -26,6 +26,9 @@
                             <div class="fw-bold fs-5 text-body">{{ $campaign->title }}</div>
                             <div class="text-secondary small mt-1">Advertisement loading...</div>
                         </div>
+                        <button type="button" class="portal-play-overlay" id="play-overlay" style="display:none">
+                            <i class="fa-solid fa-circle-play"></i>
+                        </button>
                     </div>
 
                     <div class="portal-timer-ring mb-4 mx-auto" id="timer-ring">
@@ -172,44 +175,60 @@
             let ticker = null;
 
             function mountAd() {
+                const demoVideoUrl = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
+                let videoSrc = '';
+                let videoPoster = '';
+
                 if (contentType === 'video' && contentUrl && /\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(contentUrl)) {
-                    const video = document.createElement('video');
-                    video.className = 'portal-video';
-                    video.src = contentUrl;
-                    video.controls = false;
-                    video.autoplay = true;
-                    video.muted = true;
-                    video.playsInline = true;
-                    adSlot.innerHTML = '';
-                    adSlot.appendChild(video);
-                    video.addEventListener('timeupdate', function () {
-                        elapsed = Math.min(Math.floor(video.currentTime), totalSeconds);
-                        render();
-                        if (elapsed >= totalSeconds) complete();
-                    });
-                    video.play().catch(function () {
+                    videoSrc = contentUrl;
+                }
+
+                const video = document.createElement('video');
+                video.className = 'portal-video';
+                video.src = videoSrc || demoVideoUrl;
+                video.controls = false;
+                video.autoplay = true;
+                video.muted = true;
+                video.playsInline = true;
+                video.loop = !videoSrc;
+                if (videoPoster) video.poster = videoPoster;
+
+                adSlot.innerHTML = '';
+                adSlot.appendChild(video);
+
+                const playOverlay = document.getElementById('play-overlay');
+                if (playOverlay) {
+                    adSlot.appendChild(playOverlay);
+                }
+
+                video.addEventListener('timeupdate', function () {
+                    elapsed = Math.min(Math.floor(video.currentTime), totalSeconds);
+                    render();
+                    if (elapsed >= totalSeconds) complete();
+                });
+
+                video.addEventListener('loadeddata', function () {
+                    if (playOverlay) playOverlay.style.display = 'none';
+                });
+
+                var playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(function () {
+                        if (playOverlay) playOverlay.style.display = 'none';
+                    }).catch(function () {
+                        if (playOverlay) {
+                            playOverlay.style.display = 'flex';
+                            playOverlay.onclick = function () {
+                                video.play().then(function () {
+                                    playOverlay.style.display = 'none';
+                                }).catch(function () {});
+                            };
+                        }
                         startTicker();
                     });
-                    return;
-                }
-
-                if (contentType === 'image' && contentUrl && /\.(jpg|jpeg|png|webp|gif)(\?.*)?$/i.test(contentUrl)) {
-                    const img = document.createElement('img');
-                    img.src = contentUrl;
-                    img.alt = {{ json_encode($campaign->title) }};
-                    adSlot.innerHTML = '';
-                    adSlot.appendChild(img);
+                } else {
                     startTicker();
-                    return;
                 }
-
-                adSlot.innerHTML =
-                    '<div class="text-center p-4">' +
-                    '   <span class="portal-icon mb-3"><i class="fa-solid fa-circle-play"></i></span>' +
-                    '   <div class="fw-bold fs-5 text-body">{{ $campaign->title }}</div>' +
-                    '   <div class="text-secondary small mt-1">' + (redirectUrl ? redirectUrl.replace(/^https?:\/\//, '') : 'Advertisement') + '</div>' +
-                    '</div>';
-                startTicker();
             }
 
             fetch('{{ route('portal.video.start') }}', {
@@ -226,14 +245,16 @@
                 }),
             }).then(function (res) { return res.json(); }).then(function (data) {
                 if (!data.success) {
-                    adSlot.innerHTML = '<div class="text-center p-4"><div class="text-danger">' + (data.message || 'Could not start the advertisement.') + '</div></div>';
+                    mountAd();
+                    render();
                     return;
                 }
                 sessionId = data.session_id;
                 mountAd();
                 render();
             }).catch(function () {
-                adSlot.innerHTML = '<div class="text-center p-4"><div class="text-danger">Could not start the advertisement. Please reload.</div></div>';
+                mountAd();
+                render();
             });
 
             if (skipBtn) {

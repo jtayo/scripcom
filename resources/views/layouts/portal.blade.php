@@ -162,6 +162,30 @@
                 object-fit: cover;
             }
 
+            .portal-play-overlay {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(0, 0, 0, 0.35);
+                border: none;
+                cursor: pointer;
+                z-index: 10;
+                border-radius: 1rem;
+            }
+
+            .portal-play-overlay i {
+                font-size: 4rem;
+                color: #fff;
+                filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+                transition: transform 0.2s;
+            }
+
+            .portal-play-overlay:hover i {
+                transform: scale(1.15);
+            }
+
             .portal-timer {
                 font-variant-numeric: tabular-nums;
                 font-size: 2.25rem;
