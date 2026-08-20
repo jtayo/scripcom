@@ -233,8 +233,8 @@
                         <tbody>
                             @forelse($sponsor->sponsorships()->latest()->limit(10)->get() as $sponsorship)
                             <tr>
-                                <td><a href="{{ route('admin.sponsorships.show', $sponsorship) }}" class="fw-bold text-body text-decoration-none">{{ $sponsorship->reference_code }}</a></td>
-                                <td>{{ ucfirst($sponsorship->pack_type) }} · {{ number_format($sponsorship->quantity_purchased) }} sessions</td>
+                                <td><a href="{{ route('admin.sponsorships.show', $sponsorship) }}" class="fw-bold text-body text-decoration-none">{{ $sponsorship->reference }}</a></td>
+                                <td>{{ ucfirst($sponsorship->type) }} · {{ number_format($sponsorship->quantity_purchased) }} sessions</td>
                                 <td class="text-center">{{ number_format($sponsorship->quantity_used) }} / {{ number_format($sponsorship->quantity_purchased) }}</td>
                                 <td>
                                     <span class="badge bg-{{ $sponsorship->status === 'active' ? 'success' : ($sponsorship->status === 'pending' ? 'warning' : 'secondary') }}-lt">{{ ucfirst($sponsorship->status) }}</span>
