@@ -1,0 +1,1470 @@
+{
+    "schema_version": 1,
+    "id": "5fed2c2b-a5b8-47a8-925c-f9c496d2ec5d",
+    "recorded_at": "2026-08-20T11:07:34+00:00",
+    "profile_type": "http",
+    "environment": "local",
+    "metrics": {
+        "duration_ms": 1149.47,
+        "peak_memory_mb": 6
+    },
+    "sections": {
+        "overview": {
+            "label": "Overview",
+            "summary": {
+                "duration_ms": 1149.47,
+                "peak_memory_mb": 6
+            },
+            "payload": {
+                "runtime": {
+                    "environment": "local",
+                    "php": "8.4.24",
+                    "php_sapi": "cli-server",
+                    "runtime_type": "cli-server",
+                    "laravel": "13.25.0",
+                    "debug": false,
+                    "locale": "en",
+                    "timezone": "UTC"
+                },
+                "cache_state": {
+                    "configuration": false,
+                    "routes": false,
+                    "events": false
+                },
+                "drivers": {
+                    "database": "mysql",
+                    "cache": "database",
+                    "queue": "database",
+                    "session": "database",
+                    "mail": "log",
+                    "broadcasting": "log"
+                },
+                "ecosystem": [
+                    {
+                        "key": "sanctum",
+                        "label": "Sanctum",
+                        "version": "v4.3.3"
+                    }
+                ],
+                "package": "dev-main"
+            }
+        },
+        "request": {
+            "label": "Request",
+            "summary": {
+                "method": "GET",
+                "status": 200,
+                "exit_code": null
+            },
+            "payload": {
+                "method": "GET",
+                "url": "http://127.0.0.1:8000/portal/watch/1",
+                "path": "/portal/watch/1",
+                "query": [],
+                "input": [],
+                "headers": {
+                    "host": [
+                        "127.0.0.1:8000"
+                    ],
+                    "connection": [
+                        "keep-alive"
+                    ],
+                    "cache-control": [
+                        "max-age=0"
+                    ],
+                    "sec-ch-ua": [
+                        "\"Not=A?Brand\";v=\"99\", \"Brave\";v=\"151\", \"Chromium\";v=\"151\""
+                    ],
+                    "sec-ch-ua-mobile": [
+                        "?0"
+                    ],
+                    "sec-ch-ua-platform": [
+                        "\"Windows\""
+                    ],
+                    "upgrade-insecure-requests": [
+                        "1"
+                    ],
+                    "user-agent": [
+                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36"
+                    ],
+                    "accept": [
+                        "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8"
+                    ],
+                    "sec-gpc": [
+                        "1"
+                    ],
+                    "sec-fetch-site": [
+                        "same-origin"
+                    ],
+                    "sec-fetch-mode": [
+                        "navigate"
+                    ],
+                    "sec-fetch-user": [
+                        "?1"
+                    ],
+                    "sec-fetch-dest": [
+                        "document"
+                    ],
+                    "referer": [
+                        "http://127.0.0.1:8000/portal"
+                    ],
+                    "accept-encoding": [
+                        "gzip, deflate, br, zstd"
+                    ],
+                    "accept-language": [
+                        "en-US,en;q=0.8"
+                    ],
+                    "cookie": "[redacted]"
+                },
+                "route": "portal.watch",
+                "action": "App\\Http\\Controllers\\PortalController@watch",
+                "parameters": {
+                    "hotspot": 1
+                },
+                "middleware": [
+                    "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+                    "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
+                    "Illuminate\\Session\\Middleware\\StartSession",
+                    "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
+                    "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestForgery",
+                    "Illuminate\\Routing\\Middleware\\SubstituteBindings"
+                ],
+                "status": 200,
+                "request_type": "full_page",
+                "content_type": "text/html; charset=utf-8",
+                "request_size_bytes": 0,
+                "response_size_bytes": 35761,
+                "session_present": false,
+                "authenticated": true,
+                "authentication": {
+                    "guard": "web",
+                    "authenticated": true,
+                    "model": "App\\Models\\User",
+                    "identifier": "hmac:744afb656c7b89a1",
+                    "identifier_policy": "keyed_hash"
+                },
+                "session": {
+                    "present": false,
+                    "driver": "database",
+                    "key_count": 0,
+                    "keys": [],
+                    "keys_dropped": 0,
+                    "flash_keys": [],
+                    "error_bag_present": false,
+                    "error_bags": []
+                },
+                "response_headers": {
+                    "content-type": [
+                        "text/html; charset=utf-8"
+                    ],
+                    "cache-control": [
+                        "no-cache, private"
+                    ],
+                    "date": [
+                        "Thu, 20 Aug 2026 11:07:33 GMT"
+                    ],
+                    "set-cookie": "[redacted]"
+                }
+            }
+        },
+        "queries": {
+            "label": "Queries",
+            "summary": {
+                "count": 14,
+                "retained_count": 14,
+                "dropped_count": 0,
+                "truncated": false,
+                "duration_ms": 522.3,
+                "transaction_count": 0,
+                "transaction_retained_count": 0,
+                "transaction_dropped_count": 0,
+                "rollback_count": 0
+            },
+            "payload": {
+                "items": [
+                    {
+                        "sql": "select * from `sessions` where `id` = ? limit 1",
+                        "bindings": [
+                            "sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH"
+                        ],
+                        "runnable_sql": "select * from `sessions` where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH' limit 1",
+                        "duration_ms": 34.35,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 54.648,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select * from `hotspots` where `id` = ? and `hotspots`.`deleted_at` is null limit 1",
+                        "bindings": [
+                            "1"
+                        ],
+                        "runnable_sql": "select * from `hotspots` where `id` = '1' and `hotspots`.`deleted_at` is null limit 1",
+                        "duration_ms": 40.17,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 101.738,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select * from `campaigns` where `is_active` = ? and `status` = ? and exists (select * from `hotspots` inner join `campaign_hotspot` on `hotspots`.`id` = `campaign_hotspot`.`hotspot_id` where `campaigns`.`id` = `campaign_hotspot`.`campaign_id` and `hotspots`.`id` = ? and `hotspots`.`deleted_at` is null) and `campaigns`.`deleted_at` is null order by `priority` desc, `current_plays` asc limit 1",
+                        "bindings": [
+                            true,
+                            "active",
+                            1
+                        ],
+                        "runnable_sql": "select * from `campaigns` where `is_active` = 1 and `status` = 'active' and exists (select * from `hotspots` inner join `campaign_hotspot` on `hotspots`.`id` = `campaign_hotspot`.`hotspot_id` where `campaigns`.`id` = `campaign_hotspot`.`campaign_id` and `hotspots`.`id` = 1 and `hotspots`.`deleted_at` is null) and `campaigns`.`deleted_at` is null order by `priority` desc, `current_plays` asc limit 1",
+                        "duration_ms": 110.05,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "app/Services/CaptivePortalService.php",
+                            "line": 107
+                        },
+                        "stack": [
+                            {
+                                "file": "app/Services/CaptivePortalService.php",
+                                "line": 107,
+                                "function": "Illuminate\\Database\\Eloquent\\Builder->first"
+                            },
+                            {
+                                "file": "app/Http/Controllers/PortalController.php",
+                                "line": 55,
+                                "function": "App\\Services\\CaptivePortalService->getActiveCampaign"
+                            }
+                        ],
+                        "at_ms": 219.284,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select exists(select * from `campaign_daily_views` where `campaign_id` = ? and `fingerprint_hash` = ? and `viewed_date` = ?) as `exists`",
+                        "bindings": [
+                            4,
+                            "8df64cb0a9afeadeb2f3075bf9e4d92e551b8f835623950da7b0ac3a5c065755",
+                            "2026-08-20"
+                        ],
+                        "runnable_sql": "select exists(select * from `campaign_daily_views` where `campaign_id` = 4 and `fingerprint_hash` = '8df64cb0a9afeadeb2f3075bf9e4d92e551b8f835623950da7b0ac3a5c065755' and `viewed_date` = '2026-08-20') as `exists`",
+                        "duration_ms": 2.16,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "app/Services/CaptivePortalService.php",
+                            "line": 496
+                        },
+                        "stack": [
+                            {
+                                "file": "app/Services/CaptivePortalService.php",
+                                "line": 496,
+                                "function": "Illuminate\\Database\\Query\\Builder->exists"
+                            },
+                            {
+                                "file": "app/Http/Controllers/PortalController.php",
+                                "line": 65,
+                                "function": "App\\Services\\CaptivePortalService->hasWatchedToday"
+                            }
+                        ],
+                        "at_ms": 224.777,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select * from `organizations` where `organizations`.`id` = ? and `organizations`.`deleted_at` is null limit 1",
+                        "bindings": [
+                            1
+                        ],
+                        "runnable_sql": "select * from `organizations` where `organizations`.`id` = 1 and `organizations`.`deleted_at` is null limit 1",
+                        "duration_ms": 1.89,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "app/Services/CaptivePortalService.php",
+                            "line": 42
+                        },
+                        "stack": [
+                            {
+                                "file": "app/Services/CaptivePortalService.php",
+                                "line": 42,
+                                "function": "Illuminate\\Database\\Eloquent\\Model->__get"
+                            },
+                            {
+                                "file": "app/Http/Controllers/PortalController.php",
+                                "line": 67,
+                                "function": "App\\Services\\CaptivePortalService->getPortalData"
+                            }
+                        ],
+                        "at_ms": 229.542,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select * from `wifi_packages` where `is_active` = ? and (`organization_id` is null or `organization_id` = ?) order by FIELD(access_type, '[string]', '[string]', '[string]'), price",
+                        "bindings": [
+                            true,
+                            1
+                        ],
+                        "duration_ms": 2.18,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "app/Services/CaptivePortalService.php",
+                            "line": 96
+                        },
+                        "stack": [
+                            {
+                                "file": "app/Services/CaptivePortalService.php",
+                                "line": 96,
+                                "function": "Illuminate\\Database\\Eloquent\\Builder->get"
+                            },
+                            {
+                                "file": "app/Services/CaptivePortalService.php",
+                                "line": 45,
+                                "function": "App\\Services\\CaptivePortalService->packagesFor"
+                            },
+                            {
+                                "file": "app/Http/Controllers/PortalController.php",
+                                "line": 67,
+                                "function": "App\\Services\\CaptivePortalService->getPortalData"
+                            }
+                        ],
+                        "at_ms": 235.944,
+                        "source_preserved": false,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": false
+                    },
+                    {
+                        "sql": "select * from `settings` where `key` = ? and `organization_id` = ? limit 1",
+                        "bindings": [
+                            "general.currency",
+                            1
+                        ],
+                        "runnable_sql": "select * from `settings` where `key` = 'general.currency' and `organization_id` = 1 limit 1",
+                        "duration_ms": 44.62,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "app/Models/Setting.php",
+                            "line": 24
+                        },
+                        "stack": [
+                            {
+                                "file": "app/Models/Setting.php",
+                                "line": 24,
+                                "function": "Illuminate\\Database\\Eloquent\\Builder->first"
+                            },
+                            {
+                                "file": "app/Services/CaptivePortalService.php",
+                                "line": 70,
+                                "function": "App\\Models\\Setting::getValue"
+                            },
+                            {
+                                "file": "app/Http/Controllers/PortalController.php",
+                                "line": 67,
+                                "function": "App\\Services\\CaptivePortalService->getPortalData"
+                            }
+                        ],
+                        "at_ms": 283.194,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select * from `settings` where `key` = ? and `organization_id` = ? limit 1",
+                        "bindings": [
+                            "portal.default_session_minutes",
+                            1
+                        ],
+                        "runnable_sql": "select * from `settings` where `key` = 'portal.default_session_minutes' and `organization_id` = 1 limit 1",
+                        "duration_ms": 1.41,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "app/Models/Setting.php",
+                            "line": 24
+                        },
+                        "stack": [
+                            {
+                                "file": "app/Models/Setting.php",
+                                "line": 24,
+                                "function": "Illuminate\\Database\\Eloquent\\Builder->first"
+                            },
+                            {
+                                "file": "app/Services/CaptivePortalService.php",
+                                "line": 71,
+                                "function": "App\\Models\\Setting::getValue"
+                            },
+                            {
+                                "file": "app/Http/Controllers/PortalController.php",
+                                "line": 67,
+                                "function": "App\\Services\\CaptivePortalService->getPortalData"
+                            }
+                        ],
+                        "at_ms": 285.868,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select * from `settings` where `key` = ? and `organization_id` = ? limit 1",
+                        "bindings": [
+                            "portal.default_bandwidth_mbps",
+                            1
+                        ],
+                        "runnable_sql": "select * from `settings` where `key` = 'portal.default_bandwidth_mbps' and `organization_id` = 1 limit 1",
+                        "duration_ms": 1.25,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "app/Models/Setting.php",
+                            "line": 24
+                        },
+                        "stack": [
+                            {
+                                "file": "app/Models/Setting.php",
+                                "line": 24,
+                                "function": "Illuminate\\Database\\Eloquent\\Builder->first"
+                            },
+                            {
+                                "file": "app/Services/CaptivePortalService.php",
+                                "line": 72,
+                                "function": "App\\Models\\Setting::getValue"
+                            },
+                            {
+                                "file": "app/Http/Controllers/PortalController.php",
+                                "line": 67,
+                                "function": "App\\Services\\CaptivePortalService->getPortalData"
+                            }
+                        ],
+                        "at_ms": 288.513,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select * from `settings` where `key` = ? and `organization_id` = ? limit 1",
+                        "bindings": [
+                            "portal.enable_vouchers",
+                            1
+                        ],
+                        "runnable_sql": "select * from `settings` where `key` = 'portal.enable_vouchers' and `organization_id` = 1 limit 1",
+                        "duration_ms": 1.23,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "app/Models/Setting.php",
+                            "line": 24
+                        },
+                        "stack": [
+                            {
+                                "file": "app/Models/Setting.php",
+                                "line": 24,
+                                "function": "Illuminate\\Database\\Eloquent\\Builder->first"
+                            },
+                            {
+                                "file": "app/Services/CaptivePortalService.php",
+                                "line": 73,
+                                "function": "App\\Models\\Setting::getValue"
+                            },
+                            {
+                                "file": "app/Http/Controllers/PortalController.php",
+                                "line": 67,
+                                "function": "App\\Services\\CaptivePortalService->getPortalData"
+                            }
+                        ],
+                        "at_ms": 291.089,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select * from `settings` where `key` = ? and `organization_id` = ? limit 1",
+                        "bindings": [
+                            "portal.welcome_message",
+                            1
+                        ],
+                        "runnable_sql": "select * from `settings` where `key` = 'portal.welcome_message' and `organization_id` = 1 limit 1",
+                        "duration_ms": 1.77,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "app/Models/Setting.php",
+                            "line": 24
+                        },
+                        "stack": [
+                            {
+                                "file": "app/Models/Setting.php",
+                                "line": 24,
+                                "function": "Illuminate\\Database\\Eloquent\\Builder->first"
+                            },
+                            {
+                                "file": "app/Services/CaptivePortalService.php",
+                                "line": 74,
+                                "function": "App\\Models\\Setting::getValue"
+                            },
+                            {
+                                "file": "app/Http/Controllers/PortalController.php",
+                                "line": 67,
+                                "function": "App\\Services\\CaptivePortalService->getPortalData"
+                            }
+                        ],
+                        "at_ms": 293.999,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select * from `campaigns` where `is_active` = ? and `status` = ? and exists (select * from `hotspots` inner join `campaign_hotspot` on `hotspots`.`id` = `campaign_hotspot`.`hotspot_id` where `campaigns`.`id` = `campaign_hotspot`.`campaign_id` and `hotspots`.`id` = ? and `hotspots`.`deleted_at` is null) and `campaigns`.`deleted_at` is null order by `priority` desc, `current_plays` asc limit 1",
+                        "bindings": [
+                            true,
+                            "active",
+                            1
+                        ],
+                        "runnable_sql": "select * from `campaigns` where `is_active` = 1 and `status` = 'active' and exists (select * from `hotspots` inner join `campaign_hotspot` on `hotspots`.`id` = `campaign_hotspot`.`hotspot_id` where `campaigns`.`id` = `campaign_hotspot`.`campaign_id` and `hotspots`.`id` = 1 and `hotspots`.`deleted_at` is null) and `campaigns`.`deleted_at` is null order by `priority` desc, `current_plays` asc limit 1",
+                        "duration_ms": 2.36,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": {
+                            "file": "app/Services/CaptivePortalService.php",
+                            "line": 107
+                        },
+                        "stack": [
+                            {
+                                "file": "app/Services/CaptivePortalService.php",
+                                "line": 107,
+                                "function": "Illuminate\\Database\\Eloquent\\Builder->first"
+                            },
+                            {
+                                "file": "app/Services/CaptivePortalService.php",
+                                "line": 80,
+                                "function": "App\\Services\\CaptivePortalService->getActiveCampaign"
+                            },
+                            {
+                                "file": "app/Http/Controllers/PortalController.php",
+                                "line": 67,
+                                "function": "App\\Services\\CaptivePortalService->getPortalData"
+                            }
+                        ],
+                        "at_ms": 303.407,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "select * from `users` where `id` = ? and `users`.`deleted_at` is null limit 1",
+                        "bindings": [
+                            1
+                        ],
+                        "runnable_sql": "select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1",
+                        "duration_ms": 1.77,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 860.944,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    },
+                    {
+                        "sql": "update `sessions` set `payload` = ?, `last_activity` = ?, `user_id` = ?, `ip_address` = ?, `user_agent` = ? where `id` = ?",
+                        "bindings": [
+                            "eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9wb3J0YWxcL3dhdGNoXC8xIiwicm91dGUiOiJwb3J0YWwud2F0Y2gifX0=",
+                            1787224054,
+                            1,
+                            "127.0.0.1",
+                            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+                            "sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH"
+                        ],
+                        "runnable_sql": "update `sessions` set `payload` = 'eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9wb3J0YWxcL3dhdGNoXC8xIiwicm91dGUiOiJwb3J0YWwud2F0Y2gifX0=', `last_activity` = 1787224054, `user_id` = 1, `ip_address` = '127.0.0.1', `user_agent` = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36' where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH'",
+                        "duration_ms": 277.09,
+                        "connection": "mysql",
+                        "type": "write",
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 1144.362,
+                        "source_preserved": true,
+                        "binding_policy": "full",
+                        "bindings_complete": true,
+                        "runnable_available": true
+                    }
+                ],
+                "transactions": []
+            }
+        },
+        "http_client": {
+            "label": "HTTP Client",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "duration_ms": 0,
+                "failed_count": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "queue": {
+            "label": "Queue",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "queued_count": 0,
+                "executed_count": 0,
+                "failed_count": 0,
+                "duration_ms": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "mail": {
+            "label": "Mail",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "recipient_count": 0,
+                "attachment_count": 0,
+                "duration_ms": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "notifications": {
+            "label": "Notifications",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "sent_count": 0,
+                "failed_count": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "redis": {
+            "label": "Redis",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "duration_ms": 0,
+                "failed_count": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "models": {
+            "label": "Models",
+            "summary": {
+                "count": 11,
+                "retained_count": 11,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": [
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\Hotspot",
+                        "connection": "mysql",
+                        "table": "hotspots",
+                        "key": 1,
+                        "at_ms": 102.251
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\Campaign",
+                        "connection": "mysql",
+                        "table": "campaigns",
+                        "key": 4,
+                        "at_ms": 219.789
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\Organization",
+                        "connection": "mysql",
+                        "table": "organizations",
+                        "key": 1,
+                        "at_ms": 231.65
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\WifiPackage",
+                        "connection": "mysql",
+                        "table": "wifi_packages",
+                        "key": 1,
+                        "at_ms": 236.404
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\WifiPackage",
+                        "connection": "mysql",
+                        "table": "wifi_packages",
+                        "key": 2,
+                        "at_ms": 236.51
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\WifiPackage",
+                        "connection": "mysql",
+                        "table": "wifi_packages",
+                        "key": 3,
+                        "at_ms": 236.629
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\WifiPackage",
+                        "connection": "mysql",
+                        "table": "wifi_packages",
+                        "key": 4,
+                        "at_ms": 236.761
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\Setting",
+                        "connection": "mysql",
+                        "table": "settings",
+                        "key": 2,
+                        "at_ms": 286.291
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\Setting",
+                        "connection": "mysql",
+                        "table": "settings",
+                        "key": 3,
+                        "at_ms": 288.908
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\Campaign",
+                        "connection": "mysql",
+                        "table": "campaigns",
+                        "key": 4,
+                        "at_ms": 303.886
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\User",
+                        "connection": "mysql",
+                        "table": "users",
+                        "key": 1,
+                        "at_ms": 861.421
+                    }
+                ]
+            }
+        },
+        "cache": {
+            "label": "Cache",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "hits": 0,
+                "misses": 0,
+                "writes": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "views": {
+            "label": "Views",
+            "summary": {
+                "count": 2,
+                "retained_count": 2,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": [
+                    {
+                        "name": "portal.watch",
+                        "source": {
+                            "file": "resources/views/portal/watch.blade.php",
+                            "line": 1
+                        },
+                        "composers": [],
+                        "data": {
+                            "data": {
+                                "hotspot": {
+                                    "id": 1,
+                                    "organization_id": 1,
+                                    "router_id": 1,
+                                    "name": "Fort Jesus Garden",
+                                    "slug": "fort-jesus-garden",
+                                    "ssid": "Mombasa-Free-WiFi",
+                                    "device_model": "MikroTik hAP ac3",
+                                    "firmware_version": "7.14.2",
+                                    "ip_address": "192.168.1.1",
+                                    "mac_address": "2E:E3:1A:87:FE:87",
+                                    "isp": "Safaricom",
+                                    "bandwidth_up": 10,
+                                    "bandwidth_down": 20,
+                                    "latitude": "-4.0629000",
+                                    "longitude": "39.6796000",
+                                    "ward": "Mji wa Kale",
+                                    "sub_county": "Mvita",
+                                    "status": "online",
+                                    "last_seen_at": "2026-08-20T06:54:42.000000Z",
+                                    "last_online_at": "2026-08-20T06:54:42.000000Z",
+                                    "max_clients": 50,
+                                    "is_active": true,
+                                    "configuration": null,
+                                    "created_at": "2026-08-20T06:56:42.000000Z",
+                                    "updated_at": "2026-08-20T06:56:42.000000Z",
+                                    "deleted_at": null,
+                                    "organization": {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "city": "[maximum depth reached]",
+                                        "county": "[maximum depth reached]",
+                                        "country": "[maximum depth reached]",
+                                        "postal_code": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "primary_color": "[maximum depth reached]",
+                                        "secondary_color": "[maximum depth reached]",
+                                        "type": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "settings": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]"
+                                    }
+                                },
+                                "organization": {
+                                    "id": 1,
+                                    "name": "Mombasa County Government",
+                                    "slug": "mombasa-county",
+                                    "email": "ict@mombasa.go.ke",
+                                    "phone": "+254411231000",
+                                    "address": "P.O. Box 90438-80100",
+                                    "city": "Mombasa",
+                                    "county": "Mombasa",
+                                    "country": "Kenya",
+                                    "postal_code": "80100",
+                                    "logo": "logos/qV3ZBMkM1uhT3sFittrLtJBGrMlylOzyUDaKCLfh.png",
+                                    "website": "https://www.mombasa.go.ke",
+                                    "primary_color": "#0410b8",
+                                    "secondary_color": "#262B40",
+                                    "type": "county",
+                                    "is_active": true,
+                                    "settings": null,
+                                    "created_at": "2026-08-20T06:56:23.000000Z",
+                                    "updated_at": "2026-08-20T11:02:38.000000Z",
+                                    "deleted_at": null
+                                },
+                                "location": "Mji wa Kale, Mvita, Fort Jesus Garden",
+                                "currency": "KES",
+                                "default_session_minutes": 120,
+                                "default_bandwidth_mbps": 10,
+                                "vouchers_enabled": true,
+                                "welcome_message": "Welcome to free public Wi-Fi.",
+                                "branding": {
+                                    "primary_color": "#0410b8",
+                                    "logo": "logos/qV3ZBMkM1uhT3sFittrLtJBGrMlylOzyUDaKCLfh.png"
+                                },
+                                "free_package": {
+                                    "id": 1,
+                                    "organization_id": null,
+                                    "name": "Free Wi-Fi",
+                                    "code": "FREE-2H",
+                                    "duration_minutes": 120,
+                                    "price": "0.00",
+                                    "access_type": "free",
+                                    "bandwidth_down_kbps": 10240,
+                                    "bandwidth_up_kbps": 5120,
+                                    "data_limit_mb": null,
+                                    "simultaneous_devices": 1,
+                                    "is_active": true,
+                                    "description": "Complimentary 2-hour internet access for all citizens.",
+                                    "created_at": "2026-08-20T06:56:33.000000Z",
+                                    "updated_at": "2026-08-20T06:56:33.000000Z"
+                                },
+                                "sponsored_package": {
+                                    "id": 4,
+                                    "organization_id": null,
+                                    "name": "Sponsored Access",
+                                    "code": "SPONSORED-2H",
+                                    "duration_minutes": 120,
+                                    "price": "0.00",
+                                    "access_type": "sponsored",
+                                    "bandwidth_down_kbps": 10240,
+                                    "bandwidth_up_kbps": 5120,
+                                    "data_limit_mb": null,
+                                    "simultaneous_devices": 1,
+                                    "is_active": true,
+                                    "description": "2-hour access sponsored by a partner, with promotional content.",
+                                    "created_at": "2026-08-20T06:56:33.000000Z",
+                                    "updated_at": "2026-08-20T06:56:33.000000Z"
+                                },
+                                "paid_packages": [
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "organization_id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "code": "[maximum depth reached]",
+                                        "duration_minutes": "[maximum depth reached]",
+                                        "price": "[maximum depth reached]",
+                                        "access_type": "[maximum depth reached]",
+                                        "bandwidth_down_kbps": "[maximum depth reached]",
+                                        "bandwidth_up_kbps": "[maximum depth reached]",
+                                        "data_limit_mb": "[maximum depth reached]",
+                                        "simultaneous_devices": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "description": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "organization_id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "code": "[maximum depth reached]",
+                                        "duration_minutes": "[maximum depth reached]",
+                                        "price": "[maximum depth reached]",
+                                        "access_type": "[maximum depth reached]",
+                                        "bandwidth_down_kbps": "[maximum depth reached]",
+                                        "bandwidth_up_kbps": "[maximum depth reached]",
+                                        "data_limit_mb": "[maximum depth reached]",
+                                        "simultaneous_devices": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "description": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]"
+                                    }
+                                ],
+                                "featured_paid_package": {
+                                    "id": 2,
+                                    "organization_id": null,
+                                    "name": "Direct Wi-Fi",
+                                    "code": "DIRECT-2H",
+                                    "duration_minutes": 120,
+                                    "price": "10.00",
+                                    "access_type": "paid",
+                                    "bandwidth_down_kbps": 20480,
+                                    "bandwidth_up_kbps": 10240,
+                                    "data_limit_mb": null,
+                                    "simultaneous_devices": 1,
+                                    "is_active": true,
+                                    "description": "Affordable pay-as-you-go 2-hour session.",
+                                    "created_at": "2026-08-20T06:56:33.000000Z",
+                                    "updated_at": "2026-08-20T06:56:33.000000Z"
+                                },
+                                "has_sponsored": true
+                            },
+                            "campaign": {
+                                "id": 4,
+                                "organization_id": 1,
+                                "created_by": null,
+                                "sponsor_id": null,
+                                "title": "County Health Notice: Cholera Prevention",
+                                "slug": "county-health-cholera",
+                                "description": "Wash your hands with soap and clean water regularly.",
+                                "type": "health",
+                                "content_type": "html",
+                                "content_url": null,
+                                "thumbnail": null,
+                                "redirect_url": null,
+                                "duration_seconds": 12,
+                                "skip_allowed": false,
+                                "is_mandatory": true,
+                                "priority": 10,
+                                "starts_at": null,
+                                "ends_at": null,
+                                "max_plays": null,
+                                "current_plays": 0,
+                                "status": "active",
+                                "is_active": true,
+                                "targeting_rules": null,
+                                "created_at": "2026-08-20T06:56:48.000000Z",
+                                "updated_at": "2026-08-20T06:56:48.000000Z",
+                                "deleted_at": null,
+                                "sponsor": null
+                            },
+                            "alreadyWatched": false
+                        },
+                        "timing": "composition_marker",
+                        "at_ms": 315.816
+                    },
+                    {
+                        "name": "layouts.portal",
+                        "source": {
+                            "file": "resources/views/layouts/portal.blade.php",
+                            "line": 1
+                        },
+                        "composers": [],
+                        "data": {
+                            "__env": "[Illuminate\\View\\Factory]",
+                            "app": "[Illuminate\\Foundation\\Application]",
+                            "errors": "[]",
+                            "data": {
+                                "hotspot": {
+                                    "id": 1,
+                                    "organization_id": 1,
+                                    "router_id": 1,
+                                    "name": "Fort Jesus Garden",
+                                    "slug": "fort-jesus-garden",
+                                    "ssid": "Mombasa-Free-WiFi",
+                                    "device_model": "MikroTik hAP ac3",
+                                    "firmware_version": "7.14.2",
+                                    "ip_address": "192.168.1.1",
+                                    "mac_address": "2E:E3:1A:87:FE:87",
+                                    "isp": "Safaricom",
+                                    "bandwidth_up": 10,
+                                    "bandwidth_down": 20,
+                                    "latitude": "-4.0629000",
+                                    "longitude": "39.6796000",
+                                    "ward": "Mji wa Kale",
+                                    "sub_county": "Mvita",
+                                    "status": "online",
+                                    "last_seen_at": "2026-08-20T06:54:42.000000Z",
+                                    "last_online_at": "2026-08-20T06:54:42.000000Z",
+                                    "max_clients": 50,
+                                    "is_active": true,
+                                    "configuration": null,
+                                    "created_at": "2026-08-20T06:56:42.000000Z",
+                                    "updated_at": "2026-08-20T06:56:42.000000Z",
+                                    "deleted_at": null,
+                                    "organization": {
+                                        "id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "slug": "[maximum depth reached]",
+                                        "email": "[maximum depth reached]",
+                                        "phone": "[maximum depth reached]",
+                                        "address": "[maximum depth reached]",
+                                        "city": "[maximum depth reached]",
+                                        "county": "[maximum depth reached]",
+                                        "country": "[maximum depth reached]",
+                                        "postal_code": "[maximum depth reached]",
+                                        "logo": "[maximum depth reached]",
+                                        "website": "[maximum depth reached]",
+                                        "primary_color": "[maximum depth reached]",
+                                        "secondary_color": "[maximum depth reached]",
+                                        "type": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "settings": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]",
+                                        "deleted_at": "[maximum depth reached]"
+                                    }
+                                },
+                                "organization": {
+                                    "id": 1,
+                                    "name": "Mombasa County Government",
+                                    "slug": "mombasa-county",
+                                    "email": "ict@mombasa.go.ke",
+                                    "phone": "+254411231000",
+                                    "address": "P.O. Box 90438-80100",
+                                    "city": "Mombasa",
+                                    "county": "Mombasa",
+                                    "country": "Kenya",
+                                    "postal_code": "80100",
+                                    "logo": "logos/qV3ZBMkM1uhT3sFittrLtJBGrMlylOzyUDaKCLfh.png",
+                                    "website": "https://www.mombasa.go.ke",
+                                    "primary_color": "#0410b8",
+                                    "secondary_color": "#262B40",
+                                    "type": "county",
+                                    "is_active": true,
+                                    "settings": null,
+                                    "created_at": "2026-08-20T06:56:23.000000Z",
+                                    "updated_at": "2026-08-20T11:02:38.000000Z",
+                                    "deleted_at": null
+                                },
+                                "location": "Mji wa Kale, Mvita, Fort Jesus Garden",
+                                "currency": "KES",
+                                "default_session_minutes": 120,
+                                "default_bandwidth_mbps": 10,
+                                "vouchers_enabled": true,
+                                "welcome_message": "Welcome to free public Wi-Fi.",
+                                "branding": {
+                                    "primary_color": "#0410b8",
+                                    "logo": "logos/qV3ZBMkM1uhT3sFittrLtJBGrMlylOzyUDaKCLfh.png"
+                                },
+                                "free_package": {
+                                    "id": 1,
+                                    "organization_id": null,
+                                    "name": "Free Wi-Fi",
+                                    "code": "FREE-2H",
+                                    "duration_minutes": 120,
+                                    "price": "0.00",
+                                    "access_type": "free",
+                                    "bandwidth_down_kbps": 10240,
+                                    "bandwidth_up_kbps": 5120,
+                                    "data_limit_mb": null,
+                                    "simultaneous_devices": 1,
+                                    "is_active": true,
+                                    "description": "Complimentary 2-hour internet access for all citizens.",
+                                    "created_at": "2026-08-20T06:56:33.000000Z",
+                                    "updated_at": "2026-08-20T06:56:33.000000Z"
+                                },
+                                "sponsored_package": {
+                                    "id": 4,
+                                    "organization_id": null,
+                                    "name": "Sponsored Access",
+                                    "code": "SPONSORED-2H",
+                                    "duration_minutes": 120,
+                                    "price": "0.00",
+                                    "access_type": "sponsored",
+                                    "bandwidth_down_kbps": 10240,
+                                    "bandwidth_up_kbps": 5120,
+                                    "data_limit_mb": null,
+                                    "simultaneous_devices": 1,
+                                    "is_active": true,
+                                    "description": "2-hour access sponsored by a partner, with promotional content.",
+                                    "created_at": "2026-08-20T06:56:33.000000Z",
+                                    "updated_at": "2026-08-20T06:56:33.000000Z"
+                                },
+                                "paid_packages": [
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "organization_id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "code": "[maximum depth reached]",
+                                        "duration_minutes": "[maximum depth reached]",
+                                        "price": "[maximum depth reached]",
+                                        "access_type": "[maximum depth reached]",
+                                        "bandwidth_down_kbps": "[maximum depth reached]",
+                                        "bandwidth_up_kbps": "[maximum depth reached]",
+                                        "data_limit_mb": "[maximum depth reached]",
+                                        "simultaneous_devices": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "description": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]"
+                                    },
+                                    {
+                                        "id": "[maximum depth reached]",
+                                        "organization_id": "[maximum depth reached]",
+                                        "name": "[maximum depth reached]",
+                                        "code": "[maximum depth reached]",
+                                        "duration_minutes": "[maximum depth reached]",
+                                        "price": "[maximum depth reached]",
+                                        "access_type": "[maximum depth reached]",
+                                        "bandwidth_down_kbps": "[maximum depth reached]",
+                                        "bandwidth_up_kbps": "[maximum depth reached]",
+                                        "data_limit_mb": "[maximum depth reached]",
+                                        "simultaneous_devices": "[maximum depth reached]",
+                                        "is_active": "[maximum depth reached]",
+                                        "description": "[maximum depth reached]",
+                                        "created_at": "[maximum depth reached]",
+                                        "updated_at": "[maximum depth reached]"
+                                    }
+                                ],
+                                "featured_paid_package": {
+                                    "id": 2,
+                                    "organization_id": null,
+                                    "name": "Direct Wi-Fi",
+                                    "code": "DIRECT-2H",
+                                    "duration_minutes": 120,
+                                    "price": "10.00",
+                                    "access_type": "paid",
+                                    "bandwidth_down_kbps": 20480,
+                                    "bandwidth_up_kbps": 10240,
+                                    "data_limit_mb": null,
+                                    "simultaneous_devices": 1,
+                                    "is_active": true,
+                                    "description": "Affordable pay-as-you-go 2-hour session.",
+                                    "created_at": "2026-08-20T06:56:33.000000Z",
+                                    "updated_at": "2026-08-20T06:56:33.000000Z"
+                                },
+                                "has_sponsored": true
+                            },
+                            "campaign": {
+                                "id": 4,
+                                "organization_id": 1,
+                                "created_by": null,
+                                "sponsor_id": null,
+                                "title": "County Health Notice: Cholera Prevention",
+                                "slug": "county-health-cholera",
+                                "description": "Wash your hands with soap and clean water regularly.",
+                                "type": "health",
+                                "content_type": "html",
+                                "content_url": null,
+                                "thumbnail": null,
+                                "redirect_url": null,
+                                "duration_seconds": 12,
+                                "skip_allowed": false,
+                                "is_mandatory": true,
+                                "priority": 10,
+                                "starts_at": null,
+                                "ends_at": null,
+                                "max_plays": null,
+                                "current_plays": 0,
+                                "status": "active",
+                                "is_active": true,
+                                "targeting_rules": null,
+                                "created_at": "2026-08-20T06:56:48.000000Z",
+                                "updated_at": "2026-08-20T06:56:48.000000Z",
+                                "deleted_at": null,
+                                "sponsor": null
+                            },
+                            "alreadyWatched": false,
+                            "portalColor": "#0410b8",
+                            "portalLogo": "logos/qV3ZBMkM1uhT3sFittrLtJBGrMlylOzyUDaKCLfh.png",
+                            "portalOrg": "Mombasa County Government",
+                            "portalLocation": "Mji wa Kale, Mvita, Fort Jesus Garden",
+                            "portalWelcome": "Welcome to free public Wi-Fi.",
+                            "portalCurrency": "KES",
+                            "sponsorLogo": null,
+                            "orgLogo": "logos/qV3ZBMkM1uhT3sFittrLtJBGrMlylOzyUDaKCLfh.png",
+                            "sponsorName": "Mombasa County Government"
+                        },
+                        "timing": "composition_marker",
+                        "at_ms": 842.639
+                    }
+                ]
+            }
+        },
+        "events": {
+            "label": "Events",
+            "summary": {
+                "count": 15,
+                "retained_count": 15,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": [
+                    {
+                        "name": "Illuminate\\Database\\Events\\ConnectionEstablished",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\ConnectionEstablished"
+                        ],
+                        "at_ms": 13.154
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 48.047
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 94.65
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 215.027
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 222.952
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 226.616
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 233.983
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 280.935
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 284.456
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 287.227
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 289.851
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 292.404
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 301.065
+                    },
+                    {
+                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Database\\Events\\StatementPrepared"
+                        ],
+                        "at_ms": 854.804
+                    },
+                    {
+                        "name": "Illuminate\\Auth\\Events\\Authenticated",
+                        "listeners": [],
+                        "broadcast": false,
+                        "payload_types": [
+                            "Illuminate\\Auth\\Events\\Authenticated"
+                        ],
+                        "at_ms": 863.071
+                    }
+                ]
+            }
+        },
+        "authorization": {
+            "label": "Authorization",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "validation": {
+            "label": "Validation",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "messages": {
+            "label": "Messages",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "logs": {
+            "label": "Logs",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false,
+                "errors": 0
+            },
+            "payload": {
+                "items": []
+            }
+        },
+        "exceptions": {
+            "label": "Exceptions",
+            "summary": {
+                "count": 0,
+                "retained_count": 0,
+                "dropped_count": 0,
+                "truncated": false
+            },
+            "payload": {
+                "items": []
+            }
+        }
+    }
+}

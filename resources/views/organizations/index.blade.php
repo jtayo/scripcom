@@ -56,7 +56,7 @@
                             <tr>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <span class="avatar avatar-sm me-2" style="background-image: url('{{ $organization->logo ?? asset('img/team/profile-picture-1.jpg') }}')"></span>
+                                        <span class="avatar avatar-sm me-2" style="background-image: url('{{ $organization->logo ? asset('storage/' . $organization->logo) : asset('img/team/profile-picture-1.jpg') }}')"></span>
                                         <div>
                                             <a href="{{ route('admin.organizations.show', $organization) }}" class="text-body fw-bold text-decoration-none">{{ $organization->name }}</a>
                                             @if($organization->email)

@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin.organizations.store') }}">
+                    <form method="POST" action="{{ route('admin.organizations.store') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row g-3">
@@ -131,6 +131,13 @@
                             <div class="col-12">
                                 <div class="text-uppercase small fw-bold text-secondary mb-1">Branding</div>
                                 <hr class="mt-1 mb-3">
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="logo">Logo</label>
+                                <input type="file" id="logo" name="logo" class="form-control @error('logo') is-invalid @enderror" accept="image/*">
+                                <div class="form-text">PNG, JPG or SVG. Max 2MB.</div>
+                                @error('logo') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
                             <div class="col-12 col-md-6">

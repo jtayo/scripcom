@@ -1,18 +1,18 @@
 {
     "schema_version": 1,
-    "id": "b37e1dfb-4b2d-4725-bb00-bae462554dd1",
-    "recorded_at": "2026-08-20T07:22:58+00:00",
+    "id": "122e0078-3fda-4c91-b1a2-6346c451f5f0",
+    "recorded_at": "2026-08-20T11:09:17+00:00",
     "profile_type": "http",
     "environment": "local",
     "metrics": {
-        "duration_ms": 1812.29,
+        "duration_ms": 2804.29,
         "peak_memory_mb": 8
     },
     "sections": {
         "overview": {
             "label": "Overview",
             "summary": {
-                "duration_ms": 1812.29,
+                "duration_ms": 2804.29,
                 "peak_memory_mb": 8
             },
             "payload": {
@@ -22,7 +22,7 @@
                     "php_sapi": "cli-server",
                     "runtime_type": "cli-server",
                     "laravel": "13.25.0",
-                    "debug": true,
+                    "debug": false,
                     "locale": "en",
                     "timezone": "UTC"
                 },
@@ -58,8 +58,8 @@
             },
             "payload": {
                 "method": "GET",
-                "url": "http://127.0.0.1:8000/admin/organizations",
-                "path": "/admin/organizations",
+                "url": "http://127.0.0.1:8000/admin/sponsors",
+                "path": "/admin/sponsors",
                 "query": [],
                 "input": [],
                 "headers": {
@@ -103,7 +103,7 @@
                         "document"
                     ],
                     "referer": [
-                        "http://127.0.0.1:8000/admin/sponsorships/1"
+                        "http://127.0.0.1:8000/admin/organizations"
                     ],
                     "accept-encoding": [
                         "gzip, deflate, br, zstd"
@@ -113,8 +113,8 @@
                     ],
                     "cookie": "[redacted]"
                 },
-                "route": "admin.organizations.index",
-                "action": "App\\Http\\Controllers\\OrganizationController@index",
+                "route": "admin.sponsors.index",
+                "action": "App\\Http\\Controllers\\SponsorController@index",
                 "parameters": [],
                 "middleware": [
                     "Illuminate\\Cookie\\Middleware\\EncryptCookies",
@@ -124,13 +124,13 @@
                     "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestForgery",
                     "Illuminate\\Auth\\Middleware\\Authenticate",
                     "Illuminate\\Routing\\Middleware\\SubstituteBindings",
-                    "Illuminate\\Auth\\Middleware\\Authorize:view-any-organization"
+                    "Illuminate\\Auth\\Middleware\\Authorize:view-any-sponsor"
                 ],
                 "status": 200,
                 "request_type": "full_page",
                 "content_type": "text/html; charset=utf-8",
                 "request_size_bytes": 0,
-                "response_size_bytes": 52388,
+                "response_size_bytes": 49119,
                 "session_present": false,
                 "authenticated": true,
                 "authentication": {
@@ -158,7 +158,7 @@
                         "no-cache, private"
                     ],
                     "date": [
-                        "Thu, 20 Aug 2026 07:22:56 GMT"
+                        "Thu, 20 Aug 2026 11:09:15 GMT"
                     ],
                     "set-cookie": "[redacted]"
                 }
@@ -171,7 +171,7 @@
                 "retained_count": 10,
                 "dropped_count": 0,
                 "truncated": false,
-                "duration_ms": 312.14,
+                "duration_ms": 485.04,
                 "transaction_count": 0,
                 "transaction_retained_count": 0,
                 "transaction_dropped_count": 0,
@@ -182,15 +182,15 @@
                     {
                         "sql": "select * from `sessions` where `id` = ? limit 1",
                         "bindings": [
-                            "4QY9rhw9mBGy5Se1qxyYfQ3Xolty5a5jSWUGntUa"
+                            "sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH"
                         ],
-                        "runnable_sql": "select * from `sessions` where `id` = '4QY9rhw9mBGy5Se1qxyYfQ3Xolty5a5jSWUGntUa' limit 1",
-                        "duration_ms": 24.32,
+                        "runnable_sql": "select * from `sessions` where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH' limit 1",
+                        "duration_ms": 13.16,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 229.952,
+                        "at_ms": 415.617,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -202,12 +202,12 @@
                             1
                         ],
                         "runnable_sql": "select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1",
-                        "duration_ms": 2.07,
+                        "duration_ms": 1.99,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 239.928,
+                        "at_ms": 430.172,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -219,12 +219,12 @@
                             "scripcom-cache-spatie.permission.cache"
                         ],
                         "runnable_sql": "select * from `cache` where `key` in ('scripcom-cache-spatie.permission.cache')",
-                        "duration_ms": 1.16,
+                        "duration_ms": 1.1,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 251.705,
+                        "at_ms": 446.436,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -236,12 +236,12 @@
                             "App\\Models\\User"
                         ],
                         "runnable_sql": "select `permissions`.*, `model_has_permissions`.`model_id` as `pivot_model_id`, `model_has_permissions`.`permission_id` as `pivot_permission_id`, `model_has_permissions`.`model_type` as `pivot_model_type` from `permissions` inner join `model_has_permissions` on `permissions`.`id` = `model_has_permissions`.`permission_id` where `model_has_permissions`.`model_id` in (1) and `model_has_permissions`.`model_type` = 'App\\\\Models\\\\User'",
-                        "duration_ms": 1.75,
+                        "duration_ms": 3.12,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 264.398,
+                        "at_ms": 468.935,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -253,60 +253,60 @@
                             "App\\Models\\User"
                         ],
                         "runnable_sql": "select `roles`.*, `model_has_roles`.`model_id` as `pivot_model_id`, `model_has_roles`.`role_id` as `pivot_role_id`, `model_has_roles`.`model_type` as `pivot_model_type` from `roles` inner join `model_has_roles` on `roles`.`id` = `model_has_roles`.`role_id` where `model_has_roles`.`model_id` in (1) and `model_has_roles`.`model_type` = 'App\\\\Models\\\\User'",
-                        "duration_ms": 1.43,
+                        "duration_ms": 1.52,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 268.226,
+                        "at_ms": 475.559,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
                         "runnable_available": true
                     },
                     {
-                        "sql": "select count(*) as `aggregate` from `organizations` where `organizations`.`deleted_at` is null",
+                        "sql": "select count(*) as `aggregate` from `sponsors` where `sponsors`.`deleted_at` is null",
                         "bindings": [],
-                        "runnable_sql": "select count(*) as `aggregate` from `organizations` where `organizations`.`deleted_at` is null",
-                        "duration_ms": 1.33,
+                        "runnable_sql": "select count(*) as `aggregate` from `sponsors` where `sponsors`.`deleted_at` is null",
+                        "duration_ms": 2.39,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
-                            "file": "app/Http/Controllers/OrganizationController.php",
-                            "line": 20
+                            "file": "app/Http/Controllers/SponsorController.php",
+                            "line": 25
                         },
                         "stack": [
                             {
-                                "file": "app/Http/Controllers/OrganizationController.php",
-                                "line": 20,
+                                "file": "app/Http/Controllers/SponsorController.php",
+                                "line": 25,
                                 "function": "Illuminate\\Database\\Eloquent\\Builder->paginate"
                             }
                         ],
-                        "at_ms": 279.935,
+                        "at_ms": 491.032,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
                         "runnable_available": true
                     },
                     {
-                        "sql": "select `organizations`.*, (select count(*) from `users` where `organizations`.`id` = `users`.`organization_id` and `users`.`deleted_at` is null) as `users_count`, (select count(*) from `hotspots` where `organizations`.`id` = `hotspots`.`organization_id` and `hotspots`.`deleted_at` is null) as `hotspots_count`, (select count(*) from `campaigns` where `organizations`.`id` = `campaigns`.`organization_id` and `campaigns`.`deleted_at` is null) as `campaigns_count` from `organizations` where `organizations`.`deleted_at` is null order by `created_at` desc limit 15 offset 0",
+                        "sql": "select `sponsors`.*, (select count(*) from `sponsorships` where `sponsors`.`id` = `sponsorships`.`sponsor_id`) as `sponsorships_count`, (select count(*) from `campaigns` where `sponsors`.`id` = `campaigns`.`sponsor_id` and `campaigns`.`deleted_at` is null) as `campaigns_count` from `sponsors` where `sponsors`.`deleted_at` is null order by `created_at` desc limit 15 offset 0",
                         "bindings": [],
-                        "runnable_sql": "select `organizations`.*, (select count(*) from `users` where `organizations`.`id` = `users`.`organization_id` and `users`.`deleted_at` is null) as `users_count`, (select count(*) from `hotspots` where `organizations`.`id` = `hotspots`.`organization_id` and `hotspots`.`deleted_at` is null) as `hotspots_count`, (select count(*) from `campaigns` where `organizations`.`id` = `campaigns`.`organization_id` and `campaigns`.`deleted_at` is null) as `campaigns_count` from `organizations` where `organizations`.`deleted_at` is null order by `created_at` desc limit 15 offset 0",
-                        "duration_ms": 12.94,
+                        "runnable_sql": "select `sponsors`.*, (select count(*) from `sponsorships` where `sponsors`.`id` = `sponsorships`.`sponsor_id`) as `sponsorships_count`, (select count(*) from `campaigns` where `sponsors`.`id` = `campaigns`.`sponsor_id` and `campaigns`.`deleted_at` is null) as `campaigns_count` from `sponsors` where `sponsors`.`deleted_at` is null order by `created_at` desc limit 15 offset 0",
+                        "duration_ms": 115.52,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
-                            "file": "app/Http/Controllers/OrganizationController.php",
-                            "line": 20
+                            "file": "app/Http/Controllers/SponsorController.php",
+                            "line": 25
                         },
                         "stack": [
                             {
-                                "file": "app/Http/Controllers/OrganizationController.php",
-                                "line": 20,
+                                "file": "app/Http/Controllers/SponsorController.php",
+                                "line": 25,
                                 "function": "Illuminate\\Database\\Eloquent\\Builder->paginate"
                             }
                         ],
-                        "at_ms": 293.967,
+                        "at_ms": 608.076,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -319,7 +319,7 @@
                             1
                         ],
                         "runnable_sql": "select count(*) as `aggregate` from `notifications` where `notifications`.`notifiable_type` = 'App\\\\Models\\\\User' and `notifications`.`notifiable_id` = 1 and `notifications`.`notifiable_id` is not null and `read_at` is null",
-                        "duration_ms": 1.85,
+                        "duration_ms": 2.17,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
@@ -333,7 +333,7 @@
                                 "function": "Blade authorization directive"
                             }
                         ],
-                        "at_ms": 1514.988,
+                        "at_ms": 2438.389,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -346,7 +346,7 @@
                             1
                         ],
                         "runnable_sql": "select * from `notifications` where `notifications`.`notifiable_type` = 'App\\\\Models\\\\User' and `notifications`.`notifiable_id` = 1 and `notifications`.`notifiable_id` is not null order by `created_at` desc, `created_at` desc limit 5",
-                        "duration_ms": 1.21,
+                        "duration_ms": 1.87,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
@@ -360,7 +360,7 @@
                                 "function": "Blade authorization directive"
                             }
                         ],
-                        "at_ms": 1519.233,
+                        "at_ms": 2443.299,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -369,20 +369,20 @@
                     {
                         "sql": "update `sessions` set `payload` = ?, `last_activity` = ?, `user_id` = ?, `ip_address` = ?, `user_agent` = ? where `id` = ?",
                         "bindings": [
-                            "eyJfdG9rZW4iOiJlYVFrU21LbDgwdFBFS2Y0T0hnVzlLejJYdFdWeTZTSVFxSzFDb3JDIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvb3JnYW5pemF0aW9ucyIsInJvdXRlIjoiYWRtaW4ub3JnYW5pemF0aW9ucy5pbmRleCJ9LCJfZmxhc2giOnsib2xkIjpbXSwibmV3IjpbXX0sImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjoxfQ==",
-                            1787210577,
+                            "eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvc3BvbnNvcnMiLCJyb3V0ZSI6ImFkbWluLnNwb25zb3JzLmluZGV4In19",
+                            1787224157,
                             1,
                             "127.0.0.1",
                             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
-                            "4QY9rhw9mBGy5Se1qxyYfQ3Xolty5a5jSWUGntUa"
+                            "sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH"
                         ],
-                        "runnable_sql": "update `sessions` set `payload` = 'eyJfdG9rZW4iOiJlYVFrU21LbDgwdFBFS2Y0T0hnVzlLejJYdFdWeTZTSVFxSzFDb3JDIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvb3JnYW5pemF0aW9ucyIsInJvdXRlIjoiYWRtaW4ub3JnYW5pemF0aW9ucy5pbmRleCJ9LCJfZmxhc2giOnsib2xkIjpbXSwibmV3IjpbXX0sImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjoxfQ==', `last_activity` = 1787210577, `user_id` = 1, `ip_address` = '127.0.0.1', `user_agent` = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36' where `id` = '4QY9rhw9mBGy5Se1qxyYfQ3Xolty5a5jSWUGntUa'",
-                        "duration_ms": 264.08,
+                        "runnable_sql": "update `sessions` set `payload` = 'eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvc3BvbnNvcnMiLCJyb3V0ZSI6ImFkbWluLnNwb25zb3JzLmluZGV4In19', `last_activity` = 1787224157, `user_id` = 1, `ip_address` = '127.0.0.1', `user_agent` = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36' where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH'",
+                        "duration_ms": 342.2,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 1803.979,
+                        "at_ms": 2800.28,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -468,8 +468,8 @@
         "models": {
             "label": "Models",
             "summary": {
-                "count": 10,
-                "retained_count": 10,
+                "count": 9,
+                "retained_count": 9,
                 "dropped_count": 0,
                 "truncated": false
             },
@@ -481,7 +481,7 @@
                         "connection": "mysql",
                         "table": "users",
                         "key": 1,
-                        "at_ms": 240.338
+                        "at_ms": 430.739
                     },
                     {
                         "event": "retrieved",
@@ -489,47 +489,39 @@
                         "connection": "mysql",
                         "table": "roles",
                         "key": 1,
-                        "at_ms": 269.006
+                        "at_ms": 476.132
                     },
                     {
                         "event": "retrieved",
-                        "model": "App\\Models\\Organization",
+                        "model": "App\\Models\\Sponsor",
                         "connection": "mysql",
-                        "table": "organizations",
-                        "key": 5,
-                        "at_ms": 294.384
-                    },
-                    {
-                        "event": "retrieved",
-                        "model": "App\\Models\\Organization",
-                        "connection": "mysql",
-                        "table": "organizations",
-                        "key": 2,
-                        "at_ms": 294.475
-                    },
-                    {
-                        "event": "retrieved",
-                        "model": "App\\Models\\Organization",
-                        "connection": "mysql",
-                        "table": "organizations",
-                        "key": 3,
-                        "at_ms": 294.557
-                    },
-                    {
-                        "event": "retrieved",
-                        "model": "App\\Models\\Organization",
-                        "connection": "mysql",
-                        "table": "organizations",
+                        "table": "sponsors",
                         "key": 4,
-                        "at_ms": 294.638
+                        "at_ms": 608.561
                     },
                     {
                         "event": "retrieved",
-                        "model": "App\\Models\\Organization",
+                        "model": "App\\Models\\Sponsor",
                         "connection": "mysql",
-                        "table": "organizations",
+                        "table": "sponsors",
                         "key": 1,
-                        "at_ms": 294.717
+                        "at_ms": 608.671
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\Sponsor",
+                        "connection": "mysql",
+                        "table": "sponsors",
+                        "key": 2,
+                        "at_ms": 608.772
+                    },
+                    {
+                        "event": "retrieved",
+                        "model": "App\\Models\\Sponsor",
+                        "connection": "mysql",
+                        "table": "sponsors",
+                        "key": 3,
+                        "at_ms": 608.869
                     },
                     {
                         "event": "retrieved",
@@ -537,7 +529,7 @@
                         "connection": "mysql",
                         "table": "notifications",
                         "key": "f1d65c50-f1f5-45af-aff6-1b5270bc084a",
-                        "at_ms": 1519.744
+                        "at_ms": 2443.666
                     },
                     {
                         "event": "retrieved",
@@ -545,7 +537,7 @@
                         "connection": "mysql",
                         "table": "notifications",
                         "key": "9d3528cc-2174-4bd9-a872-315daaff9140",
-                        "at_ms": 1520.506
+                        "at_ms": 2443.771
                     },
                     {
                         "event": "retrieved",
@@ -553,7 +545,7 @@
                         "connection": "mysql",
                         "table": "notifications",
                         "key": "e53f5f50-0c0a-47ee-8e7f-1b3c793f9b38",
-                        "at_ms": 1520.653
+                        "at_ms": 2443.866
                     }
                 ]
             }
@@ -583,7 +575,7 @@
                         "tag_hashes": [],
                         "tags": [],
                         "seconds": null,
-                        "at_ms": 253.259
+                        "at_ms": 447.337
                     }
                 ]
             }
@@ -599,14 +591,14 @@
             "payload": {
                 "items": [
                     {
-                        "name": "organizations.index",
+                        "name": "sponsors.index",
                         "source": {
-                            "file": "resources/views/organizations/index.blade.php",
+                            "file": "resources/views/sponsors/index.blade.php",
                             "line": 1
                         },
                         "composers": [],
                         "data": {
-                            "organizations": {
+                            "sponsors": {
                                 "current_page": 1,
                                 "data": [
                                     {
@@ -616,22 +608,14 @@
                                         "email": "[maximum depth reached]",
                                         "phone": "[maximum depth reached]",
                                         "address": "[maximum depth reached]",
-                                        "city": "[maximum depth reached]",
-                                        "county": "[maximum depth reached]",
-                                        "country": "[maximum depth reached]",
-                                        "postal_code": "[maximum depth reached]",
                                         "logo": "[maximum depth reached]",
                                         "website": "[maximum depth reached]",
-                                        "primary_color": "[maximum depth reached]",
-                                        "secondary_color": "[maximum depth reached]",
-                                        "type": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
                                         "is_active": "[maximum depth reached]",
-                                        "settings": "[maximum depth reached]",
                                         "created_at": "[maximum depth reached]",
                                         "updated_at": "[maximum depth reached]",
                                         "deleted_at": "[maximum depth reached]",
-                                        "users_count": "[maximum depth reached]",
-                                        "hotspots_count": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
                                         "campaigns_count": "[maximum depth reached]"
                                     },
                                     {
@@ -641,22 +625,14 @@
                                         "email": "[maximum depth reached]",
                                         "phone": "[maximum depth reached]",
                                         "address": "[maximum depth reached]",
-                                        "city": "[maximum depth reached]",
-                                        "county": "[maximum depth reached]",
-                                        "country": "[maximum depth reached]",
-                                        "postal_code": "[maximum depth reached]",
                                         "logo": "[maximum depth reached]",
                                         "website": "[maximum depth reached]",
-                                        "primary_color": "[maximum depth reached]",
-                                        "secondary_color": "[maximum depth reached]",
-                                        "type": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
                                         "is_active": "[maximum depth reached]",
-                                        "settings": "[maximum depth reached]",
                                         "created_at": "[maximum depth reached]",
                                         "updated_at": "[maximum depth reached]",
                                         "deleted_at": "[maximum depth reached]",
-                                        "users_count": "[maximum depth reached]",
-                                        "hotspots_count": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
                                         "campaigns_count": "[maximum depth reached]"
                                     },
                                     {
@@ -666,22 +642,14 @@
                                         "email": "[maximum depth reached]",
                                         "phone": "[maximum depth reached]",
                                         "address": "[maximum depth reached]",
-                                        "city": "[maximum depth reached]",
-                                        "county": "[maximum depth reached]",
-                                        "country": "[maximum depth reached]",
-                                        "postal_code": "[maximum depth reached]",
                                         "logo": "[maximum depth reached]",
                                         "website": "[maximum depth reached]",
-                                        "primary_color": "[maximum depth reached]",
-                                        "secondary_color": "[maximum depth reached]",
-                                        "type": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
                                         "is_active": "[maximum depth reached]",
-                                        "settings": "[maximum depth reached]",
                                         "created_at": "[maximum depth reached]",
                                         "updated_at": "[maximum depth reached]",
                                         "deleted_at": "[maximum depth reached]",
-                                        "users_count": "[maximum depth reached]",
-                                        "hotspots_count": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
                                         "campaigns_count": "[maximum depth reached]"
                                     },
                                     {
@@ -691,54 +659,21 @@
                                         "email": "[maximum depth reached]",
                                         "phone": "[maximum depth reached]",
                                         "address": "[maximum depth reached]",
-                                        "city": "[maximum depth reached]",
-                                        "county": "[maximum depth reached]",
-                                        "country": "[maximum depth reached]",
-                                        "postal_code": "[maximum depth reached]",
                                         "logo": "[maximum depth reached]",
                                         "website": "[maximum depth reached]",
-                                        "primary_color": "[maximum depth reached]",
-                                        "secondary_color": "[maximum depth reached]",
-                                        "type": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
                                         "is_active": "[maximum depth reached]",
-                                        "settings": "[maximum depth reached]",
                                         "created_at": "[maximum depth reached]",
                                         "updated_at": "[maximum depth reached]",
                                         "deleted_at": "[maximum depth reached]",
-                                        "users_count": "[maximum depth reached]",
-                                        "hotspots_count": "[maximum depth reached]",
-                                        "campaigns_count": "[maximum depth reached]"
-                                    },
-                                    {
-                                        "id": "[maximum depth reached]",
-                                        "name": "[maximum depth reached]",
-                                        "slug": "[maximum depth reached]",
-                                        "email": "[maximum depth reached]",
-                                        "phone": "[maximum depth reached]",
-                                        "address": "[maximum depth reached]",
-                                        "city": "[maximum depth reached]",
-                                        "county": "[maximum depth reached]",
-                                        "country": "[maximum depth reached]",
-                                        "postal_code": "[maximum depth reached]",
-                                        "logo": "[maximum depth reached]",
-                                        "website": "[maximum depth reached]",
-                                        "primary_color": "[maximum depth reached]",
-                                        "secondary_color": "[maximum depth reached]",
-                                        "type": "[maximum depth reached]",
-                                        "is_active": "[maximum depth reached]",
-                                        "settings": "[maximum depth reached]",
-                                        "created_at": "[maximum depth reached]",
-                                        "updated_at": "[maximum depth reached]",
-                                        "deleted_at": "[maximum depth reached]",
-                                        "users_count": "[maximum depth reached]",
-                                        "hotspots_count": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
                                         "campaigns_count": "[maximum depth reached]"
                                     }
                                 ],
-                                "first_page_url": "http://127.0.0.1:8000/admin/organizations?page=1",
+                                "first_page_url": "http://127.0.0.1:8000/admin/sponsors?page=1",
                                 "from": 1,
                                 "last_page": 1,
-                                "last_page_url": "http://127.0.0.1:8000/admin/organizations?page=1",
+                                "last_page_url": "http://127.0.0.1:8000/admin/sponsors?page=1",
                                 "links": [
                                     {
                                         "url": "[maximum depth reached]",
@@ -760,15 +695,15 @@
                                     }
                                 ],
                                 "next_page_url": null,
-                                "path": "http://127.0.0.1:8000/admin/organizations",
+                                "path": "http://127.0.0.1:8000/admin/sponsors",
                                 "per_page": 15,
                                 "prev_page_url": null,
-                                "to": 5,
-                                "total": 5
+                                "to": 4,
+                                "total": 4
                             }
                         },
                         "timing": "composition_marker",
-                        "at_ms": 308.182
+                        "at_ms": 621.215
                     },
                     {
                         "name": "layouts.admin",
@@ -781,7 +716,7 @@
                             "__env": "[Illuminate\\View\\Factory]",
                             "app": "[Illuminate\\Foundation\\Application]",
                             "errors": "[]",
-                            "organizations": {
+                            "sponsors": {
                                 "current_page": 1,
                                 "data": [
                                     {
@@ -791,22 +726,14 @@
                                         "email": "[maximum depth reached]",
                                         "phone": "[maximum depth reached]",
                                         "address": "[maximum depth reached]",
-                                        "city": "[maximum depth reached]",
-                                        "county": "[maximum depth reached]",
-                                        "country": "[maximum depth reached]",
-                                        "postal_code": "[maximum depth reached]",
                                         "logo": "[maximum depth reached]",
                                         "website": "[maximum depth reached]",
-                                        "primary_color": "[maximum depth reached]",
-                                        "secondary_color": "[maximum depth reached]",
-                                        "type": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
                                         "is_active": "[maximum depth reached]",
-                                        "settings": "[maximum depth reached]",
                                         "created_at": "[maximum depth reached]",
                                         "updated_at": "[maximum depth reached]",
                                         "deleted_at": "[maximum depth reached]",
-                                        "users_count": "[maximum depth reached]",
-                                        "hotspots_count": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
                                         "campaigns_count": "[maximum depth reached]"
                                     },
                                     {
@@ -816,22 +743,14 @@
                                         "email": "[maximum depth reached]",
                                         "phone": "[maximum depth reached]",
                                         "address": "[maximum depth reached]",
-                                        "city": "[maximum depth reached]",
-                                        "county": "[maximum depth reached]",
-                                        "country": "[maximum depth reached]",
-                                        "postal_code": "[maximum depth reached]",
                                         "logo": "[maximum depth reached]",
                                         "website": "[maximum depth reached]",
-                                        "primary_color": "[maximum depth reached]",
-                                        "secondary_color": "[maximum depth reached]",
-                                        "type": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
                                         "is_active": "[maximum depth reached]",
-                                        "settings": "[maximum depth reached]",
                                         "created_at": "[maximum depth reached]",
                                         "updated_at": "[maximum depth reached]",
                                         "deleted_at": "[maximum depth reached]",
-                                        "users_count": "[maximum depth reached]",
-                                        "hotspots_count": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
                                         "campaigns_count": "[maximum depth reached]"
                                     },
                                     {
@@ -841,22 +760,14 @@
                                         "email": "[maximum depth reached]",
                                         "phone": "[maximum depth reached]",
                                         "address": "[maximum depth reached]",
-                                        "city": "[maximum depth reached]",
-                                        "county": "[maximum depth reached]",
-                                        "country": "[maximum depth reached]",
-                                        "postal_code": "[maximum depth reached]",
                                         "logo": "[maximum depth reached]",
                                         "website": "[maximum depth reached]",
-                                        "primary_color": "[maximum depth reached]",
-                                        "secondary_color": "[maximum depth reached]",
-                                        "type": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
                                         "is_active": "[maximum depth reached]",
-                                        "settings": "[maximum depth reached]",
                                         "created_at": "[maximum depth reached]",
                                         "updated_at": "[maximum depth reached]",
                                         "deleted_at": "[maximum depth reached]",
-                                        "users_count": "[maximum depth reached]",
-                                        "hotspots_count": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
                                         "campaigns_count": "[maximum depth reached]"
                                     },
                                     {
@@ -866,54 +777,21 @@
                                         "email": "[maximum depth reached]",
                                         "phone": "[maximum depth reached]",
                                         "address": "[maximum depth reached]",
-                                        "city": "[maximum depth reached]",
-                                        "county": "[maximum depth reached]",
-                                        "country": "[maximum depth reached]",
-                                        "postal_code": "[maximum depth reached]",
                                         "logo": "[maximum depth reached]",
                                         "website": "[maximum depth reached]",
-                                        "primary_color": "[maximum depth reached]",
-                                        "secondary_color": "[maximum depth reached]",
-                                        "type": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
                                         "is_active": "[maximum depth reached]",
-                                        "settings": "[maximum depth reached]",
                                         "created_at": "[maximum depth reached]",
                                         "updated_at": "[maximum depth reached]",
                                         "deleted_at": "[maximum depth reached]",
-                                        "users_count": "[maximum depth reached]",
-                                        "hotspots_count": "[maximum depth reached]",
-                                        "campaigns_count": "[maximum depth reached]"
-                                    },
-                                    {
-                                        "id": "[maximum depth reached]",
-                                        "name": "[maximum depth reached]",
-                                        "slug": "[maximum depth reached]",
-                                        "email": "[maximum depth reached]",
-                                        "phone": "[maximum depth reached]",
-                                        "address": "[maximum depth reached]",
-                                        "city": "[maximum depth reached]",
-                                        "county": "[maximum depth reached]",
-                                        "country": "[maximum depth reached]",
-                                        "postal_code": "[maximum depth reached]",
-                                        "logo": "[maximum depth reached]",
-                                        "website": "[maximum depth reached]",
-                                        "primary_color": "[maximum depth reached]",
-                                        "secondary_color": "[maximum depth reached]",
-                                        "type": "[maximum depth reached]",
-                                        "is_active": "[maximum depth reached]",
-                                        "settings": "[maximum depth reached]",
-                                        "created_at": "[maximum depth reached]",
-                                        "updated_at": "[maximum depth reached]",
-                                        "deleted_at": "[maximum depth reached]",
-                                        "users_count": "[maximum depth reached]",
-                                        "hotspots_count": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
                                         "campaigns_count": "[maximum depth reached]"
                                     }
                                 ],
-                                "first_page_url": "http://127.0.0.1:8000/admin/organizations?page=1",
+                                "first_page_url": "http://127.0.0.1:8000/admin/sponsors?page=1",
                                 "from": 1,
                                 "last_page": 1,
-                                "last_page_url": "http://127.0.0.1:8000/admin/organizations?page=1",
+                                "last_page_url": "http://127.0.0.1:8000/admin/sponsors?page=1",
                                 "links": [
                                     {
                                         "url": "[maximum depth reached]",
@@ -935,11 +813,11 @@
                                     }
                                 ],
                                 "next_page_url": null,
-                                "path": "http://127.0.0.1:8000/admin/organizations",
+                                "path": "http://127.0.0.1:8000/admin/sponsors",
                                 "per_page": 15,
                                 "prev_page_url": null,
-                                "to": 5,
-                                "total": 5
+                                "to": 4,
+                                "total": 4
                             },
                             "__empty_1": false,
                             "__currentLoopData": {
@@ -952,22 +830,14 @@
                                         "email": "[maximum depth reached]",
                                         "phone": "[maximum depth reached]",
                                         "address": "[maximum depth reached]",
-                                        "city": "[maximum depth reached]",
-                                        "county": "[maximum depth reached]",
-                                        "country": "[maximum depth reached]",
-                                        "postal_code": "[maximum depth reached]",
                                         "logo": "[maximum depth reached]",
                                         "website": "[maximum depth reached]",
-                                        "primary_color": "[maximum depth reached]",
-                                        "secondary_color": "[maximum depth reached]",
-                                        "type": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
                                         "is_active": "[maximum depth reached]",
-                                        "settings": "[maximum depth reached]",
                                         "created_at": "[maximum depth reached]",
                                         "updated_at": "[maximum depth reached]",
                                         "deleted_at": "[maximum depth reached]",
-                                        "users_count": "[maximum depth reached]",
-                                        "hotspots_count": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
                                         "campaigns_count": "[maximum depth reached]"
                                     },
                                     {
@@ -977,22 +847,14 @@
                                         "email": "[maximum depth reached]",
                                         "phone": "[maximum depth reached]",
                                         "address": "[maximum depth reached]",
-                                        "city": "[maximum depth reached]",
-                                        "county": "[maximum depth reached]",
-                                        "country": "[maximum depth reached]",
-                                        "postal_code": "[maximum depth reached]",
                                         "logo": "[maximum depth reached]",
                                         "website": "[maximum depth reached]",
-                                        "primary_color": "[maximum depth reached]",
-                                        "secondary_color": "[maximum depth reached]",
-                                        "type": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
                                         "is_active": "[maximum depth reached]",
-                                        "settings": "[maximum depth reached]",
                                         "created_at": "[maximum depth reached]",
                                         "updated_at": "[maximum depth reached]",
                                         "deleted_at": "[maximum depth reached]",
-                                        "users_count": "[maximum depth reached]",
-                                        "hotspots_count": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
                                         "campaigns_count": "[maximum depth reached]"
                                     },
                                     {
@@ -1002,22 +864,14 @@
                                         "email": "[maximum depth reached]",
                                         "phone": "[maximum depth reached]",
                                         "address": "[maximum depth reached]",
-                                        "city": "[maximum depth reached]",
-                                        "county": "[maximum depth reached]",
-                                        "country": "[maximum depth reached]",
-                                        "postal_code": "[maximum depth reached]",
                                         "logo": "[maximum depth reached]",
                                         "website": "[maximum depth reached]",
-                                        "primary_color": "[maximum depth reached]",
-                                        "secondary_color": "[maximum depth reached]",
-                                        "type": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
                                         "is_active": "[maximum depth reached]",
-                                        "settings": "[maximum depth reached]",
                                         "created_at": "[maximum depth reached]",
                                         "updated_at": "[maximum depth reached]",
                                         "deleted_at": "[maximum depth reached]",
-                                        "users_count": "[maximum depth reached]",
-                                        "hotspots_count": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
                                         "campaigns_count": "[maximum depth reached]"
                                     },
                                     {
@@ -1027,54 +881,21 @@
                                         "email": "[maximum depth reached]",
                                         "phone": "[maximum depth reached]",
                                         "address": "[maximum depth reached]",
-                                        "city": "[maximum depth reached]",
-                                        "county": "[maximum depth reached]",
-                                        "country": "[maximum depth reached]",
-                                        "postal_code": "[maximum depth reached]",
                                         "logo": "[maximum depth reached]",
                                         "website": "[maximum depth reached]",
-                                        "primary_color": "[maximum depth reached]",
-                                        "secondary_color": "[maximum depth reached]",
-                                        "type": "[maximum depth reached]",
+                                        "contact_person": "[maximum depth reached]",
                                         "is_active": "[maximum depth reached]",
-                                        "settings": "[maximum depth reached]",
                                         "created_at": "[maximum depth reached]",
                                         "updated_at": "[maximum depth reached]",
                                         "deleted_at": "[maximum depth reached]",
-                                        "users_count": "[maximum depth reached]",
-                                        "hotspots_count": "[maximum depth reached]",
-                                        "campaigns_count": "[maximum depth reached]"
-                                    },
-                                    {
-                                        "id": "[maximum depth reached]",
-                                        "name": "[maximum depth reached]",
-                                        "slug": "[maximum depth reached]",
-                                        "email": "[maximum depth reached]",
-                                        "phone": "[maximum depth reached]",
-                                        "address": "[maximum depth reached]",
-                                        "city": "[maximum depth reached]",
-                                        "county": "[maximum depth reached]",
-                                        "country": "[maximum depth reached]",
-                                        "postal_code": "[maximum depth reached]",
-                                        "logo": "[maximum depth reached]",
-                                        "website": "[maximum depth reached]",
-                                        "primary_color": "[maximum depth reached]",
-                                        "secondary_color": "[maximum depth reached]",
-                                        "type": "[maximum depth reached]",
-                                        "is_active": "[maximum depth reached]",
-                                        "settings": "[maximum depth reached]",
-                                        "created_at": "[maximum depth reached]",
-                                        "updated_at": "[maximum depth reached]",
-                                        "deleted_at": "[maximum depth reached]",
-                                        "users_count": "[maximum depth reached]",
-                                        "hotspots_count": "[maximum depth reached]",
+                                        "sponsorships_count": "[maximum depth reached]",
                                         "campaigns_count": "[maximum depth reached]"
                                     }
                                 ],
-                                "first_page_url": "http://127.0.0.1:8000/admin/organizations?page=1",
+                                "first_page_url": "http://127.0.0.1:8000/admin/sponsors?page=1",
                                 "from": 1,
                                 "last_page": 1,
-                                "last_page_url": "http://127.0.0.1:8000/admin/organizations?page=1",
+                                "last_page_url": "http://127.0.0.1:8000/admin/sponsors?page=1",
                                 "links": [
                                     {
                                         "url": "[maximum depth reached]",
@@ -1096,41 +917,33 @@
                                     }
                                 ],
                                 "next_page_url": null,
-                                "path": "http://127.0.0.1:8000/admin/organizations",
+                                "path": "http://127.0.0.1:8000/admin/sponsors",
                                 "per_page": 15,
                                 "prev_page_url": null,
-                                "to": 5,
-                                "total": 5
+                                "to": 4,
+                                "total": 4
                             },
-                            "organization": {
-                                "id": 1,
-                                "name": "Mombasa County Government",
-                                "slug": "mombasa-county",
-                                "email": "ict@mombasa.go.ke",
-                                "phone": "+254411231000",
-                                "address": "P.O. Box 90438-80100",
-                                "city": "Mombasa",
-                                "county": "Mombasa",
-                                "country": "Kenya",
-                                "postal_code": "80100",
+                            "sponsor": {
+                                "id": 3,
+                                "name": "Equity Bank",
+                                "slug": "equity-bank",
+                                "email": "corporate@equitybank.co.ke",
+                                "phone": "0722000003",
+                                "address": null,
                                 "logo": null,
-                                "website": "https://www.mombasa.go.ke",
-                                "primary_color": "#DB1F2A",
-                                "secondary_color": "#262B40",
-                                "type": "county",
+                                "website": "https://www.equitybank.co.ke",
+                                "contact_person": "Mary Wambui",
                                 "is_active": true,
-                                "settings": null,
-                                "created_at": "2026-08-20T06:56:23.000000Z",
-                                "updated_at": "2026-08-20T06:56:23.000000Z",
+                                "created_at": "2026-08-20T06:56:44.000000Z",
+                                "updated_at": "2026-08-20T06:56:44.000000Z",
                                 "deleted_at": null,
-                                "users_count": 2,
-                                "hotspots_count": 6,
-                                "campaigns_count": 5
+                                "sponsorships_count": 2,
+                                "campaigns_count": 1
                             },
                             "loop": null
                         },
                         "timing": "composition_marker",
-                        "at_ms": 1371.563
+                        "at_ms": 2257.182
                     }
                 ]
             }
@@ -1152,7 +965,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\ConnectionEstablished"
                         ],
-                        "at_ms": 200.195
+                        "at_ms": 395.143
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1161,7 +974,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 225.27
+                        "at_ms": 408.928
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1170,7 +983,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 236.319
+                        "at_ms": 426.433
                     },
                     {
                         "name": "Illuminate\\Auth\\Events\\Authenticated",
@@ -1179,7 +992,7 @@
                         "payload_types": [
                             "Illuminate\\Auth\\Events\\Authenticated"
                         ],
-                        "at_ms": 241.824
+                        "at_ms": 432.629
                     },
                     {
                         "name": "Illuminate\\Cache\\Events\\RetrievingKey",
@@ -1188,7 +1001,7 @@
                         "payload_types": [
                             "Illuminate\\Cache\\Events\\RetrievingKey"
                         ],
-                        "at_ms": 248.162
+                        "at_ms": 442.575
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1197,7 +1010,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 249.05
+                        "at_ms": 443.344
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1206,7 +1019,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 262.586
+                        "at_ms": 461.09
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1215,7 +1028,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 266.593
+                        "at_ms": 473.769
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1224,7 +1037,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 278.565
+                        "at_ms": 488.688
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1233,7 +1046,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 281.312
+                        "at_ms": 567.881
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1242,7 +1055,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 1510.319
+                        "at_ms": 2432.824
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -1251,7 +1064,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 1515.99
+                        "at_ms": 2439.615
                     }
                 ]
             }
@@ -1259,153 +1072,129 @@
         "authorization": {
             "label": "Authorization",
             "summary": {
-                "count": 43,
-                "retained_count": 43,
+                "count": 41,
+                "retained_count": 41,
                 "dropped_count": 0,
                 "truncated": false
             },
             "payload": {
                 "items": [
                     {
-                        "ability": "view-any-organization",
+                        "ability": "view-any-sponsor",
                         "result": "allowed",
                         "handler": "callback",
                         "user_type": "App\\Models\\User",
                         "argument_types": [],
                         "callsite": null,
-                        "at_ms": 273.64
+                        "at_ms": 479.898
                     },
                     {
-                        "ability": "create-organization",
+                        "ability": "create-sponsor",
                         "result": "allowed",
                         "handler": "callback",
                         "user_type": "App\\Models\\User",
                         "argument_types": [],
                         "callsite": {
-                            "file": "resources/views/organizations/index.blade.php",
-                            "line": 33
+                            "file": "resources/views/sponsors/index.blade.php",
+                            "line": 38
                         },
-                        "at_ms": 1327.805
+                        "at_ms": 2225.347
                     },
                     {
-                        "ability": "update-organization",
+                        "ability": "update-sponsor",
                         "result": "allowed",
                         "handler": "callback",
                         "user_type": "App\\Models\\User",
                         "argument_types": [],
                         "callsite": {
-                            "file": "resources/views/organizations/index.blade.php",
-                            "line": 88
+                            "file": "resources/views/sponsors/index.blade.php",
+                            "line": 95
                         },
-                        "at_ms": 1331.024
+                        "at_ms": 2228.503
                     },
                     {
-                        "ability": "delete-organization",
+                        "ability": "delete-sponsor",
                         "result": "allowed",
                         "handler": "callback",
                         "user_type": "App\\Models\\User",
                         "argument_types": [],
                         "callsite": {
-                            "file": "resources/views/organizations/index.blade.php",
-                            "line": 93
+                            "file": "resources/views/sponsors/index.blade.php",
+                            "line": 100
                         },
-                        "at_ms": 1333.578
+                        "at_ms": 2231.228
                     },
                     {
-                        "ability": "update-organization",
+                        "ability": "update-sponsor",
                         "result": "allowed",
                         "handler": "callback",
                         "user_type": "App\\Models\\User",
                         "argument_types": [],
                         "callsite": {
-                            "file": "resources/views/organizations/index.blade.php",
-                            "line": 88
+                            "file": "resources/views/sponsors/index.blade.php",
+                            "line": 95
                         },
-                        "at_ms": 1340.844
+                        "at_ms": 2235.952
                     },
                     {
-                        "ability": "delete-organization",
+                        "ability": "delete-sponsor",
                         "result": "allowed",
                         "handler": "callback",
                         "user_type": "App\\Models\\User",
                         "argument_types": [],
                         "callsite": {
-                            "file": "resources/views/organizations/index.blade.php",
-                            "line": 93
+                            "file": "resources/views/sponsors/index.blade.php",
+                            "line": 100
                         },
-                        "at_ms": 1344.098
+                        "at_ms": 2239.661
                     },
                     {
-                        "ability": "update-organization",
+                        "ability": "update-sponsor",
                         "result": "allowed",
                         "handler": "callback",
                         "user_type": "App\\Models\\User",
                         "argument_types": [],
                         "callsite": {
-                            "file": "resources/views/organizations/index.blade.php",
-                            "line": 88
+                            "file": "resources/views/sponsors/index.blade.php",
+                            "line": 95
                         },
-                        "at_ms": 1347.393
+                        "at_ms": 2243.146
                     },
                     {
-                        "ability": "delete-organization",
+                        "ability": "delete-sponsor",
                         "result": "allowed",
                         "handler": "callback",
                         "user_type": "App\\Models\\User",
                         "argument_types": [],
                         "callsite": {
-                            "file": "resources/views/organizations/index.blade.php",
-                            "line": 93
+                            "file": "resources/views/sponsors/index.blade.php",
+                            "line": 100
                         },
-                        "at_ms": 1349.803
+                        "at_ms": 2245.714
                     },
                     {
-                        "ability": "update-organization",
+                        "ability": "update-sponsor",
                         "result": "allowed",
                         "handler": "callback",
                         "user_type": "App\\Models\\User",
                         "argument_types": [],
                         "callsite": {
-                            "file": "resources/views/organizations/index.blade.php",
-                            "line": 88
+                            "file": "resources/views/sponsors/index.blade.php",
+                            "line": 95
                         },
-                        "at_ms": 1355.533
+                        "at_ms": 2248.727
                     },
                     {
-                        "ability": "delete-organization",
+                        "ability": "delete-sponsor",
                         "result": "allowed",
                         "handler": "callback",
                         "user_type": "App\\Models\\User",
                         "argument_types": [],
                         "callsite": {
-                            "file": "resources/views/organizations/index.blade.php",
-                            "line": 93
+                            "file": "resources/views/sponsors/index.blade.php",
+                            "line": 100
                         },
-                        "at_ms": 1358.811
-                    },
-                    {
-                        "ability": "update-organization",
-                        "result": "allowed",
-                        "handler": "callback",
-                        "user_type": "App\\Models\\User",
-                        "argument_types": [],
-                        "callsite": {
-                            "file": "resources/views/organizations/index.blade.php",
-                            "line": 88
-                        },
-                        "at_ms": 1362.163
-                    },
-                    {
-                        "ability": "delete-organization",
-                        "result": "allowed",
-                        "handler": "callback",
-                        "user_type": "App\\Models\\User",
-                        "argument_types": [],
-                        "callsite": {
-                            "file": "resources/views/organizations/index.blade.php",
-                            "line": 93
-                        },
-                        "at_ms": 1364.7
+                        "at_ms": 2251.908
                     },
                     {
                         "ability": "view-analytics",
@@ -1417,7 +1206,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 107
                         },
-                        "at_ms": 1379.639
+                        "at_ms": 2310.788
                     },
                     {
                         "ability": "view-any-router",
@@ -1429,7 +1218,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 116
                         },
-                        "at_ms": 1382.919
+                        "at_ms": 2314.675
                     },
                     {
                         "ability": "view-any-organization",
@@ -1441,7 +1230,7 @@
                             "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
                             "line": 126
                         },
-                        "at_ms": 1386.651
+                        "at_ms": 2320.281
                     },
                     {
                         "ability": "view-any-organization",
@@ -1453,7 +1242,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 139
                         },
-                        "at_ms": 1391.634
+                        "at_ms": 2324.421
                     },
                     {
                         "ability": "view-any-user",
@@ -1465,7 +1254,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 147
                         },
-                        "at_ms": 1395.811
+                        "at_ms": 2328.613
                     },
                     {
                         "ability": "view-any-hotspot",
@@ -1477,7 +1266,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 155
                         },
-                        "at_ms": 1399.002
+                        "at_ms": 2331.908
                     },
                     {
                         "ability": "view-any-router",
@@ -1489,7 +1278,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 163
                         },
-                        "at_ms": 1403.53
+                        "at_ms": 2337.112
                     },
                     {
                         "ability": "view-any-campaign",
@@ -1501,7 +1290,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 171
                         },
-                        "at_ms": 1408.458
+                        "at_ms": 2340.528
                     },
                     {
                         "ability": "view-any-package",
@@ -1513,7 +1302,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 179
                         },
-                        "at_ms": 1412.168
+                        "at_ms": 2343.727
                     },
                     {
                         "ability": "view-any-voucher",
@@ -1525,7 +1314,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 187
                         },
-                        "at_ms": 1415.755
+                        "at_ms": 2346.739
                     },
                     {
                         "ability": "view-any-sponsor",
@@ -1537,7 +1326,7 @@
                             "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
                             "line": 200
                         },
-                        "at_ms": 1419.694
+                        "at_ms": 2350.081
                     },
                     {
                         "ability": "view-any-sponsor",
@@ -1549,7 +1338,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 213
                         },
-                        "at_ms": 1425.307
+                        "at_ms": 2355.529
                     },
                     {
                         "ability": "view-any-sponsorship",
@@ -1561,7 +1350,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 221
                         },
-                        "at_ms": 1428.659
+                        "at_ms": 2359.087
                     },
                     {
                         "ability": "buy-credits",
@@ -1573,7 +1362,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 229
                         },
-                        "at_ms": 1431.531
+                        "at_ms": 2361.858
                     },
                     {
                         "ability": "view-any-session",
@@ -1585,7 +1374,7 @@
                             "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
                             "line": 242
                         },
-                        "at_ms": 1435.836
+                        "at_ms": 2365.298
                     },
                     {
                         "ability": "view-any-session",
@@ -1597,7 +1386,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 255
                         },
-                        "at_ms": 1442.089
+                        "at_ms": 2371.037
                     },
                     {
                         "ability": "view-any-event",
@@ -1609,7 +1398,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 263
                         },
-                        "at_ms": 1445.945
+                        "at_ms": 2374.861
                     },
                     {
                         "ability": "view-any-payment",
@@ -1621,7 +1410,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 271
                         },
-                        "at_ms": 1449.877
+                        "at_ms": 2378.469
                     },
                     {
                         "ability": "view-reports",
@@ -1633,7 +1422,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 283
                         },
-                        "at_ms": 1453.287
+                        "at_ms": 2381.446
                     },
                     {
                         "ability": "view-any-contract",
@@ -1645,7 +1434,7 @@
                             "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
                             "line": 293
                         },
-                        "at_ms": 1458.853
+                        "at_ms": 2386.408
                     },
                     {
                         "ability": "view-any-invoice",
@@ -1657,7 +1446,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 306
                         },
-                        "at_ms": 1462.688
+                        "at_ms": 2390.311
                     },
                     {
                         "ability": "view-any-contract",
@@ -1669,7 +1458,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 314
                         },
-                        "at_ms": 1466.814
+                        "at_ms": 2394.355
                     },
                     {
                         "ability": "view-any-invoice",
@@ -1681,7 +1470,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 322
                         },
-                        "at_ms": 1471.52
+                        "at_ms": 2398.375
                     },
                     {
                         "ability": "view-any-revenue",
@@ -1693,7 +1482,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 330
                         },
-                        "at_ms": 1477.633
+                        "at_ms": 2403.685
                     },
                     {
                         "ability": "view-settings",
@@ -1705,7 +1494,7 @@
                             "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
                             "line": 343
                         },
-                        "at_ms": 1481.094
+                        "at_ms": 2407.002
                     },
                     {
                         "ability": "view-settings",
@@ -1717,7 +1506,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 356
                         },
-                        "at_ms": 1484.174
+                        "at_ms": 2410.139
                     },
                     {
                         "ability": "view-any-role",
@@ -1729,7 +1518,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 364
                         },
-                        "at_ms": 1490.428
+                        "at_ms": 2414.196
                     },
                     {
                         "ability": "view-any-permission",
@@ -1741,7 +1530,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 372
                         },
-                        "at_ms": 1494.445
+                        "at_ms": 2419.257
                     },
                     {
                         "ability": "view-any-audit-log",
@@ -1753,7 +1542,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 380
                         },
-                        "at_ms": 1498.861
+                        "at_ms": 2423.99
                     },
                     {
                         "ability": "view-notifications",
@@ -1765,7 +1554,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 420
                         },
-                        "at_ms": 1504.591
+                        "at_ms": 2429.152
                     },
                     {
                         "ability": "view-settings",
@@ -1777,7 +1566,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 558
                         },
-                        "at_ms": 1530.642
+                        "at_ms": 2451.705
                     }
                 ]
             }

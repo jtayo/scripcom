@@ -1,18 +1,18 @@
 {
     "schema_version": 1,
-    "id": "bcec0802-ebe6-4a95-a356-2f6ce8024951",
-    "recorded_at": "2026-08-20T07:10:09+00:00",
+    "id": "9f16502e-db6b-4f57-a5c5-a46ae5973d4e",
+    "recorded_at": "2026-08-20T11:07:57+00:00",
     "profile_type": "http",
     "environment": "local",
     "metrics": {
-        "duration_ms": 6142.22,
+        "duration_ms": 33.38,
         "peak_memory_mb": 6
     },
     "sections": {
         "overview": {
             "label": "Overview",
             "summary": {
-                "duration_ms": 6142.22,
+                "duration_ms": 33.38,
                 "peak_memory_mb": 6
             },
             "payload": {
@@ -22,7 +22,7 @@
                     "php_sapi": "cli-server",
                     "runtime_type": "cli-server",
                     "laravel": "13.25.0",
-                    "debug": true,
+                    "debug": false,
                     "locale": "en",
                     "timezone": "UTC"
                 },
@@ -53,13 +53,13 @@
             "label": "Request",
             "summary": {
                 "method": "GET",
-                "status": 200,
+                "status": 404,
                 "exit_code": null
             },
             "payload": {
                 "method": "GET",
-                "url": "http://127.0.0.1:8000/login",
-                "path": "/login",
+                "url": "http://127.0.0.1:8000/vendor/tabler/js/tabler.min.js.map",
+                "path": "/vendor/tabler/js/tabler.min.js.map",
                 "query": [],
                 "input": [],
                 "headers": {
@@ -69,64 +69,35 @@
                     "connection": [
                         "keep-alive"
                     ],
-                    "upgrade-insecure-requests": [
-                        "1"
+                    "sec-fetch-site": [
+                        "same-origin"
+                    ],
+                    "sec-fetch-mode": [
+                        "no-cors"
+                    ],
+                    "sec-fetch-dest": [
+                        "empty"
                     ],
                     "user-agent": [
                         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36"
-                    ],
-                    "accept": [
-                        "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8"
-                    ],
-                    "sec-gpc": [
-                        "1"
-                    ],
-                    "sec-fetch-site": [
-                        "none"
-                    ],
-                    "sec-fetch-mode": [
-                        "navigate"
-                    ],
-                    "sec-fetch-user": [
-                        "?1"
-                    ],
-                    "sec-fetch-dest": [
-                        "document"
-                    ],
-                    "sec-ch-ua": [
-                        "\"Not=A?Brand\";v=\"99\", \"Brave\";v=\"151\", \"Chromium\";v=\"151\""
-                    ],
-                    "sec-ch-ua-mobile": [
-                        "?0"
-                    ],
-                    "sec-ch-ua-platform": [
-                        "\"Windows\""
                     ],
                     "accept-encoding": [
                         "gzip, deflate, br, zstd"
                     ],
                     "accept-language": [
-                        "en-US,en;q=0.8"
+                        "en-US,en;q=0.9"
                     ],
                     "cookie": "[redacted]"
                 },
-                "route": "login",
-                "action": "App\\Http\\Controllers\\Auth\\AuthenticatedSessionController@create",
+                "route": null,
+                "action": null,
                 "parameters": [],
-                "middleware": [
-                    "Illuminate\\Cookie\\Middleware\\EncryptCookies",
-                    "Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse",
-                    "Illuminate\\Session\\Middleware\\StartSession",
-                    "Illuminate\\View\\Middleware\\ShareErrorsFromSession",
-                    "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestForgery",
-                    "Illuminate\\Routing\\Middleware\\SubstituteBindings",
-                    "Illuminate\\Auth\\Middleware\\RedirectIfAuthenticated"
-                ],
-                "status": 200,
+                "middleware": [],
+                "status": 404,
                 "request_type": "full_page",
                 "content_type": "text/html; charset=utf-8",
                 "request_size_bytes": 0,
-                "response_size_bytes": 7764,
+                "response_size_bytes": 6586,
                 "session_present": false,
                 "authenticated": false,
                 "authentication": {
@@ -147,74 +118,33 @@
                     "error_bags": []
                 },
                 "response_headers": {
-                    "content-type": [
-                        "text/html; charset=utf-8"
-                    ],
                     "cache-control": [
                         "no-cache, private"
                     ],
                     "date": [
-                        "Thu, 20 Aug 2026 07:10:04 GMT"
+                        "Thu, 20 Aug 2026 11:07:57 GMT"
                     ],
-                    "set-cookie": "[redacted]"
+                    "content-type": [
+                        "text/html; charset=utf-8"
+                    ]
                 }
             }
         },
         "queries": {
             "label": "Queries",
             "summary": {
-                "count": 2,
-                "retained_count": 2,
+                "count": 0,
+                "retained_count": 0,
                 "dropped_count": 0,
                 "truncated": false,
-                "duration_ms": 545.15,
+                "duration_ms": 0,
                 "transaction_count": 0,
                 "transaction_retained_count": 0,
                 "transaction_dropped_count": 0,
                 "rollback_count": 0
             },
             "payload": {
-                "items": [
-                    {
-                        "sql": "select * from `sessions` where `id` = ? limit 1",
-                        "bindings": [
-                            "WRzpFkhcoCVRAcYgB2tYmopjjWt554boWrxKM4HF"
-                        ],
-                        "runnable_sql": "select * from `sessions` where `id` = 'WRzpFkhcoCVRAcYgB2tYmopjjWt554boWrxKM4HF' limit 1",
-                        "duration_ms": 92.05,
-                        "connection": "mysql",
-                        "type": "write",
-                        "callsite": null,
-                        "stack": [],
-                        "at_ms": 1073.694,
-                        "source_preserved": true,
-                        "binding_policy": "full",
-                        "bindings_complete": true,
-                        "runnable_available": true
-                    },
-                    {
-                        "sql": "update `sessions` set `payload` = ?, `last_activity` = ?, `user_id` = ?, `ip_address` = ?, `user_agent` = ? where `id` = ?",
-                        "bindings": [
-                            "eyJfdG9rZW4iOiJSdXFWSllKY05ZUmJwTzhwU2RBbEQxaTN4Umh2ZXYyVTFHdUV1SWtNIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9sb2dpbiIsInJvdXRlIjoibG9naW4ifSwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119fQ==",
-                            1787209809,
-                            null,
-                            "127.0.0.1",
-                            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
-                            "WRzpFkhcoCVRAcYgB2tYmopjjWt554boWrxKM4HF"
-                        ],
-                        "runnable_sql": "update `sessions` set `payload` = 'eyJfdG9rZW4iOiJSdXFWSllKY05ZUmJwTzhwU2RBbEQxaTN4Umh2ZXYyVTFHdUV1SWtNIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9sb2dpbiIsInJvdXRlIjoibG9naW4ifSwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119fQ==', `last_activity` = 1787209809, `user_id` = null, `ip_address` = '127.0.0.1', `user_agent` = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36' where `id` = 'WRzpFkhcoCVRAcYgB2tYmopjjWt554boWrxKM4HF'",
-                        "duration_ms": 453.1,
-                        "connection": "mysql",
-                        "type": "write",
-                        "callsite": null,
-                        "stack": [],
-                        "at_ms": 6138.07,
-                        "source_preserved": true,
-                        "binding_policy": "full",
-                        "bindings_complete": true,
-                        "runnable_available": true
-                    }
-                ],
+                "items": [],
                 "transactions": []
             }
         },
@@ -329,30 +259,34 @@
             "payload": {
                 "items": [
                     {
-                        "name": "auth.login",
+                        "name": "errors::404",
                         "source": {
-                            "file": "resources/views/auth/login.blade.php",
+                            "file": "vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/views/404.blade.php",
                             "line": 1
                         },
                         "composers": [],
-                        "data": [],
+                        "data": {
+                            "errors": "[]",
+                            "exception": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException: The route vendor/tabler/js/tabler.min.js.map could not be found. in C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\AbstractRouteCollection.php:44\nStack trace:\n#0 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteCollection.php(207): Illuminate\\Routing\\AbstractRouteCollection->handleMatchedRoute(Object(Illuminate\\Http\\Request), NULL)\n#1 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(777): Illuminate\\Routing\\RouteCollection->match(Object(Illuminate\\Http\\Request))\n#2 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(764): Illuminate\\Routing\\Router->findRoute(Object(Illuminate\\Http\\Request))\n#3 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(753): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))\n#4 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))\n#5 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Kernel->{closure:Illuminate\\Foundation\\Http\\Kernel::dispatchToRouter():197}(Object(Illuminate\\Http\\Request))\n#6 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\newdebugbar\\newdebugbar\\src\\Http\\Middleware\\ProfileRequest.php(36): Illuminate\\Pipeline\\Pipeline->{closure:Illuminate\\Pipeline\\Pipeline::prepareDestination():178}(Object(Illuminate\\Http\\Request))\n#7 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(219): NewDebugBar\\Http\\Middleware\\ProfileRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#8 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\v\u2026"
+                        },
                         "timing": "composition_marker",
-                        "at_ms": 1086.713
+                        "at_ms": 15.771
                     },
                     {
-                        "name": "layouts.auth",
+                        "name": "errors::minimal",
                         "source": {
-                            "file": "resources/views/layouts/auth.blade.php",
+                            "file": "vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/views/minimal.blade.php",
                             "line": 1
                         },
                         "composers": [],
                         "data": {
                             "__env": "[Illuminate\\View\\Factory]",
                             "app": "[Illuminate\\Foundation\\Application]",
-                            "errors": "[]"
+                            "errors": "[]",
+                            "exception": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException: The route vendor/tabler/js/tabler.min.js.map could not be found. in C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\AbstractRouteCollection.php:44\nStack trace:\n#0 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteCollection.php(207): Illuminate\\Routing\\AbstractRouteCollection->handleMatchedRoute(Object(Illuminate\\Http\\Request), NULL)\n#1 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(777): Illuminate\\Routing\\RouteCollection->match(Object(Illuminate\\Http\\Request))\n#2 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(764): Illuminate\\Routing\\Router->findRoute(Object(Illuminate\\Http\\Request))\n#3 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(753): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))\n#4 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))\n#5 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Kernel->{closure:Illuminate\\Foundation\\Http\\Kernel::dispatchToRouter():197}(Object(Illuminate\\Http\\Request))\n#6 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\newdebugbar\\newdebugbar\\src\\Http\\Middleware\\ProfileRequest.php(36): Illuminate\\Pipeline\\Pipeline->{closure:Illuminate\\Pipeline\\Pipeline::prepareDestination():178}(Object(Illuminate\\Http\\Request))\n#7 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(219): NewDebugBar\\Http\\Middleware\\ProfileRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#8 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\v\u2026"
                         },
                         "timing": "composition_marker",
-                        "at_ms": 4527.402
+                        "at_ms": 30.528
                     }
                 ]
             }
@@ -360,8 +294,8 @@
         "events": {
             "label": "Events",
             "summary": {
-                "count": 2,
-                "retained_count": 2,
+                "count": 1,
+                "retained_count": 1,
                 "dropped_count": 0,
                 "truncated": false
             },
@@ -374,16 +308,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\ConnectionEstablished"
                         ],
-                        "at_ms": 975.672
-                    },
-                    {
-                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
-                        "listeners": [],
-                        "broadcast": false,
-                        "payload_types": [
-                            "Illuminate\\Database\\Events\\StatementPrepared"
-                        ],
-                        "at_ms": 1069.022
+                        "at_ms": 14.58
                     }
                 ]
             }

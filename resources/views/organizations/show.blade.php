@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-md-center">
                     <div class="d-flex align-items-center mb-3 mb-md-0">
-                        <span class="avatar avatar-lg me-3" style="background-image: url('{{ $organization->logo ?? asset('img/team/profile-picture-1.jpg') }}')"></span>
+                        <span class="avatar avatar-lg me-3" style="background-image: url('{{ $organization->logo ? asset('storage/' . $organization->logo) : asset('img/team/profile-picture-1.jpg') }}')"></span>
                         <div>
                             <h1 class="h4 mb-1">{{ $organization->name }}</h1>
                             <div class="text-muted d-flex align-items-center flex-wrap">

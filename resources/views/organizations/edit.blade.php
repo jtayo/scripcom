@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin.organizations.update', $organization) }}">
+                    <form method="POST" action="{{ route('admin.organizations.update', $organization) }}" enctype="multipart/form-data">
                         @csrf @method('PUT')
 
                         <div class="row g-3">
@@ -131,6 +131,18 @@
                             <div class="col-12">
                                 <div class="text-uppercase small fw-bold text-secondary mb-1">Branding</div>
                                 <hr class="mt-1 mb-3">
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="logo">Logo</label>
+                                @if($organization->logo)
+                                    <div class="mb-2">
+                                        <img src="{{ asset('storage/' . $organization->logo) }}" alt="Current logo" style="max-height: 48px; max-width: 160px; object-fit: contain;">
+                                    </div>
+                                @endif
+                                <input type="file" id="logo" name="logo" class="form-control @error('logo') is-invalid @enderror" accept="image/*">
+                                <div class="form-text">PNG, JPG or SVG. Max 2MB. Leave empty to keep current logo.</div>
+                                @error('logo') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
                             <div class="col-12 col-md-6">

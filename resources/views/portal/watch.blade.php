@@ -202,6 +202,24 @@
                             </div>
                         </div>
                     @endif
+
+                    @php
+                        $sponsorLogo = $campaign->sponsor?->logo;
+                        $orgLogo = $data['organization']->logo ?? null;
+                        $sponsorName = $campaign->sponsor?->name ?? ($data['organization']->name ?? null);
+                    @endphp
+                    @if($sponsorLogo || $orgLogo)
+                        <div class="mt-4 pt-3 border-top">
+                            <div class="text-secondary small mb-2">{{ $sponsorLogo ? 'Sponsored by' : 'Brought to you by' }}</div>
+                            <div class="d-flex align-items-center justify-content-center gap-3">
+                                @if($sponsorLogo)
+                                    <img src="{{ asset('storage/' . $sponsorLogo) }}" alt="{{ $sponsorName }}" style="max-height: 48px; max-width: 160px; object-fit: contain;">
+                                @elseif($orgLogo)
+                                    <img src="{{ asset('storage/' . $orgLogo) }}" alt="{{ $sponsorName }}" style="max-height: 48px; max-width: 160px; object-fit: contain;">
+                                @endif
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

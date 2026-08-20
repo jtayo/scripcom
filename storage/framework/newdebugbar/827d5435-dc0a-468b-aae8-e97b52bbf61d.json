@@ -1,18 +1,18 @@
 {
     "schema_version": 1,
-    "id": "7e8bb5b4-a1df-4c67-a90c-0c10ae3887a9",
-    "recorded_at": "2026-08-20T07:24:11+00:00",
+    "id": "827d5435-dc0a-468b-aae8-e97b52bbf61d",
+    "recorded_at": "2026-08-20T11:12:12+00:00",
     "profile_type": "http",
     "environment": "local",
     "metrics": {
-        "duration_ms": 2228.17,
+        "duration_ms": 241.45,
         "peak_memory_mb": 6
     },
     "sections": {
         "overview": {
             "label": "Overview",
             "summary": {
-                "duration_ms": 2228.17,
+                "duration_ms": 241.45,
                 "peak_memory_mb": 6
             },
             "payload": {
@@ -22,7 +22,7 @@
                     "php_sapi": "cli-server",
                     "runtime_type": "cli-server",
                     "laravel": "13.25.0",
-                    "debug": true,
+                    "debug": false,
                     "locale": "en",
                     "timezone": "UTC"
                 },
@@ -53,30 +53,24 @@
             "label": "Request",
             "summary": {
                 "method": "PUT",
-                "status": 302,
+                "status": 500,
                 "exit_code": null
             },
             "payload": {
                 "method": "PUT",
-                "url": "http://127.0.0.1:8000/admin/organizations/1",
-                "path": "/admin/organizations/1",
+                "url": "http://127.0.0.1:8000/admin/sponsors/1",
+                "path": "/admin/sponsors/1",
                 "query": [],
                 "input": {
                     "_token": "[redacted]",
                     "_method": "PUT",
-                    "name": "Mombasa County Government",
-                    "slug": "mombasa-county",
-                    "type": "county",
-                    "website": "https://www.mombasa.go.ke",
-                    "email": "ict@mombasa.go.ke",
-                    "phone": "+254411231000",
-                    "address": "P.O. Box 90438-80100",
-                    "city": "Mombasa",
-                    "county": "Mombasa",
-                    "country": "Kenya",
-                    "postal_code": "80100",
-                    "primary_color": "#0410b8",
-                    "secondary_color": "#262B40",
+                    "name": "Safaricom PLC",
+                    "contact_person": "Betty Njoroge",
+                    "email": "partners@safaricom.co.ke",
+                    "phone": "0722000001",
+                    "address": null,
+                    "website": "https://www.safaricom.co.ke",
+                    "brand_color": "#0a991b",
                     "is_active": "1"
                 },
                 "headers": {
@@ -87,7 +81,7 @@
                         "keep-alive"
                     ],
                     "content-length": [
-                        "361"
+                        "242"
                     ],
                     "cache-control": [
                         "max-age=0"
@@ -132,7 +126,7 @@
                         "document"
                     ],
                     "referer": [
-                        "http://127.0.0.1:8000/admin/organizations/1/edit"
+                        "http://127.0.0.1:8000/admin/sponsors/1/edit"
                     ],
                     "accept-encoding": [
                         "gzip, deflate, br, zstd"
@@ -142,10 +136,10 @@
                     ],
                     "cookie": "[redacted]"
                 },
-                "route": "admin.organizations.update",
-                "action": "App\\Http\\Controllers\\OrganizationController@update",
+                "route": "admin.sponsors.update",
+                "action": "App\\Http\\Controllers\\SponsorController@update",
                 "parameters": {
-                    "organization": 1
+                    "sponsor": 1
                 },
                 "middleware": [
                     "Illuminate\\Cookie\\Middleware\\EncryptCookies",
@@ -155,13 +149,13 @@
                     "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestForgery",
                     "Illuminate\\Auth\\Middleware\\Authenticate",
                     "Illuminate\\Routing\\Middleware\\SubstituteBindings",
-                    "Illuminate\\Auth\\Middleware\\Authorize:view-any-organization"
+                    "Illuminate\\Auth\\Middleware\\Authorize:view-any-sponsor"
                 ],
-                "status": 302,
-                "request_type": "redirect",
+                "status": 500,
+                "request_type": "full_page",
                 "content_type": "text/html; charset=utf-8",
-                "request_size_bytes": 361,
-                "response_size_bytes": 410,
+                "request_size_bytes": 242,
+                "response_size_bytes": 6592,
                 "session_present": false,
                 "authenticated": true,
                 "authentication": {
@@ -186,10 +180,7 @@
                         "no-cache, private"
                     ],
                     "date": [
-                        "Thu, 20 Aug 2026 07:24:11 GMT"
-                    ],
-                    "location": [
-                        "http://127.0.0.1:8000/admin/organizations"
+                        "Thu, 20 Aug 2026 11:12:12 GMT"
                     ],
                     "content-type": [
                         "text/html; charset=utf-8"
@@ -201,11 +192,11 @@
         "queries": {
             "label": "Queries",
             "summary": {
-                "count": 10,
-                "retained_count": 10,
+                "count": 7,
+                "retained_count": 7,
                 "dropped_count": 0,
                 "truncated": false,
-                "duration_ms": 767.87,
+                "duration_ms": 135.92,
                 "transaction_count": 0,
                 "transaction_retained_count": 0,
                 "transaction_dropped_count": 0,
@@ -216,15 +207,15 @@
                     {
                         "sql": "select * from `sessions` where `id` = ? limit 1",
                         "bindings": [
-                            "4QY9rhw9mBGy5Se1qxyYfQ3Xolty5a5jSWUGntUa"
+                            "sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH"
                         ],
-                        "runnable_sql": "select * from `sessions` where `id` = '4QY9rhw9mBGy5Se1qxyYfQ3Xolty5a5jSWUGntUa' limit 1",
-                        "duration_ms": 79.22,
+                        "runnable_sql": "select * from `sessions` where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH' limit 1",
+                        "duration_ms": 26.38,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 105.373,
+                        "at_ms": 44.945,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -236,29 +227,29 @@
                             1
                         ],
                         "runnable_sql": "select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1",
-                        "duration_ms": 2.51,
+                        "duration_ms": 1.57,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 124.201,
+                        "at_ms": 55.606,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
                         "runnable_available": true
                     },
                     {
-                        "sql": "select * from `organizations` where `id` = ? and `organizations`.`deleted_at` is null limit 1",
+                        "sql": "select * from `sponsors` where `id` = ? and `sponsors`.`deleted_at` is null limit 1",
                         "bindings": [
                             "1"
                         ],
-                        "runnable_sql": "select * from `organizations` where `id` = '1' and `organizations`.`deleted_at` is null limit 1",
-                        "duration_ms": 1.99,
+                        "runnable_sql": "select * from `sponsors` where `id` = '1' and `sponsors`.`deleted_at` is null limit 1",
+                        "duration_ms": 8.67,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 132.238,
+                        "at_ms": 70.691,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -270,12 +261,12 @@
                             "scripcom-cache-spatie.permission.cache"
                         ],
                         "runnable_sql": "select * from `cache` where `key` in ('scripcom-cache-spatie.permission.cache')",
-                        "duration_ms": 16.04,
+                        "duration_ms": 0.84,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 158.967,
+                        "at_ms": 79.15,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -287,12 +278,12 @@
                             "App\\Models\\User"
                         ],
                         "runnable_sql": "select `permissions`.*, `model_has_permissions`.`model_id` as `pivot_model_id`, `model_has_permissions`.`permission_id` as `pivot_permission_id`, `model_has_permissions`.`model_type` as `pivot_model_type` from `permissions` inner join `model_has_permissions` on `permissions`.`id` = `model_has_permissions`.`permission_id` where `model_has_permissions`.`model_id` in (1) and `model_has_permissions`.`model_type` = 'App\\\\Models\\\\User'",
-                        "duration_ms": 2.3,
+                        "duration_ms": 1.04,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 176.611,
+                        "at_ms": 90.979,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -304,122 +295,12 @@
                             "App\\Models\\User"
                         ],
                         "runnable_sql": "select `roles`.*, `model_has_roles`.`model_id` as `pivot_model_id`, `model_has_roles`.`role_id` as `pivot_role_id`, `model_has_roles`.`model_type` as `pivot_model_type` from `roles` inner join `model_has_roles` on `roles`.`id` = `model_has_roles`.`role_id` where `model_has_roles`.`model_id` in (1) and `model_has_roles`.`model_type` = 'App\\\\Models\\\\User'",
-                        "duration_ms": 5.99,
+                        "duration_ms": 1.02,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 188.043,
-                        "source_preserved": true,
-                        "binding_policy": "full",
-                        "bindings_complete": true,
-                        "runnable_available": true
-                    },
-                    {
-                        "sql": "select count(*) as `aggregate` from `organizations` where `slug` = ? and `id` <> ?",
-                        "bindings": [
-                            "mombasa-county",
-                            "1"
-                        ],
-                        "runnable_sql": "select count(*) as `aggregate` from `organizations` where `slug` = 'mombasa-county' and `id` <> '1'",
-                        "duration_ms": 1.7,
-                        "connection": "mysql",
-                        "type": "write",
-                        "callsite": {
-                            "file": "app/Http/Controllers/OrganizationController.php",
-                            "line": 83
-                        },
-                        "stack": [
-                            {
-                                "file": "app/Http/Controllers/OrganizationController.php",
-                                "line": 83,
-                                "function": "Illuminate\\Http\\Request->__call"
-                            },
-                            {
-                                "file": "app/Http/Controllers/OrganizationController.php",
-                                "line": 58,
-                                "function": "App\\Http\\Controllers\\OrganizationController->validated"
-                            }
-                        ],
-                        "at_ms": 1418.387,
-                        "source_preserved": true,
-                        "binding_policy": "full",
-                        "bindings_complete": true,
-                        "runnable_available": true
-                    },
-                    {
-                        "sql": "update `organizations` set `primary_color` = ?, `organizations`.`updated_at` = ? where `id` = ?",
-                        "bindings": [
-                            "#0410b8",
-                            "2026-08-20 07:24:10",
-                            1
-                        ],
-                        "runnable_sql": "update `organizations` set `primary_color` = '#0410b8', `organizations`.`updated_at` = '2026-08-20 07:24:10' where `id` = 1",
-                        "duration_ms": 174.77,
-                        "connection": "mysql",
-                        "type": "write",
-                        "callsite": {
-                            "file": "app/Http/Controllers/OrganizationController.php",
-                            "line": 60
-                        },
-                        "stack": [
-                            {
-                                "file": "app/Http/Controllers/OrganizationController.php",
-                                "line": 60,
-                                "function": "Illuminate\\Database\\Eloquent\\Model->update"
-                            }
-                        ],
-                        "at_ms": 1637.889,
-                        "source_preserved": true,
-                        "binding_policy": "full",
-                        "bindings_complete": true,
-                        "runnable_available": true
-                    },
-                    {
-                        "sql": "insert into `audit_logs` (`user_id`, `action`, `entity_type`, `entity_id`, `entity_label`, `old_values`, `new_values`, `ip_address`, `user_agent`, `created_at`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                        "bindings": [
-                            1,
-                            "updated",
-                            "App\\Models\\Organization",
-                            1,
-                            "Mombasa County Government",
-                            "{\"id\":1,\"name\":\"Mombasa County Government\",\"slug\":\"mombasa-county\",\"email\":\"ict@mombasa.go.ke\",\"phone\":\"+254411231000\",\"address\":\"P.O. Box 90438-80100\",\"city\":\"Mombasa\",\"county\":\"Mombasa\",\"country\":\"Kenya\",\"postal_code\":\"80100\",\"logo\":null,\"website\":\"https:\\/\\/www.mombasa.go.ke\",\"primary_color\":\"#DB1F2A\",\"secondary_color\":\"#262B40\",\"type\":\"county\",\"is_active\":true,\"settings\":null,\"created_at\":\"2026-08-20T06:56:23.000000Z\",\"updated_at\":\"2026-08-20T06:56:23.000000Z\",\"deleted_at\":null}",
-                            "{\"primary_color\":\"#0410b8\",\"updated_at\":\"2026-08-20 07:24:10\"}",
-                            "127.0.0.1",
-                            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
-                            "2026-08-20 07:24:10"
-                        ],
-                        "runnable_sql": "insert into `audit_logs` (`user_id`, `action`, `entity_type`, `entity_id`, `entity_label`, `old_values`, `new_values`, `ip_address`, `user_agent`, `created_at`) values (1, 'updated', 'App\\\\Models\\\\Organization', 1, 'Mombasa County Government', '{\\\"id\\\":1,\\\"name\\\":\\\"Mombasa County Government\\\",\\\"slug\\\":\\\"mombasa-county\\\",\\\"email\\\":\\\"ict@mombasa.go.ke\\\",\\\"phone\\\":\\\"+254411231000\\\",\\\"address\\\":\\\"P.O. Box 90438-80100\\\",\\\"city\\\":\\\"Mombasa\\\",\\\"county\\\":\\\"Mombasa\\\",\\\"country\\\":\\\"Kenya\\\",\\\"postal_code\\\":\\\"80100\\\",\\\"logo\\\":null,\\\"website\\\":\\\"https:\\\\/\\\\/www.mombasa.go.ke\\\",\\\"primary_color\\\":\\\"#DB1F2A\\\",\\\"secondary_color\\\":\\\"#262B40\\\",\\\"type\\\":\\\"county\\\",\\\"is_active\\\":true,\\\"settings\\\":null,\\\"created_at\\\":\\\"2026-08-20T06:56:23.000000Z\\\",\\\"updated_at\\\":\\\"2026-08-20T06:56:23.000000Z\\\",\\\"deleted_at\\\":null}', '{\\\"primary_color\\\":\\\"#0410b8\\\",\\\"updated_at\\\":\\\"2026-08-20 07:24:10\\\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36', '2026-08-20 07:24:10')",
-                        "duration_ms": 111.42,
-                        "connection": "mysql",
-                        "type": "write",
-                        "callsite": {
-                            "file": "app/Services/AuditLogger.php",
-                            "line": 29
-                        },
-                        "stack": [
-                            {
-                                "file": "app/Services/AuditLogger.php",
-                                "line": 29,
-                                "function": "Illuminate\\Database\\Eloquent\\Model::__callStatic"
-                            },
-                            {
-                                "file": "app/Services/AuditLogger.php",
-                                "line": 44,
-                                "function": "App\\Services\\AuditLogger::record"
-                            },
-                            {
-                                "file": "app/Observers/AuditObserver.php",
-                                "line": 20,
-                                "function": "App\\Services\\AuditLogger::model"
-                            },
-                            {
-                                "file": "app/Http/Controllers/OrganizationController.php",
-                                "line": 60,
-                                "function": "Illuminate\\Database\\Eloquent\\Model->update"
-                            }
-                        ],
-                        "at_ms": 1839.076,
+                        "at_ms": 94.167,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -428,20 +309,20 @@
                     {
                         "sql": "update `sessions` set `payload` = ?, `last_activity` = ?, `user_id` = ?, `ip_address` = ?, `user_agent` = ? where `id` = ?",
                         "bindings": [
-                            "eyJfdG9rZW4iOiJlYVFrU21LbDgwdFBFS2Y0T0hnVzlLejJYdFdWeTZTSVFxSzFDb3JDIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvb3JnYW5pemF0aW9uc1wvMVwvZWRpdCIsInJvdXRlIjoiYWRtaW4ub3JnYW5pemF0aW9ucy5lZGl0In0sIl9mbGFzaCI6eyJvbGQiOlsic3VjY2VzcyJdLCJuZXciOltdfSwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsInN1Y2Nlc3MiOiJPcmdhbml6YXRpb24gTW9tYmFzYSBDb3VudHkgR292ZXJubWVudCB1cGRhdGVkLiJ9",
-                            1787210651,
+                            "eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvc3BvbnNvcnNcLzFcL2VkaXQiLCJyb3V0ZSI6ImFkbWluLnNwb25zb3JzLmVkaXQifX0=",
+                            1787224332,
                             1,
                             "127.0.0.1",
                             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
-                            "4QY9rhw9mBGy5Se1qxyYfQ3Xolty5a5jSWUGntUa"
+                            "sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH"
                         ],
-                        "runnable_sql": "update `sessions` set `payload` = 'eyJfdG9rZW4iOiJlYVFrU21LbDgwdFBFS2Y0T0hnVzlLejJYdFdWeTZTSVFxSzFDb3JDIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvb3JnYW5pemF0aW9uc1wvMVwvZWRpdCIsInJvdXRlIjoiYWRtaW4ub3JnYW5pemF0aW9ucy5lZGl0In0sIl9mbGFzaCI6eyJvbGQiOlsic3VjY2VzcyJdLCJuZXciOltdfSwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsInN1Y2Nlc3MiOiJPcmdhbml6YXRpb24gTW9tYmFzYSBDb3VudHkgR292ZXJubWVudCB1cGRhdGVkLiJ9', `last_activity` = 1787210651, `user_id` = 1, `ip_address` = '127.0.0.1', `user_agent` = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36' where `id` = '4QY9rhw9mBGy5Se1qxyYfQ3Xolty5a5jSWUGntUa'",
-                        "duration_ms": 371.93,
+                        "runnable_sql": "update `sessions` set `payload` = 'eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvc3BvbnNvcnNcLzFcL2VkaXQiLCJyb3V0ZSI6ImFkbWluLnNwb25zb3JzLmVkaXQifX0=', `last_activity` = 1787224332, `user_id` = 1, `ip_address` = '127.0.0.1', `user_agent` = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36' where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH'",
+                        "duration_ms": 96.4,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 2223.637,
+                        "at_ms": 236.649,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -527,8 +408,8 @@
         "models": {
             "label": "Models",
             "summary": {
-                "count": 11,
-                "retained_count": 11,
+                "count": 5,
+                "retained_count": 5,
                 "dropped_count": 0,
                 "truncated": false
             },
@@ -540,15 +421,15 @@
                         "connection": "mysql",
                         "table": "users",
                         "key": 1,
-                        "at_ms": 124.686
+                        "at_ms": 56.1
                     },
                     {
                         "event": "retrieved",
-                        "model": "App\\Models\\Organization",
+                        "model": "App\\Models\\Sponsor",
                         "connection": "mysql",
-                        "table": "organizations",
+                        "table": "sponsors",
                         "key": 1,
-                        "at_ms": 132.725
+                        "at_ms": 71.176
                     },
                     {
                         "event": "retrieved",
@@ -556,71 +437,23 @@
                         "connection": "mysql",
                         "table": "roles",
                         "key": 1,
-                        "at_ms": 188.802
+                        "at_ms": 94.74
                     },
                     {
                         "event": "saving",
-                        "model": "App\\Models\\Organization",
+                        "model": "App\\Models\\Sponsor",
                         "connection": "mysql",
-                        "table": "organizations",
+                        "table": "sponsors",
                         "key": 1,
-                        "at_ms": 1432.209
+                        "at_ms": 111.887
                     },
                     {
                         "event": "updating",
-                        "model": "App\\Models\\Organization",
+                        "model": "App\\Models\\Sponsor",
                         "connection": "mysql",
-                        "table": "organizations",
+                        "table": "sponsors",
                         "key": 1,
-                        "at_ms": 1443.339
-                    },
-                    {
-                        "event": "saving",
-                        "model": "App\\Models\\AuditLog",
-                        "connection": "mysql",
-                        "table": "audit_logs",
-                        "key": null,
-                        "at_ms": 1723.369
-                    },
-                    {
-                        "event": "creating",
-                        "model": "App\\Models\\AuditLog",
-                        "connection": "mysql",
-                        "table": "audit_logs",
-                        "key": null,
-                        "at_ms": 1723.492
-                    },
-                    {
-                        "event": "created",
-                        "model": "App\\Models\\AuditLog",
-                        "connection": "mysql",
-                        "table": "audit_logs",
-                        "key": 139,
-                        "at_ms": 1839.548
-                    },
-                    {
-                        "event": "saved",
-                        "model": "App\\Models\\AuditLog",
-                        "connection": "mysql",
-                        "table": "audit_logs",
-                        "key": 139,
-                        "at_ms": 1839.658
-                    },
-                    {
-                        "event": "updated",
-                        "model": "App\\Models\\Organization",
-                        "connection": "mysql",
-                        "table": "organizations",
-                        "key": 1,
-                        "at_ms": 1840.773
-                    },
-                    {
-                        "event": "saved",
-                        "model": "App\\Models\\Organization",
-                        "connection": "mysql",
-                        "table": "organizations",
-                        "key": 1,
-                        "at_ms": 1840.893
+                        "at_ms": 112.027
                     }
                 ]
             }
@@ -650,7 +483,7 @@
                         "tag_hashes": [],
                         "tags": [],
                         "seconds": null,
-                        "at_ms": 160.012
+                        "at_ms": 79.873
                     }
                 ]
             }
@@ -658,20 +491,51 @@
         "views": {
             "label": "Views",
             "summary": {
-                "count": 0,
-                "retained_count": 0,
+                "count": 2,
+                "retained_count": 2,
                 "dropped_count": 0,
                 "truncated": false
             },
             "payload": {
-                "items": []
+                "items": [
+                    {
+                        "name": "errors::500",
+                        "source": {
+                            "file": "vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/views/500.blade.php",
+                            "line": 1
+                        },
+                        "composers": [],
+                        "data": {
+                            "errors": "[]",
+                            "exception": "PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'brand_color' in 'field list' in C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:622\nStack trace:\n#0 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(622): PDO->prepare('update `sponsor...')\n#1 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(846): Illuminate\\Database\\Connection->{closure:Illuminate\\Database\\Connection::affectingStatement():614}('update `sponsor...', Array)\n#2 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(813): Illuminate\\Database\\Connection->runQueryCallback('update `sponsor...', Array, Object(Closure))\n#3 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(614): Illuminate\\Database\\Connection->run('update `sponsor...', Array, Object(Closure))\n#4 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(566): Illuminate\\Database\\Connection->affectingStatement('update `sponsor...', Array)\n#5 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(4321): Illuminate\\Database\\Connection->update('update `sponsor...', Array)\n#6 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(1282): Illuminate\\Database\\Query\\Builder->update(Object(Illuminate\\Support\\Collection))\n#7 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(1518): Illuminate\\Database\\Eloquent\\Builder->update(Array)\n#8 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(1400): Illuminate\\Database\\Eloquent\\Model->performUpdate(Object(Illuminate\\Database\\E\u2026"
+                        },
+                        "timing": "composition_marker",
+                        "at_ms": 134.868
+                    },
+                    {
+                        "name": "errors::minimal",
+                        "source": {
+                            "file": "vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/views/minimal.blade.php",
+                            "line": 1
+                        },
+                        "composers": [],
+                        "data": {
+                            "__env": "[Illuminate\\View\\Factory]",
+                            "app": "[Illuminate\\Foundation\\Application]",
+                            "errors": "[]",
+                            "exception": "PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'brand_color' in 'field list' in C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:622\nStack trace:\n#0 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(622): PDO->prepare('update `sponsor...')\n#1 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(846): Illuminate\\Database\\Connection->{closure:Illuminate\\Database\\Connection::affectingStatement():614}('update `sponsor...', Array)\n#2 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(813): Illuminate\\Database\\Connection->runQueryCallback('update `sponsor...', Array, Object(Closure))\n#3 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(614): Illuminate\\Database\\Connection->run('update `sponsor...', Array, Object(Closure))\n#4 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(566): Illuminate\\Database\\Connection->affectingStatement('update `sponsor...', Array)\n#5 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(4321): Illuminate\\Database\\Connection->update('update `sponsor...', Array)\n#6 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(1282): Illuminate\\Database\\Query\\Builder->update(Object(Illuminate\\Support\\Collection))\n#7 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(1518): Illuminate\\Database\\Eloquent\\Builder->update(Array)\n#8 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(1400): Illuminate\\Database\\Eloquent\\Model->performUpdate(Object(Illuminate\\Database\\E\u2026"
+                        },
+                        "timing": "composition_marker",
+                        "at_ms": 136.56
+                    }
+                ]
             }
         },
         "events": {
             "label": "Events",
             "summary": {
-                "count": 10,
-                "retained_count": 10,
+                "count": 9,
+                "retained_count": 9,
                 "dropped_count": 0,
                 "truncated": false
             },
@@ -684,7 +548,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\ConnectionEstablished"
                         ],
-                        "at_ms": 18.741
+                        "at_ms": 12.606
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -693,7 +557,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 97.566
+                        "at_ms": 39.55
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -702,7 +566,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 119.728
+                        "at_ms": 52.658
                     },
                     {
                         "name": "Illuminate\\Auth\\Events\\Authenticated",
@@ -711,7 +575,7 @@
                         "payload_types": [
                             "Illuminate\\Auth\\Events\\Authenticated"
                         ],
-                        "at_ms": 126.508
+                        "at_ms": 57.859
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -720,7 +584,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 129.489
+                        "at_ms": 67.367
                     },
                     {
                         "name": "Illuminate\\Cache\\Events\\RetrievingKey",
@@ -729,7 +593,7 @@
                         "payload_types": [
                             "Illuminate\\Cache\\Events\\RetrievingKey"
                         ],
-                        "at_ms": 140.51
+                        "at_ms": 76.488
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -738,7 +602,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 156.032
+                        "at_ms": 77.072
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -747,7 +611,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 173.313
+                        "at_ms": 89.3
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -756,16 +620,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 184.597
-                    },
-                    {
-                        "name": "Illuminate\\Database\\Events\\StatementPrepared",
-                        "listeners": [],
-                        "broadcast": false,
-                        "payload_types": [
-                            "Illuminate\\Database\\Events\\StatementPrepared"
-                        ],
-                        "at_ms": 1414.531
+                        "at_ms": 92.765
                     }
                 ]
             }
@@ -781,13 +636,13 @@
             "payload": {
                 "items": [
                     {
-                        "ability": "view-any-organization",
+                        "ability": "view-any-sponsor",
                         "result": "allowed",
                         "handler": "callback",
                         "user_type": "App\\Models\\User",
                         "argument_types": [],
                         "callsite": null,
-                        "at_ms": 194.909
+                        "at_ms": 98.559
                     }
                 ]
             }
@@ -819,26 +674,123 @@
         "logs": {
             "label": "Logs",
             "summary": {
-                "count": 0,
-                "retained_count": 0,
+                "count": 1,
+                "retained_count": 1,
                 "dropped_count": 0,
                 "truncated": false,
-                "errors": 0
+                "errors": 1
             },
             "payload": {
-                "items": []
+                "items": [
+                    {
+                        "level": "error",
+                        "message": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'brand_color' in 'field list' (Connection: mysql, Host: 127.0.0.1, Port: 3306, Database: scripcom, SQL: update `sponsors` set `brand_color` = #0A991B, `sponsors`.`updated_at` = 2026-08-20 11:12:12 where `id` = 1)",
+                        "context": {
+                            "userId": 1,
+                            "exception": "PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'brand_color' in 'field list' in C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:622\nStack trace:\n#0 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(622): PDO->prepare('update `sponsor...')\n#1 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(846): Illuminate\\Database\\Connection->{closure:Illuminate\\Database\\Connection::affectingStatement():614}('update `sponsor...', Array)\n#2 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(813): Illuminate\\Database\\Connection->runQueryCallback('update `sponsor...', Array, Object(Closure))\n#3 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(614): Illuminate\\Database\\Connection->run('update `sponsor...', Array, Object(Closure))\n#4 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(566): Illuminate\\Database\\Connection->affectingStatement('update `sponsor...', Array)\n#5 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(4321): Illuminate\\Database\\Connection->update('update `sponsor...', Array)\n#6 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(1282): Illuminate\\Database\\Query\\Builder->update(Object(Illuminate\\Support\\Collection))\n#7 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(1518): Illuminate\\Database\\Eloquent\\Builder->update(Array)\n#8 C:\\Users\\Mwangoji\\Documents\\GitHub\\scripcom\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(1400): Illuminate\\Database\\Eloquent\\Model->performUpdate(Object(Illuminate\\Database\\E\u2026"
+                        },
+                        "callsite": null,
+                        "stack": [],
+                        "at_ms": 125.799
+                    }
+                ]
             }
         },
         "exceptions": {
             "label": "Exceptions",
             "summary": {
-                "count": 0,
-                "retained_count": 0,
+                "count": 1,
+                "retained_count": 1,
                 "dropped_count": 0,
                 "truncated": false
             },
             "payload": {
-                "items": []
+                "items": [
+                    {
+                        "class": "Illuminate\\Database\\QueryException",
+                        "message": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'brand_color' in 'field list' (Connection: mysql, Host: 127.0.0.1, Port: 3306, Database: scripcom, SQL: update `sponsors` set `brand_color` = #0A991B, `sponsors`.`updated_at` = 2026-08-20 11:12:12 where `id` = 1)",
+                        "file": "vendor/laravel/framework/src/Illuminate/Database/Connection.php",
+                        "line": 857,
+                        "frames": {
+                            "application": [
+                                {
+                                    "file": "app/Http/Controllers/SponsorController.php",
+                                    "line": 77,
+                                    "function": "Illuminate\\Database\\Eloquent\\Model->update"
+                                },
+                                {
+                                    "file": "public/index.php",
+                                    "line": 20,
+                                    "function": "Illuminate\\Foundation\\Application->handleRequest"
+                                }
+                            ],
+                            "vendor": [
+                                {
+                                    "file": "vendor/laravel/framework/src/Illuminate/Database/Connection.php",
+                                    "line": 857,
+                                    "function": "throw"
+                                },
+                                {
+                                    "file": "vendor/laravel/framework/src/Illuminate/Database/Connection.php",
+                                    "line": 813,
+                                    "function": "Illuminate\\Database\\Connection->runQueryCallback"
+                                },
+                                {
+                                    "file": "vendor/laravel/framework/src/Illuminate/Database/Connection.php",
+                                    "line": 614,
+                                    "function": "Illuminate\\Database\\Connection->run"
+                                },
+                                {
+                                    "file": "vendor/laravel/framework/src/Illuminate/Database/Connection.php",
+                                    "line": 566,
+                                    "function": "Illuminate\\Database\\Connection->affectingStatement"
+                                },
+                                {
+                                    "file": "vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php",
+                                    "line": 4321,
+                                    "function": "Illuminate\\Database\\Connection->update"
+                                },
+                                {
+                                    "file": "vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php",
+                                    "line": 1282,
+                                    "function": "Illuminate\\Database\\Query\\Builder->update"
+                                },
+                                {
+                                    "file": "vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php",
+                                    "line": 1518,
+                                    "function": "Illuminate\\Database\\Eloquent\\Builder->update"
+                                },
+                                {
+                                    "file": "vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php",
+                                    "line": 1400,
+                                    "function": "Illuminate\\Database\\Eloquent\\Model->performUpdate"
+                                },
+                                {
+                                    "file": "vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php",
+                                    "line": 1159,
+                                    "function": "Illuminate\\Database\\Eloquent\\Model->save"
+                                },
+                                {
+                                    "file": "vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+                                    "line": 46,
+                                    "function": "App\\Http\\Controllers\\SponsorController->update"
+                                },
+                                {
+                                    "file": "vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+                                    "line": 276,
+                                    "function": "Illuminate\\Routing\\ControllerDispatcher->dispatch"
+                                },
+                                {
+                                    "file": "vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+                                    "line": 216,
+                                    "function": "Illuminate\\Routing\\Route->runController"
+                                }
+                            ]
+                        },
+                        "source": null,
+                        "at_ms": 128.743
+                    }
+                ]
             }
         }
     }

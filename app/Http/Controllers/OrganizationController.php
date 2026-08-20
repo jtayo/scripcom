@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Organization;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
@@ -32,6 +33,10 @@ class OrganizationController extends Controller
     {
         $data = $this->validated($request);
 
+        if ($request->hasFile('logo')) {
+            $data['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
         $organization = Organization::create(array_merge($data, [
             'slug' => Str::slug($data['name']).'-'.Str::lower(Str::random(4)),
         ]));
@@ -56,6 +61,13 @@ class OrganizationController extends Controller
     public function update(Request $request, Organization $organization): RedirectResponse
     {
         $data = $this->validated($request, $organization);
+
+        if ($request->hasFile('logo')) {
+            if ($organization->logo) {
+                Storage::disk('public')->delete($organization->logo);
+            }
+            $data['logo'] = $request->file('logo')->store('logos', 'public');
+        }
 
         $organization->update($data);
 
@@ -91,6 +103,7 @@ class OrganizationController extends Controller
             'country' => ['nullable', 'string', 'max:255'],
             'postal_code' => ['nullable', 'string', 'max:20'],
             'website' => ['nullable', 'url'],
+            'logo' => ['nullable', 'image', 'max:2048'],
             'primary_color' => ['nullable', 'string', 'max:20'],
             'secondary_color' => ['nullable', 'string', 'max:20'],
             'type' => ['nullable', 'string', Rule::in(array_keys(Organization::types()))],

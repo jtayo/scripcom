@@ -1,19 +1,19 @@
 {
     "schema_version": 1,
-    "id": "8d659603-5bbd-4a60-b293-d2ed62c90557",
-    "recorded_at": "2026-08-20T07:34:46+00:00",
+    "id": "91c7ee3d-3ff1-4338-b439-552f91e2fc15",
+    "recorded_at": "2026-08-20T11:09:30+00:00",
     "profile_type": "http",
     "environment": "local",
     "metrics": {
-        "duration_ms": 635.38,
-        "peak_memory_mb": 6
+        "duration_ms": 2837.68,
+        "peak_memory_mb": 8
     },
     "sections": {
         "overview": {
             "label": "Overview",
             "summary": {
-                "duration_ms": 635.38,
-                "peak_memory_mb": 6
+                "duration_ms": 2837.68,
+                "peak_memory_mb": 8
             },
             "payload": {
                 "runtime": {
@@ -22,7 +22,7 @@
                     "php_sapi": "cli-server",
                     "runtime_type": "cli-server",
                     "laravel": "13.25.0",
-                    "debug": true,
+                    "debug": false,
                     "locale": "en",
                     "timezone": "UTC"
                 },
@@ -58,8 +58,8 @@
             },
             "payload": {
                 "method": "GET",
-                "url": "http://127.0.0.1:8000/admin/organizations/1/edit",
-                "path": "/admin/organizations/1/edit",
+                "url": "http://127.0.0.1:8000/admin/sponsors/1/edit",
+                "path": "/admin/sponsors/1/edit",
                 "query": [],
                 "input": [],
                 "headers": {
@@ -103,7 +103,7 @@
                         "document"
                     ],
                     "referer": [
-                        "http://127.0.0.1:8000/admin/organizations"
+                        "http://127.0.0.1:8000/admin/sponsors"
                     ],
                     "accept-encoding": [
                         "gzip, deflate, br, zstd"
@@ -113,10 +113,10 @@
                     ],
                     "cookie": "[redacted]"
                 },
-                "route": "admin.organizations.edit",
-                "action": "App\\Http\\Controllers\\OrganizationController@edit",
+                "route": "admin.sponsors.edit",
+                "action": "App\\Http\\Controllers\\SponsorController@edit",
                 "parameters": {
-                    "organization": 1
+                    "sponsor": 1
                 },
                 "middleware": [
                     "Illuminate\\Cookie\\Middleware\\EncryptCookies",
@@ -126,13 +126,13 @@
                     "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestForgery",
                     "Illuminate\\Auth\\Middleware\\Authenticate",
                     "Illuminate\\Routing\\Middleware\\SubstituteBindings",
-                    "Illuminate\\Auth\\Middleware\\Authorize:view-any-organization"
+                    "Illuminate\\Auth\\Middleware\\Authorize:view-any-sponsor"
                 ],
                 "status": 200,
                 "request_type": "full_page",
                 "content_type": "text/html; charset=utf-8",
                 "request_size_bytes": 0,
-                "response_size_bytes": 42799,
+                "response_size_bytes": 39447,
                 "session_present": false,
                 "authenticated": true,
                 "authentication": {
@@ -160,7 +160,7 @@
                         "no-cache, private"
                     ],
                     "date": [
-                        "Thu, 20 Aug 2026 07:34:46 GMT"
+                        "Thu, 20 Aug 2026 11:09:27 GMT"
                     ],
                     "set-cookie": "[redacted]"
                 }
@@ -173,7 +173,7 @@
                 "retained_count": 9,
                 "dropped_count": 0,
                 "truncated": false,
-                "duration_ms": 254.95,
+                "duration_ms": 370.73,
                 "transaction_count": 0,
                 "transaction_retained_count": 0,
                 "transaction_dropped_count": 0,
@@ -184,15 +184,15 @@
                     {
                         "sql": "select * from `sessions` where `id` = ? limit 1",
                         "bindings": [
-                            "4QY9rhw9mBGy5Se1qxyYfQ3Xolty5a5jSWUGntUa"
+                            "sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH"
                         ],
-                        "runnable_sql": "select * from `sessions` where `id` = '4QY9rhw9mBGy5Se1qxyYfQ3Xolty5a5jSWUGntUa' limit 1",
-                        "duration_ms": 32.29,
+                        "runnable_sql": "select * from `sessions` where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH' limit 1",
+                        "duration_ms": 30.27,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 78.869,
+                        "at_ms": 54.405,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -204,29 +204,29 @@
                             1
                         ],
                         "runnable_sql": "select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1",
-                        "duration_ms": 2.64,
+                        "duration_ms": 1.34,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 96.506,
+                        "at_ms": 68.567,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
                         "runnable_available": true
                     },
                     {
-                        "sql": "select * from `organizations` where `id` = ? and `organizations`.`deleted_at` is null limit 1",
+                        "sql": "select * from `sponsors` where `id` = ? and `sponsors`.`deleted_at` is null limit 1",
                         "bindings": [
                             "1"
                         ],
-                        "runnable_sql": "select * from `organizations` where `id` = '1' and `organizations`.`deleted_at` is null limit 1",
-                        "duration_ms": 1.75,
+                        "runnable_sql": "select * from `sponsors` where `id` = '1' and `sponsors`.`deleted_at` is null limit 1",
+                        "duration_ms": 1.79,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 106.733,
+                        "at_ms": 76.783,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -238,12 +238,12 @@
                             "scripcom-cache-spatie.permission.cache"
                         ],
                         "runnable_sql": "select * from `cache` where `key` in ('scripcom-cache-spatie.permission.cache')",
-                        "duration_ms": 1.51,
+                        "duration_ms": 1.12,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 120.82,
+                        "at_ms": 88.765,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -255,12 +255,12 @@
                             "App\\Models\\User"
                         ],
                         "runnable_sql": "select `permissions`.*, `model_has_permissions`.`model_id` as `pivot_model_id`, `model_has_permissions`.`permission_id` as `pivot_permission_id`, `model_has_permissions`.`model_type` as `pivot_model_type` from `permissions` inner join `model_has_permissions` on `permissions`.`id` = `model_has_permissions`.`permission_id` where `model_has_permissions`.`model_id` in (1) and `model_has_permissions`.`model_type` = 'App\\\\Models\\\\User'",
-                        "duration_ms": 27.81,
+                        "duration_ms": 1.6,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 169.314,
+                        "at_ms": 107.698,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -272,12 +272,12 @@
                             "App\\Models\\User"
                         ],
                         "runnable_sql": "select `roles`.*, `model_has_roles`.`model_id` as `pivot_model_id`, `model_has_roles`.`role_id` as `pivot_role_id`, `model_has_roles`.`model_type` as `pivot_model_type` from `roles` inner join `model_has_roles` on `roles`.`id` = `model_has_roles`.`role_id` where `model_has_roles`.`model_id` in (1) and `model_has_roles`.`model_type` = 'App\\\\Models\\\\User'",
-                        "duration_ms": 7.62,
+                        "duration_ms": 1.88,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 180.029,
+                        "at_ms": 113.664,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -290,7 +290,7 @@
                             1
                         ],
                         "runnable_sql": "select count(*) as `aggregate` from `notifications` where `notifications`.`notifiable_type` = 'App\\\\Models\\\\User' and `notifications`.`notifiable_id` = 1 and `notifications`.`notifiable_id` is not null and `read_at` is null",
-                        "duration_ms": 2.32,
+                        "duration_ms": 1.45,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
@@ -304,7 +304,7 @@
                                 "function": "Blade authorization directive"
                             }
                         ],
-                        "at_ms": 429.496,
+                        "at_ms": 2484.098,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -317,7 +317,7 @@
                             1
                         ],
                         "runnable_sql": "select * from `notifications` where `notifications`.`notifiable_type` = 'App\\\\Models\\\\User' and `notifications`.`notifiable_id` = 1 and `notifications`.`notifiable_id` is not null order by `created_at` desc, `created_at` desc limit 5",
-                        "duration_ms": 3.22,
+                        "duration_ms": 2.48,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": {
@@ -331,7 +331,7 @@
                                 "function": "Blade authorization directive"
                             }
                         ],
-                        "at_ms": 437.623,
+                        "at_ms": 2489.473,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -340,20 +340,20 @@
                     {
                         "sql": "update `sessions` set `payload` = ?, `last_activity` = ?, `user_id` = ?, `ip_address` = ?, `user_agent` = ? where `id` = ?",
                         "bindings": [
-                            "eyJfdG9rZW4iOiJlYVFrU21LbDgwdFBFS2Y0T0hnVzlLejJYdFdWeTZTSVFxSzFDb3JDIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvb3JnYW5pemF0aW9uc1wvMVwvZWRpdCIsInJvdXRlIjoiYWRtaW4ub3JnYW5pemF0aW9ucy5lZGl0In0sIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjF9",
-                            1787211286,
+                            "eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvc3BvbnNvcnNcLzFcL2VkaXQiLCJyb3V0ZSI6ImFkbWluLnNwb25zb3JzLmVkaXQifX0=",
+                            1787224170,
                             1,
                             "127.0.0.1",
                             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
-                            "4QY9rhw9mBGy5Se1qxyYfQ3Xolty5a5jSWUGntUa"
+                            "sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH"
                         ],
-                        "runnable_sql": "update `sessions` set `payload` = 'eyJfdG9rZW4iOiJlYVFrU21LbDgwdFBFS2Y0T0hnVzlLejJYdFdWeTZTSVFxSzFDb3JDIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvb3JnYW5pemF0aW9uc1wvMVwvZWRpdCIsInJvdXRlIjoiYWRtaW4ub3JnYW5pemF0aW9ucy5lZGl0In0sIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjF9', `last_activity` = 1787211286, `user_id` = 1, `ip_address` = '127.0.0.1', `user_agent` = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36' where `id` = '4QY9rhw9mBGy5Se1qxyYfQ3Xolty5a5jSWUGntUa'",
-                        "duration_ms": 175.79,
+                        "runnable_sql": "update `sessions` set `payload` = 'eyJfdG9rZW4iOiJmSVAwVk00R3ZuWEdKZ202Ykg4bG9LY0IwWE43SjdIbGc2d0t3SFh0IiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hZG1pblwvc3BvbnNvcnNcLzFcL2VkaXQiLCJyb3V0ZSI6ImFkbWluLnNwb25zb3JzLmVkaXQifX0=', `last_activity` = 1787224170, `user_id` = 1, `ip_address` = '127.0.0.1', `user_agent` = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36' where `id` = 'sV8ejRpzbobmjOnLjl3hhmqH7zaievQIXOHpyNUH'",
+                        "duration_ms": 328.8,
                         "connection": "mysql",
                         "type": "write",
                         "callsite": null,
                         "stack": [],
-                        "at_ms": 630.498,
+                        "at_ms": 2834.148,
                         "source_preserved": true,
                         "binding_policy": "full",
                         "bindings_complete": true,
@@ -452,15 +452,15 @@
                         "connection": "mysql",
                         "table": "users",
                         "key": 1,
-                        "at_ms": 97.315
+                        "at_ms": 69.113
                     },
                     {
                         "event": "retrieved",
-                        "model": "App\\Models\\Organization",
+                        "model": "App\\Models\\Sponsor",
                         "connection": "mysql",
-                        "table": "organizations",
+                        "table": "sponsors",
                         "key": 1,
-                        "at_ms": 107.376
+                        "at_ms": 77.337
                     },
                     {
                         "event": "retrieved",
@@ -468,7 +468,7 @@
                         "connection": "mysql",
                         "table": "roles",
                         "key": 1,
-                        "at_ms": 180.791
+                        "at_ms": 114.275
                     },
                     {
                         "event": "retrieved",
@@ -476,7 +476,7 @@
                         "connection": "mysql",
                         "table": "notifications",
                         "key": "f1d65c50-f1f5-45af-aff6-1b5270bc084a",
-                        "at_ms": 438.198
+                        "at_ms": 2489.797
                     },
                     {
                         "event": "retrieved",
@@ -484,7 +484,7 @@
                         "connection": "mysql",
                         "table": "notifications",
                         "key": "9d3528cc-2174-4bd9-a872-315daaff9140",
-                        "at_ms": 438.423
+                        "at_ms": 2489.885
                     },
                     {
                         "event": "retrieved",
@@ -492,7 +492,7 @@
                         "connection": "mysql",
                         "table": "notifications",
                         "key": "e53f5f50-0c0a-47ee-8e7f-1b3c793f9b38",
-                        "at_ms": 438.554
+                        "at_ms": 2489.963
                     }
                 ]
             }
@@ -522,7 +522,7 @@
                         "tag_hashes": [],
                         "tags": [],
                         "seconds": null,
-                        "at_ms": 121.869
+                        "at_ms": 89.834
                     }
                 ]
             }
@@ -538,38 +538,31 @@
             "payload": {
                 "items": [
                     {
-                        "name": "organizations.edit",
+                        "name": "sponsors.edit",
                         "source": {
-                            "file": "resources/views/organizations/edit.blade.php",
+                            "file": "resources/views/sponsors/edit.blade.php",
                             "line": 1
                         },
                         "composers": [],
                         "data": {
-                            "organization": {
+                            "sponsor": {
                                 "id": 1,
-                                "name": "Mombasa County Government",
-                                "slug": "mombasa-county",
-                                "email": "ict@mombasa.go.ke",
-                                "phone": "+254411231000",
-                                "address": "P.O. Box 90438-80100",
-                                "city": "Mombasa",
-                                "county": "Mombasa",
-                                "country": "Kenya",
-                                "postal_code": "80100",
+                                "name": "Safaricom PLC",
+                                "slug": "safaricom",
+                                "email": "partners@safaricom.co.ke",
+                                "phone": "0722000001",
+                                "address": null,
                                 "logo": null,
-                                "website": "https://www.mombasa.go.ke",
-                                "primary_color": "#0410b8",
-                                "secondary_color": "#262B40",
-                                "type": "county",
+                                "website": "https://www.safaricom.co.ke",
+                                "contact_person": "Betty Njoroge",
                                 "is_active": true,
-                                "settings": null,
-                                "created_at": "2026-08-20T06:56:23.000000Z",
-                                "updated_at": "2026-08-20T07:24:10.000000Z",
+                                "created_at": "2026-08-20T06:56:44.000000Z",
+                                "updated_at": "2026-08-20T06:56:44.000000Z",
                                 "deleted_at": null
                             }
                         },
                         "timing": "composition_marker",
-                        "at_ms": 197.48
+                        "at_ms": 123.648
                     },
                     {
                         "name": "layouts.admin",
@@ -582,42 +575,24 @@
                             "__env": "[Illuminate\\View\\Factory]",
                             "app": "[Illuminate\\Foundation\\Application]",
                             "errors": "[]",
-                            "organization": {
+                            "sponsor": {
                                 "id": 1,
-                                "name": "Mombasa County Government",
-                                "slug": "mombasa-county",
-                                "email": "ict@mombasa.go.ke",
-                                "phone": "+254411231000",
-                                "address": "P.O. Box 90438-80100",
-                                "city": "Mombasa",
-                                "county": "Mombasa",
-                                "country": "Kenya",
-                                "postal_code": "80100",
+                                "name": "Safaricom PLC",
+                                "slug": "safaricom",
+                                "email": "partners@safaricom.co.ke",
+                                "phone": "0722000001",
+                                "address": null,
                                 "logo": null,
-                                "website": "https://www.mombasa.go.ke",
-                                "primary_color": "#0410b8",
-                                "secondary_color": "#262B40",
-                                "type": "county",
+                                "website": "https://www.safaricom.co.ke",
+                                "contact_person": "Betty Njoroge",
                                 "is_active": true,
-                                "settings": null,
-                                "created_at": "2026-08-20T06:56:23.000000Z",
-                                "updated_at": "2026-08-20T07:24:10.000000Z",
+                                "created_at": "2026-08-20T06:56:44.000000Z",
+                                "updated_at": "2026-08-20T06:56:44.000000Z",
                                 "deleted_at": null
-                            },
-                            "__currentLoopData": {
-                                "scripcom": "SCRIPCOM",
-                                "county": "County",
-                                "corporate": "Corporate",
-                                "ngo": "NGO",
-                                "institution": "Institution",
-                                "advertiser": "Advertiser"
-                            },
-                            "label": "Advertiser",
-                            "value": "advertiser",
-                            "loop": null
+                            }
                         },
                         "timing": "composition_marker",
-                        "at_ms": 224.814
+                        "at_ms": 2339.72
                     }
                 ]
             }
@@ -639,7 +614,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\ConnectionEstablished"
                         ],
-                        "at_ms": 36.284
+                        "at_ms": 17.417
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -648,7 +623,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 65.03
+                        "at_ms": 48.347
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -657,7 +632,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 88.839
+                        "at_ms": 65.003
                     },
                     {
                         "name": "Illuminate\\Auth\\Events\\Authenticated",
@@ -666,7 +641,7 @@
                         "payload_types": [
                             "Illuminate\\Auth\\Events\\Authenticated"
                         ],
-                        "at_ms": 100.723
+                        "at_ms": 70.967
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -675,7 +650,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 103.815
+                        "at_ms": 73.506
                     },
                     {
                         "name": "Illuminate\\Cache\\Events\\RetrievingKey",
@@ -684,7 +659,7 @@
                         "payload_types": [
                             "Illuminate\\Cache\\Events\\RetrievingKey"
                         ],
-                        "at_ms": 116.777
+                        "at_ms": 85.067
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -693,7 +668,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 117.934
+                        "at_ms": 85.879
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -702,7 +677,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 166.441
+                        "at_ms": 104.921
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -711,7 +686,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 177.063
+                        "at_ms": 111.664
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -720,7 +695,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 423.546
+                        "at_ms": 2479.963
                     },
                     {
                         "name": "Illuminate\\Database\\Events\\StatementPrepared",
@@ -729,7 +704,7 @@
                         "payload_types": [
                             "Illuminate\\Database\\Events\\StatementPrepared"
                         ],
-                        "at_ms": 431.786
+                        "at_ms": 2485.37
                     }
                 ]
             }
@@ -745,13 +720,13 @@
             "payload": {
                 "items": [
                     {
-                        "ability": "view-any-organization",
+                        "ability": "view-any-sponsor",
                         "result": "allowed",
                         "handler": "callback",
                         "user_type": "App\\Models\\User",
                         "argument_types": [],
                         "callsite": null,
-                        "at_ms": 185.891
+                        "at_ms": 117.961
                     },
                     {
                         "ability": "view-analytics",
@@ -763,7 +738,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 107
                         },
-                        "at_ms": 234.518
+                        "at_ms": 2351.452
                     },
                     {
                         "ability": "view-any-router",
@@ -775,7 +750,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 116
                         },
-                        "at_ms": 238.427
+                        "at_ms": 2354.768
                     },
                     {
                         "ability": "view-any-organization",
@@ -787,7 +762,7 @@
                             "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
                             "line": 126
                         },
-                        "at_ms": 242.32
+                        "at_ms": 2358.457
                     },
                     {
                         "ability": "view-any-organization",
@@ -799,7 +774,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 139
                         },
-                        "at_ms": 251.252
+                        "at_ms": 2363.181
                     },
                     {
                         "ability": "view-any-user",
@@ -811,7 +786,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 147
                         },
-                        "at_ms": 254.664
+                        "at_ms": 2366.265
                     },
                     {
                         "ability": "view-any-hotspot",
@@ -823,7 +798,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 155
                         },
-                        "at_ms": 258.508
+                        "at_ms": 2369.474
                     },
                     {
                         "ability": "view-any-router",
@@ -835,7 +810,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 163
                         },
-                        "at_ms": 270.503
+                        "at_ms": 2372.715
                     },
                     {
                         "ability": "view-any-campaign",
@@ -847,7 +822,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 171
                         },
-                        "at_ms": 275.285
+                        "at_ms": 2376.796
                     },
                     {
                         "ability": "view-any-package",
@@ -859,7 +834,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 179
                         },
-                        "at_ms": 283.817
+                        "at_ms": 2381.876
                     },
                     {
                         "ability": "view-any-voucher",
@@ -871,7 +846,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 187
                         },
-                        "at_ms": 292.22
+                        "at_ms": 2386.019
                     },
                     {
                         "ability": "view-any-sponsor",
@@ -883,7 +858,7 @@
                             "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
                             "line": 200
                         },
-                        "at_ms": 301.516
+                        "at_ms": 2389.521
                     },
                     {
                         "ability": "view-any-sponsor",
@@ -895,7 +870,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 213
                         },
-                        "at_ms": 305.787
+                        "at_ms": 2393.3
                     },
                     {
                         "ability": "view-any-sponsorship",
@@ -907,7 +882,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 221
                         },
-                        "at_ms": 311.251
+                        "at_ms": 2399.003
                     },
                     {
                         "ability": "buy-credits",
@@ -919,7 +894,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 229
                         },
-                        "at_ms": 316.523
+                        "at_ms": 2402.335
                     },
                     {
                         "ability": "view-any-session",
@@ -931,7 +906,7 @@
                             "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
                             "line": 242
                         },
-                        "at_ms": 320.99
+                        "at_ms": 2406.007
                     },
                     {
                         "ability": "view-any-session",
@@ -943,7 +918,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 255
                         },
-                        "at_ms": 325.029
+                        "at_ms": 2411.224
                     },
                     {
                         "ability": "view-any-event",
@@ -955,7 +930,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 263
                         },
-                        "at_ms": 332.394
+                        "at_ms": 2415.797
                     },
                     {
                         "ability": "view-any-payment",
@@ -967,7 +942,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 271
                         },
-                        "at_ms": 337.072
+                        "at_ms": 2419.99
                     },
                     {
                         "ability": "view-reports",
@@ -979,7 +954,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 283
                         },
-                        "at_ms": 341.71
+                        "at_ms": 2422.913
                     },
                     {
                         "ability": "view-any-contract",
@@ -991,7 +966,7 @@
                             "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
                             "line": 293
                         },
-                        "at_ms": 347.929
+                        "at_ms": 2428.699
                     },
                     {
                         "ability": "view-any-invoice",
@@ -1003,7 +978,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 306
                         },
-                        "at_ms": 353.395
+                        "at_ms": 2432.667
                     },
                     {
                         "ability": "view-any-contract",
@@ -1015,7 +990,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 314
                         },
-                        "at_ms": 357.723
+                        "at_ms": 2436.474
                     },
                     {
                         "ability": "view-any-invoice",
@@ -1027,7 +1002,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 322
                         },
-                        "at_ms": 369.208
+                        "at_ms": 2440.374
                     },
                     {
                         "ability": "view-any-revenue",
@@ -1039,7 +1014,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 330
                         },
-                        "at_ms": 374.334
+                        "at_ms": 2446.639
                     },
                     {
                         "ability": "view-settings",
@@ -1051,7 +1026,7 @@
                             "file": "storage/framework/views/17add83995226d1e99510c0a6ab6055e.php",
                             "line": 343
                         },
-                        "at_ms": 379.419
+                        "at_ms": 2450.497
                     },
                     {
                         "ability": "view-settings",
@@ -1063,7 +1038,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 356
                         },
-                        "at_ms": 383.777
+                        "at_ms": 2454.285
                     },
                     {
                         "ability": "view-any-role",
@@ -1075,7 +1050,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 364
                         },
-                        "at_ms": 388.53
+                        "at_ms": 2458.343
                     },
                     {
                         "ability": "view-any-permission",
@@ -1087,7 +1062,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 372
                         },
-                        "at_ms": 400.427
+                        "at_ms": 2464.537
                     },
                     {
                         "ability": "view-any-audit-log",
@@ -1099,7 +1074,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 380
                         },
-                        "at_ms": 405.546
+                        "at_ms": 2469.125
                     },
                     {
                         "ability": "view-notifications",
@@ -1111,7 +1086,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 420
                         },
-                        "at_ms": 417.532
+                        "at_ms": 2474.824
                     },
                     {
                         "ability": "view-settings",
@@ -1123,7 +1098,7 @@
                             "file": "resources/views/layouts/admin.blade.php",
                             "line": 558
                         },
-                        "at_ms": 448.703
+                        "at_ms": 2499.505
                     }
                 ]
             }
